@@ -525,6 +525,7 @@ Die Internetpublikation macht das digitalisierte Korpus dieser Frühdrucke  durc
   knora-base:hasSelfJoinEnabled "false"^^xsd:boolean.
 
 <http://rdfh.ch/users/hansCools> a knora-base:User;
+  knora-base:username "hasCools"^^xsd:string;
   knora-base:userid "hansCools"^^xsd:string;
   knora-base:familyName "Cools"^^xsd:string;
   knora-base:givenName "Hans"^^xsd:string;
