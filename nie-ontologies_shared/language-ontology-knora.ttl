@@ -7,13 +7,13 @@
 @prefix unicore: <http://purl.uniprot.org/core/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix event: <http://www.knora.org/ontology/0047/event#>.
-@prefix agent: <http://www.knora.org/ontology/0040/agent#>.
-@prefix human: <http://www.knora.org/ontology/0048/human#>.
-@prefix concept: <http://www.knora.org/ontology/0044/concept#>.
-@prefix text: <http://www.knora.org/ontology/0059/text#>.
-@prefix device: <http://www.knora.org/ontology/0045/device#>.
-@prefix ling: <http://www.knora.org/ontology/005D/linguistics#>.
+@prefix event: <http://www.knora.org/ontology/0000/event#>.
+@prefix agent: <http://www.knora.org/ontology/0000/agent#>.
+@prefix human: <http://www.knora.org/ontology/0000/human#>.
+@prefix concept: <http://www.knora.org/ontology/0000/concept#>.
+@prefix text: <http://www.knora.org/ontology/0000/text#>.
+@prefix device: <http://www.knora.org/ontology/0000/device#>.
+@prefix ling: <http://www.knora.org/ontology/0000/linguistics#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0000/language>.
@@ -26,7 +26,7 @@
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://rdfh.ch/projects/004F>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject> # <http://rdfh.ch/projects/004F>.
 
 #
 # CLASSES
@@ -146,7 +146,9 @@ language:PersonTranslator
 language:Translation
 	a owl:Class;
 	rdfs:label "translation"@en, "Übersetzung"@de, "traduction"@fr, "traduzione"@it;
-	rdfs:comment """Human natural language expression transferred in another natural language."""@en;
+	rdfs:comment """Human natural language expression transferred from another natural language."""@en;
+	skos:note """Can follow the original to a degree, hence differ from another translation; e.g. free translation gives the general meaning."""@en;
+#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_t.aspx>;
 	rdfs:subClassOf language:HumanNaturalLanguageExpression. #, event:Output.
 
 language:PersonTranslation
@@ -298,7 +300,7 @@ language:hasPersonTranslator
 	rdfs:label "has person-translator"@en, "hat Person-Übersetzer"@de;
 	rdfs:comment """Relating a natural language expression to a person who translated it."""@en;
 	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom language:PersonTranslator]];
+#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom language:PersonTranslator]];
 	rdfs:subPropertyOf language:hasTranslator;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint human:Person.
@@ -333,9 +335,9 @@ language:translatedInNaturalLanguage
 	a owl:ObjectProperty;
 	rdfs:label "translated in natural language"@en, "übersetzt in naturlichen Sprache"@de;
 	rdfs:comment """Relating a human expression to a natural language wherein it is translated."""@en;
-	rdfs:subPropertyOf language:expressedInNaturalLanguage;
 	rdfs:domain language:HumanNaturalLanguageExpression;
 	rdfs:range language:HumanNaturalLanguage;
+	rdfs:subPropertyOf language:expressedInNaturalLanguage;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint language:HumanNaturalLanguage.
 

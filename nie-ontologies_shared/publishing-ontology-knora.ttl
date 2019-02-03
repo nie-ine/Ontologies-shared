@@ -4,15 +4,16 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix event: <http://www.knora.org/ontology/0047/event#>.
-@prefix agent: <http://www.knora.org/ontology/0040/agent#>.
-@prefix human: <http://www.knora.org/ontology/0048/human#>.
-@prefix org: <http://www.knora.org/ontology/0051/organization#>.
-@prefix infocar: <http://www.knora.org/ontology/004C/information-carrier#>.
-@prefix concept: <http://www.knora.org/ontology/0044/concept#>.
-@prefix document: <http://www.knora.org/ontology/005C/document#>.
-@prefix text: <http://www.knora.org/ontology/0059/text#>.
-@prefix textedit: <http://www.knora.org/ontology/005A/text-editing#>.
+@prefix physical: <http://www.knora.org/ontology/0000/physical-resource#>.
+@prefix event: <http://www.knora.org/ontology/0000/event#>.
+@prefix agent: <http://www.knora.org/ontology/0000/agent#>.
+@prefix human: <http://www.knora.org/ontology/0000/human#>.
+@prefix org: <http://www.knora.org/ontology/0000/organization#>.
+@prefix infocar: <http://www.knora.org/ontology/0000/information-carrier#>.
+@prefix concept: <http://www.knora.org/ontology/0000/concept#>.
+@prefix document: <http://www.knora.org/ontology/0000/document#>.
+@prefix text: <http://www.knora.org/ontology/0000/text#>.
+@prefix textedit: <http://www.knora.org/ontology/0000/text-editing#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0000/publishing>.
@@ -24,7 +25,7 @@
 	dct:description """Formal description of publishing, its general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist and software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
-	knora-base:attachedToProject <http://rdfh.ch/projects/0056>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject> # <http://rdfh.ch/projects/0056>.
 
 #
 # CLASSES
@@ -33,20 +34,34 @@
 publish:Expression
 	a owl:Class;
 	rdfs:label "publication expression"@en, "Publikation-Expression"@de;
-	rdfs:comment """See http://iflastandards.info/ns/fr/frbr/frbroo/F24_Publication_Expression."""@en;
-	rdfs:subClassOf document:IndividualExpression, frbroo:F24_Publication_Expression, [
+	rdfs:comment """Document expression as abstracted from a publication carrier, conform FRBROO."""@en;
+	rdfs:subClassOf document:Expression, frbroo:F24_Publication_Expression, [
 		a owl:Restriction; owl:onProperty publish:isPublishedIn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:isPublishedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:isPublishedOnWeb; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:isPublishedOnWebValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasRedactor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasRedactorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+#		publish:hasPublishingState
+
+publish:TextExpression
+	a owl:Class;
+	rdfs:label "publication text expression"@en, "Publikation-Text-Expression"@de;
+	rdfs:comment """Text as publication expression."""@en;
+	rdfs:subClassOf text:Expression, publish:Expression.
+
+publish:Article
+	a owl:Class;
+	rdfs:label "publication article"@en, "Publikation-Artikel"@de; #, "article"@fr, "articolo"@it;
+	rdfs:comment """Article as unit in a publication."""@en;
+	rdfs:subClassOf text:Article, publish:TextExpression.
 
 publish:PublishingState
 	a owl:Class;
 	rdfs:label "publishing state"@en, "Publikationszustand"@de;
 	rdfs:comment """State of an expression having been published or not."""@en;
 	rdfs:subClassOf event:State.
+#	owl:oneOf (publish:Unpublished publish:Published).
 
 publish:Unpublished
 	a owl:Class;
@@ -69,8 +84,8 @@ publish:Publishing
 publish:Redactor
 	a owl:Class;
 	rdfs:label "redactor"@en, "Redaktor"@de;
-	rdfs:comment """Editor preparing text for publication."""@en; #* NOT ONLY text -> expression
-	rdfs:subClassOf textedit:Editor.
+	rdfs:comment """Editor preparing an expression for publication."""@en; #° NOT ONLY text
+	rdfs:subClassOf human:PersonCreator.
 
 publish:AgentPublisher
 	a owl:Class;
@@ -102,6 +117,7 @@ publish:Publication
 	rdfs:comment """An expression published on a carrier."""@en; # output of publishing
 	rdfs:subClassOf infocar:Carrier, frbroo:F5_Item, [
 		a owl:Restriction; owl:onProperty publish:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publish:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasPublisher; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -158,9 +174,7 @@ publish:FirstPublication
 	a owl:Class;
 	rdfs:label "first publication"@en, "Erstausgabe"@de;
 	rdfs:comment """Earliest publication of an expression."""@en;
-	rdfs:subClassOf publish:Publication.
-
-# human:FirstVersion
+	rdfs:subClassOf publish:Publication. # human:FirstVersion
 
 publish:LastPublication
 	a owl:Class;
@@ -168,28 +182,61 @@ publish:LastPublication
 	rdfs:comment """Last publication of an expression."""@en;
 	rdfs:subClassOf publish:Publication.
 
-publish:Magazine
+publish:Serial
 	a owl:Class;
-	rdfs:label "magazine"@en, "Zeitschrift"@de, "périodique"@fr;
-	rdfs:comment """Periodically published book."""@en;
-	rdfs:subClassOf infocar:Book, publish:Publication.
+	rdfs:label "serial publication"@en, "Reihe-Ausgabe"@de; #, "publication sérielle"@fr, ""@it;
+	rdfs:comment """Successive publication with same title, usually numbered and/or dated, issued at a regular or irregular interval, without predetermined conclusion."""@en;
+#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:subClassOf publish:Publication, [
+		a owl:Restriction; owl:onProperty publish:hasExistence; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publish:hasExistenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publish:isPartOfVolume; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty publish:isPartOfVolumeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+publish:Existence
+	a owl:Class;
+	rdfs:label "publishing existence"@en, "Publizierungexistenz"@de; #, ""@fr, ""@it;
+	rdfs:comment """The publishing from the first to the last issue of a serial."""@en;
+	rdfs:subClassOf event:Existence.
+
+publish:SerialVolume
+	a owl:Class;
+	rdfs:label "serial volume"@en, "Reihe-Ausgabevolumen"@de; #, ""@fr, ""@it; # Jahrgang
+	rdfs:comment """Set of serials, e.g. the magazine issues of a coterminous year."""@en;
+	rdfs:subClassOf infocar:Set.
 
 publish:Newspaper
 	a owl:Class;
-	rdfs:label "newspaper"@en, "Zeitung"@de;
-	rdfs:comment """Periodical publication with most recent event descriptions as core content."""@en;
-	rdfs:subClassOf publish:Publication.
+	rdfs:label "newspaper"@en, "Zeitung"@de, "journal"@fr, "giornale"@it;
+	rdfs:comment """Serial publication, mostly daily, with most recent event descriptions as core content."""@en;
+#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:subClassOf publish:Serial.
 
-publish:Article
+publish:Periodical
 	a owl:Class;
-	rdfs:label "article"@en, "Artikel"@de, "article"@fr;
-	rdfs:comment """Unit in a periodical publication."""@en;
-	rdfs:subClassOf publish:Publication.
+	rdfs:label "periodical publication"@en, "Zeitschrift"@de, "périodique"@fr, "periodico"@it;
+	rdfs:comment """Serial publication issued at a regular interval of less than a year, e.g. daily, weekly, monthly, quarterly, without prior decision as to when the final issue will appear."""@en;
+#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:subClassOf publish:Serial. # infocar:Book
+
+publish:Magazine
+	a owl:Class;
+	rdfs:label "magazine"@en, "Magazin"@de, "magazine"@fr; # ""@it;
+	rdfs:comment """Periodical publication with individual pagination."""@en;
+#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:subClassOf infocar:Book, publish:Periodical.
+
+publish:Journal
+	a owl:Class;
+	rdfs:label "journal"@en, "Journal"@de, "revue"@fr; #, ""@it;
+	rdfs:comment """Periodical publication with continuous pagination throughout its volume."""@en;
+#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:subClassOf infocar:Book, publish:Periodical.
 
 publish:NachlassPublication
 	a owl:Class;
 	rdfs:label "nachlass publication"@en, "Nachlassausgabe"@de;
-	rdfs:comment """Publication of a nachlass."""@en;
+	rdfs:comment """Publication of a nachlass element."""@en;
 	rdfs:subClassOf publish:Publication, infocar:NachlassElement.
 
 publish:UnauthorizedPublication
@@ -244,7 +291,7 @@ publish:hasPublication
 	rdfs:comment """Relating an expression to a publication it has."""@en;
 	rdfs:domain document:Expression;
 	rdfs:range publish:Publication;
-	rdfs:subPropertyOf infocar:isOnCarrier;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint publish:Publication.
 
@@ -252,7 +299,7 @@ publish:hasPublicationValue
 	a owl:ObjectProperty;
 	rdfs:label "has publication - statement"@en, "hat Publikation - Festlegung"@de;
 	rdfs:comment """Relating an expression to a reification statement of the relation between the expression and a publication it has."""@en;
-	rdfs:subPropertyOf infocar:isOnCarrierValue;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -460,7 +507,7 @@ publish:isPublishedOnWeb
 
 publish:hasRedactor
 	a owl:ObjectProperty;
-	rdfs:label "has redactor"@en, "hat  Redakteur"@de;
+	rdfs:label "has redactor"@en, "hat Redakteur"@de;
 	rdfs:comment """Relating a publication expression to a redactor thereof."""@en;
 	rdfs:domain publish:Expression;
 #	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom publish:Redactor]];
@@ -514,13 +561,23 @@ publish:hasPeriodValue
 	knora-base:subjectClassConstraint publish:PartitionedPublication;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-publish:hasTitle
+publish:hasTitle #° -> expression
 	a owl:ObjectProperty;
 	rdfs:label "publication has title"@en, "Publikation hat titel"@de;
 	rdfs:comment """Relating a publication to its title."""@en;
 	rdfs:domain publish:Publication;
 	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasTitle;
+	knora-base:subjectClassConstraint publish:Publication;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+publish:hasNumber
+	a owl:ObjectProperty;
+	rdfs:label "publication has number"@en, "Publikation hat Nummer"@de;
+	rdfs:comment """Relating a publication to its number."""@en;
+	rdfs:domain publish:Publication;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue; # text:hasTitle;
 	knora-base:subjectClassConstraint publish:Publication;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
@@ -561,6 +618,42 @@ publish:hasPrinterDescription
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint publish:Publication;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+publish:hasExistence
+	a owl:ObjectProperty;
+	rdfs:label "has publishing existence"@en, "hat Publizierungexistenz"@de;
+	rdfs:comment """Relating a serial to its publishing existence."""@en;
+	rdfs:domain publish:Serial;
+	rdfs:range publish:Existence;
+	rdfs:subPropertyOf event:hasExistence;
+	knora-base:subjectClassConstraint publish:Serial;
+	knora-base:objectClassConstraint publish:Existence.
+
+publish:hasExistenceValue
+	a owl:ObjectProperty;
+	rdfs:label "has publishing existence - statement"@en, "hat Publizierungexistenz - Festlegung"@de;
+	rdfs:comment """Relating a serial to a reification statement of the relation between the serial and a volume it is part of."""@en;
+	rdfs:subPropertyOf event:hasExistenceValue;
+	knora-base:subjectClassConstraint publish:Serial;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+publish:isPartOfVolume
+	a owl:ObjectProperty;
+	rdfs:label "is part of volume"@en, "ist Teil eines Volumens"@de;
+	rdfs:comment """Relating a serial to a volume it is part of."""@en;
+	rdfs:domain publish:Serial;
+	rdfs:range publish:SerialVolume;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint publish:Serial;
+	knora-base:objectClassConstraint publish:SerialVolume.
+
+publish:isPartOfVolumeValue
+	a owl:ObjectProperty;
+	rdfs:label "is part of volume - statement"@en, "ist Teil eines Volumens - Festlegung"@de;
+	rdfs:comment """Relating a serial to a reification statement of the relation between the serial and a volume it is part of."""@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint publish:Serial;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 publish:hasReference
 	a owl:ObjectProperty;

@@ -7,13 +7,13 @@
 @prefix unicore: <http://purl.uniprot.org/core/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix event: <http://www.knora.org/ontology/0047/event#>.
-@prefix agent: <http://www.knora.org/ontology/0040/agent#>.
-@prefix human: <http://www.knora.org/ontology/0048/human#>.
-@prefix concept: <http://www.knora.org/ontology/0044/concept#>.
-@prefix text: <http://www.knora.org/ontology/0059/text#>.
-@prefix text-structure: <http://www.knora.org/ontology/005B/text-structure#>.
-@prefix ling: <http://www.knora.org/ontology/005D/linguistics#>.
+@prefix event: <http://www.knora.org/ontology/0000/event#>.
+@prefix agent: <http://www.knora.org/ontology/0000/agent#>.
+@prefix human: <http://www.knora.org/ontology/0000/human#>.
+@prefix concept: <http://www.knora.org/ontology/0000/concept#>.
+@prefix text: <http://www.knora.org/ontology/0000/text#>.
+@prefix text-structure: <http://www.knora.org/ontology/0000/text-structure#>.
+@prefix ling: <http://www.knora.org/ontology/0000/linguistics#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0000/logic>.
@@ -26,11 +26,7 @@
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://rdfh.ch/projects/005E>.
-
-
-# EMBRYONIC: declared 'middle-out', on the go as concepts are needed, not intended to contain upfront all elements
-
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject> # <http://rdfh.ch/projects/005E>.
 
 #
 # CLASSES
@@ -58,7 +54,7 @@ logic:Conclusion
 logic:Argument
 	a owl:Class;
 	rdfs:label "argument"@en, "Argument"@de;
-	rdfs:comment """Premises presenting a reason for accepting a conclusion."""@en;
+	rdfs:comment """Premise(s) presenting a reason for accepting a conclusion."""@en;
 	rdfs:subClassOf text-structure:Paragraph.
 
 # Independent of natural language: logic, mathematics, computer science

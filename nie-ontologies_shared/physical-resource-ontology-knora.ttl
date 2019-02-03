@@ -9,10 +9,10 @@
 @prefix naproti: <http://sweet.jpl.nasa.gov/2.3/propTime.owl#>.
 @prefix naprospadi: <http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl#>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
-@prefix phygeo: <http://www.knora.org/ontology/0054/physical-geography#>.
-@prefix human: <http://www.knora.org/ontology/0048/human#>.
-@prefix humgeo: <http://www.knora.org/ontology/0049/human-geography#>.
-@prefix text: <http://www.knora.org/ontology/0059/text#>.
+@prefix phygeo: <http://www.knora.org/ontology/0000/physical-geography#>.
+@prefix human: <http://www.knora.org/ontology/0000/human#>.
+@prefix humgeo: <http://www.knora.org/ontology/0000/human-geography#>.
+@prefix text: <http://www.knora.org/ontology/0000/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0000/physical-resource>.
@@ -25,7 +25,7 @@
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://rdfh.ch/projects/0055>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject> # <http://rdfh.ch/projects/0055>.
 
 #
 # CLASSES

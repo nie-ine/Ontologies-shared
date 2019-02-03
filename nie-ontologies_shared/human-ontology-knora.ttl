@@ -8,13 +8,13 @@
 @prefix unitax: <http://purl.uniprot.org/taxonomy/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix event: <http://www.knora.org/ontology/0047/event#>.
-@prefix physical: <http://www.knora.org/ontology/0055/physical-resource#>.
-@prefix agent: <http://www.knora.org/ontology/0040/agent#>.
-@prefix humgeo: <http://www.knora.org/ontology/0049/human-geography#>.
-@prefix org: <http://www.knora.org/ontology/0051/organization#>.
-@prefix concept: <http://www.knora.org/ontology/0044/concept#>.
-@prefix text: <http://www.knora.org/ontology/0059/text#>.
+@prefix event: <http://www.knora.org/ontology/0000/event#>.
+@prefix physical: <http://www.knora.org/ontology/0000/physical-resource#>.
+@prefix agent: <http://www.knora.org/ontology/0000/agent#>.
+@prefix humgeo: <http://www.knora.org/ontology/0000/human-geography#>.
+@prefix org: <http://www.knora.org/ontology/0000/organization#>.
+@prefix concept: <http://www.knora.org/ontology/0000/concept#>.
+@prefix text: <http://www.knora.org/ontology/0000/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0000/human>.
@@ -27,7 +27,7 @@
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://rdfh.ch/projects/0048>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject> # <http://rdfh.ch/projects/0048>.
 
 #
 # CLASSES
@@ -401,7 +401,7 @@ human:Floruit
 human:Vulgarizer
 	a owl:Class;
 	rdfs:label "vulgarizer"@en, "Vulgarisator"@de, "vulgarisateur"@fr;
-	rdfs:comment """Role of a person making something, e.g. science, less subtle, complex, or refined."""@en;
+	rdfs:comment """Role of a person making something, e.g. scientific text, less subtle, complex, or refined."""@en;
 	rdfs:subClassOf human:PersonRole.
 
 human:Performer

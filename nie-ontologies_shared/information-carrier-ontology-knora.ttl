@@ -6,14 +6,14 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix physical: <http://www.knora.org/ontology/0055/physical-resource#>.
-@prefix event: <http://www.knora.org/ontology/0047/event#>.
-@prefix human: <http://www.knora.org/ontology/0048/human#>.
-@prefix concept: <http://www.knora.org/ontology/0044/concept#>.
-@prefix document: <http://www.knora.org/ontology/005C/document#>.
-@prefix text: <http://www.knora.org/ontology/0059/text#>.
-@prefix device: <http://www.knora.org/ontology/0045/device#>.
-@prefix ling: <http://www.knora.org/ontology/005D/linguistics#>.
+@prefix physical: <http://www.knora.org/ontology/0000/physical-resource#>.
+@prefix event: <http://www.knora.org/ontology/0000/event#>.
+@prefix human: <http://www.knora.org/ontology/0000/human#>.
+@prefix concept: <http://www.knora.org/ontology/0000/concept#>.
+@prefix document: <http://www.knora.org/ontology/0000/document#>.
+@prefix text: <http://www.knora.org/ontology/0000/text#>.
+@prefix device: <http://www.knora.org/ontology/0000/device#>.
+@prefix ling: <http://www.knora.org/ontology/0000/linguistics#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0000/information-carrier>.
@@ -26,7 +26,7 @@
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://rdfh.ch/projects/004C>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject> # <http://rdfh.ch/projects/004C>.
 
 #
 # CLASSES
@@ -47,7 +47,7 @@ infocar:Carrier
 infocar:Set
 	a owl:Class;
 	rdfs:label "information carrier set"@en, "Informationsträger-Reihe"@de, "ensemble des supports d'information"@fr;
-	rdfs:comment """Information carriers belonging together, e.g. a series of volumes, an archive, , nachlass."""@en;
+	rdfs:comment """Information carriers belonging together, e.g. a series of volumes, an archive, nachlass."""@en;
 	rdfs:subClassOf human:PhysicalCreation, [
 		a owl:Restriction; owl:onProperty infocar:hasCarrierDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -95,7 +95,7 @@ infocar:Binding
 infocar:Volume
 	a owl:Class;
 	rdfs:label "volume"@en, "Band"@de;
-	rdfs:comment """One of the books carrying an expression materialized in more than one book."""@en;
+	rdfs:comment """One of a set of books, carrying a part of the common expression of the set."""@en;
 	rdfs:subClassOf infocar:Book, [
 		a owl:Restriction; owl:onProperty infocar:isVolumeOfWork; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isVolumeOfWorkValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [		
@@ -104,7 +104,7 @@ infocar:Volume
 infocar:PartitionedWork
 	a owl:Class;
 	rdfs:label "partitioned work"@en, "partitioniertes Werk"@de;
-	rdfs:comment """Set of volumes carrying a common expression, e.g. a dictionary."""@en;
+	rdfs:comment """Set of volumes carrying a common expression, e.g. a dictionary, ."""@en;
 	rdfs:subClassOf infocar:Set.
 
 infocar:Archive

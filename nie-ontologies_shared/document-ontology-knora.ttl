@@ -7,15 +7,15 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix event: <http://www.knora.org/ontology/0047/event#>.
-@prefix human: <http://www.knora.org/ontology/0048/human#>.
-@prefix concept: <http://www.knora.org/ontology/0044/concept#>.
-@prefix math: <http://www.knora.org/ontology/0061/mathematics#>.
-@prefix ling: <http://www.knora.org/ontology/005D/linguistics#>.
-@prefix text: <http://www.knora.org/ontology/0059/text#>.
-@prefix text-structure: <http://www.knora.org/ontology/005B/text-structure#>.
-@prefix infocar: <http://www.knora.org/ontology/004C/information-carrier#>.
-@prefix publish: <http://www.knora.org/ontology/0056/publishing#>.
+@prefix event: <http://www.knora.org/ontology/0000/event#>.
+@prefix human: <http://www.knora.org/ontology/0000/human#>.
+@prefix concept: <http://www.knora.org/ontology/0000/concept#>.
+@prefix math: <http://www.knora.org/ontology/0000/mathematics#>.
+@prefix ling: <http://www.knora.org/ontology/0000/linguistics#>.
+@prefix text: <http://www.knora.org/ontology/0000/text#>.
+@prefix text-structure: <http://www.knora.org/ontology/0000/text-structure#>.
+@prefix infocar: <http://www.knora.org/ontology/0000/information-carrier#>.
+@prefix publish: <http://www.knora.org/ontology/0000/publishing#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0000/document>.
@@ -28,7 +28,7 @@
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://rdfh.ch/projects/005C>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject> # <http://rdfh.ch/projects/005C>.
 
 #
 # CLASSES
@@ -65,10 +65,10 @@ document:ContentStructure
 	rdfs:subClassOf document:Structure, [
 		a owl:Restriction; owl:onProperty document:hasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:hasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty document:hasReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty document:hasReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty document:hasTextReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty document:hasTextReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+ 		a owl:Restriction; owl:onProperty document:hasReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+ 		a owl:Restriction; owl:onProperty document:hasReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+ 		a owl:Restriction; owl:onProperty document:hasTextReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+ 		a owl:Restriction; owl:onProperty document:hasTextReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:hasFootnoteReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:hasFootnoteReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:hasEndnoteReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -185,6 +185,7 @@ document:Expression
 		a owl:Restriction; owl:onProperty publish:hasElectronicPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasWebPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasWebPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+
 		a owl:Restriction; owl:onProperty publish:hasPublicationNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasFirstPublication; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasFirstPublicationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [		
@@ -246,29 +247,11 @@ document:Cycle
 	rdfs:comment """Set of expressions belonging together, usually created around a certain theme, and intended to be experienced in a certain sequence."""@en;
 	rdfs:subClassOf concept:Set.
 
-document:Dictionary
-	a owl:Class;
-	rdfs:label "dictionary"@en, "Wörterbuch"@de;
-	rdfs:comment """List of words of a human natural language, providing their meaning, mostly ordered, e.g. alphabetically."""@en;
-	rdfs:subClassOf document:IndividualExpression.
-
 document:Catalogue
 	a owl:Class;
 	rdfs:label "catalogue"@en, "Katalog"@de, "catalogue"@fr;
 	rdfs:comment """List of descriptions of things, mostly ordered, e.g. alphabetically; e.g. library's book catalogue, exhibition's works of art catalogue, mail-order company's items for sale catalogue."""@en;
 	rdfs:subClassOf document:IndividualExpression.
-
-document:ScientificExpression
-	a owl:Class;
-	rdfs:label "scientific expression"@en, "wissenschaftliche Expression"@de;
-	rdfs:comment """Text expression with scientific content."""@en;
-	rdfs:subClassOf document:IndividualExpression.
-
-document:VulgarizedScientificExpression
-	a owl:Class;
-	rdfs:label "vulgarized scientific expression"@en, "vulgarisierte wissenschaftliche Expression"@de;
-	rdfs:comment """Text with vulgarized scientific content."""@en;
-	rdfs:subClassOf document:ScientificExpression.
 
 document:Code
 	a owl:Class;
