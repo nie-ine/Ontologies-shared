@@ -4,13 +4,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dct: <http://purl.org/dc/terms/>.
-@prefix human: <http://www.knora.org/ontology/0000/human#>.
-@prefix text: <http://www.knora.org/ontology/0000/text#>.
-@prefix schola: <http://www.knora.org/ontology/0000/scholasticism#>.
-@prefix philo: <http://www.knora.org/ontology/0000/philosophy#>.
-@prefix philos: <http://www.knora.org/ontology/0000/philosophies#>.
-@prefix cathorg: <http://www.knora.org/ontology/0000/catholic-organization#>.
-@prefix cathord: <http://www.knora.org/ontology/0000/catholic-orders#>.
+@prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix schola: <http://www.knora.org/ontology/shared/scholasticism#>.
+@prefix philo: <http://www.knora.org/ontology/shared/philosophy#>.
+@prefix philos: <http://www.knora.org/ontology/shared/philosophies#>.
+@prefix cathorg: <http://www.knora.org/ontology/shared/catholic-organization#>.
+@prefix cathord: <http://www.knora.org/ontology/shared/catholic-orders#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0046/drcs>.
