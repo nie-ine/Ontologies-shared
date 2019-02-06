@@ -7,13 +7,13 @@
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
-@base <http://www.knora.org/ontology/005F/test>.
-@prefix test: <http://www.knora.org/ontology/005F/test#>.
+@base <http://www.knora.org/ontology/shared/test>.
+@prefix test: <http://www.knora.org/ontology/shared/test#>.
 
-<http://www.knora.org/ontology/005F/test>
+<http://www.knora.org/ontology/shared/test>
 	a owl:Ontology;
 	
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject> # <http://rdfh.ch/projects/005F>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/005F>.
 
 #
 # CLASSES
