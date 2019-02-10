@@ -38,17 +38,17 @@ delille:VersePoem
 	rdfs:comment """Verse poem authored by Jacques Delille."""@en;
 	rdfs:subClassOf litera:VersePoem, publish:Expression.
 
-delille:EditedVersePoem
-	a owl:Class;
-	rdfs:label "edited Jacques Delille verse poem"@en, "ediertes Versgedicht Jacques Delilles"@de;
-	rdfs:comment """Verse poem authored by Jacques Delille and edited."""@en;
-	rdfs:subClassOf delille:VersePoem, textedit:Edition.
-
 delille:TranslatedVersePoem
 	a owl:Class;
 	rdfs:label "Translated Jacques Delille verse poem"@en, "übersetzter gereimter Versgedicht Jacques Delilles"@de;
 	rdfs:comment """Translated Jacques Delille verse poem."""@en;
 	rdfs:subClassOf delille:VersePoem, language:PersonTranslation, text:Translation.
+
+delille:EditedVersePoem
+	a owl:Class;
+	rdfs:label "edited Jacques Delille verse poem"@en, "ediertes Versgedicht Jacques Delilles"@de;
+	rdfs:comment """Verse poem authored by Jacques Delille and edited."""@en;
+	rdfs:subClassOf delille:VersePoem, textedit:Edition.
 
 delille:Canto
 	a owl:Class;

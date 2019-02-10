@@ -10,6 +10,8 @@
 
 	knora-base:attachedToProject <http://rdfh.ch/projects/004E>.
 
+# Just needed for search due to limits of the implementation of Semantic Web technology (SPARQL) in Knora1(?)
+
 #
 # CLASSES
 #
