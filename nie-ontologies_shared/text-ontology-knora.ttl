@@ -230,14 +230,20 @@ text:Conclusion
 text:Author
 	a owl:Class;
 	rdfs:label "text author"@en, "Textautor"@de, "auteur du texte"@fr, "autore di testo"@it;
-	rdfs:comment """Role of a person being responsible for a text expression."""@en;
+	rdfs:comment """Role of a person being responsible for the creation of a text expression."""@en;
 	skos:note """Often an author is also the creator of a text expression."""@en;
 	rdfs:subClassOf human:Author.
 
 text:MainAuthor
 	a owl:Class;
 	rdfs:label "main text author"@en, "Haupttextautor"@de; # , "auteur du texte"@fr, "autore di testo"@it;
-	rdfs:comment """Role of a person being the main responsible person for a text expression."""@en;
+	rdfs:comment """Role of a person being the main responsible person for the creation of a text expression."""@en;
+	rdfs:subClassOf text:Author.
+
+text:CoAuthor
+	a owl:Class;
+	rdfs:label "co-author"@en, "KoauthorIn"@de, "co-auteure"@fr, "coautore"@it;
+	rdfs:comment """Role of a person being co-responsible for the creation of a text expression."""@en;
 	rdfs:subClassOf text:Author.
 
 text:ManOfLetters

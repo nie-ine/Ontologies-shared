@@ -34,7 +34,7 @@
 concept:Concept #°
 	a owl:Class;
 	rdfs:label "concept"@en, "Konzept"@de;
-	rdfs:comment """Abstract idea created by a person, as product of mental activity."""@en;
+	rdfs:comment """Abstract idea created by a person, as product of cognition."""@en;
 	rdfs:subClassOf human:Creation, frbroo:F6_Concept. # rdfs:subClassOf cidoc:E28_Conceptual_Object
 
 concept:Fiction
@@ -100,7 +100,7 @@ concept:ThoughtBody
 concept:Work
 	a owl:Class;
 	rdfs:label "conceptual work"@en, "konzeptuelles Werk"@de;
-	rdfs:comment """Intellectual product as concept."""@en;
+	rdfs:comment """Concept as recognizable intellectual product, conform FRBROO."""@en;
 	rdfs:subClassOf concept:PropositionalConcept, frbroo:F1_Work, [
 		a owl:Restriction; owl:onProperty text:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 

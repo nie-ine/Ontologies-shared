@@ -32,9 +32,6 @@
 # CLASSES
 #
 
-# Logic: study of standards and criteria used in evaluating arguments and their forms of reasoning
-# Rhetoric: study of formulating arguments effectively
-
 logic:Premise
 	a owl:Class;
 	rdfs:label "premise"@en, "Prämisse"@de;
@@ -56,16 +53,6 @@ logic:Argument
 	rdfs:label "argument"@en, "Argument"@de;
 	rdfs:comment """Premise(s) presenting a reason for accepting a conclusion."""@en;
 	rdfs:subClassOf text-structure:Paragraph.
-
-# Independent of natural language: logic, mathematics, computer science
-
-# Premise: Sentence, Statement, Proposition
-# Proposition: statement with a truth value : useful ?
-# Conclusion
-
-# Deduction or deductive argument: premises guarantee the truth of the conclusion
-# Induction or inductive argument: premises provide reasons for supporting the conclusion's probable truth
-# Abduction
 
 logic:Syllogism
 	a owl:Class;
