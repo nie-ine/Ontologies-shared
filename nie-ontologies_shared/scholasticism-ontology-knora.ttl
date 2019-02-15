@@ -46,12 +46,9 @@ schola:Scholastic
 	rdfs:subClassOf human:Person, [
 #		a owl:Restriction; owl:onProperty schola:hasRole; owl:someValuesFrom schola:Role], [
 		a owl:Restriction; owl:onProperty schola:hasRole; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty schola:hasRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger] #, [
+		a owl:Restriction; owl:onProperty schola:hasRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]. #, [
 #		a owl:Restriction; owl:onProperty schola:hasReportatorRole; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty schola:hasReportatorRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
-		.
-
-#* schola:Translator: SCO text:Translator: handwriting?
 
 schola:Role
 	a owl:Class;

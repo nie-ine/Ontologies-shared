@@ -264,9 +264,9 @@ text:Revisor
 	rdfs:comment """Role of a person checking on certain aspects of a text."""@en;
 	rdfs:subClassOf human:PersonRole.
 
-text:Translator
+text:PersonTranslator
 	a owl:Class;
-	rdfs:label "translator"@en, "ÜbersetzerIn"@de, "traduct-eur/rice"@fr, "tradutt-ore/rice"@it;
+	rdfs:label "person text translator"@en, "Person TextübersetzerIn"@de; #, "traduct-eur/rice du texte"@fr, "tradutt-ore/rice di testo"@it;
 	rdfs:comment """Role of a person translating text by writing or printing."""@en;
 	rdfs:subClassOf language:PersonTranslator.
 

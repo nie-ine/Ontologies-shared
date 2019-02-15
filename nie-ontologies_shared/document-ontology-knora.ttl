@@ -257,6 +257,9 @@ document:Catalogue
 	rdfs:comment """List of descriptions of things, mostly ordered, e.g. alphabetically; e.g. library's book catalogue, exhibition's works of art catalogue, mail-order company's items for sale catalogue."""@en;
 	rdfs:subClassOf document:IndividualExpression.
 
+# document:Encoder
+# e.g. to XML
+
 document:Code
 	a owl:Class;
 	rdfs:label "code document"@en,"Kode-Dokument"@de;

@@ -58,16 +58,22 @@ textedit:EditorialSymbol
 	rdfs:comment """Symbol in an edition indicating a textual aspect of the original text."""@en;
 	rdfs:subClassOf ling:Literal.
 
-textedit:Redactor
+textedit:Annotator
 	a owl:Class;
-	rdfs:label "redactor"@la, "redactor"@en, "Redactor"@de;
-	rdfs:comment """Editor assembling parts of texts to a new coherent text."""@en;
+	rdfs:label "annotator"@en, "Annotator"@de;
+	rdfs:comment """Editor adding a note to a text."""@en;
 	rdfs:subClassOf textedit:Editor.
 
 textedit:Glossator
 	a owl:Class;
 	rdfs:label "glossator"@la, "glossator"@en, "Glossator"@de;
 	rdfs:comment """Role of a person adding glosses to a text."""@en;
+	rdfs:subClassOf textedit:Editor.
+
+textedit:Redactor
+	a owl:Class;
+	rdfs:label "redactor"@la, "redactor"@en, "Redactor"@de;
+	rdfs:comment """Editor assembling parts of texts to a new coherent text."""@en;
 	rdfs:subClassOf textedit:Editor.
 
 textedit:Abbreviator

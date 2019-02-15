@@ -337,10 +337,12 @@ text-structure:Dialogue
 text-structure:Note
 	a owl:Class;
 	rdfs:label "note structure"@en, "Notiz-Struktur"@de;
-	rdfs:comment """Text with note structure, not necessarily having a unit such as a sentence or being syntactically correct; e.g. a first quick registration of thought, or a remark related to another text."""@en;
+	rdfs:comment """Text with note structure, not necessarily having a unit such as a sentence or being syntactically correct; e.g. a first quick registration of thought, or a remark added to another text."""@en;
 	rdfs:subClassOf text-structure:CompositionalContentStructure, [
 		a owl:Restriction; owl:onProperty text-structure:isNoteStructureOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isNoteStructureOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+# annotation
 
 text-structure:MarginalNote
 	a owl:Class;
@@ -358,7 +360,7 @@ text-structure:Gloss
 	a owl:Class;
 	rdfs:label "gloss"@en, "Glosse"@de;
 	rdfs:comment """Explanatory note, e.g. interlinear or marginal."""@en;
-	rdfs:subClassOf text-structure:Note, text:WrittenText, [
+	rdfs:subClassOf text-structure:Note, [
 		a owl:Restriction; owl:onProperty text-structure:isGlossOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isGlossOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
