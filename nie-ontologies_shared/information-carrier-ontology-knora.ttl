@@ -47,7 +47,14 @@ infocar:Carrier
 infocar:Set
 	a owl:Class;
 	rdfs:label "information carrier set"@en, "Informationsträger-Reihe"@de, "ensemble des supports d'information"@fr;
-	rdfs:comment """Information carriers belonging together, e.g. a partitioned work, an archive, a nachlass."""@en;
+	rdfs:comment """Information carriers belonging together, e.g. a partitioned work, a nachlass."""@en;
+	rdfs:subClassOf human:PhysicalCreation. #, [
+#		a owl:Restriction; owl:onProperty infocar:hasCarrierDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+infocar:Collection
+	a owl:Class;
+	rdfs:label "information carrier collection"@en, "Informationsträger-Kollektion"@de, "collection des supports d'information"@fr;
+	rdfs:comment """Information carriers brought together, e.g. an archive."""@en;
 	rdfs:subClassOf human:PhysicalCreation, [
 		a owl:Restriction; owl:onProperty infocar:hasCarrierDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -92,6 +99,12 @@ infocar:Binding
 		a owl:Restriction; owl:onProperty infocar:isBindingOfBook; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isBindingOfBookValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+infocar:PartitionedWork
+	a owl:Class;
+	rdfs:label "partitioned work"@en, "partitioniertes Werk"@de;
+	rdfs:comment """Set of volumes carrying a common expression, e.g. a dictionary."""@en;
+	rdfs:subClassOf infocar:Set.
+
 infocar:Volume
 	a owl:Class;
 	rdfs:label "volume"@en, "Band"@de;
@@ -100,27 +113,6 @@ infocar:Volume
 		a owl:Restriction; owl:onProperty infocar:isVolumeOfWork; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isVolumeOfWorkValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [		
 		a owl:Restriction; owl:onProperty infocar:volumeHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-infocar:PartitionedWork
-	a owl:Class;
-	rdfs:label "partitioned work"@en, "partitioniertes Werk"@de;
-	rdfs:comment """Set of volumes carrying a common expression, e.g. a dictionary."""@en;
-	rdfs:subClassOf infocar:Set.
-
-infocar:Archive
-	a owl:Class;
-	rdfs:label "archive"@en, "Archiv"@de, "archive"@fr, "archivio"@it;
-	rdfs:comment """Set of information carriers ordered along a method."""@en;
-	rdfs:subClassOf infocar:Set, cidoc:E78_Collection.
-
-infocar:ArchiveElement
-	a owl:Class;
-	rdfs:label "archive element"@en, "Archiv-Element"@de;
-	rdfs:comment """Element of an archive, which can be a single file or a file group."""@en;
-	rdfs:subClassOf infocar:Carrier, [
-		a owl:Restriction; owl:onProperty infocar:isPartOfArchive; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:isPartOfArchiveValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Nachlass
 	a owl:Class;
@@ -135,6 +127,21 @@ infocar:NachlassElement
 	rdfs:subClassOf infocar:Carrier, [
 		a owl:Restriction; owl:onProperty infocar:isPartOfNachlass; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPartOfNachlassValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+infocar:Archive
+	a owl:Class;
+	rdfs:label "archive"@en, "Archiv"@de, "archive"@fr, "archivio"@it;
+	rdfs:comment """Set of information carriers ordered along a method."""@en;
+	rdfs:subClassOf infocar:Collection, cidoc:E78_Collection.
+
+infocar:ArchiveElement
+	a owl:Class;
+	rdfs:label "archive element"@en, "Archiv-Element"@de;
+	rdfs:comment """Element of an archive, which can be a single file or a file group."""@en;
+	rdfs:subClassOf infocar:Carrier, [
+		a owl:Restriction; owl:onProperty infocar:isPartOfArchive; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isPartOfArchiveValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:hasArchiveSignature; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:WritingUtensil
 	a owl:Class;
@@ -176,7 +183,37 @@ infocar:Manuscript
 	a owl:Class;
 	rdfs:label "manuscript"@en, "Manuskript"@de;
 	rdfs:comment """Carrier with a handwritten text."""@en;
-	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton.
+	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton, [
+		a owl:Restriction; owl:onProperty infocar:manuscriptHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptHasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptHasAddress; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptHasAddressValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isManuscriptOfCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isManuscriptOfCollectionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+infocar:ManuscriptIdentifier
+	a owl:Class;
+	rdfs:label "manuscript identifier"@en, "Manuskript-Identifikator"@de;
+	rdfs:comment """Identifier of a manuscript."""@en;
+#	rdfs:seeAlso <https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-msIdentifier.html>;
+	rdfs:subClassOf concept:Identifier.
+
+infocar:ManuscriptAddress
+	a owl:Class;
+	rdfs:label "manuscript address"@en, "Manuskript-Adresse"@de;
+	rdfs:comment """Address of a manuscript."""@en;
+#	rdfs:seeAlso <https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-msIdentifier.html>;
+	rdfs:subClassOf concept:SymbolicConcept, [
+		a owl:Restriction; owl:onProperty infocar:manuscriptAddressHasLocation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptAddressHasLibrary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptAddressHasCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+#		a owl:Restriction; owl:onProperty infocar:manuscriptAddressHasShelfMark; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+infocar:ManuscriptCollection
+	a owl:Class;
+	rdfs:label "manuscript collection"@en, "Manuskriptkollektion"@de, "collection des manuscrits"@fr;
+	rdfs:comment """Collection of manuscripts."""@en;
+	rdfs:subClassOf infocar:Collection.
 
 infocar:PalmLeafManuscript
 	a owl:Class;
@@ -255,9 +292,9 @@ infocar:Print
 infocar:PrintRun
 	a owl:Class;
 	rdfs:label "print run"@en, "Druckauflage"@de, "Tirage"@fr, "Tiratura"@it;
-	rdfs:comment """Collection of prints of the same expression, created at one time."""@en;
+	rdfs:comment """Set of prints of the same expression, created at one time."""@en;
 	skos:note """When applicable, all the prints have the same ISBN, but a different bar code."""@en;
-	rdfs:subClassOf human:PhysicalCreation.
+	rdfs:subClassOf infocar:Set.
 
 infocar:FirstPrint
 	a owl:Class;
@@ -265,7 +302,7 @@ infocar:FirstPrint
 	rdfs:comment """Earliest print of an expression."""@en;
 	rdfs:subClassOf infocar:Print.
 
-infocar:Diary #°
+infocar:Diary
 	a owl:Class;
 	rdfs:label "diary"@en,"Tagebuch"@de;
 	rdfs:comment """information carrier with periodically, usually daily, described personal experiences and observations."""@en;
@@ -283,11 +320,13 @@ infocar:PersonReceiver
 	rdfs:comment """Role of a person receiving information on carrier."""@en;
 	rdfs:subClassOf human:PersonReceiver.
 
-infocar:Letter
+° infocar:Letter
 	a owl:Class;
 	rdfs:label "letter"@en, "Brief"@de, "lettre"@fr, "lettera"@it;
 	rdfs:comment """Written text, e.g. on a leaf, intended to be sent from (a) person(s) or (an) Organization(s) to another one, e.g. through a postal system."""@en;
-	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton.
+	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton, [
+		a owl:Restriction; owl:onProperty infocar:letterFollows; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:letterPrecedes; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Postcard
 	a owl:Class;
@@ -295,11 +334,11 @@ infocar:Postcard
 	rdfs:comment """Card with one side, usually with a printed structure, used for writing a message, an address and applying a postage stamp, to be sent through a postal system."""@en;
 	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton.
 
-infocar:Convolute #° version
+infocar:Convolute
 	a owl:Class;
 	rdfs:label "information carrier convolute"@en, "Informationsträger-Konvolut"@de;
 	rdfs:comment """Set of information carriers, e.g. handwritten drafts, manuscripts, typoscripts or prints, with a commonality, e.g. being of the same author."""@en;
-	rdfs:subClassOf infocar:Set, [
+	rdfs:subClassOf infocar:Collection, [
 		a owl:Restriction; owl:onProperty infocar:convoluteHasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:convoluteHasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:convoluteHasSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -452,11 +491,11 @@ infocar:isWrittenWithValue
 infocar:hasCarrierDescription
 	a owl:ObjectProperty;
 	rdfs:label "has information carrier description"@en, "hat Textträger-Beschreibung"@de;
-	rdfs:comment """Relating an information carrier set to a description of an information carrier it contains."""@en;
-	rdfs:domain infocar:Set;
+	rdfs:comment """Relating an information carrier collection to a description of an information carrier it contains."""@en;
+	rdfs:domain infocar:Collection;
 	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasDescription;
-	knora-base:subjectClassConstraint infocar:Set;
+	knora-base:subjectClassConstraint infocar:Collection;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
 infocar:isPageOfLeaf
@@ -566,6 +605,136 @@ infocar:volumeHasNumber
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint infocar:Volume;
 	knora-base:objectClassConstraint knora-base:IntValue.
+
+infocar:isPartOfNachlass
+	a owl:ObjectProperty;
+	rdfs:label "is part of nachlass"@en, "ist Teil eines Nachlasses"@de;
+	rdfs:comment """Relating an element of a nachlass to the nachlass."""@en;
+	rdfs:domain infocar:NachlassElement;
+	rdfs:range infocar:Nachlass;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:NachlassElement;
+	knora-base:objectClassConstraint infocar:Nachlass.
+
+infocar:isPartOfNachlassValue
+	a owl:ObjectProperty;
+	rdfs:label "is part of nachlass - statement"@en, "ist Teil eines Nachlasses - Festlegung"@de;
+	rdfs:comment """Relating an element of a nachlass to a reification statement of the relation between the element and the nachlass."""@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:NachlassElement;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:isPartOfArchive
+	a owl:ObjectProperty;
+	rdfs:label "is part of archive"@en, "ist Teil eines Archivs"@de;
+	rdfs:comment """Relating an element of an archive to the archive."""@en;
+	rdfs:domain infocar:ArchiveElement;
+	rdfs:range infocar:Archive;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:ArchiveElement;
+	knora-base:objectClassConstraint infocar:Archive.
+
+infocar:isPartOfArchiveValue
+	a owl:ObjectProperty;
+	rdfs:label "is part of archive - statement"@en, "ist Teil eines Archivs - Festlegung"@de;
+	rdfs:comment """Relating an element of an archive to a reification statement of the relation between the element and the archive."""@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:ArchiveElement;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:hasArchiveSignature
+	a owl:ObjectProperty;
+	rdfs:label "has archive signature"@en, "hat Archivsignatur"@de;
+	rdfs:comment """Relating an element of an archive to its signature as identifier."""@en;
+	rdfs:domain infocar:ArchiveElement;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasIdentifier;
+	knora-base:subjectClassConstraint infocar:ArchiveElement;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptHasIdentifier
+	a owl:ObjectProperty;
+	rdfs:label "manuscript has identifier"@en, "Manuskript hat Identifikator"@de;
+	rdfs:comment """Relating a manuscript to its identifier."""@en;
+	rdfs:domain infocar:Manuscript;
+	rdfs:range infocar:ManuscriptIdentifier;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Manuscript;
+	knora-base:objectClassConstraint infocar:ManuscriptIdentifier.
+
+infocar:manuscriptHasIdentifierValue
+	a owl:ObjectProperty;
+	rdfs:label "manuscript has identifier - statement"@en, "Manuskript hat Identifikator - Festlegung"@de;
+	rdfs:comment """Relating a manuscript to a reification statement of the relation between the manuscript and its identifier."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Manuscript;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:manuscriptHasAddress
+	a owl:ObjectProperty;
+	rdfs:label "manuscript has address"@en, "Manuskript hat Adresse"@de;
+	rdfs:comment """Relating a manuscript to its address."""@en;
+	rdfs:domain infocar:Manuscript;
+	rdfs:range infocar:ManuscriptAddress;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Manuscript;
+	knora-base:objectClassConstraint infocar:ManuscriptAddress.
+
+infocar:manuscriptHasAddressValue
+	a owl:ObjectProperty;
+	rdfs:label "manuscript has address - statement"@en, "Manuskript hat Adresse - Festlegung"@de;
+	rdfs:comment """Relating a manuscript to a reification statement of the relation between the manuscript and its address."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Manuscript;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:manuscriptAddressHasLocation
+	a owl:ObjectProperty;
+	rdfs:label "manuscript address has location"@en, "Manuskript-Adresse hat Ort"@de;
+	rdfs:comment """Relating a manuscript address to its location name."""@en;
+	rdfs:domain infocar:ManuscriptAddress;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:ManuscriptAddress;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptAddressHasLibrary
+	a owl:ObjectProperty;
+	rdfs:label "manuscript address has library"@en, "Manuskript-Adresse hat Bibliothek"@de;
+	rdfs:comment """Relating a manuscript address to its library name."""@en;
+	rdfs:domain infocar:ManuscriptAddress;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:ManuscriptAddress;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptAddressHasCollection
+	a owl:ObjectProperty;
+	rdfs:label "manuscript address has collection"@en, "Manuskript-Adresse hat Kollektion"@de;
+	rdfs:comment """Relating a manuscript address to its collection name."""@en;
+	rdfs:domain infocar:ManuscriptAddress;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:ManuscriptAddress;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:isManuscriptOfCollection
+	a owl:ObjectProperty;
+	rdfs:label "is manuscript of collection"@en, "ist Manuskript einer Kollektion"@de;
+	rdfs:comment "Relating a manuscript to a collection it is part of."@en;
+	rdfs:domain infocar:Manuscript;
+	rdfs:range infocar:ManuscriptCollection;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:Manuscript;
+	knora-base:objectClassConstraint infocar:ManuscriptCollection.
+
+infocar:isManuscriptOfCollectionValue
+	a owl:ObjectProperty;
+	rdfs:label "is manuscript of collection - statement"@en, "ist Manuskript einer Kollektion - Festlegung"@de;
+	rdfs:comment "Relating a manuscript to a reification statement of the relation between the manuscript and a collection it is part of."@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:Manuscript;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isInManuscript
 	a owl:ObjectProperty;
@@ -893,52 +1062,6 @@ infocar:isPartOfPrintRunValue
 	rdfs:comment """Relating a print to a reification statement of the relation between the print and the run it is part of."""@en;
 	rdfs:subPropertyOf physical:isPartOfValue;
 	knora-base:subjectClassConstraint infocar:Print;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:isPartOfArchive
-	a owl:ObjectProperty;
-	rdfs:label "is part of archive"@en, "ist Teil eines Archivs"@de;
-	rdfs:comment """Relating an element of an archive to the archive."""@en;
-	rdfs:domain infocar:ArchiveElement;
-	rdfs:range infocar:Archive;
-	rdfs:subPropertyOf physical:isPartOf;
-	knora-base:subjectClassConstraint infocar:ArchiveElement;
-	knora-base:objectClassConstraint infocar:Archive.
-
-infocar:isPartOfArchiveValue
-	a owl:ObjectProperty;
-	rdfs:label "is part of archive - statement"@en, "ist Teil eines Archivs - Festlegung"@de;
-	rdfs:comment """Relating an element of an archive to a reification statement of the relation between the element and the archive."""@en;
-	rdfs:subPropertyOf physical:isPartOfValue;
-	knora-base:subjectClassConstraint infocar:ArchiveElement;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:hasArchiveSignature
-	a owl:ObjectProperty;
-	rdfs:label "has archive signature"@en, "hat Archivsignatur"@de;
-	rdfs:comment """Relating an element of an archive to its signature as identifier."""@en;
-	rdfs:domain infocar:ArchiveElement;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasIdentifier;
-	knora-base:subjectClassConstraint infocar:ArchiveElement;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:isPartOfNachlass
-	a owl:ObjectProperty;
-	rdfs:label "is part of nachlass"@en, "ist Teil eines Nachlasses"@de;
-	rdfs:comment """Relating an element of a nachlass to the nachlass."""@en;
-	rdfs:domain infocar:NachlassElement;
-	rdfs:range infocar:Nachlass;
-	rdfs:subPropertyOf physical:isPartOf;
-	knora-base:subjectClassConstraint infocar:NachlassElement;
-	knora-base:objectClassConstraint infocar:Nachlass.
-
-infocar:isPartOfNachlassValue
-	a owl:ObjectProperty;
-	rdfs:label "is part of nachlass - statement"@en, "ist Teil eines Nachlasses - Festlegung"@de;
-	rdfs:comment """Relating an element of a nachlass to a reification statement of the relation between the element and the nachlass."""@en;
-	rdfs:subPropertyOf physical:isPartOfValue;
-	knora-base:subjectClassConstraint infocar:NachlassElement;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isPartOfConvolute

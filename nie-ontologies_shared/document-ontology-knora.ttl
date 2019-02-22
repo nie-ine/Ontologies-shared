@@ -38,9 +38,11 @@ document:Document
 	a owl:Class;
 	rdfs:label "document"@en, "Dokument"@de;
 	rdfs:comment """Identifiable, immaterial, contained information, e.g. a text, a graphic, an image, an audiogram, a videogram."""@en;
-	rdfs:subClassOf concept:Information. # , cidoc:E31_Document: proposition about reality: narrower
+	rdfs:subClassOf concept:Information, [ # , cidoc:E31_Document: proposition about reality: narrower
 #		a owl:Restriction; owl:onProperty document:hasContent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty document:hasContentValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+#		a owl:Restriction; owl:onProperty document:hasContentValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty document:hasEncoder; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty document:hasEncoderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 document:Element
 	a owl:Class;
@@ -74,6 +76,7 @@ document:ContentStructure
 		a owl:Restriction; owl:onProperty document:hasEndnoteReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:hasEndnoteReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:hasExpressionReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty document:hasExpressionReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:hasExpressionReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 document:ContentStructureIdentifier
@@ -257,16 +260,17 @@ document:Catalogue
 	rdfs:comment """List of descriptions of things, mostly ordered, e.g. alphabetically; e.g. library's book catalogue, exhibition's works of art catalogue, mail-order company's items for sale catalogue."""@en;
 	rdfs:subClassOf document:IndividualExpression.
 
-# document:Encoder
-# e.g. to XML
+document:Encoder
+	a owl:Class;
+	rdfs:label "encoder"@en, "KodiererIn"@de, "codeur"@fr, "codificatore"@it;
+	rdfs:comment """Role of a person converting a document into code, e.g. from text to XML."""@en;
+	rdfs:subClassOf human:PersonCreator.
 
 document:Code
 	a owl:Class;
 	rdfs:label "code document"@en,"Kode-Dokument"@de;
-	rdfs:comment """Document containing code."""@en;
-	rdfs:subClassOf document:Document, [
-		a owl:Restriction; owl:onProperty document:hasEncoder; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty document:hasEncoderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:comment """Document as code."""@en;
+	rdfs:subClassOf document:Document.
 
 document:HypertextDocument
 	a owl:Class;
@@ -311,6 +315,24 @@ document:HypertextStructure
 #	rdfs:subPropertyOf knora-base:hasLinkTo;
 #	knora-base:subjectClassConstraint layout:Layout;
 #	knora-base:objectClassConstraint document:Document.
+
+document:hasEncoder
+	a owl:ObjectProperty;
+	rdfs:label "has encoder"@en, "hat Encoder"@de;
+	rdfs:comment "Relating a document to a person who encoded it."@en;
+	rdfs:domain document:Document;
+#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom document:Encoder]];
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint document:Document;
+	knora-base:objectClassConstraint human:Person.
+
+document:hasEncoderValue
+	a owl:ObjectProperty;
+	rdfs:label "has encoder - statement"@en, "hat Encoder - Festlegung"@de;
+	rdfs:comment "Relating a document to a reification statement of the relation between the document and a person who encoded it."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint document:Document;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 document:isElementOfDocument
 	a owl:ObjectProperty;
@@ -690,24 +712,6 @@ document:expressionReferenceHasIdentifierValue
 	rdfs:comment """Relating a document expression reference to a reification statement of the relation between that reference and its identifier."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue; #°
 	knora-base:subjectClassConstraint document:ExpressionReference;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-document:hasEncoder
-	a owl:ObjectProperty;
-	rdfs:label "code has encoder"@en, "Code hat Encoder"@de;
-	rdfs:comment "Relating code to a person who created it."@en;
-	rdfs:domain document:Code;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom infocar:Encoder]];
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint document:Code;
-	knora-base:objectClassConstraint human:Person.
-
-document:hasEncoderValue
-	a owl:ObjectProperty;
-	rdfs:label "code has encoder - statement"@en, "Code hat Encoder - Festlegung"@de;
-	rdfs:comment "Relating code to a reification statement of the relation between the code and a person who created it."@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint document:Code;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 document:isElementOfHypertextDocument

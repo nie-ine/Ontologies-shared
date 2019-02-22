@@ -42,18 +42,6 @@ drcs:Person
 		a owl:Restriction; owl:onProperty philos:adheringToThought; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty philos:adheringToThoughtValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-
-
-# drcs:Scholastic
-#	a owl:Class;
-#	rdfs:label "scholastic"@en, "Scholastiker"@de;
-#	rdfs:comment """Scholastic as subject in the scientific study of Petrus Lombardus."""@en;
-#	rdfs:subClassOf schola:Scholastic #, [
-#		a owl:Restriction; owl:onProperty schola:hasRole; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty schola:hasRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty schola:hasReportatorRole; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty schola:hasReportatorRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
 drcs:Commentary
 	a owl:Class;
 	rdfs:label "commentary"@en, "Kommentar"@de, "commentarius"@la;
@@ -66,14 +54,6 @@ drcs:Commentary
 #
 # PROPERTIES
 #
-
-drcs:hasDescription #* To be removed
-	a owl:ObjectProperty;
-	rdfs:label "has description"@en, "hat Beschreibung"@de;
-	rdfs:comment """Relating a resource to a description as a textual statement about features of the resource."""@en;
-	rdfs:subPropertyOf text:hasDescription;
-	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint knora-base:TextValue.
 
 drcs:hasStegmuellerPersonDescription
  	a owl:ObjectProperty;

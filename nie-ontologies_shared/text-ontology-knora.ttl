@@ -65,6 +65,8 @@ text:Text
 		a owl:Restriction; owl:onProperty text:isCitedInValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasAnnotator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasAnnotatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasTransliteration; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -170,6 +172,7 @@ text:Expression
 		a owl:Restriction; owl:onProperty text:hasExplicit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAuthor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAuthorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasIdeationalExtent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasCommentator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasCommentatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasScientificEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -261,7 +264,7 @@ text:WomanOfLetters
 text:Revisor
 	a owl:Class;
 	rdfs:label "revisor"@en, "Revisor"@de, "réviseur"@fr, "revisore"@it;
-	rdfs:comment """Role of a person checking on certain aspects of a text."""@en;
+	rdfs:comment """Role of a person checking on certain aspects of a text, possibly proposing changes to it."""@en;
 	rdfs:subClassOf human:PersonRole.
 
 text:PersonTranslator
@@ -690,7 +693,7 @@ text:isCitedInValue
 
 text:hasEditor
 	a owl:ObjectProperty;
-	rdfs:label "text has editor"@en, "Text hat Editor"@de;
+	rdfs:label "text has editor"@en, "Text hat EditorIn"@de;
 	rdfs:comment """Relating a text to a person who edited it."""@en;
 	rdfs:domain text:Text;
 #	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Editor]];
@@ -700,8 +703,26 @@ text:hasEditor
 
 text:hasEditorValue
 	a owl:ObjectProperty;
-	rdfs:label "text has editor - statement"@en, "Text hat Editor - Festlegung"@de;
+	rdfs:label "text has editor - statement"@en, "Text hat EditorIn - Festlegung"@de;
 	rdfs:comment """Relating a text to a reification statement of the relation between the text and a person who edited it."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text:Text;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text:hasAnnotator
+	a owl:ObjectProperty;
+	rdfs:label "text has annotator"@en, "Text hat AnnotatorIn"@de;
+	rdfs:comment """Relating a text to a person who annotated it."""@en;
+	rdfs:domain text:Text;
+#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Annotator]];
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text:Text;
+	knora-base:objectClassConstraint human:Person.
+
+text:hasAnnotatorValue
+	a owl:ObjectProperty;
+	rdfs:label "text has annotator - statement"@en, "Text hat AnnotatorIn - Festlegung"@de;
+	rdfs:comment """Relating a text to a reification statement of the relation between the text and a person who annotated it."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -719,7 +740,7 @@ text:expressionHasTitle
 text:hasIncipit
 	a owl:ObjectProperty;
 	rdfs:label "has incipit"@en, "hat Incipit"@de;
-	rdfs:comment """Relating an untitled individual text expression to a beginning part thereof to identify the text."""@en;
+	rdfs:comment """Relating an untitled text expression to a beginning part thereof to identify the text."""@en;
 	rdfs:domain text:Expression;
 #	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasText;
@@ -729,7 +750,7 @@ text:hasIncipit
 text:hasExplicit
 	a owl:ObjectProperty;
 	rdfs:label "has explicit"@en, "hat Explicit"@de;
-	rdfs:comment """Relating an untitled individual text expression to an end part thereof to identify the text."""@en;
+	rdfs:comment """Relating an untitled text expression to an end part thereof to identify the text."""@en;
 	rdfs:domain text:Expression;
 #	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasText;
@@ -754,6 +775,16 @@ text:hasAuthorValue
 	rdfs:subPropertyOf human:hasAuthorValue;
 	knora-base:subjectClassConstraint text:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text:hasIdeationalExtent
+	a owl:ObjectProperty;
+	rdfs:label "has ideational extent"@en, "hat ideeller Umfang"@de;
+	rdfs:comment """Relating a text expression to a description of its ideational extent."""@en;
+	rdfs:domain text:Expression;
+#	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint knora-base:TextValue.
 
 text:hasCommentator
 	a owl:ObjectProperty;

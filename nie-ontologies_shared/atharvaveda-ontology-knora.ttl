@@ -9,6 +9,7 @@
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
+@prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
 @prefix indo: <http://www.knora.org/ontology/shared/indology#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 @prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.
@@ -82,6 +83,13 @@ athar:PalmLeafManuscript
 	rdfs:comment """Palm leaf manuscript containing Atharvaveda text."""@en;
 	rdfs:subClassOf infocar:PalmLeafManuscript, knora-base:StillImageRepresentation, [
 		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+
+athar:Token
+	a owl:Class;
+	rdfs:label "token"@en, "Token"@de;
+	rdfs:comment """."""@en;
+	rdfs:subClassOf ling:Token, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 # athar:CriticalEdition
 #	a owl:Class;

@@ -24,6 +24,8 @@
 	dct:title "An ontology about language"@en;
 	dct:description """Formal description of linguistics, general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
+	dct:contributor "Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
+	dct:contributor "Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/005D>.
@@ -31,6 +33,23 @@
 #
 # CLASSES
 #
+
+ling:Concept
+	a owl:Class;
+	rdfs:label "linguistic concept"@en, "linguistisches Konzept"@de;
+	rdfs:comment """Concept in the knowledge domain of linguistics."""@en;
+	rdfs:subClassOf concept:Concept, [
+		a owl:Restriction; owl:onProperty ling:hasLanguage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty ling:hasLanguageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+ling:Token # on the edge of language and linguistics
+	a owl:Class;
+	rdfs:label "token"@en, "Token"@de;
+	rdfs:comment """Linguistic concept as an individual unit in human natural language."""@en;
+	rdfs:subClassOf ling:Concept, text-structure:Word. #, [
+#		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty lingmor:hasSyntacticWord; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty lingmor:hasSyntacticWordValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 ling:Symbol
 	a owl:Class;
@@ -51,9 +70,13 @@ ling:PartOfSpeech
 	rdfs:comment """Word with certain grammatical properties."""@en;
 	rdfs:subClassOf text-structure:Word.
 
-# ling:lexeme
+ling:Noun
+	a owl:Class;
+	rdfs:label "noun"@en, "Nomen"@de;
+	rdfs:comment """Noun as part of speech."""@en;
+	rdfs:subClassOf ling:PartOfSpeech.
 
-# part of speech: general: verb, noun, adjective, adverb, pronoun, preposition, conjunction, interjection, article or determiner
+# part of speech: general: verb, adjective, adverb, pronoun, preposition, conjunction, interjection, article or determiner
 
 ling:Numeral # noun, adjective, adverb
 	a owl:Class;
@@ -64,10 +87,6 @@ ling:Numeral # noun, adjective, adverb
 # cardinal number representing quantity, used for counting - frequency, fraction
 # ordinal number representing position in a sequence, used for ordering
 
-# case: general
-# -> SCO in dif. speeches
-
-# Genus
 # Comparison
 
 # speech act: see J. L. Austin
@@ -154,6 +173,24 @@ ling:Evaluation
 #
 # PROPERTIES
 #
+
+ling:hasLanguage
+	a owl:ObjectProperty;
+	rdfs:label "has language"@en, "hat Sprache"@de;
+	rdfs:comment "Relating a linguistic concept to its human natural language."@en;
+	rdfs:domain ling:Concept;
+	rdfs:range language:HumanNaturalLanguage;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint ling:Concept;
+	knora-base:objectClassConstraint language:HumanNaturalLanguage.
+
+ling:hasLanguageValue
+	a owl:ObjectProperty;
+	rdfs:label "has language - statement"@en, "hat Sprache - Festlegung"@de;
+	rdfs:comment "Relating a linguistic concept to a reification statement of the relation between the concept and its human natural language."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint ling:Concept;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 ling:hasComment
 	a owl:ObjectProperty;

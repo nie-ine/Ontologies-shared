@@ -129,7 +129,9 @@ physical:Matter
 		a owl:Restriction; owl:onProperty humgeo:hasReceiverPostalAddress; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty humgeo:hasReceiverPostalAddressValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty humgeo:hasReturnPostalAddress; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty humgeo:hasReturnPostalAddressValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty humgeo:hasReturnPostalAddressValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasPreserver; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:hasPreserverValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 physical:Compound
 	a owl:Class;
@@ -215,7 +217,7 @@ physical:hasLocation
 	a owl:ObjectProperty;
 	rdfs:label "has location"@en, "hat Ort"@de;
 	rdfs:comment """Relating something to its location."""@en;
-	rdfs:domain rdfs:Resource; #* ALSO thought in someone's head :)?
+	rdfs:domain rdfs:Resource;
 	rdfs:range physical:Place;
 	rdfs:subPropertyOf geo:location, knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;

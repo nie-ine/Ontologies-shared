@@ -99,14 +99,14 @@ text-structure:ReadabilityStructure
 text-structure:ProsodicStructure
 	a owl:Class;
 	rdfs:label "prosodic text structure"@en, "prosodische Textstruktur"@de;
-	rdfs:comment """Text structure depending on prosody, i.e. metre as basic rhythmic structure, syllable, and possibly rhyme."""@en;
+	rdfs:comment """Text structure depending on prosody, i.e. syllable and/or metre as basic rhythmic structure and/or rhyme."""@en;
 	rdfs:subClassOf text-structure:CompositionalContentStructure.
 
 text-structure:Word
 	a owl:Class;
 	rdfs:label "word"@en, "Wort"@de;
-	rdfs:comment """Smallest independent syntactic and semantic unit composed of symbols."""@en;
-	skos:note """A morpheme is not independent."""@en;
+	rdfs:comment """Smallest independent syntactic and semantic entity composed of symbols."""@en;
+#	skos:note """A word comprises one or more morphemes."""@en;
 	rdfs:subClassOf text-structure:SyntacticStructure, [
 #		a owl:Restriction; owl:onProperty text-structure:isWordOfSentence; owl:allValuesFrom text-structure:Sentence], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfSentence; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -204,7 +204,7 @@ text-structure:Table #* tableHasTitle, tableHasField, tableHasRow, tableHasColum
 text-structure:Verse
 	a owl:Class;
 	rdfs:label "verse"@en, "Vers"@de;
-	rdfs:comment """Text line with prosody."""@en; # recurring metrical unit
+	rdfs:comment """Text line with prosody."""@en;
 	rdfs:subClassOf text-structure:ProsodicStructure, [
 #		a owl:Restriction; owl:onProperty text-structure:isVerseOfStrophe; owl:allValuesFrom text-structure:Strophe], [ 
 		a owl:Restriction; owl:onProperty text-structure:isVerseOfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -282,6 +282,15 @@ text-structure:VerseSection
 		a owl:Restriction; owl:onProperty text-structure:isVerseSectionOfVerseNovelValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:verseSectionHasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:verseSectionHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text-structure:StrictVerse
+	a owl:Class;
+	rdfs:label "strict verse"@en, "strikte Vers"@de; #°
+	rdfs:comment """Verse with recurring metrical entity."""@en;
+	rdfs:subClassOf text-structure:Verse. #, [
+#		a owl:Restriction; owl:onProperty text-structure:hasMetric; owl:someValuesFrom text-structure:Metric], [ 
+#		a owl:Restriction; owl:onProperty text-structure:hasMetric; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty text-structure:hasMetricValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text-structure:FreeVerse
 	a owl:Class;

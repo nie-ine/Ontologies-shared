@@ -67,14 +67,14 @@ concept:SymbolicConcept
 	rdfs:comment """Concept represented by one or more symbols."""@en;
 	rdfs:subClassOf concept:Concept, cidoc:E90_Symbolic_Object, [
 		a owl:Restriction; owl:onProperty concept:isPartOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty concept:isPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty concept:isPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 concept:Identifier
 	a owl:Class;
 	rdfs:label "identifier"@en, "Identifikator"@de;
 	rdfs:comment """Unique and permanent reference to a resource within a given context, and conforming to a formal identification system."""@en;
-	rdfs:subClassOf concept:SymbolicConcept, cidoc:E42_Identifier, [ # rdfs:subClassOf cidoc:E41_Appellation
-		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf concept:SymbolicConcept, cidoc:E42_Identifier. # rdfs:subClassOf cidoc:E41_Appellation
 
 concept:Set #°
 	a owl:Class;

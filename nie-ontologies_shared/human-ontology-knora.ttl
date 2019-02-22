@@ -214,7 +214,7 @@ human:AgentGiver
 human:AgentCreator
 	a owl:Class;
 	rdfs:label "agent creator"@en, "Agent-ErschafferIn"@de;
-	rdfs:comment """Role of a human agent, person or group, creating something."""@en;
+	rdfs:comment """Role of a human agent, i.e. person or group, creating something."""@en;
 	rdfs:subClassOf human:AgentRole, agent:Creator.
 
 human:PersonCreator
@@ -339,14 +339,20 @@ human:Property # check cidoc
 human:AgentSponsor
 	a owl:Class;
 	rdfs:label "agent sponsor"@en, "Agent-Sponsor"@de;
-	rdfs:comment """Role of a human agent, a person or a group, being a sponsor."""@en;
+	rdfs:comment """Role of a human agent, a person or a group, giving material or financial support for an action."""@en;
 	rdfs:subClassOf human:AgentRole.
 
 human:PersonSponsor
 	a owl:Class;
 	rdfs:label "person sponsor"@en, "Person-SponsorIn"@de;
-	rdfs:comment """Role of a person being a sponsor."""@en; # of an action
+	rdfs:comment """Role of a person as a sponsor."""@en;
 	rdfs:subClassOf human:PersonRole, human:AgentSponsor.
+
+human:AgentPreserver
+	a owl:Class;
+	rdfs:label "agent preserver"@en, "Agent-Erhalter"@de;
+	rdfs:comment """Role of a human agent, a person or a group, maintaining something material."""@en;
+	rdfs:subClassOf human:AgentRole.
 
 human:AgentSender
 	a owl:Class;
@@ -991,4 +997,22 @@ human:hasSponsorValue
 	rdfs:comment """Relating something to a reification statement of the relation between that something and a human agent - a person or a group - sponsoring it."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+human:hasPreserver
+	a owl:ObjectProperty;
+	rdfs:label "has preserver"@en, "hat Erhalter"@de;
+	rdfs:comment """Relating a material resoruce to a human agent - a person or a group - preserving it."""@en;
+	rdfs:domain physical:Matter;
+#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:AgentPreserver]];
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint physical:Matter;
+	knora-base:objectClassConstraint human:Agent.
+
+human:hasPreserverValue
+	a owl:ObjectProperty;
+	rdfs:label "has preserver - statement"@en, "hat Erhalter - Festlegung"@de;
+	rdfs:comment """Relating a material resoruce to a reification statement of the relation between that resoruce and a human agent - a person or a group - preserving it."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint knora-base:LinkValue.
