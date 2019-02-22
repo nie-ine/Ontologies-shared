@@ -42,7 +42,7 @@ datatypes:gndDatatype
 datatypes:hasGNDCode
 	a owl:ObjectProperty;
 	rdfs:label "has GND-code"@en, "hat GND-Kode"@de;
-	rdfs:comment "Relating a resource to its concept to its GND-code."@en;
+	rdfs:comment "Relating a resource to its GND-code."@en;
 	rdfs:domain rdfs:Resource;
 	rdfs:range skos:Concept;
 	rdfs:subPropertyOf knora-base:hasValue;

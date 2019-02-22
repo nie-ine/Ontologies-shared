@@ -320,13 +320,15 @@ infocar:PersonReceiver
 	rdfs:comment """Role of a person receiving information on carrier."""@en;
 	rdfs:subClassOf human:PersonReceiver.
 
-° infocar:Letter
+infocar:Letter
 	a owl:Class;
 	rdfs:label "letter"@en, "Brief"@de, "lettre"@fr, "lettera"@it;
 	rdfs:comment """Written text, e.g. on a leaf, intended to be sent from (a) person(s) or (an) Organization(s) to another one, e.g. through a postal system."""@en;
 	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton, [
 		a owl:Restriction; owl:onProperty infocar:letterFollows; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterPrecedes; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty infocar:letterFollowsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:letterPrecedes; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:letterPrecedesValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Postcard
 	a owl:Class;
@@ -1062,6 +1064,42 @@ infocar:isPartOfPrintRunValue
 	rdfs:comment """Relating a print to a reification statement of the relation between the print and the run it is part of."""@en;
 	rdfs:subPropertyOf physical:isPartOfValue;
 	knora-base:subjectClassConstraint infocar:Print;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:letterFollows
+	a owl:ObjectProperty;
+	rdfs:label "letter follows"@en, "Brief folgt nach"@de;
+	rdfs:comment """Relating a letter to another letter that precedes the former."""@en;
+	rdfs:domain infocar:Letter;
+	rdfs:range infocar:Letter;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint infocar:Letter.
+
+infocar:letterFollowsValue
+	a owl:ObjectProperty;
+	rdfs:label "letter follows - statement"@en, "Brief folgt nach - Festlegung"@de;
+	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and another letter that precedes the former."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:letterPrecedes
+	a owl:ObjectProperty;
+	rdfs:label "letter precedes"@en, "Brief geht voraus an"@de;
+	rdfs:comment """Relating a letter to another letter that follows the former."""@en;
+	rdfs:domain infocar:Letter;
+	rdfs:range infocar:Letter;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint infocar:Letter.
+
+infocar:letterPrecedesValue
+	a owl:ObjectProperty;
+	rdfs:label "letter precedes - statement"@en, "Brief geht voraus an - Festlegung"@de;
+	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and another letter that follows the former."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Letter;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isPartOfConvolute
