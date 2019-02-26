@@ -77,20 +77,6 @@ athar:ConstitutedEdition #
 	rdfs:comment """constituted text edition as created in the Atharvaveda project."""@en;
 	rdfs:subClassOf textedit:ConstitutedEdition.
 
-athar:PalmLeafManuscript
-	a owl:Class;
-	rdfs:label "Atharvaveda palm-leaf manuscript"@en, "Atharvaveda-Palmblattmanuskript"@de;
-	rdfs:comment """Palm leaf manuscript containing Atharvaveda text."""@en;
-	rdfs:subClassOf infocar:PalmLeafManuscript, knora-base:StillImageRepresentation, [
-		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
-
-athar:Token
-	a owl:Class;
-	rdfs:label "token"@en, "Token"@de;
-	rdfs:comment """."""@en;
-	rdfs:subClassOf ling:Token, [
-		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
 # athar:CriticalEdition
 #	a owl:Class;
 #	rdfs:label "critical text edition"@en, "kritische Textedition"@de;

@@ -119,6 +119,7 @@ concept:Information
 	rdfs:subClassOf concept:PropositionalConcept, concept:SymbolicConcept, cidoc:E73_Information_Object, [
 		a owl:Restriction; owl:onProperty concept:informationHasSubject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty concept:informationHasSubjectValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty concept:informationHasSubjectDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isOnCarrier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isOnCarrierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isOnElectronicCarrier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -195,6 +196,14 @@ concept:informationHasSubjectValue
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint concept:Information;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+concept:informationHasSubjectDescription
+	a owl:ObjectProperty;
+	rdfs:label "information has subject description"@en, "Information hat Themabeschreibung"@de;
+	rdfs:comment """Relating information to a description of its subject."""@en;
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint concept:Information;
+	knora-base:objectClassConstraint knora-base:TextValue.
 
 # frbroo:R3_is_realised_in: more general: frbroo:F1_Work - frbroo:F22_Self-Contained_Expression
 

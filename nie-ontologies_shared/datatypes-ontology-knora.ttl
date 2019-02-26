@@ -32,17 +32,29 @@ datatypes:gndScheme
 datatypes:gndDatatype
 	a owl:Class, rdfs:Datatype;
 	rdfs:label "GND-datatype"@en;
-	rdfs:comment """Datatype to type a GND-code."""@en;
+	rdfs:comment """Datatype to type a GND-identifier."""@en;
 	rdfs:subClassOf knora-base:Resource.
+
+# Open Archives Initiative, OAI
 
 #
 # PROPERTIES
 #
 
-datatypes:hasGNDCode
+datatypes:hasGNDIdentifier
 	a owl:ObjectProperty;
-	rdfs:label "has GND-code"@en, "hat GND-Kode"@de;
-	rdfs:comment "Relating a resource to its GND-code."@en;
+	rdfs:label "has GND-identifier"@en, "hat GND-Identifikator"@de;
+	rdfs:comment "Relating a resource to its GND-identifier."@en;
+	rdfs:domain rdfs:Resource;
+	rdfs:range skos:Concept;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:TextValue. # skos:Concept.
+
+datatypes:hasOAIIdentifier
+	a owl:ObjectProperty;
+	rdfs:label "has OAI-identifier"@en, "hat OAI-Identifikator"@de;
+	rdfs:comment "Relating a resource to its OAI-code."@en;
 	rdfs:domain rdfs:Resource;
 	rdfs:range skos:Concept;
 	rdfs:subPropertyOf knora-base:hasValue;

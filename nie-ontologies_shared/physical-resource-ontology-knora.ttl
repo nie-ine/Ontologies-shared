@@ -9,6 +9,7 @@
 @prefix naproti: <http://sweet.jpl.nasa.gov/2.3/propTime.owl#>.
 @prefix naprospadi: <http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl#>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix phygeo: <http://www.knora.org/ontology/shared/physical-geography#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
 @prefix humgeo: <http://www.knora.org/ontology/shared/human-geography#>.
@@ -40,7 +41,29 @@ physical:Resource
 		a owl:Restriction; owl:onProperty human:hasUse; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasUseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty physical:hasLocation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty physical:hasLocationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty physical:hasLocationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty physical:hasExistingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty physical:hasExistingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+physical:ExistingState
+	a owl:Class;
+	rdfs:label "existing state"@en, "Existenzzustand"@de;
+	rdfs:comment """State of a physical resource existing or not."""@en;
+	rdfs:subClassOf event:State;
+	skos:note """To be stated with a time indicator"""@en.
+#	owl:oneOf (physical:Existing physical:Gone).
+
+physical:Existing
+	a owl:Class;
+	rdfs:label "existing"@en, "existierend"@de;
+	rdfs:comment """State of a physical resource existing."""@en;
+	rdfs:subClassOf physical:ExistingState.
+
+physical:Gone
+	a owl:Class;
+	rdfs:label "gone"@en, "weg"@de;
+	rdfs:comment """State of a physical resource not existing anymore."""@en;
+	rdfs:subClassOf physical:ExistingState.
 
 physical:Space
 	a owl:Class;
@@ -53,7 +76,8 @@ physical:Space
 		a owl:Restriction; owl:onProperty physical:hasSize; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty physical:hasSizeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty physical:hasLength; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty physical:hasLengthValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty physical:hasLengthValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty physical:hasSizeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 physical:Time
 	a owl:Class;
@@ -213,6 +237,16 @@ physical:hasLengthValue
 	knora-base:subjectClassConstraint physical:Space;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+physical:hasSizeDescription
+	a owl:ObjectProperty;
+	rdfs:label "has size description"@en, "hat Grössebeschreibung"@de;
+	rdfs:comment "Relating a space to a size description it has."@en;
+	rdfs:domain physical:Space;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint physical:Space;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
 physical:hasLocation
 	a owl:ObjectProperty;
 	rdfs:label "has location"@en, "hat Ort"@de;
@@ -227,6 +261,24 @@ physical:hasLocationValue
 	a owl:ObjectProperty;
 	rdfs:label "has location - statement"@en, "hat Ort - Festlegung"@de;
 	rdfs:comment """Relating something to a reification statement of the relation between that something and its location."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+physical:hasExistingState
+	a owl:ObjectProperty;
+	rdfs:label "has existing state"@en, "hat Existenzzustand"@de;
+	rdfs:comment """Relating something to its existing state."""@en;
+	rdfs:domain rdfs:Resource;
+	rdfs:range physical:ExistingState;
+	rdfs:subPropertyOf geo:location, knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint physical:ExistingState.
+
+physical:hasExistingStateValue
+	a owl:ObjectProperty;
+	rdfs:label "has existing state - statement"@en, "hat Existenzzustand - Festlegung"@de;
+	rdfs:comment """Relating something to a reification statement of the relation between that something and its existing state."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:LinkValue.

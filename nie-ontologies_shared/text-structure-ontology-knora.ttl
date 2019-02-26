@@ -14,7 +14,6 @@
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
-@prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.

@@ -117,9 +117,15 @@ textedit:DerivedTextExpression
 
 textedit:EditionScientist
 	a owl:Class;
-	rdfs:label "edition scientist"@en, "EditionswissenschaftlerIn"@de, "éditrice scientifique"@fr;
+	rdfs:label "edition scientist"@en, "EditionswissenschaftlerIn"@de;
 	rdfs:comment """Role of a person practicing edition science."""@en;
 	rdfs:subClassOf human:Scientist.
+
+textedit:ScientificEditor
+	a owl:Class;
+	rdfs:label "scientific editor"@en, "wissenschaftliche Editor"@de, "éditrice scientifique"@fr;
+	rdfs:comment """Role of a person editing scientific text."""@en;
+	rdfs:subClassOf textedit:Editor.
 
 textedit:ScientificEdition
 	a owl:Class;
@@ -326,8 +332,12 @@ textedit:Variant
 textedit:EditorialComment
 	a owl:Class;
 	rdfs:label "editorial comment"@en, "editorische Kommentar"@de; #, ""@fr, ""@it;
-	rdfs:comment """Comment in an entry of an apparatus."""@en;
+	rdfs:comment """Comment in a scientific edition."""@en;
 	rdfs:subClassOf textedit:EditorialStructure, [
+		a owl:Restriction; owl:onProperty textedit:isCommentOn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isCommentOnValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isCommentOfScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isCommentOfScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isCommentOfEntry; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isCommentOfEntryValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:commentHasReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -718,6 +728,8 @@ textedit:hasApparatusEnteringDate
 	a owl:ObjectProperty;
 	rdfs:label "has apparatus entering date"@en, "hat Apparatuseintragsdatum"@de;
 	rdfs:comment """Relating an entry to its date of entering in an apparatus."""@en;
+	rdfs:domain textedit:ApparatusEntry;
+	rdfs:range xsd:date;
 	rdfs:subPropertyOf human:creationHasDate;
 	knora-base:subjectClassConstraint textedit:ApparatusEntry;
 	knora-base:objectClassConstraint knora-base:DateValue.
@@ -928,6 +940,42 @@ textedit:variantHasCommentValue
 	rdfs:comment """Relating a variant to a reification statement of the relation between the variant and an editorial comment."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint textedit:Variant;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:isCommentOn
+	a owl:ObjectProperty;
+	rdfs:label "is comment on"@en, "ist Kommentar zu"@de;
+	rdfs:comment """Relating an editorial comment to a text expression it is a comment on."""@en;
+	rdfs:domain textedit:EditorialComment;
+	rdfs:range text:Expression;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint textedit:EditorialComment;
+	knora-base:objectClassConstraint text:Expression.
+
+textedit:isCommentOnValue
+	a owl:ObjectProperty;
+	rdfs:label "is comment on - statement"@en, "ist Kommentar zu - Festlegung"@de;
+	rdfs:comment """Relating an editorial comment to a reification statement of the relation between the comment and a text expression it is a comment on."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint textedit:EditorialComment;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:isCommentOfScientificEdition
+	a owl:ObjectProperty;
+	rdfs:label "is comment of scientific edition"@en, "ist Kommentar der wissenschaftlichen Edition"@de;
+	rdfs:comment """Relating an editorial comment to its scientific edition."""@en;
+	rdfs:domain textedit:EditorialComment;
+	rdfs:range textedit:ScientificEdition;
+	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
+	knora-base:subjectClassConstraint textedit:EditorialComment;
+	knora-base:objectClassConstraint textedit:ScientificEdition.
+
+textedit:isCommentOfScientificEditionValue
+	a owl:ObjectProperty;
+	rdfs:label "is comment of scientific edition - statement"@en, "ist Kommentar der wissenschaftlichen Edition - Festlegung"@de;
+	rdfs:comment """Relating an editorial comment to a reification statement of the relation between the comment and its scientific edition."""@en;
+	rdfs:subPropertyOf text-structure:isPartOfTextExpressionValue;
+	knora-base:subjectClassConstraint textedit:EditorialComment;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 textedit:isCommentOfEntry

@@ -586,7 +586,7 @@ publish:hasPublisher
 	rdfs:label "has publisher"@en, "hat Herausgeber"@de;
 	rdfs:comment """Relating a publication to its publisher."""@en;
 	rdfs:domain publish:Publication;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom publish:Publisher]];
+#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom publish:AgentPublisher]];
 	rdfs:subPropertyOf human:hasCreator;
 	knora-base:subjectClassConstraint publish:Publication;
 	knora-base:objectClassConstraint human:Agent.

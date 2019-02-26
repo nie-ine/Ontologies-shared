@@ -50,15 +50,15 @@ parzival:ManualVerseNovelTranscript
 	a owl:Class;
 	rdfs:label """manual transcript of 'Parzival'"""@en, """Manuelles Transkript von 'Parzival'"""@de;
 	rdfs:comment """Manual transcript of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf infocar:ManualTranscript, knora-base:StillImageRepresentation, [
-		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf infocar:ManualTranscript. #, knora-base:StillImageRepresentation, [
+#		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 
 parzival:VerseNovelPrint
 	a owl:Class;
 	rdfs:label """print of 'Parzival'"""@en, """Druck von 'Parzival'"""@de;
 	rdfs:comment """Print of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf infocar:Print, knora-base:StillImageRepresentation, [
-		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf infocar:Print. #, knora-base:StillImageRepresentation, [
+#		a owl:Restriction; owl:onProperty knora-base:hasStillImageFileValue; owl:minCardinality "1"^^xsd:nonNegativeInteger].
 
 parzival:Verse
 	a owl:Class;

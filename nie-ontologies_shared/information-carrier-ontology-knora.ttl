@@ -42,7 +42,10 @@ infocar:Carrier
 		a owl:Restriction; owl:onProperty infocar:hasSender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:hasSenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:hasReceiver; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:hasReceiverValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty infocar:hasReceiverValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:hasSendingDateDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:hasSendingDateAccuracyDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:hasSendingDateProof; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Set
 	a owl:Class;
@@ -83,6 +86,8 @@ infocar:Page
 		a owl:Restriction; owl:onProperty infocar:isPageOfLeafValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPageOfBook; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPageOfBookValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isPageOfLetter; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isPageOfLetterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:pageHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Book
@@ -137,7 +142,7 @@ infocar:Archive
 infocar:ArchiveElement
 	a owl:Class;
 	rdfs:label "archive element"@en, "Archiv-Element"@de;
-	rdfs:comment """Element of an archive, which can be a single file or a file group."""@en;
+	rdfs:comment """Element of an archive, which can be a single information carrier or a group."""@en;
 	rdfs:subClassOf infocar:Carrier, [
 		a owl:Restriction; owl:onProperty infocar:isPartOfArchive; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPartOfArchiveValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -146,8 +151,8 @@ infocar:ArchiveElement
 infocar:WritingUtensil
 	a owl:Class;
 	rdfs:label "writing utensil"@en, "Schreibzeug"@de;
-	rdfs:comment """Object to write with."""@en;
-	rdfs:subClassOf human:PhysicalCreation.
+	rdfs:comment """Device to write with."""@en;
+	rdfs:subClassOf device:Device.
 
 infocar:Pencil
 	a owl:Class;
@@ -396,7 +401,7 @@ infocar:Hyperlink # software
 
 infocar:carrierHasDescription
 	a owl:ObjectProperty;
-	rdfs:label "has description"@en, "hat Beschreibung"@de;
+	rdfs:label "carrier has description"@en, "Träger hat Beschreibung"@de;
 	rdfs:comment """Relating an information carrier to a description thereof."""@en;
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint infocar:Carrier;
@@ -500,6 +505,24 @@ infocar:hasCarrierDescription
 	knora-base:subjectClassConstraint infocar:Collection;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
+infocar:isLeafOfBook
+	a owl:ObjectProperty;
+	rdfs:label "is leaf of book"@en, "ist Blatt eines Buchs"@de;
+	rdfs:comment """Relating a leaf to a book it is part of."""@en;
+	rdfs:domain infocar:Leaf;
+	rdfs:range infocar:Book;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:Leaf;
+	knora-base:objectClassConstraint infocar:Book.
+
+infocar:isLeafOfBookValue
+	a owl:ObjectProperty;
+	rdfs:label "is leaf of book - statement"@en, "ist Blatt eines Buchs - Festlegung"@de;
+	rdfs:comment """Relating a leaf to a reification statement of the relation between the leaf and a book it is part of."""@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:Leaf;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 infocar:isPageOfLeaf
 	a owl:ObjectProperty;
 	rdfs:label "is page of leaf"@en, "ist Seite eines Blattes"@de;
@@ -536,6 +559,24 @@ infocar:isPageOfBookValue
 	knora-base:subjectClassConstraint infocar:Page;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+infocar:isPageOfLetter
+	a owl:ObjectProperty;
+	rdfs:label "is page of letter"@en, "ist Seite eines Briefes"@de;
+	rdfs:comment """Relating a page to the letter it is part of."""@en;
+	rdfs:domain infocar:Page;
+	rdfs:range infocar:Letter;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:Page;
+	knora-base:objectClassConstraint infocar:Letter.
+
+infocar:isPageOfLetterValue
+	a owl:ObjectProperty;
+	rdfs:label "is page of letter - statement"@en, "ist Seite eines Briefes - Festlegung"@de;
+	rdfs:comment """Relating a page to a reification statement of the relation between the page and the letter it is part of."""@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:Page;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 infocar:pageHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "page has number"@en, "Seite hat Nummer"@de;
@@ -543,24 +584,6 @@ infocar:pageHasNumber
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint infocar:Page;
 	knora-base:objectClassConstraint knora-base:IntValue.
-
-infocar:isLeafOfBook
-	a owl:ObjectProperty;
-	rdfs:label "is leaf of book"@en, "ist Blatt eines Buchs"@de;
-	rdfs:comment """Relating a leaf to a book it is part of."""@en;
-	rdfs:domain infocar:Leaf;
-	rdfs:range infocar:Book;
-	rdfs:subPropertyOf physical:isPartOf;
-	knora-base:subjectClassConstraint infocar:Leaf;
-	knora-base:objectClassConstraint infocar:Book.
-
-infocar:isLeafOfBookValue
-	a owl:ObjectProperty;
-	rdfs:label "is leaf of book - statement"@en, "ist Blatt eines Buchs - Festlegung"@de;
-	rdfs:comment """Relating a leaf to a reification statement of the relation between the leaf and a book it is part of."""@en;
-	rdfs:subPropertyOf physical:isPartOfValue;
-	knora-base:subjectClassConstraint infocar:Leaf;
-	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isBindingOfBook
 	a owl:ObjectProperty;
@@ -926,6 +949,30 @@ infocar:hasReceiverValue
 	knora-base:subjectClassConstraint infocar:Carrier;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+infocar:hasSendingDateDescription
+	a owl:ObjectProperty;
+	rdfs:label "has sending date description"@en, "hat Absendedatumbeschreibung"@de;
+	rdfs:comment """Relating an information carrier to a description of its sending date."""@en;
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:hasSendingDateAccuracyDescription
+	a owl:ObjectProperty;
+	rdfs:label "has sending date accuracy description"@en, "hat Absendedatumgenauigkeitbeschreibung"@de;
+	rdfs:comment """Relating an information carrier to a description of its sending date accuracy."""@en;
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:hasSendingDateProof
+	a owl:ObjectProperty;
+	rdfs:label "has sending date proof"@en, "hat Absendedatumbeleg"@de;
+	rdfs:comment """Relating an information carrier to a proof of its sending date."""@en;
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
 infocar:hasTranscriber
 	a owl:ObjectProperty;
 	rdfs:label "has transcriber"@en, "hat TranskribiererIn"@de;
@@ -1144,10 +1191,10 @@ infocar:hasHyperlink
 	a owl:ObjectProperty;
 	rdfs:label "has hyperlink"@en, "hat Hyperlink"@de;
 	rdfs:comment """Relating a document structure to a hyperlink it has on an electronic carrier."""@en;
-	rdfs:domain document:Structure;
+	rdfs:domain document:HypertextStructure;
 	rdfs:range infocar:Hyperlink;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint document:Structure;
+	knora-base:subjectClassConstraint document:HypertextStructure;
 	knora-base:objectClassConstraint infocar:Hyperlink.
 
 infocar:hasHyperlinkValue
@@ -1155,7 +1202,7 @@ infocar:hasHyperlinkValue
 	rdfs:label "has hyperlink - statement"@en, "hat Hyperlink - Festlegung"@de;
 	rdfs:comment """Relating document structure to a reification statement of the relation between the document structure and a hyperlink it has on an electronic carrier."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint document:Structure;
+	knora-base:subjectClassConstraint document:HypertextStructure;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:hyperlinkHasName

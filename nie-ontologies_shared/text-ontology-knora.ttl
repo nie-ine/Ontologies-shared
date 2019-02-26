@@ -47,6 +47,7 @@ text:Text
 		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasPageNumberDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasNumberOfPages; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasReferenceText; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasReferenceTextValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasRevisor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -109,6 +110,8 @@ text:HandwrittenText
 	rdfs:label "handwritten text"@en, "handgeschriebener Text"@de, "texte manuscrit"@fr, "testo scritto a mano"@it;
 	rdfs:comment """Text written by hand."""@en;
 	rdfs:subClassOf text:WrittenText, [
+		a owl:Restriction; owl:onProperty text:hasHandwriter; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasHandwriterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isInManuscript; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isInManuscriptValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -272,6 +275,12 @@ text:PersonTranslator
 	rdfs:label "person text translator"@en, "Person TextübersetzerIn"@de; #, "traduct-eur/rice du texte"@fr, "tradutt-ore/rice di testo"@it;
 	rdfs:comment """Role of a person translating text by writing or printing."""@en;
 	rdfs:subClassOf language:PersonTranslator.
+
+text:Handwriter
+	a owl:Class;
+	rdfs:label "handwriter"@en, "Handschreiber"@de, "écrivain"@fr, "manoscrittore"@it;
+	rdfs:comment """Role of a person writing text by hand."""@en;
+	rdfs:subClassOf human:PersonCreator.
 
 text:Copyist
 	a owl:Class;
@@ -545,6 +554,16 @@ text:hasPageNumberDescription
 	rdfs:comment """Relating a text to a description of the number(s) of and possibly a location on (a) pages it is on; examples of the string of its value: "001-002", "01 recto", "O2 (bottom)"."""@en;
 	rdfs:domain text:Text;
 	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint text:Text;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+text:hasNumberOfPages
+	a owl:ObjectProperty;
+	rdfs:label "has number of pages"@en, "hat Seitenanzahl"@de;
+	rdfs:comment """Relating a text to the number of pages it has."""@en;
+	rdfs:domain text:Text;
+	rdfs:range xsd:integer;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -874,6 +893,24 @@ text:isPartOfIndividualExpressionValue
 	rdfs:comment """Relating a text expression part to a reification statement of the relation between the part and an individual expression it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text:ExpressionPart;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text:hasHandwriter
+	a owl:ObjectProperty;
+	rdfs:label "has handwriter"@en, "hat Handschreiber"@de;
+	rdfs:comment """Relating a handwritten text to the person who wrote it."""@en;
+	rdfs:domain text:HandwrittenText;
+#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Handwriter]];
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text:HandwrittenText;
+	knora-base:objectClassConstraint human:Person.
+
+text:hasHandwriterValue
+	a owl:ObjectProperty;
+	rdfs:label "has handwriter - statement"@en, "hat Handschreiber - Festlegung"@de;
+	rdfs:comment """Relating a handwritten text to a reification statement of the relation between the text and a person who wrote it."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text:HandwrittenText;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text:citationHasReference
