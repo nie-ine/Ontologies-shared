@@ -8,7 +8,7 @@
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
-@prefix physical: <http://www.knora.org/ontology/shared/physical-resource#>.
+@prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
 @prefix agent: <http://www.knora.org/ontology/shared/agent#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.

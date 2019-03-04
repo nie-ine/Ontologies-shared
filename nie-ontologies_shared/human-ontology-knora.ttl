@@ -9,7 +9,7 @@
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
-@prefix physical: <http://www.knora.org/ontology/shared/physical-resource#>.
+@prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
 @prefix agent: <http://www.knora.org/ontology/shared/agent#>.
 @prefix humgeo: <http://www.knora.org/ontology/shared/human-geography#>.
 @prefix org: <http://www.knora.org/ontology/shared/organization#>.
@@ -257,12 +257,6 @@ human:Creation
 		a owl:Restriction; owl:onProperty human:hasSponsor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasSponsorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-human:UnfinishedCreation
-	a owl:Class;
-	rdfs:label "unfinished creation"@en, "unfertige Kreation"@de;
-	rdfs:comment """Creation in a state of being not finished."""@en;
-	rdfs:subClassOf human:Creation.
-
 human:PhysicalCreation
 	a owl:Class;
 	rdfs:label "person's physical creation"@en, "physische Kreation einer Person"@de;
@@ -286,12 +280,13 @@ human:CreationVersion
 	rdfs:label "creation version"@en, "Version einer Kreation"@de;
 	rdfs:comment """Person's creation differing in certain respects - e.g. time, extent - from onther e.g. earlier or standard one."""@en;
 	skos:note """A version is created by the same person or group of persons."""@en;
-	rdfs:subClassOf human:Creation. 
+	rdfs:subClassOf human:Creation.
 
-# version: considering:
-# - time: earlier, later -> infer with rule
-# - extent: standard, reduced, extended
-# - etc.
+human:UnfinishedCreation
+	a owl:Class;
+	rdfs:label "unfinished creation"@en, "unfertige Kreation"@de;
+	rdfs:comment """Creation in a state of not having all envisioned features."""@en;
+	rdfs:subClassOf human:CreationVersion.
 
 human:FirstVersion
 	a owl:Class;

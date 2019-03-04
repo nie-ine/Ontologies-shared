@@ -7,7 +7,7 @@
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
-@prefix physical: <http://www.knora.org/ontology/shared/physical-resource#>.
+@prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 

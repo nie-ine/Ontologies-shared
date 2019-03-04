@@ -33,8 +33,8 @@ lavater:LetterExpression
 
 lavater:EditedLetter
 	a owl:Class;
-	rdfs:label "edited Johann Caspar Lavater letter"@en, "edierter Brief Johann Caspar Lavaters"@de;
-	rdfs:comment """Letter either authored or received by Johann Caspar Lavater, and critically edited."""@en;
+	rdfs:label "edited Johann Caspar Lavater letter expression"@en, "edierter Brief-Expression Johann Caspar Lavaters"@de;
+	rdfs:comment """Letter expression either authored or received by Johann Caspar Lavater, and critically edited."""@en;
 	rdfs:subClassOf textedit:CriticalEdition.
 
 lavater:Letter

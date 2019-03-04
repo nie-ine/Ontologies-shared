@@ -74,7 +74,7 @@ send "load ../ontologies/project-ontologies/philosophy-ontology-knora.ttl into h
 expect $prompt
 send "load ../ontologies/project-ontologies/physical-geography-ontology-knora.ttl into http://www.knora.org/ontology/shared/physical-geography .\r"
 expect $prompt
-send "load ../ontologies/project-ontologies/physical-resource-ontology-knora.ttl into http://www.knora.org/ontology/shared/physical-resource .\r"
+send "load ../ontologies/project-ontologies/physical-entity-ontology-knora.ttl into http://www.knora.org/ontology/shared/physical-entity .\r"
 expect $prompt
 send "load ../ontologies/project-ontologies/publishing-ontology-knora.ttl into http://www.knora.org/ontology/shared/publishing .\r"
 expect $prompt

@@ -6,13 +6,14 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix physical: <http://www.knora.org/ontology/shared/physical-resource#>.
+@prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix device: <http://www.knora.org/ontology/shared/device#>.
+@prefix image: <http://www.knora.org/ontology/shared/image#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
@@ -66,6 +67,12 @@ infocar:Copy
 	rdfs:label "information carrier copy"@en, "Informationsträgerkopie"@de;
 	rdfs:comment """Carrier with a copy of information."""@en;
 	rdfs:subClassOf infocar:Carrier, human:Copy.
+
+infocar:Photocopy
+	a owl:Class;
+	rdfs:label "photocopy"@en, "Fotokopie"@de;
+	rdfs:comment """Photographic information carrier copy."""@en;
+	rdfs:subClassOf image:Photograph, infocar:Copy.
 
 infocar:Leaf
 	a owl:Class;
@@ -191,28 +198,20 @@ infocar:Manuscript
 	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton, [
 		a owl:Restriction; owl:onProperty infocar:manuscriptHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:manuscriptHasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:manuscriptHasAddress; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:manuscriptHasAddressValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isManuscriptOfCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isManuscriptOfCollectionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:ManuscriptIdentifier
 	a owl:Class;
 	rdfs:label "manuscript identifier"@en, "Manuskript-Identifikator"@de;
-	rdfs:comment """Identifier of a manuscript."""@en;
+	rdfs:comment """Identifier of a manuscript, comprising its location, library, collection, and number."""@en;
 #	rdfs:seeAlso <https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-msIdentifier.html>;
-	rdfs:subClassOf concept:Identifier.
-
-infocar:ManuscriptAddress
-	a owl:Class;
-	rdfs:label "manuscript address"@en, "Manuskript-Adresse"@de;
-	rdfs:comment """Address of a manuscript."""@en;
-#	rdfs:seeAlso <https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-msIdentifier.html>;
-	rdfs:subClassOf concept:SymbolicConcept, [
-		a owl:Restriction; owl:onProperty infocar:manuscriptAddressHasLocation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:manuscriptAddressHasLibrary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:manuscriptAddressHasCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-#		a owl:Restriction; owl:onProperty infocar:manuscriptAddressHasShelfMark; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf concept:Identifier, [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasLocation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasLibrary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasShelfMark; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:ManuscriptCollection
 	a owl:Class;
@@ -224,7 +223,7 @@ infocar:PalmLeafManuscript
 	a owl:Class;
 	rdfs:label "palm-leaf manuscript"@en, "Palmblattmanuskript"@de;
 	rdfs:comment """Palm leaf manuscript."""@en;
-	skos:Note """Dried and smoke treated palm leaves were used as writing carrier in the Indian subcontinent and Southeast since at least the 5th century BC, possibly much earlier."""@en;
+	skos:note """Dried and smoke treated palm leaves were used as writing carrier in the Indian subcontinent and Southeast since at least the 5th century BC, possibly much earlier."""@en;
 	rdfs:subClassOf infocar:Leaf, infocar:Manuscript.
 
 infocar:NoteCarrier
@@ -333,7 +332,14 @@ infocar:Letter
 		a owl:Restriction; owl:onProperty infocar:letterFollows; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:letterFollowsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:letterPrecedes; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterPrecedesValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty infocar:letterPrecedesValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:letterHasEnvelopeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+infocar:Envelope
+	a owl:Class;
+	rdfs:label "envelope"@en, "Umschlag"@de;
+	rdfs:comment """Flat paper container with a sealable flap for sending something, e.g. a letter, from (a) person(s) or (an) Organization(s) to another one, e.g. through a postal system."""@en;
+	rdfs:subClassOf human:PhysicalCreation.
 
 infocar:Postcard
 	a owl:Class;
@@ -695,52 +701,44 @@ infocar:manuscriptHasIdentifierValue
 	knora-base:subjectClassConstraint infocar:Manuscript;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-infocar:manuscriptHasAddress
+infocar:manuscriptIdentifierHasLocation
 	a owl:ObjectProperty;
-	rdfs:label "manuscript has address"@en, "Manuskript hat Adresse"@de;
-	rdfs:comment """Relating a manuscript to its address."""@en;
-	rdfs:domain infocar:Manuscript;
-	rdfs:range infocar:ManuscriptAddress;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint infocar:Manuscript;
-	knora-base:objectClassConstraint infocar:ManuscriptAddress.
-
-infocar:manuscriptHasAddressValue
-	a owl:ObjectProperty;
-	rdfs:label "manuscript has address - statement"@en, "Manuskript hat Adresse - Festlegung"@de;
-	rdfs:comment """Relating a manuscript to a reification statement of the relation between the manuscript and its address."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint infocar:Manuscript;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:manuscriptAddressHasLocation
-	a owl:ObjectProperty;
-	rdfs:label "manuscript address has location"@en, "Manuskript-Adresse hat Ort"@de;
-	rdfs:comment """Relating a manuscript address to its location name."""@en;
-	rdfs:domain infocar:ManuscriptAddress;
+	rdfs:label "manuscript identifier has location"@en, "Manuskriptidentifikator hat Ort"@de;
+	rdfs:comment """Relating a manuscript identifier to its location name."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
 	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint infocar:ManuscriptAddress;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
-infocar:manuscriptAddressHasLibrary
+infocar:manuscriptIdentifierHasLibrary
 	a owl:ObjectProperty;
-	rdfs:label "manuscript address has library"@en, "Manuskript-Adresse hat Bibliothek"@de;
-	rdfs:comment """Relating a manuscript address to its library name."""@en;
-	rdfs:domain infocar:ManuscriptAddress;
+	rdfs:label "manuscript identifier has library"@en, "Manuskriptidentifikator hat Bibliothek"@de;
+	rdfs:comment """Relating a manuscript identifier to its library name."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
 	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint infocar:ManuscriptAddress;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
-infocar:manuscriptAddressHasCollection
+infocar:manuscriptIdentifierHasCollection
 	a owl:ObjectProperty;
-	rdfs:label "manuscript address has collection"@en, "Manuskript-Adresse hat Kollektion"@de;
-	rdfs:comment """Relating a manuscript address to its collection name."""@en;
-	rdfs:domain infocar:ManuscriptAddress;
+	rdfs:label "manuscript identifier has collection"@en, "Manuskriptidentifikator hat Kollektion"@de;
+	rdfs:comment """Relating a manuscript identifier to its collection name."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
 	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint infocar:ManuscriptAddress;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptIdentifierHasNumber
+	a owl:ObjectProperty;
+	rdfs:label "manuscript identifier has number"@en, "Manuskriptidentifikator hat Nummer"@de;
+	rdfs:comment """Relating a manuscript identifier to its number."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
 infocar:isManuscriptOfCollection
@@ -1148,6 +1146,16 @@ infocar:letterPrecedesValue
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint infocar:Letter;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:letterHasEnvelopeDescription
+	a owl:ObjectProperty;
+	rdfs:label "letter has envelope description"@en, "Brief hat Umschlagbeschreibung"@de;
+	rdfs:comment """Relating a letter to a description of its envelope."""@en;
+	rdfs:domain infocar:Letter;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint knora-base:TextValue.
 
 infocar:isPartOfConvolute
 	a owl:ObjectProperty;

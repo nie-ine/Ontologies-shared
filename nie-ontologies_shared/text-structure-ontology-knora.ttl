@@ -51,7 +51,7 @@ text-structure:Identifier
 	a owl:Class;
 	rdfs:label "text structure identifier"@en, "Textstrukturidentifikator"@de;
 	rdfs:comment """Identifier of a text structure."""@en;
-	rdfs:subClassOf document:ContentStructureIdentifier. #°
+	rdfs:subClassOf document:ContentStructureIdentifier.
 
 text-structure:SyntacticStructure
 	a owl:Class;
@@ -291,6 +291,14 @@ text-structure:StrictVerse
 #		a owl:Restriction; owl:onProperty text-structure:hasMetric; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text-structure:hasMetricValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+text-structure:Meter
+	a owl:Class;
+	rdfs:label "meter"@en, ""@de;
+	rdfs:comment """Rhythmic structure of a verse, based on patterns of particular syllables, and often alternating in a particular order"""@en;
+	rdfs:subClassOf text-structure:ProsodicStructure.
+
+# syllable
+
 text-structure:FreeVerse
 	a owl:Class;
 	rdfs:label "free verse"@en, "freie Vers"@de;
@@ -342,10 +350,10 @@ text-structure:Dialogue
 	rdfs:comment """Text with dialogue structure."""@en;
 	rdfs:subClassOf text-structure:CompositionalContentStructure.
 
-text-structure:Note
+text-structure:Note #°
 	a owl:Class;
 	rdfs:label "note structure"@en, "Notiz-Struktur"@de;
-	rdfs:comment """Text with note structure, not necessarily having a unit such as a sentence or being syntactically correct; e.g. a first quick registration of thought, or a remark added to another text."""@en;
+	rdfs:comment """Text with note structure, not necessarily having sentences or being syntactically correct; e.g. a first quick registration of thought, or a remark added to another text."""@en;
 	rdfs:subClassOf text-structure:CompositionalContentStructure, [
 		a owl:Restriction; owl:onProperty text-structure:isNoteStructureOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isNoteStructureOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -480,7 +488,7 @@ text-structure:hasIdentifier
 	rdfs:comment """Relating a text structure to its identifier."""@en;
 	rdfs:domain text-structure:Structure;
 	rdfs:range text-structure:Identifier;
-	rdfs:subPropertyOf document:hasIdentifier;
+	rdfs:subPropertyOf document:contentStructureHasIdentifier;
 	knora-base:subjectClassConstraint text-structure:Structure;
 	knora-base:objectClassConstraint text-structure:Identifier.
 
@@ -488,7 +496,7 @@ text-structure:hasIdentifierValue
 	a owl:ObjectProperty;
 	rdfs:label "text structure has identifier - statement"@en, "Textstruktur hat Identifikator - Festlegung"@de;
 	rdfs:comment """Relating a text structure to a reification statement of the relation between the structure and its identifier."""@en;
-	rdfs:subPropertyOf document:hasIdentifierValue;
+	rdfs:subPropertyOf document:contentStructureHasIdentifierValue;
 	knora-base:subjectClassConstraint text-structure:Structure;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 

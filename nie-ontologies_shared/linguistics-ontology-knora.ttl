@@ -76,6 +76,8 @@ ling:Noun
 	rdfs:comment """Noun as part of speech."""@en;
 	rdfs:subClassOf ling:PartOfSpeech.
 
+# Sallable
+
 # part of speech: general: verb, adjective, adverb, pronoun, preposition, conjunction, interjection, article or determiner
 
 ling:Numeral # noun, adjective, adverb

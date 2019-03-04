@@ -5,6 +5,8 @@
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
+@prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
+@prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0062/meyer>.
@@ -27,11 +29,105 @@
 meyer:LetterExpression
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer letter expression"@en, "Brief-Expression Conrad Ferdinand Meyers"@de;
-	rdfs:comment """Letter either authored or received by Conrad Ferdinand Meyer."""@en;
-	rdfs:subClassOf text:LetterExpression.
+	rdfs:comment """Letter expression either authored or received by Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf text:LetterExpression, text:HandwrittenText.
 
-meyer:EditedLetter
+meyer:DraftLetterExpression
 	a owl:Class;
-	rdfs:label "edited Conrad Ferdinand Meyer letter"@en, "edierter Brief Conrad Ferdinand Meyers"@de;
+	rdfs:label "Conrad Ferdinand Meyer letter expression draft"@en, "Brief-Expressionentwurf Conrad Ferdinand Meyers"@de;
+	rdfs:comment """Draft of a letter expression either authored by Conrad Ferdinand Meyer or another person."""@en;
+	rdfs:subClassOf text:Draft. #, [
+#		a owl:Restriction; owl:onProperty meyer:isDraftOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty meyer:isDraftOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+# meyer:CopiedLetterExpression textedit:Witness
+# meyer:TranscribedLetterExpression
+# meyer:PrintedLetterExpression
+# meyer:PhotocopiedLetterExpression
+
+
+meyer:EditedLetterExpression
+	a owl:Class;
+	rdfs:label "edited Conrad Ferdinand Meyer letter expression"@en, "edierter Brief-Expression Conrad Ferdinand Meyers"@de;
 	rdfs:comment """Letter either authored or received by Conrad Ferdinand Meyer, and critically edited."""@en;
-	rdfs:subClassOf textedit:CriticalEdition.
+	rdfs:subClassOf textedit:CriticalEdition, publish:Expression.
+
+meyer:Letter
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer letter"@en, "Conrad Ferdinand Meyer-Brief"@de, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
+	rdfs:comment """Letter send by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:Letter, infocar:ConvoluteElement, infocar:ArchiveElement.
+
+meyer:PostcardLetter
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer postcard letter"@en, "Conrad Ferdinand Meyer-Postkartebrief"@de, "lettre carte postale de Conrad Ferdinand Meyer"@fr, "lettera cartolina di Conrad Ferdinand Meyer"@it;
+	rdfs:comment """Letter written on a postcard send by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:Postcard, meyer:Letter.
+
+meyer:Copy
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer letter copy"@en, "Conrad Ferdinand Meyer-Briefkopie"@de; #, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
+	rdfs:comment """Copy of a letter send by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:TextCopy, meyer:Letter, infocar:ArchiveElement, [
+		a owl:Restriction; owl:onProperty meyer:isCopyOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty meyer:isCopyOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+meyer:Transcript
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer letter transcript"@en, "Conrad Ferdinand Meyer-Brieftranskript"@de; #, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
+	rdfs:comment """Transcribed copy of a letter send by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:ManualTranscript, meyer:Copy.
+
+meyer:Print
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer letter print"@en, "Conrad Ferdinand Meyer-Briefdruck"@de; #, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
+	rdfs:comment """Printed copy of a letter send by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:Print, meyer:Copy.
+
+meyer:FirstPrint
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer letter first print"@en, "Conrad Ferdinand Meyer-Erstebriefdruck"@de; #, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
+	rdfs:comment """First printed copy of a letter send by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:FirstPrint, meyer:Print.
+
+meyer:Photocopy
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer letter photocopy"@en, "Conrad Ferdinand Meyer-Brieffotokopie"@de; #, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
+	rdfs:comment """Photocopy of a letter send by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:Photocopy, meyer:Copy.
+
+meyer:Page
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer letter page"@en, "Seite eines Briefes Conrad Ferdinand Meyers"@de;
+	rdfs:comment """Page of a letter of Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:Page. #, [
+#		a owl:Restriction; owl:onProperty knora-base:hasRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty knora-base:hasRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+meyer:LetterConvolute
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer letter convolute"@en,"Briefekonvolut Conrad Ferdinand Meyers"@de;
+	rdfs:comment """Convolute of letters send by and to Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:Convolute, infocar:ArchiveElement.
+
+#
+# PROPERTIES
+#
+
+meyer:isCopyOf
+	a owl:ObjectProperty;
+	rdfs:label "is copy of letter"@en, "ist Kopie eines Briefes"@de;
+	rdfs:comment """Relating a copy to its original letter send by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:domain meyer:Copy;
+	rdfs:range meyer:Letter;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint meyer:Copy;
+	knora-base:objectClassConstraint meyer:Letter.
+
+meyer:isCopyOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is copy of letter - statement"@en, "ist Kopie eines Briefes - Festlegung"@de;
+	rdfs:comment """Relating a copy to a reification statement of the relation between the copy and its original letter send by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint meyer:Copy;
+	knora-base:objectClassConstraint knora-base:LinkValue.
