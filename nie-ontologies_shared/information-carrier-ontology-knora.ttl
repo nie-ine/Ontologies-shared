@@ -62,16 +62,22 @@ infocar:Collection
 	rdfs:subClassOf human:PhysicalCreation, [
 		a owl:Restriction; owl:onProperty infocar:hasCarrierDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+infocar:Draft
+	a owl:Class;
+	rdfs:label "information draft carrier"@en, "Informationsentwurfträger"@de;
+	rdfs:comment """Carrier with a draft of information."""@en;
+	rdfs:subClassOf infocar:Carrier, human:UnfinishedCreation.
+
 infocar:Copy
 	a owl:Class;
-	rdfs:label "information carrier copy"@en, "Informationsträgerkopie"@de;
+	rdfs:label "information copy carrier"@en, "Informationskopieträger"@de;
 	rdfs:comment """Carrier with a copy of information."""@en;
 	rdfs:subClassOf infocar:Carrier, human:Copy.
 
 infocar:Photocopy
 	a owl:Class;
 	rdfs:label "photocopy"@en, "Fotokopie"@de;
-	rdfs:comment """Photographic information carrier copy."""@en;
+	rdfs:comment """Photographic information copy carrier."""@en;
 	rdfs:subClassOf image:Photograph, infocar:Copy.
 
 infocar:Leaf
@@ -333,7 +339,22 @@ infocar:Letter
 		a owl:Restriction; owl:onProperty infocar:letterFollowsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:letterPrecedes; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:letterPrecedesValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterHasEnvelopeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		# infocar:letterHasEnvelope
+		a owl:Restriction; owl:onProperty infocar:letterHasEnvelopeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:letterHasEnclosure; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:letterHasEnclosureValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+infocar:LetterEnclosure
+	a owl:Class;
+	rdfs:label "letter enclosure"@en, "Briefbeilage"@de;
+	rdfs:comment """Something added to a letter being sent, e.g. another information carrier."""@en;
+	rdfs:subClassOf human:PhysicalCreation.
+
+infocar:InformationLetterEnclosure
+	a owl:Class;
+	rdfs:label "information letter enclosure"@en, "Information-Briefbeilage"@de;
+	rdfs:comment """Information carrier as letter enclosure."""@en;
+	rdfs:subClassOf infocar:LetterEnclosure, infocar:Carrier.
 
 infocar:Envelope
 	a owl:Class;
@@ -819,7 +840,7 @@ infocar:isInTranscript
 	rdfs:comment "Relating a transcribed text to a transcript that carries it."@en;
 	rdfs:domain text:TranscribedText;
 	rdfs:range infocar:Transcript;
-	rdfs:subPropertyOf infocar:isOnCarrier;
+	rdfs:subPropertyOf infocar:isInTextCopy;
 	knora-base:subjectClassConstraint text:TranscribedText;
 	knora-base:objectClassConstraint infocar:Transcript.
 
@@ -827,7 +848,7 @@ infocar:isInTranscriptValue
 	a owl:ObjectProperty;
 	rdfs:label "is in transcript - statement"@en, "ist in Abschrift - Festlegung"@de;
 	rdfs:comment "Relating a transcribed text to a reification statement of the relation between the text and the transcript that carries it."@en;
-	rdfs:subPropertyOf infocar:isOnCarrierValue;
+	rdfs:subPropertyOf infocar:isInTextCopyValue;
 	knora-base:subjectClassConstraint text:TranscribedText;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -847,6 +868,24 @@ infocar:isInPrintValue
 	rdfs:comment "Relating a printed text to a reification statement of the relation between the text and a print that carries it."@en;
 	rdfs:subPropertyOf infocar:isOnCarrierValue;
 	knora-base:subjectClassConstraint text:PrintedText;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:isTextInPhotocopy
+	a owl:ObjectProperty;
+	rdfs:label "is text in photocopy"@en, "ist Text in Fotokopie"@de;
+	rdfs:comment "Relating a photocopied text to a photocopy that carries it."@en;
+	rdfs:domain text:PhotocopiedText;
+	rdfs:range infocar:Photocopy;
+	rdfs:subPropertyOf infocar:isOnCarrier;
+	knora-base:subjectClassConstraint text:PhotocopiedText;
+	knora-base:objectClassConstraint infocar:Photocopy.
+
+infocar:isTextInPhotocopyValue
+	a owl:ObjectProperty;
+	rdfs:label "is text in photocopy - statement"@en, "ist Text in Fotokopie - Festlegung"@de;
+	rdfs:comment "Relating a photocopied text to a reification statement of the relation between the text and a photocopy that carries it."@en;
+	rdfs:subPropertyOf infocar:isOnCarrierValue;
+	knora-base:subjectClassConstraint text:PhotocopiedText;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:entryIsInDiary
@@ -909,6 +948,24 @@ infocar:isInLetterValue
 	rdfs:comment """Relating a letter expression to a reification statement of the relation between the letter expression and a letter it is in."""@en;
 	rdfs:subPropertyOf infocar:isOnCarrierValue;
 	knora-base:subjectClassConstraint text:LetterExpression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:isTextInLetterEnclosure
+	a owl:ObjectProperty;
+	rdfs:label "is text in letter enclosure"@en, "ist Text in Briefbeilage"@de;
+	rdfs:comment """Relating a text expression to a letter enclosure it is in."""@en;
+	rdfs:domain text:LetterEnclosureExpression;
+	rdfs:range infocar:InformationLetterEnclosure;
+	rdfs:subPropertyOf infocar:isOnCarrier;
+	knora-base:subjectClassConstraint text:LetterEnclosureExpression;
+	knora-base:objectClassConstraint infocar:InformationLetterEnclosure.
+
+infocar:isTextInLetterEnclosureValue
+	a owl:ObjectProperty;
+	rdfs:label "is text in letter enclosure - statement"@en, "ist Text in Briefbeilage - Festlegung"@de;
+	rdfs:comment """Relating a text expression to a reification statement of the relation between the expression and a letter enclosure it is in."""@en;
+	rdfs:subPropertyOf infocar:isOnCarrierValue;
+	knora-base:subjectClassConstraint text:LetterEnclosureExpression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:hasSender
@@ -1156,6 +1213,24 @@ infocar:letterHasEnvelopeDescription
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint infocar:Letter;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:letterHasEnclosure
+	a owl:ObjectProperty;
+	rdfs:label "letter has enclosure"@en, "Brief hat Beilage"@de;
+	rdfs:comment """Relating a letter to an enclosure it has."""@en;
+	rdfs:domain infocar:Letter;
+	rdfs:range infocar:LetterEnclosure;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint infocar:LetterEnclosure.
+
+infocar:letterHasEnclosureValue
+	a owl:ObjectProperty;
+	rdfs:label "letter has enclosure - statement"@en, "Brief hat Beilage - Festlegung"@de;
+	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and an enclosure it has."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isPartOfConvolute
 	a owl:ObjectProperty;

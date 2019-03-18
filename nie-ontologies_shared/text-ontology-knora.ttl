@@ -141,6 +141,14 @@ text:PrintedText
 		a owl:Restriction; owl:onProperty infocar:isInPrint; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isInPrintValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+text:PhotocopiedText
+	a owl:Class;
+	rdfs:label "photocopied text"@en, "fotokopierter Text"@de; #, "texte copié"@fr, "testo copiato"@it;
+	rdfs:comment """Text photocopied, abstracted from its carrier."""@en;
+	rdfs:subClassOf text:CopiedText, [
+		a owl:Restriction; owl:onProperty infocar:isTextInPhotocopy; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isTextInPhotocopyValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 text:Translation
 	a owl:Class;
 	rdfs:label "text translation"@en, "Textübersetzung"@de, "traduction de texte"@fr, "traduzione di testi"@it;
@@ -161,7 +169,7 @@ text:Fiction
 
 text:Expression
 	a owl:Class;
-	rdfs:label "text expression"@en, "Text-Expression"@de, "expression textuelle"@fr, "espressione testuale"@it;
+	rdfs:label "text expression"@en, "Textexpression"@de, "expression textuelle"@fr, "espressione testuale"@it;
 	rdfs:comment """Document expression as text."""@en;
 	rdfs:subClassOf document:Expression, text:Text, [
 		a owl:Restriction; owl:onProperty text:expressionHasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -187,7 +195,7 @@ text:Expression
 
 text:Draft
 	a owl:Class;
-	rdfs:label "draft"@en, "Entwurf"@de;
+	rdfs:label "text draft"@en, "Textentwurf"@de;
 	rdfs:comment """Document draft as text expression."""@en;
 	rdfs:subClassOf text:Expression, document:Draft, [
 		a owl:Restriction; owl:onProperty text:isDraftOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -195,7 +203,7 @@ text:Draft
 
 text:PolyAuthorExpression
 	a owl:Class;
-	rdfs:label "poly-author text expression"@en, "Mehrautorentext-Expression"@de;
+	rdfs:label "poly-author text expression"@en, "Mehrautorentextexpression"@de;
 	rdfs:comment """Text expression by different authors."""@en;
 	rdfs:subClassOf text:Expression, [
 		a owl:Restriction; owl:onProperty text:hasMainAuthor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -203,13 +211,13 @@ text:PolyAuthorExpression
 
 text:IndividualExpression
 	a owl:Class;
-	rdfs:label "individual text expression"@en, "individuelle Text-Expression"@de;
+	rdfs:label "individual text expression"@en, "individuelle Textexpression"@de;
 	rdfs:comment """Text as individual expression."""@en;
 	rdfs:subClassOf text:Expression, document:IndividualExpression.
 
 text:ExpressionPart
 	a owl:Class;
-	rdfs:label "text expression part"@en, "Text-Expressionsteil"@de;
+	rdfs:label "text expression part"@en, "Textexpressionsteil"@de;
 	rdfs:comment """Part of an individual text expression, considered as incomplete."""@en;
 	rdfs:subClassOf text:Expression, document:ExpressionPart, [
 		a owl:Restriction; owl:onProperty text:isPartOfIndividualExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -388,6 +396,14 @@ text:LetterExpression
 	rdfs:subClassOf text:IndividualExpression, [
 		a owl:Restriction; owl:onProperty infocar:isInLetter; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isInLetterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text:LetterEnclosureExpression
+	a owl:Class;
+	rdfs:label "letter enclosure text expression"@en, "Briefbeilage-Textexpression"@de;
+	rdfs:comment """Text expression of a letter enclosure."""@en;
+	rdfs:subClassOf text:IndividualExpression, [
+		a owl:Restriction; owl:onProperty infocar:isTextInLetterEnclosure; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isTextInLetterEnclosureValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text:Commentator
 	a owl:Class;
@@ -756,7 +772,7 @@ text:hasAnnotatorValue
 
 text:expressionHasTitle
 	a owl:ObjectProperty;
-	rdfs:label "text expression has title"@en, "Text-Expression hat Titel"@de;
+	rdfs:label "text expression has title"@en, "Textexpression hat Titel"@de;
 	rdfs:comment """Relating a text expression to a title it has."""@en;
 	rdfs:domain text:Expression;
 #	rdfs:range rdfs:Literal;
@@ -815,7 +831,7 @@ text:hasIdeationalExtent
 
 text:hasCommentator
 	a owl:ObjectProperty;
-	rdfs:label "text expression has commentator"@en, "Text-Expression hat KommentatorIn"@de;
+	rdfs:label "text expression has commentator"@en, "Textexpression hat KommentatorIn"@de;
 	rdfs:comment "Relating a text expression to a person who commented on it."@en;
 	rdfs:domain text:Expression;
 #	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Commentator]];
@@ -825,7 +841,7 @@ text:hasCommentator
 
 text:hasCommentatorValue
 	a owl:ObjectProperty;
-	rdfs:label "text expression has commentator - statement"@en, "Text-Expression hat KommentatorIn - Festlegung"@de;
+	rdfs:label "text expression has commentator - statement"@en, "Textexpression hat KommentatorIn - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the expression and person who commented on it."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Expression;
@@ -833,7 +849,7 @@ text:hasCommentatorValue
 
 text:hasScientificEditor
 	a owl:ObjectProperty;
-	rdfs:label "text expression has scientific editor"@en, "Text-Expression hat wissenschaftliche Editor"@de;
+	rdfs:label "text expression has scientific editor"@en, "Textexpression hat wissenschaftliche Editor"@de;
 	rdfs:comment "Relating a text expression to a person who edited it scientifically."@en;
 	rdfs:domain text:Expression;
 #	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:ScientificEditor]];
@@ -843,7 +859,7 @@ text:hasScientificEditor
 
 text:hasScientificEditorValue
 	a owl:ObjectProperty;
-	rdfs:label "text expression has scientific editor - statement"@en, "Text-Expression hat wissenschaftliche Editor - Festlegung"@de;
+	rdfs:label "text expression has scientific editor - statement"@en, "Textexpression hat wissenschaftliche Editor - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the expression and person who edited it scientifically."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Expression;
@@ -851,7 +867,7 @@ text:hasScientificEditorValue
 
 text:hasCriticalEditor
 	a owl:ObjectProperty;
-	rdfs:label "text expression has critical editor"@en, "Text-Expression hat kritische Editor"@de;
+	rdfs:label "text expression has critical editor"@en, "Textexpression hat kritische Editor"@de;
 	rdfs:comment "Relating a text expression to a person who edited it critically."@en;
 	rdfs:domain text:Expression;
 #	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:CriticalEditor]];
@@ -861,7 +877,7 @@ text:hasCriticalEditor
 
 text:hasCriticalEditorValue
 	a owl:ObjectProperty;
-	rdfs:label "text expression has critical editor - statement"@en, "Text-Expression hat kritische Editor - Festlegung"@de;
+	rdfs:label "text expression has critical editor - statement"@en, "Textexpression hat kritische Editor - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the expression and person who edited it critically."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Expression;
@@ -869,7 +885,7 @@ text:hasCriticalEditorValue
 
 text:isDraftOf
 	a owl:ObjectProperty;
-	rdfs:label "is draft of text expression"@en, "ist Entwurf einer Text-Expression"@de;
+	rdfs:label "is draft of text expression"@en, "ist Entwurf einer Textexpression"@de;
 	rdfs:comment "Relating a draft to its text expression."@en;
 	rdfs:domain text:Draft;
 	rdfs:range text:Expression;
@@ -879,7 +895,7 @@ text:isDraftOf
 
 text:isDraftOfValue
 	a owl:ObjectProperty;
-	rdfs:label "is draft of text expression - statement"@en, "ist Entwurf einer Text-Expression - Festlegung"@de;
+	rdfs:label "is draft of text expression - statement"@en, "ist Entwurf einer Textexpression - Festlegung"@de;
 	rdfs:comment "Relating a draft to a reification statement of the relation between the draft and its text expression."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Draft;
@@ -905,7 +921,7 @@ text:hasMainAuthorValue
 
 text:isPartOfIndividualExpression
 	a owl:ObjectProperty;
-	rdfs:label "is part of individual text expression"@en, "ist Teil einer individuellen Text-Expression"@de;
+	rdfs:label "is part of individual text expression"@en, "ist Teil einer individuellen Textexpression"@de;
 	rdfs:comment """Relating a text expression part to an individual expression it is part of."""@en;
 	rdfs:domain text:ExpressionPart;
 	rdfs:range text:IndividualExpression;
@@ -915,7 +931,7 @@ text:isPartOfIndividualExpression
 
 text:isPartOfIndividualExpressionValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of individual text expression - statement"@en, "ist Teil einer individuellen Text-Expression - Festlegung"@de;
+	rdfs:label "is part of individual text expression - statement"@en, "ist Teil einer individuellen Textexpression - Festlegung"@de;
 	rdfs:comment """Relating a text expression part to a reification statement of the relation between the part and an individual expression it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text:ExpressionPart;
@@ -995,7 +1011,7 @@ text:citationHasNumberValue
 
 text:citationIsPartOf
 	a owl:ObjectProperty;
-	rdfs:label "citation is part of text expression"@en, "Zitat ist Teil einer Text-Expression"@de;
+	rdfs:label "citation is part of text expression"@en, "Zitat ist Teil einer Textexpression"@de;
 	rdfs:comment """Relating a citation to a text expression it is part of."""@en;
 	rdfs:domain text:Citation;
 	rdfs:range text:Expression;
@@ -1005,7 +1021,7 @@ text:citationIsPartOf
 
 text:citationIsPartOfValue
 	a owl:ObjectProperty;
-	rdfs:label "citation is part of text expression - statement"@en, "Zitat ist Teil einer Text-Expression - Festlegung"@de;
+	rdfs:label "citation is part of text expression - statement"@en, "Zitat ist Teil einer Textexpression - Festlegung"@de;
 	rdfs:comment """Relating a citation to a reification statement of the relation between the citation and a text expression it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text:Citation;

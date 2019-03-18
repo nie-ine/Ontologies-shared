@@ -52,7 +52,7 @@ publish:Expression
 
 publish:TextExpression
 	a owl:Class;
-	rdfs:label "publication text expression"@en, "Publikation-Text-Expression"@de;
+	rdfs:label "publication text expression"@en, "Publikation-Textexpression"@de;
 	rdfs:comment """Text as publication expression."""@en;
 	rdfs:subClassOf text:Expression, publish:Expression.
 

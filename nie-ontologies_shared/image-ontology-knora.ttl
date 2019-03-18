@@ -32,6 +32,12 @@ image:Image
 	rdfs:comment """Visual representation of something."""@en;
 	rdfs:subClassOf document:Document, cidoc:E38_Image. # rdfs:subClassOf cidoc:E36_Visual_Item rdfs:subClassOf cidoc:E73_Information_Object rdfs:subClassOf cidoc:E90_Symbolic_Object rdfs:subClassOf cidoc:E28_Conceptual_Object
 
+image:ImageExpression
+	a owl:Class;
+	rdfs:label "image expression"@en,"Bildexpression"@de;
+	rdfs:comment """Image as a document expression conform FRBROO."""@en;
+	rdfs:subClassOf document:Expression, image:Image.
+
 image:ImageCarrier
 	a owl:Class;
 	rdfs:label "image carrier"@en,"Bildträger"@de;

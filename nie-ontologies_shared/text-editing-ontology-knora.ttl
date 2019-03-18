@@ -105,7 +105,7 @@ textedit:Transliteration
 
 textedit:DerivedTextExpression
 	a owl:Class;
-	rdfs:label "derived text expression"@en, "abgeleitete Text-Expression"@de;
+	rdfs:label "derived text expression"@en, "abgeleitete Textexpression"@de;
 	rdfs:comment """Text expression derived from another text expression with content changed beyond a version."""@en;
 	rdfs:subClassOf text:Expression, human:CreationDerivative, textedit:Edition.
 
@@ -300,7 +300,7 @@ textedit:WitnessIdentifier
 textedit:Lemma
 	a owl:Class;
 	rdfs:label "lemma"@en, "Lemma"@de, "lemma"@fr, "lemma"@it;
-	rdfs:comment """Copy of one or more words or phrases in an apparatus entry referring to its edition text, and possibly as appearing in a witness or created by an editor, and judged by the editor to be authentic, accurate, and/or authoritative, and compaired with variants referring to other witnesses"""@en;
+	rdfs:comment """Editorial structure with a copy of one or more words or phrases in an apparatus entry referring to its edition text, and possibly as appearing in a witness or created by an editor, and judged by the editor to be authentic, accurate, and/or authoritative, and compaired with variants referring to other witnesses"""@en;
 	skos:note """In an apparatus entry a lemma is mostly seperated from a variant or editorial explanation by a right square bracket ']'."""@en;
 	rdfs:subClassOf textedit:EditorialStructure, [
 		a owl:Restriction; owl:onProperty textedit:isLemmaOfCriticalEntry; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -502,7 +502,7 @@ textedit:hasTransliterationValue
 
 textedit:hasDerivedTextExpression
 	a owl:ObjectProperty;
-	rdfs:label "has derived text expression"@en, "hat abgeleitete Text-Expression"@de;
+	rdfs:label "has derived text expression"@en, "hat abgeleitete Textexpression"@de;
 	rdfs:comment "Relating a text expression to another one derived from it."@en;
 	rdfs:domain text:Expression;
 	rdfs:range textedit:DerivedTextExpression;
@@ -512,7 +512,7 @@ textedit:hasDerivedTextExpression
 
 textedit:hasDerivedTextExpressionValue
 	a owl:ObjectProperty;
-	rdfs:label "has derived text expression - statement"@en, "hat abgeleitete Text-Expression - Festlegung"@de;
+	rdfs:label "has derived text expression - statement"@en, "hat abgeleitete Textexpression - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the text expression and another one derived from it."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Expression;

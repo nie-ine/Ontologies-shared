@@ -15,7 +15,7 @@
 <http://www.knora.org/ontology/0062/meyer>
 	a owl:Ontology;
 	dct:title "An ontology about Conrad Ferdinand Meyer's correspondence"@en;
-	dct:description """Formal description of specific concepts in the scientific study of the correspondence of Conrad Ferdinand Meyer, 11 October 1825 – 28 November 1898."""@en;
+	dct:description """Formal description of specific concepts in the critical edition of the correspondence of Conrad Ferdinand Meyer, 11 October 1825 – 28 November 1898."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:contributor "Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
@@ -28,28 +28,44 @@
 
 meyer:LetterExpression
 	a owl:Class;
-	rdfs:label "Conrad Ferdinand Meyer letter expression"@en, "Brief-Expression Conrad Ferdinand Meyers"@de;
-	rdfs:comment """Letter expression either authored or received by Conrad Ferdinand Meyer."""@en;
+	rdfs:label "Conrad Ferdinand Meyer letter expression"@en, "Briefexpression Conrad Ferdinand Meyers"@de;
+	rdfs:comment """Letter expression authored by Conrad Ferdinand Meyer or another person."""@en;
 	rdfs:subClassOf text:LetterExpression, text:HandwrittenText.
 
 meyer:DraftLetterExpression
 	a owl:Class;
-	rdfs:label "Conrad Ferdinand Meyer letter expression draft"@en, "Brief-Expressionentwurf Conrad Ferdinand Meyers"@de;
-	rdfs:comment """Draft of a letter expression either authored by Conrad Ferdinand Meyer or another person."""@en;
-	rdfs:subClassOf text:Draft. #, [
-#		a owl:Restriction; owl:onProperty meyer:isDraftOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty meyer:isDraftOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:label "Conrad Ferdinand Meyer letter expression draft"@en, "Briefexpressionentwurf Conrad Ferdinand Meyers"@de;
+	rdfs:comment """Draft of a letter expression authored by Conrad Ferdinand Meyer or another person."""@en;
+	rdfs:subClassOf text:Draft.
 
-# meyer:CopiedLetterExpression textedit:Witness
-# meyer:TranscribedLetterExpression
-# meyer:PrintedLetterExpression
-# meyer:PhotocopiedLetterExpression
-
-
-meyer:EditedLetterExpression
+meyer:CopiedLetterExpression
 	a owl:Class;
-	rdfs:label "edited Conrad Ferdinand Meyer letter expression"@en, "edierter Brief-Expression Conrad Ferdinand Meyers"@de;
-	rdfs:comment """Letter either authored or received by Conrad Ferdinand Meyer, and critically edited."""@en;
+	rdfs:label "Conrad Ferdinand Meyer copied letter expression"@en, "kopierte Briefexpression Conrad Ferdinand Meyers"@de;
+	rdfs:comment """Copied text of a letter expression authored by Conrad Ferdinand Meyer or another person, and being a witness of the original."""@en;
+	rdfs:subClassOf textedit:Witness.
+
+meyer:TranscribedLetterExpression
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer transcribed letter expression"@en, "transkribierte Briefexpression Conrad Ferdinand Meyers"@de;
+	rdfs:comment """Transcribed text of a letter expression authored by Conrad Ferdinand Meyer or another person."""@en;
+	rdfs:subClassOf meyer:CopiedLetterExpression, text:TranscribedText.
+
+meyer:PrintedLetterExpression
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer printed letter expression"@en, "gedruckte Briefexpression Conrad Ferdinand Meyers"@de;
+	rdfs:comment """Printed text of a letter expression authored by Conrad Ferdinand Meyer or another person."""@en;
+	rdfs:subClassOf meyer:CopiedLetterExpression, text:PrintedText.
+
+meyer:PhotocopiedLetterExpression
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer photocopied letter expression"@en, "fotokopierte Briefexpression Conrad Ferdinand Meyers"@de;
+	rdfs:comment """Photocopied text of a letter expression authored by Conrad Ferdinand Meyer or another person."""@en;
+	rdfs:subClassOf meyer:CopiedLetterExpression, text:PhotocopiedText.
+
+meyer:CriticalEdition
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer critical edition"@en, "Conrad Ferdinand Meyers kritische Edition"@de;
+	rdfs:comment """Critically edited letter or draft authored by Conrad Ferdinand Meyer or another person, or of a copy thereof."""@en;
 	rdfs:subClassOf textedit:CriticalEdition, publish:Expression.
 
 meyer:Letter
@@ -64,11 +80,17 @@ meyer:PostcardLetter
 	rdfs:comment """Letter written on a postcard send by or to Conrad Ferdinand Meyer."""@en;
 	rdfs:subClassOf infocar:Postcard, meyer:Letter.
 
+meyer:DraftLetter
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer draft letter"@en, "Conrad Ferdinand Meyer-briefentwurf"@de;
+	rdfs:comment """Draft of a letter to be sent by or to Conrad Ferdinand Meyer."""@en;
+	rdfs:subClassOf infocar:Draft, infocar:ArchiveElement.
+
 meyer:Copy
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer letter copy"@en, "Conrad Ferdinand Meyer-Briefkopie"@de; #, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
 	rdfs:comment """Copy of a letter send by or to Conrad Ferdinand Meyer."""@en;
-	rdfs:subClassOf infocar:TextCopy, meyer:Letter, infocar:ArchiveElement, [
+	rdfs:subClassOf infocar:TextCopy, infocar:ArchiveElement, [
 		a owl:Restriction; owl:onProperty meyer:isCopyOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty meyer:isCopyOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 

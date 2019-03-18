@@ -41,7 +41,7 @@ kuno-raeber:Work
 
 kuno-raeber:Text
 	a owl:Class;
-	rdfs:label "Kuno Raeber text expression"@en, "Text-Expression Kuno Raebers"@de;
+	rdfs:label "Kuno Raeber text expression"@en, "Textexpression Kuno Raebers"@de;
 	rdfs:comment """Text expression authored by Kuno Raeber."""@en;
 	rdfs:subClassOf text:IndividualExpression, [
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -54,7 +54,7 @@ kuno-raeber:Text
 
 kuno-raeber:PublicationTextPart
 	a owl:Class;
-	rdfs:label "Kuno Raeber publication text expression part"@en, "Publikation-Text-Expressionsteil Kuno Raebers"@de;
+	rdfs:label "Kuno Raeber publication text expression part"@en, "Publikation-Textexpressionsteil Kuno Raebers"@de;
 	rdfs:comment """Part of a publication text expression authored by Kuno Raeber."""@en;
 	rdfs:subClassOf text:ExpressionPart, publish:Expression, [
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [

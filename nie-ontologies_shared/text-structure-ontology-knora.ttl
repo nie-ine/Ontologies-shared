@@ -466,7 +466,7 @@ text-structure:Postcard
 
 text-structure:isPartOfTextExpression
 	a owl:ObjectProperty;
-	rdfs:label "is part of text expression"@en, "ist Teil einer Text-Expression"@de;
+	rdfs:label "is part of text expression"@en, "ist Teil einer Textexpression"@de;
 	rdfs:comment """Relating a text structure to a text expression it is part of."""@en;
 	rdfs:domain text-structure:Structure;
 	rdfs:range text:Expression;
@@ -476,7 +476,7 @@ text-structure:isPartOfTextExpression
 
 text-structure:isPartOfTextExpressionValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of text expression - statement"@en, "ist Teil einer Text-Expression - Festlegung"@de;
+	rdfs:label "is part of text expression - statement"@en, "ist Teil einer Textexpression - Festlegung"@de;
 	rdfs:comment """Relating a text structure to a reification statement of the relation between the text structure and a text expression it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text-structure:Structure;
@@ -750,7 +750,7 @@ text-structure:isTextOfPageValue
 
 text-structure:isPageOfExpression
 	a owl:ObjectProperty;
-	rdfs:label "is page of text expression"@en, "ist Seite einer Text-Expression"@de;
+	rdfs:label "is page of text expression"@en, "ist Seite einer Textexpression"@de;
 	rdfs:comment """Relating a text page to a text expression it is part of."""@en;
 	rdfs:domain text-structure:Page;
 	rdfs:range text:Expression;
@@ -760,7 +760,7 @@ text-structure:isPageOfExpression
 
 text-structure:isPageOfExpressionValue
 	a owl:ObjectProperty;
-	rdfs:label "is text page of expression - statement"@en, "ist Seite einer Text-Expression - Festlegung"@de;
+	rdfs:label "is text page of expression - statement"@en, "ist Seite einer Textexpression - Festlegung"@de;
 	rdfs:comment """Relating a text page to a reification statement of the relation between the page and a text expression it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text-structure:Page;
