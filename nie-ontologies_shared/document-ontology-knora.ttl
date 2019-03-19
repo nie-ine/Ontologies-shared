@@ -105,7 +105,7 @@ document:TextStructureReference
 document:FootnoteReference
 	a owl:Class;
 	rdfs:label "footnote reference"@en, "Fussnotereferenz"@de;
-	rdfs:comment """Reference to a footnote."""@en;
+	rdfs:comment """Reference to a footnote via the footnote identifier."""@en;
 	rdfs:subClassOf document:TextStructureReference, [
 		a owl:Restriction; owl:onProperty document:hasFootnoteIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:hasFootnoteIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].

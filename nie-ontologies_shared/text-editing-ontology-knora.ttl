@@ -183,7 +183,7 @@ textedit:EditorialStructure
 textedit:Apparatus
 	a owl:Class;
 	rdfs:label "editing apparatus"@en, "Edierungsapparatus"@de, "apparatus editionis"@la;
-	rdfs:comment """Scientific compositional structure to analyse text in a scientific edition along certain criteria."""@en;
+	rdfs:comment """Editorial compositional structure to analyse text in a scientific edition along certain criteria."""@en;
 	rdfs:subClassOf textedit:EditorialStructure, text-structure:CompositionalContentStructure, [
 		a owl:Restriction; owl:onProperty textedit:isApparatusOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isApparatusOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -209,7 +209,7 @@ textedit:DoctrinalApparatus
 textedit:DoctrinalApparatusEntry
 	a owl:Class;
 	rdfs:label "doctrinal apparatus entry"@en, "doktrinaler Apparateintrag"@de; #, "entrée d'apparat doctrine"@fr, "iscrizione del apparato doctrino"@it;
-	rdfs:comment """Entry of doctrinal apparatus."""@en;
+	rdfs:comment """Entry of a doctrinal apparatus."""@en;
 	rdfs:subClassOf textedit:ApparatusEntry, [
 		a owl:Restriction; owl:onProperty textedit:isEntryOfDoctrinalApparatus; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isEntryOfDoctrinalApparatusValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -217,10 +217,20 @@ textedit:DoctrinalApparatusEntry
 textedit:ApparatusFontium
 	a owl:Class;
 	rdfs:label "apparatus fontium"@en, "Apparatus Fontium"@de, "apparatus fontium"@la;
-	rdfs:comment """Editing apparatus containing references to one or more citations in a scientific text edition."""@en;
-	rdfs:subClassOf textedit:Apparatus.
+	rdfs:comment """Editing apparatus containing references to one or more citations."""@en;
+	rdfs:subClassOf textedit:Apparatus, [
+		a owl:Restriction; owl:onProperty textedit:isApparatusFontiumOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isApparatusFontiumOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-# other?
+textedit:ApparatusFontiumEntry
+	a owl:Class;
+	rdfs:label "apparatus fontium entry"@en, "Apparatus Fontium-Eintrag"@de; #, "entrée d'apparat "@fr, "iscrizione del apparato "@it;
+	rdfs:comment """Entry of an apparatus fontium."""@en;
+	rdfs:subClassOf textedit:ApparatusEntry, [
+		a owl:Restriction; owl:onProperty textedit:isEntryOfApparatusFontium; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isEntryOfApparatusFontiumValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+# textedit:hasCitationReference
 
 textedit:CriticalApparatus
 	a owl:Class;
@@ -336,7 +346,7 @@ textedit:Variant
 	a owl:Class;
 	rdfs:label "variant"@en, "Variant"@de, "variante"@fr, "variante"@it;
 	rdfs:comment """Reading of a critical apparatus entry, judged by an editor to be unsatisfactory for linguistic and/or stylistic reasons, but of interest for establishing the text, and as such varying from what the editor has judged to be the lemma."""@en;
-	skos:note """Absence in a witness of respective part is commented"""@en;
+	skos:note """Absence in a witness of respective part is commented."""@en;
 	rdfs:subClassOf textedit:Reading, [
 		a owl:Restriction; owl:onProperty textedit:isVariantOfEntry; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isVariantOfEntryValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -835,7 +845,7 @@ textedit:isDoctrinalApparatusOf
 textedit:isDoctrinalApparatusOfValue
 	a owl:ObjectProperty;
 	rdfs:label "is doctrinal apparatus of - statement"@en, "ist doktrinaler Apparat von - Festlegung"@de;
-	rdfs:comment """Relating an doctrinal apparatus to a reification statement of the relation between the apparatus and its scientific edition."""@en;
+	rdfs:comment """Relating a doctrinal apparatus to a reification statement of the relation between the apparatus and its scientific edition."""@en;
 	rdfs:subPropertyOf textedit:isApparatusOfValue;
 	knora-base:subjectClassConstraint textedit:DoctrinalApparatus;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -856,6 +866,42 @@ textedit:isEntryOfDoctrinalApparatusValue
 	rdfs:comment """Relating an entry to a reification statement of the relation between the entry and its doctrinal apparatus."""@en;
 	rdfs:subPropertyOf textedit:isEntryOfApparatusValue;
 	knora-base:subjectClassConstraint textedit:DoctrinalApparatusEntry;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:isApparatusFontiumOf
+	a owl:ObjectProperty;
+	rdfs:label "is apparatus fontium of"@en, "ist Apparatus Fontium von"@de;
+	rdfs:comment """Relating an apparatus fontium to its scientific edition."""@en;
+	rdfs:domain textedit:ApparatusFontium;
+	rdfs:range textedit:ScientificEdition;
+	rdfs:subPropertyOf textedit:isApparatusOf;
+	knora-base:subjectClassConstraint textedit:ApparatusFontium;
+	knora-base:objectClassConstraint textedit:ScientificEdition.
+
+textedit:isApparatusFontiumOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is apparatus fontium of - statement"@en, "ist Apparatus Fontium von - Festlegung"@de;
+	rdfs:comment """Relating an apparatus fontium to a reification statement of the relation between the apparatus and its scientific edition."""@en;
+	rdfs:subPropertyOf textedit:isApparatusOfValue;
+	knora-base:subjectClassConstraint textedit:ApparatusFontium;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:isEntryOfApparatusFontium
+	a owl:ObjectProperty;
+	rdfs:label "is entry of apparatus fontium"@en, "ist Eintrag eines Apparatus Fontium"@de;
+	rdfs:comment """Relating an entry to its apparatus fontium."""@en;
+	rdfs:domain textedit:ApparatusFontiumEntry;
+	rdfs:range textedit:ApparatusFontium;
+	rdfs:subPropertyOf textedit:isEntryOfApparatus;
+	knora-base:subjectClassConstraint textedit:ApparatusFontiumEntry;
+	knora-base:objectClassConstraint textedit:ApparatusFontium.
+
+textedit:isEntryOfApparatusFontiumValue
+	a owl:ObjectProperty;
+	rdfs:label "is entry of apparatus fontium - statement"@en, "ist Eintrag eines Apparatus Fontium - Festlegung"@de;
+	rdfs:comment """Relating an entry to a reification statement of the relation between the entry and its apparatus fontium."""@en;
+	rdfs:subPropertyOf textedit:isEntryOfApparatusValue;
+	knora-base:subjectClassConstraint textedit:ApparatusFontiumEntry;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 textedit:isCriticalApparatusOf
