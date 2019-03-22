@@ -26,7 +26,7 @@ datatypes:gndScheme
 	a owl:Class; #, skos:ConceptScheme;
 	rdfs:label "GND-scheme"@en;
 	rdfs:comment """The Integrated Authority File (in German Gemeinsame Normdatei, GND) is an authority file for persons, corporate bodies, conferences and events, geographic information, topics and works."""@en;
-#	rdfs:seeAlso <https://www.dnb.de/EN/Standardisierung/GND/gnd_node.html>;
+	rdfs:seeAlso <https://www.dnb.de/EN/Standardisierung/GND/gnd_node.html>;
 	rdfs:subClassOf knora-base:Resource.
 
 datatypes:gndDatatype

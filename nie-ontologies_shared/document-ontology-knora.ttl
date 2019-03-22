@@ -121,7 +121,7 @@ document:EndnoteReference
 document:ExpressionReference
 	a owl:Class;
 	rdfs:label "document expression reference"@en, "Dokument-Expression-Referenz"@de;
-	rdfs:comment """Document structure referring from a document content structure to a document expression identifier."""@en;
+	rdfs:comment """Document structure referring from a document content structure to a document expression identifier, e.g. a siglum."""@en;
 	rdfs:subClassOf document:Structure, concept:Identifier, [
 		a owl:Restriction; owl:onProperty document:expressionReferenceHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:expressionReferenceHasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -187,6 +187,7 @@ document:Expression
 		a owl:Restriction; owl:onProperty document:expressionHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:expressionHasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [	
 		a owl:Restriction; owl:onProperty document:expressionHasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty document:expressionHasSubtitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasPublishingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasPublishingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasPublishing; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -682,6 +683,16 @@ document:expressionHasTitle
 	rdfs:domain document:Expression;
 #	rdfs:range doc:Literal;
 	rdfs:subPropertyOf text:hasTitle;
+	knora-base:subjectClassConstraint document:Expression;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+document:expressionHasSubtitle
+	a owl:ObjectProperty;
+	rdfs:label "expression has subtitle"@en, "Expression hat Untertitel"@de;
+	rdfs:comment """Relating an expression to a subtitle it has."""@en;
+	rdfs:domain document:Expression;
+#	rdfs:range doc:Literal;
+	rdfs:subPropertyOf text:hasSubtitle;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
 

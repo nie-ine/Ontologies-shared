@@ -186,7 +186,7 @@ publish:Serial
 	a owl:Class;
 	rdfs:label "serial publication"@en, "Reihe-Ausgabe"@de; #, "publication sérielle"@fr, ""@it;
 	rdfs:comment """Successive publication with same title, usually numbered and/or dated, issued at a regular or irregular interval, without predetermined conclusion."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
 	rdfs:subClassOf publish:Publication, [
 		a owl:Restriction; owl:onProperty publish:hasExistence; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty publish:hasExistenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -209,28 +209,28 @@ publish:Newspaper
 	a owl:Class;
 	rdfs:label "newspaper"@en, "Zeitung"@de, "journal"@fr, "giornale"@it;
 	rdfs:comment """Serial publication, mostly daily, with most recent event descriptions as core content."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
 	rdfs:subClassOf publish:Serial.
 
 publish:Periodical
 	a owl:Class;
 	rdfs:label "periodical publication"@en, "Zeitschrift"@de, "périodique"@fr, "periodico"@it;
 	rdfs:comment """Serial publication issued at a regular interval of less than a year, e.g. daily, weekly, monthly, quarterly, without prior decision as to when the final issue will appear."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
 	rdfs:subClassOf publish:Serial. # infocar:Book
 
 publish:Magazine
 	a owl:Class;
 	rdfs:label "magazine"@en, "Magazin"@de, "magazine"@fr; # ""@it;
 	rdfs:comment """Periodical publication with individual pagination."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
 	rdfs:subClassOf infocar:Book, publish:Periodical.
 
 publish:Journal
 	a owl:Class;
 	rdfs:label "journal"@en, "Journal"@de, "revue"@fr; #, ""@it;
 	rdfs:comment """Periodical publication with continuous pagination throughout its volume."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_S.aspx>;
 	rdfs:subClassOf infocar:Book, publish:Periodical.
 
 publish:NachlassPublication

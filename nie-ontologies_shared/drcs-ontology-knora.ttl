@@ -22,7 +22,7 @@
 	dct:description """Formal description of specific concepts in the scientific study of Commentaries on Peter Lombard's Sentences, as in the Digital Repertory of Commentaries on Peter Lombard’s Sentences (DRCS)."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE, University of Basel, Switzerland"@en;
 	dct:contributor "Prof. Dr. Ueli Zahnd, Faculty of Theology, University of Basel, Switzerland"@en, "Gabriel Müller, Faculty of Theology, University of Basel, Switzerland"@en;
-#	rdfs:seeAlso <https://de.wikipedia.org/wiki/Friedrich_Stegmüller>;
+	rdfs:seeAlso <https://de.wikipedia.org/wiki/Friedrich_Stegmüller>;
 
 	knora-base:attachedToProject <http://rdfh.ch/projects/0046>.
 

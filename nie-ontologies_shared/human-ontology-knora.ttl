@@ -660,7 +660,7 @@ human:hasFamilyName
 	rdfs:label "has family name"@en, "hat Nachname"@de;
 	rdfs:comment """Relating a person to a family name of that person."""@en;
 #	skos:note """Further restriction given along specific law; e.g. a person can have her/his family name legally changed."""@en;
-	rdfs:subPropertyOf human:hasName;
+	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
@@ -669,7 +669,7 @@ human:hasGivenName
 	rdfs:label "has given name"@en, "hat Vorname"@de;
 	rdfs:comment """Relating a person to a given name of that person."""@en;
 #	skos:note """Further restriction given along specific law; e.g. a person can have her/his given name legally changed."""@en;
-	rdfs:subPropertyOf human:hasName;
+	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
@@ -679,7 +679,7 @@ human:hasPreferredName
 	a owl:ObjectProperty;
 	rdfs:label "has preferred name"@en, "hat bevorzugter Name"@de;
 	rdfs:comment """Relating a person to a preferred name of that person."""@en;
-	rdfs:subPropertyOf human:hasName, text:hasPreferredName;
+	rdfs:subPropertyOf text:hasName, text:hasPreferredName;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
@@ -687,7 +687,7 @@ human:hasAlias
 	a owl:ObjectProperty;
 	rdfs:label "has alias"@en, "hat Alias"@de;
 	rdfs:comment """Relating a person to an alias of that person."""@en;
-	rdfs:subPropertyOf human:hasName, text:hasAlias;
+	rdfs:subPropertyOf text:hasName, text:hasAlias;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
@@ -695,7 +695,7 @@ human:hasTitle
 	a owl:ObjectProperty;
 	rdfs:label "has title"@en, "hat Titel"@de;
 	rdfs:comment """Relating a person to a title of that person."""@en;
-	rdfs:subPropertyOf human:hasName;
+	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
@@ -715,7 +715,7 @@ human:hasBiography
 	rdfs:comment """Relating a person to a biography of the person."""@en;
 	rdfs:domain human:Person;
 	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf human:hasDescription;
+	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
 

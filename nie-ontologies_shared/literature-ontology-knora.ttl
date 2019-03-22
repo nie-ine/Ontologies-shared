@@ -218,7 +218,7 @@ litera:NonfictionNovel
 	a owl:Class;
 	rdfs:label "nonfiction novel"@en, "sachliche Roman"@de;
 	rdfs:comment """Narrative nonfiction expression in prose."""@en;
-#	rdfs:seeAlso <https://www.britannica.com/art/Nonfiction-novel>;
+	rdfs:seeAlso <https://www.britannica.com/art/Nonfiction-novel>;
 	rdfs:subClassOf litera:Expression, text:SentenceExpression, [
 		a owl:Restriction; owl:onProperty litera:hasNonfiction; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty litera:hasNonfictionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -246,7 +246,7 @@ litera:Foreword
 	a owl:Class;
 	rdfs:label "foreword"@en, "Einleitung"@de, "préface"@fr, "preambolo"@it;
 	rdfs:comment """Text expression preceding a literary expression, usually written by a person other than the (main) author, about the relation with the author or the literary expression, and possibly rewritten to alert the reader to changes in the literary expression."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
 	rdfs:subClassOf text-structure:CompositionalContentStructure, text:ExpressionPart. # front matter
 
 # afterword
@@ -255,21 +255,21 @@ litera:Preface
 	a owl:Class;
 	rdfs:label "preface"@en, "Vorwort"@de, "avant-propos"@fr, "prefazione"@it;
 	rdfs:comment """Text expression preceding a literary expression, usually written by the (main) author, stating the origin of the literary expression, its scope, purpose, plan, and intended audience, and including any afterthoughts and acknowledgments of assistance; possibly rewritten to alert the reader to changes in the literary expression."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
 	rdfs:subClassOf text-structure:CompositionalContentStructure, text:ExpressionPart. # front matter
 
 litera:Motto
 	a owl:Class;
 	rdfs:label "motto"@en, "Motto"@de;
 	rdfs:comment """Citation prefacing a literary expression or part of it."""@en;
-#	rdfs:seeAlso <https://www.collinsdictionary.com/dictionary/english/vice-versa>;
+	rdfs:seeAlso <https://www.collinsdictionary.com/dictionary/english/vice-versa>;
 	rdfs:subClassOf text:Citation, litera:Preface.
 
 litera:Postface
 	a owl:Class;
 	rdfs:label "postface"@en, "Nachwort"@de, "postface"@fr, "postfazione"@it;
 	rdfs:comment """Text expression following a literary expression, usually written by the (main) author."""@en;
-#	rdfs:seeAlso <https://www.merriam-webster.com/dictionary/postface>;
+	rdfs:seeAlso <https://www.merriam-webster.com/dictionary/postface>;
 	rdfs:subClassOf text-structure:CompositionalContentStructure, text:ExpressionPart. # back matter
 
 litera:Prologue
@@ -277,7 +277,7 @@ litera:Prologue
 	rdfs:label "prologue"@en, "Prolog"@de;
 #	ling:hasSynonym "Vorwort"@de;
 	rdfs:comment """Introduction of a literary expression providing context and background, e.g. an earlier story that ties into the main one."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
 	rdfs:subClassOf text:Introduction, text:ExpressionPart.
 
 litera:Epilogue
@@ -285,7 +285,7 @@ litera:Epilogue
 	rdfs:label "epilogue"@en, "Epilog"@de;
 #	ling:hasSynonym "Nachwort"@de;
 	rdfs:comment """Conclusion of a literary expression or part of it."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
 	rdfs:subClassOf text:Conclusion, text:ExpressionPart.
 
 litera:Argument

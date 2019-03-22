@@ -148,7 +148,7 @@ language:Translation
 	rdfs:label "translation"@en, "Übersetzung"@de, "traduction"@fr, "traduzione"@it;
 	rdfs:comment """Human natural language expression transferred from another natural language."""@en;
 	skos:note """Can follow the original to a degree, hence differ from another translation; e.g. free translation gives the general meaning."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_t.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_t.aspx>;
 	rdfs:subClassOf language:HumanNaturalLanguageExpression. #, event:Output.
 
 language:PersonTranslation

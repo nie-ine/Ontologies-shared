@@ -90,9 +90,7 @@ meyer:Copy
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer letter copy"@en, "Conrad Ferdinand Meyer-Briefkopie"@de; #, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
 	rdfs:comment """Copy of a letter send by or to Conrad Ferdinand Meyer."""@en;
-	rdfs:subClassOf infocar:TextCopy, infocar:ArchiveElement, [
-		a owl:Restriction; owl:onProperty meyer:isCopyOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty meyer:isCopyOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf infocar:TextCopy, infocar:ArchiveElement.
 
 meyer:Transcript
 	a owl:Class;
@@ -135,21 +133,3 @@ meyer:LetterConvolute
 #
 # PROPERTIES
 #
-
-meyer:isCopyOf
-	a owl:ObjectProperty;
-	rdfs:label "is copy of letter"@en, "ist Kopie eines Briefes"@de;
-	rdfs:comment """Relating a copy to its original letter send by or to Conrad Ferdinand Meyer."""@en;
-	rdfs:domain meyer:Copy;
-	rdfs:range meyer:Letter;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint meyer:Copy;
-	knora-base:objectClassConstraint meyer:Letter.
-
-meyer:isCopyOfValue
-	a owl:ObjectProperty;
-	rdfs:label "is copy of letter - statement"@en, "ist Kopie eines Briefes - Festlegung"@de;
-	rdfs:comment """Relating a copy to a reification statement of the relation between the copy and its original letter send by or to Conrad Ferdinand Meyer."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint meyer:Copy;
-	knora-base:objectClassConstraint knora-base:LinkValue.

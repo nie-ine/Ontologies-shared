@@ -173,6 +173,7 @@ text:Expression
 	rdfs:comment """Document expression as text."""@en;
 	rdfs:subClassOf document:Expression, text:Text, [
 		a owl:Restriction; owl:onProperty text:expressionHasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:expressionHasSubtitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasIncipit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasExplicit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAuthor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -195,7 +196,7 @@ text:Expression
 
 text:Draft
 	a owl:Class;
-	rdfs:label "text draft"@en, "Textentwurf"@de;
+	rdfs:label "text expression draft"@en, "Textexpressionentwurf"@de;
 	rdfs:comment """Document draft as text expression."""@en;
 	rdfs:subClassOf text:Expression, document:Draft, [
 		a owl:Restriction; owl:onProperty text:isDraftOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -227,14 +228,14 @@ text:Introduction
 	a owl:Class;
 	rdfs:label "text introduction"@en, "Texteinleitung"@de;
 	rdfs:comment """Beginning section of a text expression, usually written by the (main) author, stating e.g. the subject, purpose and limits of its main section; usually remaining unchanged."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
 	rdfs:subClassOf text-structure:CompositionalContentStructure, text:ExpressionPart.
 
 text:Body
 	a owl:Class;
 	rdfs:label "text body"@en, "Texthauptteil"@de;
 	rdfs:comment """Main section of a text expression, e.g. including footnotes and illustrations but excluding the front matter and back matter."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
 	rdfs:subClassOf text-structure:CompositionalContentStructure, text:ExpressionPart.
 
 text:Conclusion
@@ -455,7 +456,7 @@ text:Dictionary
 	a owl:Class;
 	rdfs:label "dictionary"@en, "Wörterbuch"@de;
 	rdfs:comment """List of brief explanatory entries for terms of a human natural language, belonging to a certain domain, providing their meaning, mostly ordered, e.g. alphabetically."""@en;
-#	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
 	rdfs:subClassOf text:IndividualExpression. # text:ReferenceExpression
 
 #
@@ -508,6 +509,14 @@ text:hasTitle
 	a owl:ObjectProperty;
 	rdfs:label "has title"@en, "hat Titel"@de;
 	rdfs:comment """Relating a resource to a title as a textual identifier of the resource."""@en;
+	rdfs:subPropertyOf text:hasText;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+text:hasSubtitle
+	a owl:ObjectProperty;
+	rdfs:label "has subtitle"@en, "hat Untertitel"@de;
+	rdfs:comment """Relating a resource to a subtitle as additional, usually explanatory to the title."""@en;
 	rdfs:subPropertyOf text:hasText;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -776,7 +785,17 @@ text:expressionHasTitle
 	rdfs:comment """Relating a text expression to a title it has."""@en;
 	rdfs:domain text:Expression;
 #	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasTitle;
+	rdfs:subPropertyOf document:expressionHasTitle;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+text:expressionHasSubtitle
+	a owl:ObjectProperty;
+	rdfs:label "text expression has subtitle"@en, "Textexpression hat Untertitel"@de;
+	rdfs:comment """Relating a text expression to a subtitle it has."""@en;
+	rdfs:domain text:Expression;
+#	rdfs:range doc:Literal;
+	rdfs:subPropertyOf document:expressionHasSubtitle;
 	knora-base:subjectClassConstraint text:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
 

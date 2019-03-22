@@ -72,7 +72,9 @@ infocar:Copy
 	a owl:Class;
 	rdfs:label "information copy carrier"@en, "Informationskopieträger"@de;
 	rdfs:comment """Carrier with a copy of information."""@en;
-	rdfs:subClassOf infocar:Carrier, human:Copy.
+	rdfs:subClassOf infocar:Carrier, human:Copy, [
+		a owl:Restriction; owl:onProperty infocar:isCopyOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isCopyOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Photocopy
 	a owl:Class;
@@ -211,7 +213,7 @@ infocar:ManuscriptIdentifier
 	a owl:Class;
 	rdfs:label "manuscript identifier"@en, "Manuskript-Identifikator"@de;
 	rdfs:comment """Identifier of a manuscript, comprising its location, library, collection, and number."""@en;
-#	rdfs:seeAlso <https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-msIdentifier.html>;
+	rdfs:seeAlso <https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-msIdentifier.html>;
 	rdfs:subClassOf concept:Identifier, [
 		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasLocation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasLibrary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -531,6 +533,24 @@ infocar:hasCarrierDescription
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint infocar:Collection;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:isCopyOf
+	a owl:ObjectProperty;
+	rdfs:label "is copy of"@en, "ist Kopie von"@de;
+	rdfs:comment """Relating a copy to its original information carrier."""@en;
+	rdfs:domain infocar:Copy;
+	rdfs:range infocar:Carrier;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Copy;
+	knora-base:objectClassConstraint infocar:Carrier.
+
+infocar:isCopyOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is copy of - statement"@en, "ist Kopie von - Festlegung"@de;
+	rdfs:comment """Relating a copy to a reification statement of the relation between the copy and its original information carrier."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Copy;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isLeafOfBook
 	a owl:ObjectProperty;
