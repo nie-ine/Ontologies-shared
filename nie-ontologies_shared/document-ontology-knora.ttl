@@ -155,9 +155,24 @@ document:Page
 #		a owl:Restriction; owl:onProperty document:isPageOfExpression; owl:allValuesFrom document:Document], [
 		a owl:Restriction; owl:onProperty document:isPageOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty document:isPageOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty document:pageHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty document:pageHasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [		
 		a owl:Restriction; owl:onProperty document:pageHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty document:pageHasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPageOnCarrier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPageOnCarrierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+document:PageIdentifier
+	a owl:Class;
+	rdfs:label "document page identifier"@en, "Dokumentseiteidentifikator"@de;
+	rdfs:comment """Identifier of a document page."""@en;
+	rdfs:subClassOf document:ContentStructureIdentifier.
+
+document:PageNumber
+	a owl:Class;
+	rdfs:label "document page number"@en, "Dokumentseitenummer"@de;
+	rdfs:comment """Number of a document page."""@en;
+	rdfs:subClassOf document:PageIdentifier, math:NaturalNumber.
 
 document:TitlePage
 	a owl:Class;
@@ -630,15 +645,41 @@ document:isPageOfExpressionValue
 	knora-base:subjectClassConstraint document:Page;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+document:pageHasIdentifier
+	a owl:ObjectProperty;
+	rdfs:label "page has identifier"@en, "Seite hat Identifikator"@de;
+	rdfs:comment """Relating a document page to its identifier."""@en;
+	rdfs:domain document:Page;
+	rdfs:range document:PageIdentifier;
+	rdfs:subPropertyOf document:contentStructureHasIdentifier;
+	knora-base:subjectClassConstraint document:Page;
+	knora-base:objectClassConstraint document:PageIdentifier.
+
+document:pageHasIdentifierValue
+	a owl:ObjectProperty;
+	rdfs:label "page has identifier - statement"@en, "Seite hat Identifikator - Festlegung"@de;
+	rdfs:comment """Relating a document page to a reification statement of the relation between the page and its identifier."""@en;
+	rdfs:subPropertyOf document:contentStructureHasIdentifierValue;
+	knora-base:subjectClassConstraint document:Page;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 document:pageHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "page has number"@en, "Seite hat Nummer"@de;
-	rdfs:comment """Relating a document page to a number it has."""@en;
+	rdfs:comment """Relating a document page to its number."""@en;
 	rdfs:domain document:Page;
-	rdfs:range xsd:nonNegativeInteger;
-	rdfs:subPropertyOf knora-base:hasValue;
+	rdfs:range document:PageNumber;
+	rdfs:subPropertyOf document:pageHasIdentifier;
 	knora-base:subjectClassConstraint document:Page;
-	knora-base:objectClassConstraint knora-base:IntValue.
+	knora-base:objectClassConstraint document:PageNumber.
+
+document:pageHasNumberValue
+	a owl:ObjectProperty;
+	rdfs:label "page has number - statement"@en, "Seite hat Nummer - Festlegung"@de;
+	rdfs:comment """Relating a document page to a reification statement of the relation between the page and its number."""@en;
+	rdfs:subPropertyOf document:pageHasIdentifierValue;
+	knora-base:subjectClassConstraint document:Page;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 document:isTableOfColumn
 	a owl:ObjectProperty;
