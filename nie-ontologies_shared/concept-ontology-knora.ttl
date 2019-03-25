@@ -230,7 +230,7 @@ concept:hasLiteral
 	rdfs:label "has literal"@en, "hat Literale"@de;
 	rdfs:comment """Relating a symbolic concept to a literal that expresses it."""@en;
 	rdfs:domain concept:SymbolicConcept;
-#	rdfs:range ling:Literal;
+#	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint concept:SymbolicConcept;
 	knora-base:objectClassConstraint knora-base:TextValue.
