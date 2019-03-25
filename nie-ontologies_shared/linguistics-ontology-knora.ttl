@@ -42,14 +42,11 @@ ling:Concept
 		a owl:Restriction; owl:onProperty ling:hasLanguage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty ling:hasLanguageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-ling:Token # on the edge of language and linguistics
+ling:Token
 	a owl:Class;
 	rdfs:label "token"@en, "Token"@de;
 	rdfs:comment """Linguistic concept as an individual unit in human natural language."""@en;
-	rdfs:subClassOf ling:Concept, text-structure:Word. #, [
-#		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty lingmor:hasSyntacticWord; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty lingmor:hasSyntacticWordValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf ling:Concept, text-structure:Word.
 
 ling:Symbol
 	a owl:Class;
@@ -57,7 +54,7 @@ ling:Symbol
 	rdfs:comment """."""@en;
 	rdfs:subClassOf text:WrittenText.
 
-ling:Literal #°
+ling:Literal
 	a owl:Class;
 	rdfs:label "literal"@en, "Literal"@de;
 	rdfs:comment """One or more language symbols of any kind."""@en;
@@ -66,7 +63,7 @@ ling:Literal #°
 
 ling:PartOfSpeech
 	a owl:Class;
-	rdfs:label "part of speech"@en, "Wortart"@de; #° Sprachteil
+	rdfs:label "part of speech"@en, "Wortart"@de;
 	rdfs:comment """Word with certain grammatical properties."""@en;
 	rdfs:subClassOf text-structure:Word.
 
@@ -76,44 +73,11 @@ ling:Noun
 	rdfs:comment """Noun as part of speech."""@en;
 	rdfs:subClassOf ling:PartOfSpeech.
 
-# Sallable
-
-# part of speech: general: verb, adjective, adverb, pronoun, preposition, conjunction, interjection, article or determiner
-
-ling:Numeral # noun, adjective, adverb
+ling:Numeral
 	a owl:Class;
 	rdfs:label "numeral"@en, "Numerale"@de;
 	rdfs:comment """Part of speech designating a number."""@en;
 	rdfs:subClassOf ling:PartOfSpeech.
-
-# cardinal number representing quantity, used for counting - frequency, fraction
-# ordinal number representing position in a sequence, used for ordering
-
-# Comparison
-
-# speech act: see J. L. Austin
-	# speaker: locutionary, illocutionary: utterance
-	# listener: perlocutionary
-
-# lido.linguistic
-
-# ~ sentence
-
-# locutionary act: utterance - with phonetic, phatic, rhetic acts - in sentence with syntax, semantics
-# phonetic: production of sounds
-# phatic: language used for general purposes of social interaction, grammatically arranged words
-# rhetic: having the semantic properties of sense and reference
-
-# illocutionary act: promising/promise, commanding/command
-
-# multimodality of signed language: unlike chinese:
-	 # orientation : 
-
-ling:String
-	a owl:Class;
-	rdfs:label "string"@en, "String"@de;
-	rdfs:comment """."""@en;
-	rdfs:subClassOf text:Text.
 
 ling:Statement
 	a owl:Class;
@@ -121,25 +85,11 @@ ling:Statement
 	rdfs:comment """Sentence... ."""@en;
 	rdfs:subClassOf text-structure:Sentence.
 
-# ling:Description
-
-# ling:Classification
-
-# ling:Explanation
-
-# ling:Declaration
-
-# commanding
-
 ling:Command
 	a owl:Class;
 	rdfs:label "command"@en, "Befehl"@de;
 	rdfs:comment """Sentence... ."""@en;
 	rdfs:subClassOf text-structure:Sentence.
-#	:hasSpeechAct
-
-# ordering: Directing or commissioning to make, provide, or furnish something
-# order: Direction or commission to make, provide, or furnish something, as output of ordering
 
 ling:Question
 	a owl:Class;
@@ -153,24 +103,17 @@ ling:Answer
 	rdfs:comment """Sentence providing information on elicitation."""@en;
 	rdfs:subClassOf text-structure:Sentence.
 
-# requesting: Asking for an action to be performed
-# request: question for an action to be performed, as output of requesting
-
 ling:Promise
 	a owl:Class;
 	rdfs:label "promise"@en, "Versprechen"@de;
 	rdfs:comment """Sentence... ."""@en;
 	rdfs:subClassOf text-structure:Sentence.
 
-# evaluating: Examining with judging
-
 ling:Evaluation
 	a owl:Class;
 	rdfs:label "evaluation"@en, "Evaluation"@de;
 	rdfs:comment """Examination with judgement of any kind, as output of evaluating."""@en;
 	rdfs:subClassOf text-structure:Sentence.
-
-# check: GOLD, Eagles, OnLit
 
 #
 # PROPERTIES
