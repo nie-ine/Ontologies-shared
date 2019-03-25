@@ -276,7 +276,7 @@ textedit:StructureDescription
 
 textedit:Reading # orig.
 	a owl:Class;
-	rdfs:label "reading"@en, "Textinterpretation"@de, "lezione"@it, "lectio"@la;
+	rdfs:label "reading"@en, "Lesung"@de, "lezione"@it, "lectio"@la;
 	rdfs:comment """Copy of one or more words or phrases of a witness."""@en;
 	rdfs:subClassOf textedit:EditorialStructure, text:CopiedText, [
 		a owl:Restriction; owl:onProperty textedit:isReadingOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
