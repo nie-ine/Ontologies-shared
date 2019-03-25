@@ -209,6 +209,12 @@ infocar:Manuscript
 		a owl:Restriction; owl:onProperty infocar:isManuscriptOfCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isManuscriptOfCollectionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+infocar:Codex
+	a owl:Class;
+	rdfs:label "codex"@en, "Kodex"@de;
+	rdfs:comment """Book as manuscript."""@en;
+	rdfs:subClassOf infocar:Book, infocar:Manuscript.
+
 infocar:ManuscriptIdentifier
 	a owl:Class;
 	rdfs:label "manuscript identifier"@en, "Manuskript-Identifikator"@de;
@@ -300,6 +306,12 @@ infocar:Print
 		a owl:Restriction; owl:onProperty infocar:hasPrinterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPartOfPrintRun; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPartOfPrintRunValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+infocar:Incunabulum
+	a owl:Class;
+	rdfs:label "incunabulum"@en, "Inkunabel"@de;
+	rdfs:comment """Print created In Europe prior to 1501, during the earliest years of printing."""@en;
+	rdfs:subClassOf infocar:Print.
 
 infocar:PrintRun
 	a owl:Class;
@@ -628,6 +640,8 @@ infocar:pageHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "page has number"@en, "Seite hat Nummer"@de;
 	rdfs:comment """Relating a page to a number it has."""@en;
+	rdfs:domain infocar:Page;
+#	rdfs:range xsd:nonNegativeInteger;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint infocar:Page;
 	knora-base:objectClassConstraint knora-base:IntValue.
