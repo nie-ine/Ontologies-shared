@@ -53,17 +53,23 @@ parzival:PrintedVerseNovel
 	rdfs:comment """Printed version of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:subClassOf parzival:CopiedVerseNovel, text:PrintedText.
 
+parzival:VerseNovelCopy
+	a owl:Class;
+	rdfs:label """copy of 'Parzival'"""@en, """Kopie 'Parzivals'"""@de;
+	rdfs:comment """Copy of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf infocar:Copy, infocar:Book.
+
 parzival:ManualVerseNovelTranscript
 	a owl:Class;
 	rdfs:label """manual transcript of 'Parzival'"""@en, """Manuelles Transkript von 'Parzival'"""@de;
 	rdfs:comment """Manual transcript of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf infocar:ManualTranscript, infocar:Codex.
+	rdfs:subClassOf parzival:VerseNovelCopy, infocar:ManualTranscript, infocar:Codex.
 
 parzival:VerseNovelPrint
 	a owl:Class;
 	rdfs:label """print of 'Parzival'"""@en, """Druck von 'Parzival'"""@de;
 	rdfs:comment """Print of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf infocar:Print, infocar:Book.
+	rdfs:subClassOf parzival:VerseNovelCopy, infocar:Print, infocar:Book.
 
 parzival:Page
 	a owl:Class;
