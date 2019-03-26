@@ -37,7 +37,7 @@
 document:Document
 	a owl:Class;
 	rdfs:label "document"@en, "Dokument"@de;
-	rdfs:comment """Identifiable, immaterial, contained information, e.g. a text, a graphic, an image, an audiogram, a videogram."""@en;
+	rdfs:comment """Identifiable, immaterial, contained information, e.g. a text, a graphic, an image, an audiogram, a videogram, abstracted from its information carrier."""@en;
 	rdfs:subClassOf concept:Information, [ # , cidoc:E31_Document: proposition about reality: narrower
 #		a owl:Restriction; owl:onProperty document:hasContent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty document:hasContentValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -150,7 +150,7 @@ document:Column
 document:Page
 	a owl:Class;
 	rdfs:label "document page"@en, "Dokumentseite"@de;
-	rdfs:comment """Content structure displaying information, e.g. text lines and graphs, as a page as part of a document, on an information carrier page."""@en;
+	rdfs:comment """Content structure with information, e.g. text lines and graphs, as a page as part of a document expression, on an information carrier page."""@en;
 	rdfs:subClassOf document:ContentStructure, [
 #		a owl:Restriction; owl:onProperty document:isPageOfExpression; owl:allValuesFrom document:Document], [
 		a owl:Restriction; owl:onProperty document:isPageOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [

@@ -423,7 +423,6 @@ infocar:WebPage
 	a owl:Class;
 	rdfs:label "web page"@en, "Webseite"@de;
 	rdfs:comment """Electronic carrier page on the World Wide Web."""@en;
-	skos:note """Not necessarily published, i.e. made public."""@en;
 	rdfs:subClassOf infocar:ElectronicCarrier, [
 		a owl:Restriction; owl:onProperty infocar:webPageHasName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:webPageHasURL; owl:minCardinality "0"^^xsd:nonNegativeInteger].
