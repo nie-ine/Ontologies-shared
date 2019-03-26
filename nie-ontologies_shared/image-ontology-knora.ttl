@@ -58,6 +58,8 @@ image:imageDepicts
 	a owl:ObjectProperty;
 	rdfs:label "image depicts", "bildet ab"@de;
 	rdfs:comment """Relating an image to what it depicts."""@en;
+	rdfs:domain image:Image;
+	rdfs:range rdfs:Resource;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint image:Image;
 	knora-base:objectClassConstraint knora-base:Resource.
@@ -68,6 +70,24 @@ image:imageDepictsValue
 	rdfs:comment """Relating an image to a reification statement of the relation between the image and what it depicts."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint image:Image;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+image:hasPhotograph
+	a owl:ObjectProperty;
+	rdfs:label "has photograph", "hat Foto"@de;
+	rdfs:comment """Relating something to a photograph thereof."""@en;
+	rdfs:domain rdfs:Resource;
+	rdfs:range image:Photograph;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint image:Photograph.
+
+image:hasPhotographValue
+	a owl:ObjectProperty;
+	rdfs:label "has photograph - statement", "hat Foto - Festlegung"@de;
+	rdfs:comment """Relating something to a reification statement of the relation between that something and a photograph thereof."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 # image:isOnCarrier
@@ -109,7 +129,8 @@ image:hasPhotographInValue
 image:hasPhotographSourceDescription
 	a owl:ObjectProperty;
 	rdfs:label "has photograph source description"@en, "hat Fotoquelle-Beschreibung"@de;
-	rdfs:comment """Relating something to a description of a source of a photograph of that something."""@en; 
+	rdfs:comment """Relating something to a description of a source of a photograph of that something."""@en;
+
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.
