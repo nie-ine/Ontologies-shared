@@ -449,7 +449,7 @@ infocar:carrierHasDescription
 
 infocar:isOnCarrier
 	a owl:ObjectProperty;
-	rdfs:label "is on carrier"@en, "ist auf Träger"@de;
+	rdfs:label "is information on carrier"@en, "ist Information auf Träger"@de;
 	rdfs:comment "Relating information to a carrier it is on."@en;
 	rdfs:domain concept:Information;
 	rdfs:range infocar:Carrier;
@@ -459,7 +459,7 @@ infocar:isOnCarrier
 
 infocar:isOnCarrierValue
 	a owl:ObjectProperty;
-	rdfs:label "is on carrier - statement"@en, "ist auf Träger - Festlegung"@de;
+	rdfs:label "is information on carrier - statement"@en, "ist Information auf Träger - Festlegung"@de;
 	rdfs:comment "Relating information to a reification statement of the relation between the information and a carrier it is on."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint concept:Information;
