@@ -29,8 +29,12 @@
 image:Image
 	a owl:Class;
 	rdfs:label "image"@en,"Bild"@de;
-	rdfs:comment """Visual representation of something."""@en;
-	rdfs:subClassOf document:Document, cidoc:E38_Image. # rdfs:subClassOf cidoc:E36_Visual_Item rdfs:subClassOf cidoc:E73_Information_Object rdfs:subClassOf cidoc:E90_Symbolic_Object rdfs:subClassOf cidoc:E28_Conceptual_Object
+	rdfs:comment """Visual representation of something, abstracted from its carrier."""@en;
+	rdfs:subClassOf document:Document, cidoc:E38_Image, [
+		a owl:Restriction; owl:onProperty image:isImageOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty image:isImageOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty image:isOnCarrier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty image:isOnCarrierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 image:ImageExpression
 	a owl:Class;
@@ -48,67 +52,67 @@ image:Photograph
 	a owl:Class;
 	rdfs:label "photograph"@en,"Foto"@de;
 	rdfs:comment """Image made by exposing a photosensitive surface to light."""@en;
-	rdfs:subClassOf image:ImageCarrier.
+	rdfs:subClassOf image:Image, [
+		a owl:Restriction; owl:onProperty image:isPhotographOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty image:isPhotographOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
 #
 
-image:imageDepicts
+image:isImageOf
 	a owl:ObjectProperty;
-	rdfs:label "image depicts", "bildet ab"@de;
+	rdfs:label "is image of", "ist Bild von"@de;
 	rdfs:comment """Relating an image to what it depicts."""@en;
 	rdfs:domain image:Image;
 	rdfs:range rdfs:Resource;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
+	rdfs:subPropertyOf concept:informationHasSubject;
 	knora-base:subjectClassConstraint image:Image;
 	knora-base:objectClassConstraint knora-base:Resource.
 
-image:imageDepictsValue
+image:isImageOfValue
 	a owl:ObjectProperty;
-	rdfs:label "image depicts - statement", "bildet ab - Festlegung"@de;
+	rdfs:label "is image of - statement", "ist Bild von - Festlegung"@de;
 	rdfs:comment """Relating an image to a reification statement of the relation between the image and what it depicts."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	rdfs:subPropertyOf concept:informationHasSubjectValue;
 	knora-base:subjectClassConstraint image:Image;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-image:hasPhotograph
+image:isOnCarrier
 	a owl:ObjectProperty;
-	rdfs:label "has photograph", "hat Foto"@de;
-	rdfs:comment """Relating something to a photograph thereof."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range image:Photograph;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint image:Photograph.
+	rdfs:label "is image on carrier", "ist Bild auf Träger"@de;
+	rdfs:comment """Relating an image to a carrier it is on."""@en;
+	rdfs:domain image:Image;
+	rdfs:range image:ImageCarrier;
+	rdfs:subPropertyOf infocar:isOnCarrier;
+	knora-base:subjectClassConstraint image:Image;
+	knora-base:objectClassConstraint image:ImageCarrier.
 
-image:hasPhotographValue
+image:isOnCarrierValue
 	a owl:ObjectProperty;
-	rdfs:label "has photograph - statement", "hat Foto - Festlegung"@de;
-	rdfs:comment """Relating something to a reification statement of the relation between that something and a photograph thereof."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint knora-base:Resource;
+	rdfs:label "is image on carrier - statement", "ist Bild auf Träger - Festlegung"@de;
+	rdfs:comment """Relating an image to a reification statement of the relation between the image and a carrier it is on."""@en;
+	rdfs:subPropertyOf infocar:isOnCarrierValue;
+	knora-base:subjectClassConstraint image:Image;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-# image:isOnCarrier
+image:isPhotographOf
+	a owl:ObjectProperty;
+	rdfs:label "is photograph of", "ist Foto von"@de;
+	rdfs:comment """Relating a photograph to what it depicts."""@en;
+	rdfs:domain image:Photograph;
+	rdfs:range rdfs:Resource;
+	rdfs:subPropertyOf image:isImageOf;
+	knora-base:subjectClassConstraint image:Photograph;
+	knora-base:objectClassConstraint knora-base:Resource.
 
-# image:isOnCarrierValue
-
-#image:hasPhotoRepresentation # can be activated when Knora2 is released
-#	a owl:ObjectProperty;
-#	rdfs:label "has photograph representation"@en, "hat Foto-Repräsentation"@de;
-#	rdfs:comment """Relating a resource to a photograph thereof."""@en;
-#	rdfs:subPropertyOf knora-base:hasRepresentation; # cidoc:P138i_has_representation
-#	knora-base:subjectClassConstraint knora-base:Resource;
-#	knora-base:objectClassConstraint image:Photograph.
-
-#image:hasPhotoRepresentationValue # can be activated when Knora2 is released
-#	a owl:ObjectProperty;
-#	rdfs:label "has photograph representation - statement"@en;
-#	rdfs:comment """Relating a resource to a reification statement of the relation between the resource and a photograph thereof."""@en;
-#	rdfs:subPropertyOf knora-base:hasRepresentationValue;
-#	knora-base:subjectClassConstraint knora-base:Resource;
-#	knora-base:objectClassConstraint knora-base:LinkValue.
+image:isPhotographOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is photograph of - statement", "ist Foto von - Festlegung"@de;
+	rdfs:comment """Relating a photograph to a reification statement of the relation between the photograph and what it depicts."""@en;
+	rdfs:subPropertyOf image:isImageOfValue;
+	knora-base:subjectClassConstraint image:Photograph;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 image:hasPhotographIn
 	a owl:ObjectProperty;
