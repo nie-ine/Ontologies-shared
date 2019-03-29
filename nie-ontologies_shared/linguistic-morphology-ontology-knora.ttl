@@ -1,0 +1,262 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix unicore: <http://purl.uniprot.org/core/>.
+@prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix event: <http://www.knora.org/ontology/shared/event#>.
+@prefix agent: <http://www.knora.org/ontology/shared/agent#>.
+@prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix concept: <http://www.knora.org/ontology/shared/concept#>.
+@prefix language: <http://www.knora.org/ontology/shared/language#>.
+@prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
+@prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
+@prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
+
+@base <http://www.knora.org/ontology/shared/linguistic-morphology>.
+@prefix lingmor: <http://www.knora.org/ontology/shared/linguistic-morphology#>.
+
+<http://www.knora.org/ontology/shared/linguistic-morphology>
+	a owl:Ontology;
+	dct:title "An ontology about language"@en;
+	dct:description """Formal description of linguistic-morphology, general subclasses, related classes and properties."""@en;
+	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
+	dct:contributor "Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
+	dct:contributor "Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
+	dct:publisher "Basel University, Switzerland"@en;
+#	rdfs:seeAlso <https://files.ifi.uzh.ch/cl/siclemat/lehre/hs09/ecl1/script/html/script.html>;
+
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
+
+#
+# CLASSES
+#
+
+# morphology syntax
+# morphology semantics
+
+# lingmor:WordForm
+
+lingmor:SyntacticWord # -> morph -> morpheme
+	a owl:Class;
+	rdfs:label "syntactic word"@en, "syntaktisches Wort"@de;
+	rdfs:comment """."""@en;
+	rdfs:subClassOf ling:Concept, concept:SymbolicConcept, [
+#		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty ling:hasLanguage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasSyntacticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasSyntacticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasLexeme; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasLexemeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+# type: unifies different identical literals (surface forms?)
+
+lingmor:Morph
+	a owl:Class;
+	rdfs:label "morph"@en, "Morph"@de;
+	rdfs:comment """Linguistic concept as the smallest entity in human natural language with a grammatical function, as free or bound."""@en;
+	rdfs:subClassOf ling:Concept.
+
+# morpheme: no content, just label
+
+lingmor:Root
+	a owl:Class;
+	rdfs:label "root morph"@en, "Morph"@de; #°
+	rdfs:comment """Individual or free morph with own semantics."""@en;
+	rdfs:subClassOf lingmor:Morph.
+
+lingmor:Affix
+	a owl:Class;
+	rdfs:label "affix"@en, "Affix"@de;
+	rdfs:comment """Bound morph without own semantics, depending on a free morph; part of a word."""@en;
+	rdfs:subClassOf lingmor:Morph. #, [
+#		a owl:Restriction; owl:onProperty lingmor:dependsOn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty lingmor:dependsOnValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+lingmor:SyntacticGender
+	a owl:Class;
+	rdfs:label "syntactic gender"@en, "syntactisches Genus"@de;
+	rdfs:comment """Syntactic gender form of a word."""@en;
+	rdfs:subClassOf ling:Concept.
+#	owl:oneOf (lingmor:masculine lingmor:feminine lingmor:neuter). # instances
+
+lingmor:Case
+	a owl:Class;
+	rdfs:label "case"@en, "Kasus"@de;
+	rdfs:comment """Case form of a word."""@en;
+	rdfs:subClassOf ling:Concept.
+
+lingmor:GermanCase
+	a owl:Class;
+	rdfs:label "German case"@en, "deutscher Kasus"@de;
+	rdfs:comment """German case form of a word."""@en;
+	rdfs:subClassOf lingmor:Case.
+#	owl:oneOf (lingmor:nominative lingmor:accusative lingmor:dativ lingmor:genitive). # instances
+
+lingmor:Number
+	a owl:Class;
+	rdfs:label "number"@en, "Numerus"@de;
+	rdfs:comment """Number form of a word."""@en;
+	rdfs:subClassOf ling:Concept.
+#	owl:oneOf (lingmor:singular lingmor:plural). # instances
+
+lingmor:Lexeme
+	a owl:Class;
+	rdfs:label "lexeme"@en, "Lexem"@de;
+	rdfs:comment """Linguistic concept as individual semantic entity in human natural language."""@en;
+	rdfs:subClassOf ling:Concept, concept:SymbolicConcept, [
+		a owl:Restriction; owl:onProperty lingmor:hasSemanticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasSemanticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasLemma; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasLemmaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+lingmor:SemanticGender
+	a owl:Class;
+	rdfs:label "semantic gender"@en, "semantisches Genus"@de;
+	rdfs:comment """Semantic gender of a lexeme."""@en;
+	rdfs:subClassOf ling:Concept.
+#	owl:oneOf (lingmor:masculine lingmor:feminine lingmor:neuter). # instances
+
+lingmor:Lemma
+	a owl:Class;
+	rdfs:label "lemma"@en, "Lemma"@de;
+	rdfs:comment """."""@en;
+	rdfs:subClassOf ling:Concept, concept:SymbolicConcept.
+
+#
+# PROPERTIES
+#
+
+lingmor:hasSyntacticWord
+	a owl:ObjectProperty;
+	rdfs:label "has syntactic word"@en, "hat syntaktisches Wort"@de;
+	rdfs:comment """Relating a token to a syntactic word."""@en;
+	rdfs:domain ling:Token;
+	rdfs:range lingmor:SyntacticWord;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint ling:Token;
+	knora-base:objectClassConstraint lingmor:SyntacticWord.
+
+lingmor:hasSyntacticWordValue
+	a owl:ObjectProperty;
+	rdfs:label "has syntactic word - statement"@en, "hat syntaktisches Wort - Festlegung"@de;
+	rdfs:comment """Relating a token to a reification statement of the relation between the token and a syntactic word."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint ling:Token;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasSyntacticGender
+	a owl:ObjectProperty;
+	rdfs:label "has syntactic gender"@en, "hat syntactisches Genus"@de;
+	rdfs:comment """Relating a syntactic word to its syntactic gender."""@en;
+	rdfs:domain lingmor:SyntacticWord;
+	rdfs:range lingmor:SyntacticGender;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:objectClassConstraint lingmor:SyntacticGender.
+
+lingmor:hasSyntacticGenderValue
+	a owl:ObjectProperty;
+	rdfs:label "has syntactic gender - statement"@en, "hat syntactisches Genus - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its syntactic gender."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasCase
+	a owl:ObjectProperty;
+	rdfs:label "has case"@en, "hat Kasus"@de;
+	rdfs:comment """Relating a syntactic word to a case."""@en;
+	rdfs:domain lingmor:SyntacticWord;
+	rdfs:range lingmor:Case;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:objectClassConstraint lingmor:Case.
+
+lingmor:hasCaseValue
+	a owl:ObjectProperty;
+	rdfs:label "has case - statement"@en, "hat Kasus - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and a case."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasNumber
+	a owl:ObjectProperty;
+	rdfs:label "syntactic word has number"@en, "syntactisches Wort hat Numerus"@de;
+	rdfs:comment """Relating a syntactic word to its number."""@en;
+	rdfs:domain lingmor:SyntacticWord;
+	rdfs:range lingmor:Number;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:objectClassConstraint lingmor:Number.
+
+lingmor:hasNumberValue
+	a owl:ObjectProperty;
+	rdfs:label "syntactic word has number - statement"@en, "syntactisches Wort hat Numerus - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its number."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasLexeme
+	a owl:ObjectProperty;
+	rdfs:label "has lexeme"@en, "hat Lexem"@de;
+	rdfs:comment """Relating a syntactic word to its lexeme."""@en;
+	rdfs:domain lingmor:SyntacticWord;
+	rdfs:range lingmor:Lexeme;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:objectClassConstraint lingmor:Lexeme.
+
+lingmor:hasLexemeValue
+	a owl:ObjectProperty;
+	rdfs:label "has lexeme - statement"@en, "hat Lexem - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its lexeme."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasSemanticGender
+	a owl:ObjectProperty;
+	rdfs:label "has semantic gender"@en, "hat semantisches Genus"@de;
+	rdfs:comment """Relating a lexeme to its semantic gender."""@en;
+	rdfs:domain lingmor:Lexeme;
+	rdfs:range lingmor:SemanticGender;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:Lexeme;
+	knora-base:objectClassConstraint lingmor:SemanticGender.
+
+lingmor:hasSemanticGenderValue
+	a owl:ObjectProperty;
+	rdfs:label "has semantic gender - statement"@en, "hat semantisches Genus - Festlegung"@de;
+	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and its semantic gender."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:Lexeme;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasLemma
+	a owl:ObjectProperty;
+	rdfs:label "has lemma"@en, "hat Lemma"@de;
+	rdfs:comment """Relating a lexeme to a lemma."""@en;
+	rdfs:domain lingmor:Lexeme;
+	rdfs:range lingmor:Lemma;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:Lexeme;
+	knora-base:objectClassConstraint lingmor:Lemma.
+
+lingmor:hasLemmaValue
+	a owl:ObjectProperty;
+	rdfs:label "has lemma - statement"@en, "hat Lemma - Festlegung"@de;
+	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and a lemma."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:Lexeme;
+	knora-base:objectClassConstraint knora-base:LinkValue.
