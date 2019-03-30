@@ -335,7 +335,7 @@ text:Citation
 	rdfs:label "citation"@en, "Zitat"@de, "citation"@fr, "citazione"@it;
 	rdfs:comment """Copy of a text expression, mostly a part of it, in another text expression, with reference to the first expression."""@en;
 	skos:note """A citation can also be referred to from the source text, having an identifier linked to both the source reference and the citation."""@en;
-	rdfs:subClassOf text-structure:ContentStructure, [
+	rdfs:subClassOf text:CopiedText, text-structure:ContentStructure, [
 		a owl:Restriction; owl:onProperty text:citationHasReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:citationHasReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:citationHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
