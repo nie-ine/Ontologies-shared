@@ -55,7 +55,7 @@ textedit:Edition
 textedit:EditorialSymbol
 	a owl:Class;
 	rdfs:label "editorial symbol"@en, "editorisches Zeichen"@de;
-	rdfs:comment """Symbol in an edition indicating a textual aspect of the original text."""@en;
+	rdfs:comment """Symbol in an edition indicating a textual property of the original text."""@en;
 	rdfs:subClassOf ling:Literal.
 
 # textedit:Compilator
@@ -134,8 +134,8 @@ textedit:DiplomaticTranscription
 	a owl:Class;
 	rdfs:label "diplomatic transcription"@en, "diplomatische Umschrift"@de;
 #	ling:hasSynonym "Lesehilfe"@de;
-	rdfs:comment """Transcription of a text with diacritical signs indicating visual textual properties to describe the textual state."""@en;
-	skos:note """Mostly autographs or juridical; without interpretation""";
+	rdfs:comment """Transcription of a text with editorial symbols indicating visual textual properties to describe the textual state."""@en;
+	skos:note """Mostly done for autographs or juridical; without interpretation""";
 	rdfs:subClassOf textedit:ScientificEdition, [
 		a owl:Restriction; owl:onProperty textedit:hasPageIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasPageNumberIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -232,8 +232,6 @@ textedit:ApparatusFontiumEntry
 		a owl:Restriction; owl:onProperty textedit:isEntryOfApparatusFontium; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isEntryOfApparatusFontiumValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-# textedit:hasCitationReference
-
 textedit:CriticalApparatus
 	a owl:Class;
 	rdfs:label "critical apparatus"@en, "textkritischer Apparat"@de, "apparat critique"@fr, "apparato critico"@it, "apparatus criticus"@la;
@@ -274,10 +272,10 @@ textedit:StructureDescription
 		a owl:Restriction; owl:onProperty textedit:isStructureDescriptionOfEntry; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isStructureDescriptionOfEntryValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-textedit:Reading # orig.
+textedit:Reading
 	a owl:Class;
 	rdfs:label "reading"@en, "Lesung"@de, "lezione"@it, "lectio"@la;
-	rdfs:comment """Copy of one or more words or phrases of a witness."""@en;
+	rdfs:comment """Copy of one or more words or phrases of an original or witness."""@en;
 	rdfs:subClassOf textedit:EditorialStructure, text:CopiedText, [
 		a owl:Restriction; owl:onProperty textedit:isReadingOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isReadingOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -313,7 +311,7 @@ textedit:WitnessIdentifier
 textedit:Lemma
 	a owl:Class;
 	rdfs:label "lemma"@en, "Lemma"@de, "lemma"@fr, "lemma"@it;
-	rdfs:comment """Editorial structure with a copy of one or more words or phrases in an apparatus entry referring to its edition text, and possibly as appearing in a witness or created by an editor, and judged by the editor to be authentic, accurate, and/or authoritative, and compaired with variants referring to other witnesses"""@en;
+	rdfs:comment """Editorial structure in an apparatus entry with a copy of one or more words or phrases referring to its edition text, and as appearing in the original or a witness, or created by an editor, and judged by the editor to be authentic, accurate, and/or authoritative [, and possibly compaired with variants referring to other witnesses]"""@en;
 	skos:note """In an apparatus entry a lemma is mostly seperated from a variant or editorial explanation by a right square bracket ']'."""@en;
 	rdfs:subClassOf textedit:EditorialStructure, [
 		a owl:Restriction; owl:onProperty textedit:isLemmaOfCriticalEntry; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -331,7 +329,7 @@ textedit:WitnessedLemma
 	a owl:Class;
 	rdfs:label "witnessed lemma"@en, "bezeugtes Lemma"@de; #, "lemma"@fr, "lemma"@it;
 	rdfs:comment """Lemma with a witness."""@en;
-	rdfs:subClassOf textedit:Lemma.
+	rdfs:subClassOf textedit:Lemma, textedit:Reading.
 
 textedit:Conjecture
 	a owl:Class;
@@ -348,7 +346,7 @@ textedit:Emendation
 textedit:Variant
 	a owl:Class;
 	rdfs:label "variant"@en, "Variant"@de, "variante"@fr, "variante"@it;
-	rdfs:comment """Reading of a critical apparatus entry, judged by an editor to be unsatisfactory for linguistic and/or stylistic reasons, but of interest for establishing the text, and as such varying from what the editor has judged to be the lemma."""@en;
+	rdfs:comment """Reading in a critical apparatus entry, judged by an editor to be unsatisfactory for linguistic and/or stylistic reasons, but of interest for establishing the text, and as such varying from what the editor has judged to be the lemma."""@en;
 	skos:note """Absence in a witness of respective part is commented."""@en;
 	rdfs:subClassOf textedit:Reading, [
 		a owl:Restriction; owl:onProperty textedit:isVariantOfEntry; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
