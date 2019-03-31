@@ -48,6 +48,14 @@ infocar:Carrier
 		a owl:Restriction; owl:onProperty infocar:hasSendingDateAccuracyDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:hasSendingDateProof; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+infocar:Fragment
+	a owl:Class;
+ 	rdfs:label "information carrier fragment"@en,"Informationsträgerfragment"@de; #, "support d'information"@fr;
+ 	rdfs:comment """Fragment of information on a carrier."""@en;
+	rdfs:subClassOf infocar:Carrier, [
+		a owl:Restriction; owl:onProperty infocar:isFragmentOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isFragmentOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 infocar:Set
 	a owl:Class;
 	rdfs:label "information carrier set"@en, "Informationsträger-Reihe"@de, "ensemble des supports d'information"@fr;
@@ -1060,6 +1068,24 @@ infocar:hasSendingDateProof
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint infocar:Carrier;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:isFragmentOf
+	a owl:ObjectProperty;
+	rdfs:label "is fragment of"@en, "ist Fragment von"@de;
+	rdfs:comment "Relating a fragment of an information carrier to its whole."@en;
+	rdfs:domain infocar:Fragment;
+	rdfs:range infocar:Carrier;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:Fragment;
+	knora-base:objectClassConstraint infocar:Carrier.
+
+infocar:isFragmentOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is fragment of - statement"@en, "ist Fragment von - Festlegung"@de;
+	rdfs:comment "Relating a fragment of an information carrier to a reification statement of the relation between the fragment and its whole."@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:Fragment;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:hasTranscriber
 	a owl:ObjectProperty;
