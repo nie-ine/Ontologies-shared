@@ -154,13 +154,6 @@ physical:Compound
 	skos:note """This can be anything, e.g. chemical compound containing more than 1 elementary substance."""@en;
 	rdfs:subClassOf physical:Matter.
 
-#physical:Specimen
-#	a owl:Class;
-#
-#	rdfs:label "specimen"@en, "Materie"@de;
-#	rdfs:comment """Sample containing a substance for examination."""@en;
-#	rdfs:subClassOf physical:Matter.
-
 physical:Product
 	a owl:Class;
 	rdfs:label "product"@en, "Produkt"@de;
@@ -181,7 +174,6 @@ physical:isPartOf
 
 physical:isPartOfValue
 	a owl:ObjectProperty;
-
 	rdfs:label "is part of - statement"@en, "ist Teil von - Festlegung"@de;
 	rdfs:comment "Relating a space to a reification statement of the relation between that space and another one it is part of."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
@@ -190,7 +182,6 @@ physical:isPartOfValue
 
 physical:hasSize
 	a owl:ObjectProperty;
-
 	rdfs:label "has size"@en, "hat Grösse"@de;
 	rdfs:comment "Relating a space to its size."@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
@@ -199,7 +190,6 @@ physical:hasSize
 
 physical:hasSizeValue
 	a owl:ObjectProperty;
-
 	rdfs:label "has size - statement"@en, "hat Grösse - Festlegung"@de;
 	rdfs:comment "Relating a space to a reification statement of the relation between that space and its size."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
@@ -208,7 +198,6 @@ physical:hasSizeValue
 
 physical:hasLength
 	a owl:ObjectProperty;
-
 	rdfs:label "has length"@en, "hat Länge"@de;
 	rdfs:comment "Relating a space to its length."@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
@@ -217,7 +206,6 @@ physical:hasLength
 
 physical:hasLengthValue
 	a owl:ObjectProperty;
-
 	rdfs:label "has length - statement"@en, "hat Länge - Festlegung"@de;
 	rdfs:comment "Relating a space to a reification statement of the relation between that space and its length."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
