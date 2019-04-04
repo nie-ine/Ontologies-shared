@@ -47,7 +47,7 @@ physical:Entity
 physical:ExistingState
 	a owl:Class;
 	rdfs:label "existing state"@en, "Existenzzustand"@de;
-	rdfs:comment """State of a physical entity existing or having existed."""@en;
+	rdfs:comment """State of a physical entity existing, partially existing, or having existed."""@en;
 	rdfs:subClassOf event:State;
 	skos:note """To be stated with a time indicator"""@en.
 #	owl:oneOf (physical:Existing physical:Gone).
