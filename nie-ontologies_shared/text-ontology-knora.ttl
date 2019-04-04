@@ -375,7 +375,7 @@ text:DiaryEntry
 	a owl:Class;
 	rdfs:label "diary entry"@en, "Tagebucheintrag"@de, "entrée du journal"@fr, "iscrizione del diario"@it;
 	rdfs:comment """Periodical, usually daily description of a personal experience or observation written in a diary."""@en;
-	rdfs:subClassOf text-structure:CompositionalContentStructure, text:IndividualExpression, [
+	rdfs:subClassOf text-structure:CompositionalContentStructure, text:Expression, [
 		a owl:Restriction; owl:onProperty text:isEntryOfDiaryExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isEntryOfDiaryExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:entryIsInDiary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
