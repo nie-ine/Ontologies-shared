@@ -200,7 +200,7 @@ kuno-raeber:Page
 	a owl:Class;
 	rdfs:label "Kuno Raeber page"@en, "Seite Kuno Raebers"@de;
 	rdfs:comment """Page with a handwritten poem by Kuno Raeber."""@en, """Seite mit einem handgeschriebenen Gedicht Kuno Raebers."""@de;
-	rdfs:subClassOf infocar:Page. #, [
+	rdfs:subClassOf infocar:Page, [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
