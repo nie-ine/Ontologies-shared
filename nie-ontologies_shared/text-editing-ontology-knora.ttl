@@ -179,8 +179,24 @@ textedit:EditorialStructure
 	rdfs:label "editorial text structure"@en, "editorische Textstruktur"@de;
 	rdfs:comment """Scientific text structure depending on editorial purpose, e.g. an editing apparatus."""@en;
 	rdfs:subClassOf text-structure:ScientificStructure, [
+		a owl:Restriction; owl:onProperty textedit:hasSiglumReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:hasSiglumReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+textedit:SiglumReference
+	a owl:Class;
+	rdfs:label "siglum reference"@en, "Siglum-Referenz"@de; #, "siglum"@fr, "siglum"@it;
+	rdfs:comment """Reference to a siglum as expression identifier."""@en;
+	rdfs:subClassOf document:ExpressionReference, [
 		a owl:Restriction; owl:onProperty textedit:hasSiglum; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasSiglumValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+textedit:Siglum
+	a owl:Class;
+	rdfs:label "siglum"@en, "Siglum"@de, "siglum"@fr, "siglum"@it;
+	rdfs:comment """One or more symbols as identifier of an expression as original or witness in a scientific edition."""@en;
+	rdfs:subClassOf document:ExpressionIdentifier, [
+		a owl:Restriction; owl:onProperty textedit:isSiglumOfScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isSiglumOfScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 textedit:Apparatus
 	a owl:Class;
@@ -280,33 +296,16 @@ textedit:Reading
 		a owl:Restriction; owl:onProperty textedit:isReadingOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isReadingOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-textedit:Siglum
-	a owl:Class;
-	rdfs:label "siglum"@en, "Siglum"@de, "siglum"@fr, "siglum"@it;
-	rdfs:comment """One or more symbols as a reference to an expression as original or witness."""@en;
-	rdfs:subClassOf document:ExpressionReference, [
-		a owl:Restriction; owl:onProperty textedit:isSiglumOfScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:isSiglumOfScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:siglumHasExpressionIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:siglumHasExpressionIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:siglumHasWitnessIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:siglumHasWitnessIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
 textedit:Witness
 	a owl:Class;
 	rdfs:label "witness text"@en, "Textzeuge"@de;
 	rdfs:comment """Copy of a text studied in a critical edition, as comparison or proof of existance of the original by looking for features of originality, possibly enabling the original's reconstruction."""@en;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_w.aspx>;
 	rdfs:subClassOf text:CopiedText, text:Expression, [
-		a owl:Restriction; owl:onProperty textedit:witnessHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:witnessHasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:witnessHasSiglum; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:witnessHasSiglumValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isWitnessOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:isWitnessOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-textedit:WitnessIdentifier
-	a owl:Class;
-	rdfs:label "witness text identifier"@en, "Textzeugeidentifikator"@de;
-	rdfs:comment """Identifier of a witness text expression."""@en;
-	rdfs:subClassOf document:ExpressionIdentifier.
 
 textedit:Lemma
 	a owl:Class;
@@ -661,40 +660,40 @@ textedit:hasCriticalEditorValue
 	knora-base:subjectClassConstraint textedit:CriticalEdition;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-textedit:hasSiglum
+textedit:hasSiglumReference
 	a owl:ObjectProperty;
-	rdfs:label "editiorial text structure has siglum"@en, "editorische Textstruktur hat Siglum"@de;
-	rdfs:comment """Relating an editiorial text structure to a siglum it has."""@en;
+	rdfs:label "has siglum reference"@en, "hat Siglum-Referenz"@de;
+	rdfs:comment """Relating an editiorial text structure to its siglum reference."""@en;
 	rdfs:domain textedit:EditorialStructure;
-	rdfs:range textedit:Siglum;
+	rdfs:range textedit:SiglumReference;
 	rdfs:subPropertyOf document:hasExpressionReference;
 	knora-base:subjectClassConstraint textedit:EditorialStructure;
-	knora-base:objectClassConstraint textedit:Siglum.
+	knora-base:objectClassConstraint textedit:SiglumReference.
 
-textedit:hasSiglumValue
+textedit:hasSiglumReferenceValue
 	a owl:ObjectProperty;
-	rdfs:label "editiorial text structure has siglum - statement"@en, "editorische Textstruktur hat Siglum - Festlegung"@de;
-	rdfs:comment """Relating an editiorial text structure to a reification statement of the relation between the structure and a siglum it has."""@en;
+	rdfs:label "has siglum reference - statement"@en, "hat Siglum-Referenz - Festlegung"@de;
+	rdfs:comment """Relating an editiorial text structure to a reification statement of the relation between the structure and its siglum reference."""@en;
 	rdfs:subPropertyOf document:hasExpressionReferenceValue;
 	knora-base:subjectClassConstraint textedit:EditorialStructure;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-textedit:isSiglumOfEntry
+textedit:hasSiglum
 	a owl:ObjectProperty;
-	rdfs:label "îs siglum of apparatus entry"@en, "ist Siglum eines Apparateintrages"@de;
-	rdfs:comment """Relating a siglum to an apparatus entry."""@en;
-	rdfs:domain textedit:Siglum;
-	rdfs:range textedit:ApparatusEntry;
-	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint textedit:Siglum;
-	knora-base:objectClassConstraint textedit:ApparatusEntry.
+	rdfs:label "has siglum"@en, "hat Siglum"@de;
+	rdfs:comment """Relating a siglum reference to its siglum."""@en;
+	rdfs:domain textedit:SiglumReference;
+	rdfs:range textedit:Siglum;
+	rdfs:subPropertyOf document:expressionReferenceHasIdentifier;
+	knora-base:subjectClassConstraint textedit:SiglumReference;
+	knora-base:objectClassConstraint textedit:Siglum.
 
-textedit:isSiglumOfEntryValue
+textedit:hasSiglumValue
 	a owl:ObjectProperty;
-	rdfs:label "îs siglum of apparatus entry - statement"@en, "ist Siglum eines Apparateintrages - Festlegung"@de;
-	rdfs:comment """Relating a siglum to a reification statement of the relation between the siglum and an apparatus entry."""@en;
-	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint textedit:Siglum;
+	rdfs:label "has siglum - statement"@en, "hat Siglum - Festlegung"@de;
+	rdfs:comment """Relating a siglum reference to a reification statement of the relation between the siglum reference and its siglum."""@en;
+	rdfs:subPropertyOf document:expressionReferenceHasIdentifierValue;
+	knora-base:subjectClassConstraint textedit:SiglumReference;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 textedit:isSiglumOfScientificEdition
@@ -713,78 +712,6 @@ textedit:isSiglumOfScientificEditionValue
 	rdfs:comment """Relating a siglum to a reification statement of the relation between the siglum and its scientific edition."""@en;
 	rdfs:subPropertyOf document:isStructureOfDocumentValue;
 	knora-base:subjectClassConstraint textedit:Siglum;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-textedit:siglumHasExpressionIdentifier
-	a owl:ObjectProperty;
-	rdfs:label "siglum has expression identifier"@en, "Siglum hat Expressionsidentifikator"@de;
-	rdfs:comment """Relating a siglum to the identifier of a document expression that is subject to the siglum's critical edition."""@en;
-	rdfs:domain textedit:Siglum;
-	rdfs:range document:ExpressionIdentifier;
-	rdfs:subPropertyOf document:expressionReferenceHasIdentifier;
-	knora-base:subjectClassConstraint textedit:Siglum;
-	knora-base:objectClassConstraint document:ExpressionIdentifier.
-
-textedit:siglumHasExpressionIdentifierValue
-	a owl:ObjectProperty;
-	rdfs:label "siglum has expression identifier - statement"@en, "Siglum hat Expressionsidentifikator - Festlegung"@de;
-	rdfs:comment """Relating a siglum to a reification statement of the relation between the siglum and the identifier of a document expression that is subject to the siglum's critical edition."""@en;
-	rdfs:subPropertyOf document:expressionReferenceHasIdentifierValue;
-	knora-base:subjectClassConstraint textedit:Siglum;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-textedit:siglumHasWitnessIdentifier
-	a owl:ObjectProperty;
-	rdfs:label "siglum has witness identifier"@en, "Siglum hat Textzeugeidentifikator"@de;
-	rdfs:comment """Relating a siglum to the identifier of its witness."""@en;
-	rdfs:domain textedit:Siglum;
-	rdfs:range textedit:WitnessIdentifier;
-	rdfs:subPropertyOf document:expressionReferenceHasIdentifier;
-	knora-base:subjectClassConstraint textedit:Siglum;
-	knora-base:objectClassConstraint textedit:WitnessIdentifier.
-
-textedit:siglumHasWitnessIdentifierValue
-	a owl:ObjectProperty;
-	rdfs:label "siglum has witness identifier - statement"@en, "Siglum hat Textzeugeidentifikator - Festlegung"@de;
-	rdfs:comment """Relating a siglum to a reification statement of the relation between the siglum and the identifier of its witness."""@en;
-	rdfs:subPropertyOf document:expressionReferenceHasIdentifierValue;
-	knora-base:subjectClassConstraint textedit:Siglum;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-textedit:witnessHasIdentifier
-	a owl:ObjectProperty;
-	rdfs:label "witness text has identifier"@en, "Textzeuge hat Identifikator"@de;
-	rdfs:comment """Relating a witness text expression to its identifier."""@en;
-	rdfs:domain textedit:Witness;
-	rdfs:range textedit:WitnessIdentifier;
-	rdfs:subPropertyOf document:expressionHasIdentifier;
-	knora-base:subjectClassConstraint textedit:Witness;
-	knora-base:objectClassConstraint textedit:WitnessIdentifier.
-
-textedit:witnessHasIdentifierValue
-	a owl:ObjectProperty;
-	rdfs:label "witness text has identifier - statement"@en, "Textzeuge hat Identifikator - Festlegung"@de;
-	rdfs:comment """Relating a witness text expression to a reification statement of the relation between the witness and its identifier."""@en;
-	rdfs:subPropertyOf document:expressionHasIdentifierValue;
-	knora-base:subjectClassConstraint textedit:Witness;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-textedit:isWitnessOf
-	a owl:ObjectProperty;
-	rdfs:label "is witness of"@en, "ist Textzeuge von"@de;
-	rdfs:comment """Relating a witness text expression to its original."""@en;
-	rdfs:domain textedit:Witness;
-	rdfs:range text:Expression;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint textedit:Witness;
-	knora-base:objectClassConstraint text:Expression.
-
-textedit:isWitnessOfValue
-	a owl:ObjectProperty;
-	rdfs:label "is witness of - statement"@en, "ist Textzeuge von - Festlegung"@de;
-	rdfs:comment """Relating a witness text expression to a reification statement of the relation between the witness and its original."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint textedit:Witness;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 textedit:isApparatusOf
@@ -1011,6 +938,42 @@ textedit:isReadingOfValue
 	rdfs:comment """Relating a reading to a reification statement of the relation between the reading and its witness."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint textedit:Reading;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:witnessHasSiglum
+	a owl:ObjectProperty;
+	rdfs:label "witness text has siglum"@en, "Textzeuge hat Siglum"@de;
+	rdfs:comment """Relating a witness text expression to its siglum."""@en;
+	rdfs:domain textedit:Witness;
+	rdfs:range textedit:Siglum;
+	rdfs:subPropertyOf document:expressionHasIdentifier;
+	knora-base:subjectClassConstraint textedit:Witness;
+	knora-base:objectClassConstraint textedit:Siglum.
+
+textedit:witnessHasSiglumValue
+	a owl:ObjectProperty;
+	rdfs:label "witness text has siglum - statement"@en, "Textzeuge hat Siglum - Festlegung"@de;
+	rdfs:comment """Relating a witness text expression to a reification statement of the relation between the witness and its siglum."""@en;
+	rdfs:subPropertyOf document:expressionHasIdentifierValue;
+	knora-base:subjectClassConstraint textedit:Witness;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:isWitnessOf
+	a owl:ObjectProperty;
+	rdfs:label "is witness of"@en, "ist Textzeuge von"@de;
+	rdfs:comment """Relating a witness text expression to its original."""@en;
+	rdfs:domain textedit:Witness;
+	rdfs:range text:Expression;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint textedit:Witness;
+	knora-base:objectClassConstraint text:Expression.
+
+textedit:isWitnessOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is witness of - statement"@en, "ist Textzeuge von - Festlegung"@de;
+	rdfs:comment """Relating a witness text expression to a reification statement of the relation between the witness and its original."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint textedit:Witness;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 textedit:isLemmaOfCriticalEntry
