@@ -4,6 +4,8 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
+@prefix math: <http://www.knora.org/ontology/shared/mathematics#>.
+@prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
@@ -47,6 +49,12 @@ parzival:HandwrittenTranscribedVerseNovel
 	rdfs:comment """Handwritten transcribed version of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:subClassOf parzival:CopiedVerseNovel, text:HandwrittenText, text:TranscribedText.
 
+parzival:HandwrittenTranscribedVerseNovelFragment
+	a owl:Class;
+	rdfs:label """handwritten transcribed fragment of 'Parzival'"""@en, """handtranskribiertes Fragment 'Parzivals'"""@de;
+	rdfs:comment """Fragment of a handwritten transcribed version of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf text:HandwrittenText, text:TranscribedText, text:ExpressionPart.
+
 parzival:PrintedVerseNovel
 	a owl:Class;
 	rdfs:label """printed version of 'Parzival'"""@en, """gedruckte Version 'Parzivals'"""@de;
@@ -61,15 +69,33 @@ parzival:VerseNovelCopy
 
 parzival:ManualVerseNovelTranscript
 	a owl:Class;
-	rdfs:label """manual transcript of 'Parzival'"""@en, """Manuelles Transkript von 'Parzival'"""@de;
+	rdfs:label """manual transcript of 'Parzival'"""@en, """manuelles Transkript 'Parzivals'"""@de;
 	rdfs:comment """Manual transcript of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:subClassOf parzival:VerseNovelCopy, infocar:ManualTranscript, infocar:Codex.
+
+parzival:ManualVerseNovelTranscriptFragment
+	a owl:Class;
+	rdfs:label """manual transcript fragment of 'Parzival'"""@en, """manuelles Transkriptfragment 'Parzivals'"""@de;
+	rdfs:comment """Manual transcript fragment of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf infocar:ManualTranscript, infocar:Fragment.
 
 parzival:VerseNovelPrint
 	a owl:Class;
 	rdfs:label """print of 'Parzival'"""@en, """Druck von 'Parzival'"""@de;
 	rdfs:comment """Print of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:subClassOf parzival:VerseNovelCopy, infocar:Print, infocar:Book.
+
+parzival:DocumentPage
+	a owl:Class;
+	rdfs:label """document page of 'Parzival'"""@en, """Dokumentseite von 'Parzival'"""@de;
+	rdfs:comment """Document page of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf document:Page, document:ExpressionPart.
+
+parzival:TextPage
+	a owl:Class;
+	rdfs:label """text page of 'Parzival'"""@en, """Textseite von 'Parzival'"""@de;
+	rdfs:comment """Text page of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf text-structure:Page, text:ExpressionPart.
 
 parzival:Page
 	a owl:Class;
@@ -87,6 +113,8 @@ parzival:Verse
 		a owl:Restriction; owl:onProperty parzival:isVerseOfDreissiger; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty parzival:isVerseOfDreissigerValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+# verse ohne Dreissiger
+
 parzival:Dreissiger
 	a owl:Class;
 	rdfs:label "dreissiger"@en, "Dreissiger"@de, "dreissiger"@fr, "dreissiger"@it;
@@ -95,7 +123,14 @@ parzival:Dreissiger
 	rdfs:subClassOf text-structure:ProsodicStructure, text:ExpressionPart, [
 		a owl:Restriction; owl:onProperty parzival:isDreissigerOfNovel; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty parzival:isDreissigerOfNovelValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty parzival:dreissigerHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty parzival:dreissigerHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty parzival:dreissigerHasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+parzival:DreissigerNumber
+	a owl:Class;
+	rdfs:label "dreissiger number"@en, "Dreissigernummer"@de;
+	rdfs:comment """Number of a dreissiger."""@en;
+	rdfs:subClassOf text-structure:Identifier, math:NaturalNumber.
 
 parzival:VerseSection
 	a owl:Class;
@@ -160,12 +195,20 @@ parzival:isDreissigerOfNovelValue
 parzival:dreissigerHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "dreissiger has number"@en, "Dreissiger hat Nummer"@de;
-	rdfs:comment """Relating a dreissiger to a number it has."""@en;
+	rdfs:comment """Relating a dreissiger to its number."""@en;
 	rdfs:domain parzival:Dreissiger;
-#	rdfs:range xsd:nonNegativeInteger;
-	rdfs:subPropertyOf knora-base:hasValue;
+	rdfs:range parzival:DreissigerNumber;
+	rdfs:subPropertyOf text-structure:hasIdentifier;
 	knora-base:subjectClassConstraint parzival:Dreissiger;
-	knora-base:objectClassConstraint knora-base:IntValue.
+	knora-base:objectClassConstraint parzival:DreissigerNumber.
+
+parzival:dreissigerHasNumberValue
+	a owl:ObjectProperty;
+	rdfs:label "dreissiger has number - statement"@en, "Dreissiger hat Nummer - Festlegung"@de;
+	rdfs:comment """Relating a dreissiger to a reification statement of the relation between the dreissiger and its number."""@en;
+	rdfs:subPropertyOf text-structure:hasIdentifierValue;
+	knora-base:subjectClassConstraint parzival:Dreissiger;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 parzival:isSectionOfNovel
 	a owl:ObjectProperty;
