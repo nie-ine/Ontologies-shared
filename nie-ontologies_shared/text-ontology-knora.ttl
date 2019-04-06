@@ -42,7 +42,7 @@
 text:Text
 	a owl:Class;
 	rdfs:label "text"@en, "Text"@de, "texte"@fr, "testo"@it;
-	rdfs:comment """Human natural language expression serialized in writable form."""@en; # what can be learned by heart
+	rdfs:comment """Human natural language expression serialized in writable form."""@en;
 	rdfs:subClassOf language:HumanNaturalLanguageExpression, [
 		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
