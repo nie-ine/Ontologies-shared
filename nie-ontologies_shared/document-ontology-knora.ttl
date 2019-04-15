@@ -249,7 +249,7 @@ document:Draft
 	a owl:Class;
 	rdfs:label "document draft"@en, "Dokumententwurf"@de;
 	rdfs:comment """Developmental document expression, subject to future modification."""@en;
-	rdfs:subClassOf document:Expression, human:UnfinishedCreation.
+	rdfs:subClassOf document:Expression, human:UnfinishedCreation. # Creation in a state of not having all envisioned features
 
 document:PolyAuthorExpression
 	a owl:Class;

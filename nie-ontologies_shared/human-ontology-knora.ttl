@@ -279,7 +279,7 @@ human:CreationVersion
 	a owl:Class;
 	rdfs:label "creation version"@en, "Version einer Kreation"@de;
 	rdfs:comment """Person's creation differing in certain respects - e.g. time, extent - from onther e.g. earlier or standard one."""@en;
-	skos:note """A version is created by the same person or group of persons."""@en;
+	skos:note """A version is created by the same person or group of persons who created another version."""@en;
 	rdfs:subClassOf human:Creation.
 
 human:UnfinishedCreation

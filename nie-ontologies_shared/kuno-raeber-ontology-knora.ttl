@@ -253,7 +253,7 @@ kuno-raeber:PoemPostcard
 	rdfs:comment """Postcard with a poem authored by Kuno Raeber."""@en;
 	rdfs:subClassOf infocar:Manuscript, infocar:Postcard, infocar:ArchiveElement, infocar:ConvoluteElement, [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfPostcardConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfPostcardConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]. #, [
+		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfPostcardConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -295,7 +295,7 @@ kuno-raeber:TypescriptConvoluteWithImage # to be removed when knora-base:hasRepr
 	a owl:Class;
 	rdfs:label "Kuno Raeber poem typescript convolute with image"@en, "Gedicht-Typoskriptenonvolut mit Bild Kuno Raebers"@de;
 	rdfs:comment """Poem typescript convolute with poems authored by Kuno Raeber, mit bild."""@en;
-	rdfs:subClassOf kuno-raeber:TypescriptConvolute. #, [
+	rdfs:subClassOf kuno-raeber:TypescriptConvolute, [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 

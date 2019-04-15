@@ -72,7 +72,7 @@ meyer:Letter
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer letter"@en, "Conrad Ferdinand Meyer-Brief"@de, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
 	rdfs:comment """Letter send by or to Conrad Ferdinand Meyer."""@en;
-	rdfs:subClassOf infocar:Letter, infocar:ConvoluteElement, infocar:ArchiveElement.
+	rdfs:subClassOf infocar:Letter, infocar:ArchiveElement.
 
 meyer:PostcardLetter
 	a owl:Class;
