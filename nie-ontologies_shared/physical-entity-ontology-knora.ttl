@@ -103,8 +103,8 @@ physical:EarthPlace
 physical:Point
 	a owl:Class;
 	rdfs:label "point"@en, "Punkt"@de;
-	rdfs:comment """Space without dimension."""@en;
-	rdfs:subClassOf physical:Space, geo:Point.
+	rdfs:comment """Entity without dimension."""@en;
+	rdfs:subClassOf physical:Entity, geo:Point.
 
 physical:Size
 	a owl:Class;
@@ -263,7 +263,7 @@ physical:placeHasName
 	rdfs:label "place has name"@en, "Platz hat Name"@de;
 	rdfs:comment """Relating a place to its name."""@en;
 	rdfs:domain physical:Place;
-	rdfs:range rdfs:Literal;
+	rdfs:range rdfs:Literal; #°
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint physical:Place;
 	knora-base:objectClassConstraint knora-base:TextValue.
