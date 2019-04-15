@@ -19,11 +19,13 @@
 
 <http://www.knora.org/ontology/0067/parzival>
 	a owl:Ontology;
-	dct:title """An ontology about Wolfram von Eschenbach's "Parzival" """@en;
-	dct:description """Formal description of specific concepts in the critical and digital edition of Wolfram von Eschenbach's "Parzival"."""@en;
+	dct:title """An ontology about Wolfram von Eschenbach's 'Parzival' """@en;
+	dct:description """Formal description of specific concepts in the critical and digital edition of Wolfram von Eschenbach's 'Parzival."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
+	dct:contributor "Roberta Padlina, tool coordinator and software developer, NIE-INE, University of Basel, Switzerland"@en;
 	dct:contributor "Reinhard Priber, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
+	skos:note """Labels are triple quoted due to single quoted literal."""@en;
 
 	knora-base:attachedToProject <http://rdfh.ch/projects/0067>.
 
@@ -49,10 +51,10 @@ parzival:HandwrittenTranscribedVerseNovel
 	rdfs:comment """Handwritten transcribed version of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:subClassOf parzival:CopiedVerseNovel, text:HandwrittenText, text:TranscribedText.
 
-parzival:HandwrittenTranscribedVerseNovelFragment
+parzival:HandwrittenTranscribedVerseNovelPart
 	a owl:Class;
-	rdfs:label """handwritten transcribed fragment of 'Parzival'"""@en, """handtranskribiertes Fragment 'Parzivals'"""@de;
-	rdfs:comment """Fragment of a handwritten transcribed version of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:label """handwritten transcribed part of 'Parzival'"""@en, """handtranskribiertes Teil 'Parzivals'"""@de;
+	rdfs:comment """Part of a handwritten transcribed version of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:subClassOf text:HandwrittenText, text:TranscribedText, text:ExpressionPart.
 
 parzival:PrintedVerseNovel
@@ -79,6 +81,12 @@ parzival:ManualVerseNovelTranscriptFragment
 	rdfs:comment """Manual transcript fragment of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:subClassOf infocar:ManualTranscript, infocar:Fragment.
 
+parzival:ManualVerseNovelTranscriptRemnant
+	a owl:Class;
+	rdfs:label """manual transcript remnant of 'Parzival'"""@en, """manuelles Transkriptüberrest 'Parzivals'"""@de;
+	rdfs:comment """Manual transcript remnant of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf infocar:ManualTranscript, infocar:Remnant.
+
 parzival:VerseNovelPrint
 	a owl:Class;
 	rdfs:label """print of 'Parzival'"""@en, """Druck von 'Parzival'"""@de;
@@ -97,6 +105,12 @@ parzival:TextPage
 	rdfs:comment """Text page of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:subClassOf text-structure:Page, text:ExpressionPart.
 
+parzival:EditionPage
+	a owl:Class;
+	rdfs:label """edition page of 'Parzival'"""@en, """Editionseite 'Parzivals'"""@de;
+	rdfs:comment """Page of a scientific edition of a copy of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf textedit:Page, text:ExpressionPart.
+
 parzival:Page
 	a owl:Class;
 	rdfs:label "page of 'Parzival'"@en, "Seite 'Parzivals'"@de;
@@ -105,24 +119,38 @@ parzival:Page
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+parzival:ScientificEdition
+	a owl:Class;
+	rdfs:label """scientific text edition of 'Parzival'"""@en, """wissenschaftliche Textedition von 'Parzival'"""@de;
+	rdfs:comment """Scientific text edition of a transcript of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf textedit:ScientificEdition, publish:Expression.
+
 parzival:Verse
 	a owl:Class;
-	rdfs:label """verse of 'Parzival'"""@en, """Vers von 'Parzival'"""@de;
-	rdfs:comment """Verse in Wolfram Von Eschenbach's verse novel 'Parzival', or a version or derivative thereof."""@en;
+	rdfs:label """edition verse of 'Parzival'"""@en, """Editionvers 'Parzivals'"""@de;
+	rdfs:comment """Verse of a scientific edition of a copy of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:subClassOf text-structure:Verse, [
 		a owl:Restriction; owl:onProperty parzival:isVerseOfDreissiger; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty parzival:isVerseOfDreissigerValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-# verse ohne Dreissiger
+parzival:UngroupedVerse
+	a owl:Class;
+	rdfs:label """ungrouped edition verse of 'Parzival'"""@en, """nicht gruppierter Editionvers 'Parzivals'"""@de;
+	rdfs:comment """Verse not belonging to a dreissiger, of a scientific edition of a copy of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf text-structure:Verse,  [
+		a owl:Restriction; owl:onProperty parzival:isVerseOfPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty parzival:isVerseOfPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 parzival:Dreissiger
 	a owl:Class;
 	rdfs:label "dreissiger"@en, "Dreissiger"@de, "dreissiger"@fr, "dreissiger"@it;
-	rdfs:comment """Set of about 30 verses in Wolfram Von Eschenbach's verse novel 'Parzival', or a version or derivative thereof."""@en;
+	rdfs:comment """Set of about 30 verses in a scientific edition of a copy of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
 	rdfs:seeAlso """Bumke Joachim, "Wolfram von Eschenbach", Springer-Verlag, Stuttgart, 2004."""@en;
-	rdfs:subClassOf text-structure:ProsodicStructure, text:ExpressionPart, [
-		a owl:Restriction; owl:onProperty parzival:isDreissigerOfNovel; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty parzival:isDreissigerOfNovelValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+	rdfs:subClassOf text-structure:VerseSection, text:ExpressionPart,  [
+		a owl:Restriction; owl:onProperty parzival:isDreissigerOfPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty parzival:isDreissigerOfPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty parzival:isDreissigerOfSection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty parzival:isDreissigerOfSectionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty parzival:dreissigerHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty parzival:dreissigerHasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -142,15 +170,9 @@ parzival:VerseSection
 
 parzival:CriticalEdition
 	a owl:Class;
-	rdfs:label """critical text edition of 'Parzival'"""@en, """kritische Textedition von 'Parzival'"""@de;
-	rdfs:comment """Critical text edition of a transcript of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf textedit:CriticalEdition, publish:Expression.
-
-parzival:ScientificEdition
-	a owl:Class;
-	rdfs:label """scientific text edition of 'Parzival'"""@en, """wissenschaftliche Textedition von 'Parzival'"""@de;
-	rdfs:comment """Scientific text edition of a transcript of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf textedit:ScientificEdition, publish:Expression.
+	rdfs:label """critical text edition of a dreissiger"""@en, """kritische Textedition eines Dreissigers"""@de;
+	rdfs:comment """Critical text edition of a dreissiger depending on one or more transcripts of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf textedit:CriticalEdition, text:ExpressionPart, publish:Expression.
 
 #
 # PROPERTIES
@@ -159,7 +181,7 @@ parzival:ScientificEdition
 parzival:isVerseOfDreissiger
 	a owl:ObjectProperty;
 	rdfs:label "is verse of dreissiger"@en, "ist Vers eines Dreissigers"@de;
-	rdfs:comment """Relating a verse to a dreissiger it is part of."""@en;
+	rdfs:comment """Relating a verse to its dreissiger."""@en;
 	rdfs:domain parzival:Verse;
 	rdfs:range parzival:Dreissiger;
 	rdfs:subPropertyOf concept:isPartOf;
@@ -169,25 +191,61 @@ parzival:isVerseOfDreissiger
 parzival:isVerseOfDreissigerValue
 	a owl:ObjectProperty;
 	rdfs:label "is verse of dreissiger - statement"@en, "ist Vers eines Dreissigers - Festlegung"@de;
-	rdfs:comment """Relating a verse to a reification statement of the relation between the verse and a dreissiger it is part of."""@en;
+	rdfs:comment """Relating a verse to a reification statement of the relation between the verse and its dreissiger."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint parzival:Verse;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-parzival:isDreissigerOfNovel
+parzival:isVerseOfPage
 	a owl:ObjectProperty;
-	rdfs:label "is dreissiger of verse novel"@en, "ist Dreissiger eines Versromans"@de;
-	rdfs:comment """Relating a dreissiger to a verse novel it is part of."""@en;
+	rdfs:label "is verse of page"@en, "ist Vers einer Seite"@de;
+	rdfs:comment """Relating an ungrouped edition verse to the edition page it is part of."""@en;
+	rdfs:domain parzival:UngroupedVerse;
+	rdfs:range parzival:EditionPage;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint parzival:UngroupedVerse;
+	knora-base:objectClassConstraint parzival:EditionPage.
+
+parzival:isVerseOfPageValue
+	a owl:ObjectProperty;
+	rdfs:label "is verse of page - statement"@en, "ist Vers einer Seite - Festlegung"@de;
+	rdfs:comment """Relating an ungrouped edition verse to a reification statement of the relation between the verse and the edition page it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint parzival:UngroupedVerse;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+parzival:isDreissigerOfPage
+	a owl:ObjectProperty;
+	rdfs:label "is dreissiger of edition page"@en, "ist Dreissiger einer Editionseite"@de;
+	rdfs:comment """Relating a dreissiger to a scientific edition page it is part of."""@en;
 	rdfs:domain parzival:Dreissiger;
-	rdfs:range parzival:VerseNovel;
+	rdfs:range parzival:EditionPage;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint parzival:Dreissiger;
-	knora-base:objectClassConstraint parzival:VerseNovel.
+	knora-base:objectClassConstraint parzival:EditionPage.
 
-parzival:isDreissigerOfNovelValue
+parzival:isDreissigerOfPageValue
 	a owl:ObjectProperty;
-	rdfs:label "is dreissiger of verse novel - statement"@en, "ist Dreissiger eines Versromans - Festlegung"@de;
-	rdfs:comment """Relating a dreissiger to a reification statement of the relation between the dreissiger and a verse novel it is part of."""@en;
+	rdfs:label "is dreissiger of edition page - statement"@en, "ist Dreissiger einer Editionseite - Festlegung"@de;
+	rdfs:comment """Relating a dreissiger to a reification statement of the relation between the dreissiger and a scientific edition page it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint parzival:Dreissiger;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+parzival:isDreissigerOfSection
+	a owl:ObjectProperty;
+	rdfs:label "is dreissiger of section"@en, "ist Dreissiger eines Abschnitts"@de;
+	rdfs:comment """Relating a dreissiger to the verse section it is part of."""@en;
+	rdfs:domain parzival:Dreissiger;
+	rdfs:range parzival:VerseSection;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint parzival:Dreissiger;
+	knora-base:objectClassConstraint parzival:VerseSection.
+
+parzival:isDreissigerOfSectionValue
+	a owl:ObjectProperty;
+	rdfs:label "is dreissiger of section - statement"@en, "ist Dreissiger eines Abschnitts - Festlegung"@de;
+	rdfs:comment """Relating a dreissiger to a reification statement of the relation between the dreissiger and the verse section it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint parzival:Dreissiger;
 	knora-base:objectClassConstraint knora-base:LinkValue.
