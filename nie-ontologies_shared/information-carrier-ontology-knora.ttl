@@ -52,9 +52,17 @@ infocar:Fragment
 	a owl:Class;
  	rdfs:label "information carrier fragment"@en,"Informationsträgerfragment"@de; #, "support d'information"@fr;
  	rdfs:comment """Fragment of information on a carrier."""@en;
-	rdfs:subClassOf infocar:Carrier, [
+	rdfs:subClassOf human:PhysicalCreation, [
 		a owl:Restriction; owl:onProperty infocar:isFragmentOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isFragmentOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+infocar:Remnant
+	a owl:Class;
+ 	rdfs:label "information carrier remnant"@en,"Informationsträgerüberrest"@de; #, "support d'information"@fr;
+ 	rdfs:comment """Remnant of information on a carrier."""@en;
+	rdfs:subClassOf human:PhysicalCreation, [
+		a owl:Restriction; owl:onProperty infocar:isRemnantOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isRemnantOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Set
 	a owl:Class;
@@ -98,6 +106,7 @@ infocar:Leaf
 		a owl:Restriction; owl:onProperty infocar:isLeafOfBook; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isLeafOfBookValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+# folio, recto of, verso of, number
 # fold, Falte, cf. Gedicht Heinrich Heine
 
 infocar:Page
@@ -156,7 +165,7 @@ infocar:NachlassElement
 		a owl:Restriction; owl:onProperty infocar:isPartOfNachlass; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPartOfNachlassValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-infocar:Archive
+infocar:Archive # Library
 	a owl:Class;
 	rdfs:label "archive"@en, "Archiv"@de, "archive"@fr, "archivio"@it;
 	rdfs:comment """Set of information carriers ordered along a method."""@en;
@@ -312,8 +321,21 @@ infocar:Print
 	rdfs:subClassOf infocar:Carrier, [
 		a owl:Restriction; owl:onProperty infocar:hasPrinter; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:hasPrinterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printHasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPartOfPrintRun; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPartOfPrintRunValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+infocar:PrintIdentifier
+	a owl:Class;
+	rdfs:label "print identifier"@en, "Manuskript-Identifikator"@de;
+	rdfs:comment """Identifier of a print, comprising its location, library, collection, and number."""@en;
+	rdfs:subClassOf concept:Identifier, [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasLocation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasLibrary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty infocar:printIdentifierHasShelfMark; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Incunabulum
 	a owl:Class;
@@ -1087,6 +1109,24 @@ infocar:isFragmentOfValue
 	knora-base:subjectClassConstraint infocar:Fragment;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+infocar:isRemnantOf
+	a owl:ObjectProperty;
+	rdfs:label "is remnant of"@en, "ist Überrest von"@de;
+	rdfs:comment "Relating a remnant of an information carrier to its whole."@en;
+	rdfs:domain infocar:Remnant;
+	rdfs:range infocar:Carrier;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:Remnant;
+	knora-base:objectClassConstraint infocar:Carrier.
+
+infocar:isRemnantOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is remnant of - statement"@en, "ist Überrest von - Festlegung"@de;
+	rdfs:comment "Relating a remnant of an information carrier to a reification statement of the relation between the remnant and its whole."@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:Remnant;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 infocar:hasTranscriber
 	a owl:ObjectProperty;
 	rdfs:label "has transcriber"@en, "hat TranskribiererIn"@de;
@@ -1210,6 +1250,64 @@ infocar:hasPrinterValue
 	rdfs:subPropertyOf human:hasCreatorValue;
 	knora-base:subjectClassConstraint infocar:Print;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:printHasIdentifier
+	a owl:ObjectProperty;
+	rdfs:label "print has identifier"@en, "Druck hat Identifikator"@de;
+	rdfs:comment """Relating a print to its identifier."""@en;
+	rdfs:domain infocar:Print;
+	rdfs:range infocar:PrintIdentifier;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Print;
+	knora-base:objectClassConstraint infocar:PrintIdentifier.
+
+infocar:printHasIdentifierValue
+	a owl:ObjectProperty;
+	rdfs:label "print has identifier - statement"@en, "Druck hat Identifikator - Festlegung"@de;
+	rdfs:comment """Relating a print to a reification statement of the relation between the print and its identifier."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Print;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:printIdentifierHasLocation
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has location"@en, "Druckidentifikator hat Ort"@de;
+	rdfs:comment """Relating a print identifier to its location name."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasLibrary
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has library"@en, "Druckidentifikator hat Bibliothek"@de;
+	rdfs:comment """Relating a print identifier to its library name."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasCollection
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has collection"@en, "Druckidentifikator hat Kollektion"@de;
+	rdfs:comment """Relating a print identifier to its collection name."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasNumber
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has number"@en, "Druckidentifikator hat Nummer"@de;
+	rdfs:comment """Relating a print identifier to its number."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
 
 infocar:isPartOfPrintRun
 	a owl:ObjectProperty;
