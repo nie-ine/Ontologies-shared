@@ -8,6 +8,7 @@
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix org: <http://www.knora.org/ontology/shared/organization#>.
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
@@ -49,15 +50,7 @@ textedit:Edition
 	rdfs:comment """Changed text as a result of editing."""@en;
 	rdfs:subClassOf text:Text , [ # human:CreationVersion
 		a owl:Restriction; owl:onProperty textedit:hasEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasEditorialSymbol; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasEditorialSymbolValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-textedit:EditorialSymbol
-	a owl:Class;
-	rdfs:label "editorial symbol"@en, "editorisches Zeichen"@de;
-	rdfs:comment """Symbol in an edition indicating a textual property of the original text."""@en;
-	rdfs:subClassOf concept:SymbolicConcept.
+		a owl:Restriction; owl:onProperty textedit:hasEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 # textedit:Compilator
 
@@ -119,9 +112,15 @@ textedit:EditionScientist
 textedit:ScientificEditor
 	a owl:Class;
 	rdfs:label "scientific editor"@en, "wissenschaftliche Editor"@de, "éditrice scientifique"@fr;
-	rdfs:comment """Role of a person editing scientific text."""@en;
+	rdfs:comment """Role of a person editing a text expression scientifically."""@en;
 	skos:note """Different from an editor of scientific literature, who is not necessarily a scientist."""@en;
 	rdfs:subClassOf textedit:Editor, textedit:EditionScientist.
+
+textedit:ScientificOrganizationEditor
+	a owl:Class;
+	rdfs:label "scientific organization-editor"@en, "wissenschaftliche Organisation-Editor"@de;
+	rdfs:comment """Role of an orgnization editing a text expression scientifically."""@en;
+	rdfs:subClassOf org:Creator.
 
 textedit:ScientificEdition
 	a owl:Class;
@@ -129,31 +128,47 @@ textedit:ScientificEdition
 	rdfs:comment """Derived text expression edited for scientific purpose."""@en;
 	rdfs:subClassOf textedit:DerivedTextExpression , [
 		a owl:Restriction; owl:onProperty textedit:hasScientificEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasScientificEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasPageIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasPageIndicatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasPageNumberIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasPageNumberIndicatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasColumnIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty textedit:hasColumnIndicatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty textedit:hasScientificEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+textedit:Page
+	a owl:Class;
+	rdfs:label """scientific edition text page"""@en, """wissenschaftliche Editiontextseite"""@de;
+	rdfs:comment """Page of a scientific edition."""@en;
+	rdfs:subClassOf text-structure:Page, [
+		a owl:Restriction; owl:onProperty textedit:isPageOfScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isPageOfScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+textedit:EditorialSymbol
+	a owl:Class;
+	rdfs:label "editorial symbol"@en, "editorisches Zeichen"@de;
+	rdfs:comment """Symbol in a scientific edition indicating a textual property of the original text."""@en;
+	rdfs:subClassOf concept:SymbolicConcept, [
+		a owl:Restriction; owl:onProperty textedit:isEditorialSymbolOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isEditorialSymbolOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 textedit:PageIndicator
 	a owl:Class;
 	rdfs:label "page indicator"@en, "Seiteindikator"@de;
 	rdfs:comment """Editorial symbol indicating where a document page starts."""@en;
-	rdfs:subClassOf textedit:EditorialSymbol.
+	rdfs:subClassOf textedit:EditorialSymbol, [
+		a owl:Restriction; owl:onProperty textedit:isPageIndicatorOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isPageIndicatorOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 textedit:PageNumberIndicator
 	a owl:Class;
 	rdfs:label "page number indicator"@en, "Seitenummerindikator"@de;
 	rdfs:comment """Page indicator as number."""@en;
-	rdfs:subClassOf textedit:EditorialSymbol.
+	rdfs:subClassOf textedit:EditorialSymbol, [
+		a owl:Restriction; owl:onProperty textedit:isPageNumberIndicatorOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isPageNumberIndicatorOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 textedit:ColumnIndicator
 	a owl:Class;
 	rdfs:label "column indicator"@en, "Spalteindikator"@de;
 	rdfs:comment """Editorial symbol indicating a textual property of the original text."""@en;
-	rdfs:subClassOf textedit:EditorialSymbol.
+	rdfs:subClassOf textedit:EditorialSymbol, [
+		a owl:Restriction; owl:onProperty textedit:isColumnIndicatorOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:isColumnIndicatorOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 textedit:DiplomaticTranscription
 	a owl:Class;
@@ -169,7 +184,7 @@ textedit:DiplomaticTranscription
 
 textedit:CriticalEditor
 	a owl:Class;
-	rdfs:label "critical text editor"@en, "kritische Text-Editor"@de;
+	rdfs:label "critical editor"@en, "kritische Editor"@de;
 	rdfs:comment """Role of being a scientist editing a text expression in a critical scientific way."""@en;
 	rdfs:subClassOf human:Scientist, human:PersonCreator.
 
@@ -414,24 +429,6 @@ textedit:hasEditorValue
 	knora-base:subjectClassConstraint textedit:Edition;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-textedit:hasEditorialSymbol
-	a owl:ObjectProperty;
-	rdfs:label "has editorial symbol"@en, "hat editorisches Zeichen"@de;
-	rdfs:comment """Relating an edition to an editorial symbol it has."""@en;
-	rdfs:domain textedit:Edition;
-	rdfs:range textedit:EditorialSymbol;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint textedit:Edition;
-	knora-base:objectClassConstraint textedit:EditorialSymbol.
-
-textedit:hasEditorialSymbolValue
-	a owl:ObjectProperty;
-	rdfs:label "has editorial symbol - statement"@en, "hat editorisches Zeichen - Festlegung"@de;
-	rdfs:comment """Relating an edition to a reification statement of the relation between the edition and an editorial symbol it has."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint textedit:Edition;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
 textedit:hasRedactor
 	a owl:ObjectProperty;
 	rdfs:label "has redactor"@en, "hat Redaktor"@de;
@@ -576,15 +573,33 @@ textedit:hasScientificEditionValue
 	knora-base:subjectClassConstraint text:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+textedit:hasScientificEditionPage
+	a owl:ObjectProperty;
+	rdfs:label "has scientific text edition page"@en, "hat wissenschaftliche Texteditionseite"@de;
+	rdfs:comment "Relating a text expression page to a scientific edition page thereof."@en;
+	rdfs:domain text:Expression;
+	rdfs:range textedit:Page;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint textedit:Page.
+
+textedit:hasScientificEditionPageValue
+	a owl:ObjectProperty;
+	rdfs:label "has scientific text edition page - statement"@en, "hat wissenschaftliche Texteditionseite - Festlegung"@de;
+	rdfs:comment "Relating a text expression page to a reification statement of the relation between the text expression and a scientific edition page thereof."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 textedit:hasScientificEditor
 	a owl:ObjectProperty;
 	rdfs:label "scientific edition has scientific editor"@en, "wissenschaftliche Edition hat wissenschaftliche Editor"@de;
 	rdfs:comment "Relating a scientific edition to a scientific editor who created it."@en;
 	rdfs:domain textedit:ScientificEdition;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:ScientificEditor]];
+#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom textedit:ScientificEditor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo; # textedit:hasEditor
 	knora-base:subjectClassConstraint textedit:ScientificEdition;
-	knora-base:objectClassConstraint human:Person.
+	knora-base:objectClassConstraint human:Agent.
 
 textedit:hasScientificEditorValue
 	a owl:ObjectProperty;
@@ -594,52 +609,94 @@ textedit:hasScientificEditorValue
 	knora-base:subjectClassConstraint textedit:ScientificEdition;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-textedit:hasPageIndicator
+textedit:isPageOfScientificEdition
 	a owl:ObjectProperty;
-	rdfs:label "has page indicator"@en, "hat Seiteindikator"@de;
-	rdfs:comment """Relating a scientific edition to a page indicator it has."""@en;
-	rdfs:subPropertyOf textedit:hasEditorialSymbol;
-	knora-base:subjectClassConstraint textedit:ScientificEdition;
-	knora-base:objectClassConstraint textedit:PageIndicator.
+	rdfs:label "is page of scientific edition"@en, "ist Seite einer wissenschaftlichen Edition"@de;
+	rdfs:comment """Relating a page to its scientific edition."""@en;
+	rdfs:domain textedit:Page;
+	rdfs:range textedit:ScientificEdition;
+	rdfs:subPropertyOf text-structure:isPageOfExpression;
+	knora-base:subjectClassConstraint textedit:Page;
+	knora-base:objectClassConstraint textedit:ScientificEdition.
 
-textedit:hasPageIndicatorValue
-	a owl:ObjectProperty;
-	rdfs:label "has page indicator - statement"@en, "hat Seiteindikator - Festlegung"@de;
-	rdfs:comment "Relating a scientific edition to a reification statement of the relation between the edition and a page indicator it has."@en;
-	rdfs:subPropertyOf textedit:hasEditorialSymbolValue;
-	knora-base:subjectClassConstraint textedit:ScientificEdition;
+textedit:isPageOfScientificEditionValue
+ 	a owl:ObjectProperty;
+	rdfs:label "is page of scientific edition - statement"@en, "ist Seite einer wissenschaftlichen Edition - Festlegung"@de;
+	rdfs:comment "Relating a page to a reification statement of the relation between the page and its scientific edition."@en;
+	rdfs:subPropertyOf text-structure:isPageOfExpressionValue;
+	knora-base:subjectClassConstraint textedit:Page;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-textedit:hasPageNumberIndicator
+textedit:isEditorialSymbolOf
 	a owl:ObjectProperty;
-	rdfs:label "has page number indicator"@en, "hat Seitenummerindikator"@de;
-	rdfs:comment """Relating a scientific edition to a page number indicator it has."""@en;
-	rdfs:subPropertyOf textedit:hasEditorialSymbol;
-	knora-base:subjectClassConstraint textedit:ScientificEdition;
-	knora-base:objectClassConstraint textedit:PageNumberIndicator.
+	rdfs:label "is editorial symbol of"@en, "ist editorisches Zeichen von"@de;
+	rdfs:comment """Relating an editorial symbol to its scientific edition page."""@en;
+	rdfs:domain textedit:EditorialSymbol;
+	rdfs:range textedit:Page;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint textedit:EditorialSymbol;
+	knora-base:objectClassConstraint textedit:Page.
 
-textedit:hasPageNumberIndicatorValue
- 	a owl:ObjectProperty;
-	rdfs:label "has page number indicator - statement"@en, "hat Seitenummerindikator - Festlegung"@de;
-	rdfs:comment "Relating a scientific edition to a reification statement of the relation between the edition and a page number indicator it has."@en;
-	rdfs:subPropertyOf textedit:hasEditorialSymbolValue;
-	knora-base:subjectClassConstraint textedit:ScientificEdition;
+textedit:isEditorialSymbolOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is editorial symbol of - statement"@en, "ist editorisches Zeichen von - Festlegung"@de;
+	rdfs:comment """Relating an editorial symbol to a reification statement of the relation between the symbol and its scientific edition page."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint textedit:EditorialSymbol;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-textedit:hasColumnIndicator
+textedit:isPageIndicatorOf
 	a owl:ObjectProperty;
-	rdfs:label "has column indicator"@en, "hat Spalteindikator"@de;
-	rdfs:comment """Relating a scientific edition to a column indicator it has."""@en;
-	rdfs:subPropertyOf textedit:hasEditorialSymbol;
-	knora-base:subjectClassConstraint textedit:ScientificEdition;
-	knora-base:objectClassConstraint textedit:ColumnIndicator.
+	rdfs:label "is page indicator of"@en, "ist Seiteindikator von"@de;
+	rdfs:comment """Relating a page indicator to its scientific edition page."""@en;
+	rdfs:domain textedit:PageIndicator;
+	rdfs:range textedit:Page;
+	rdfs:subPropertyOf textedit:isEditorialSymbolOf;
+	knora-base:subjectClassConstraint textedit:PageIndicator;
+	knora-base:objectClassConstraint textedit:Page.
 
-textedit:hasColumnIndicatorValue
- 	a owl:ObjectProperty;
-	rdfs:label "has column indicator - statement"@en, "hat Spalteindikator - Festlegung"@de;
-	rdfs:comment "Relating a scientific edition to a reification statement of the relation between the edition and a column indicator it has."@en;
-	rdfs:subPropertyOf textedit:hasEditorialSymbolValue;
-	knora-base:subjectClassConstraint textedit:ScientificEdition;
+textedit:isPageIndicatorOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is page indicator of - statement"@en, "ist Seiteindikator von - Festlegung"@de;
+	rdfs:comment "Relating a page indicator to a reification statement of the relation between the page indicator and its scientific edition page."@en;
+	rdfs:subPropertyOf textedit:isEditorialSymbolOfValue;
+	knora-base:subjectClassConstraint textedit:PageIndicator;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:isPageNumberIndicatorOf
+	a owl:ObjectProperty;
+	rdfs:label "is page number indicator of"@en, "ist Seitenummerindikator von"@de;
+	rdfs:comment """Relating a page indicator to its scientific edition page."""@en;
+	rdfs:domain textedit:PageNumberIndicator;
+	rdfs:range textedit:Page;
+	rdfs:subPropertyOf textedit:isEditorialSymbolOf;
+	knora-base:subjectClassConstraint textedit:PageNumberIndicator;
+	knora-base:objectClassConstraint textedit:Page.
+
+textedit:isPageNumberIndicatorOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is page number indicator of - statement"@en, "ist Seitenummerindikator von - Festlegung"@de;
+	rdfs:comment "Relating a page number indicator to a reification statement of the relation between the page number indicator and its scientific edition page."@en;
+	rdfs:subPropertyOf textedit:isEditorialSymbolOfValue;
+	knora-base:subjectClassConstraint textedit:PageNumberIndicator;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:isColumnIndicatorOf
+	a owl:ObjectProperty;
+	rdfs:label "is column indicator of"@en, "ist Spalteindikator von"@de;
+	rdfs:comment """Relating a column indicator to its scientific edition page."""@en;
+	rdfs:domain textedit:ColumnIndicator;
+	rdfs:range textedit:Page;
+	rdfs:subPropertyOf textedit:isEditorialSymbolOf;
+	knora-base:subjectClassConstraint textedit:ColumnIndicator;
+	knora-base:objectClassConstraint textedit:Page.
+
+textedit:isColumnIndicatorOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is column indicator of - statement"@en, "ist Spalteindikator von - Festlegung"@de;
+	rdfs:comment "Relating a column indicator to a reification statement of the relation between the column indicator and its scientific edition page."@en;
+	rdfs:subPropertyOf textedit:isEditorialSymbolOfValue;
+	knora-base:subjectClassConstraint textedit:ColumnIndicator;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 textedit:hasDiplomaticTranscription
