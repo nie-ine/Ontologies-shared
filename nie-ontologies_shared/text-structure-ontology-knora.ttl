@@ -307,7 +307,7 @@ text-structure:VerseSectionNumber
 text-structure:StrictVerse
 	a owl:Class;
 	rdfs:label "strict verse"@en, "strikte Vers"@de; #°
-	rdfs:comment """Verse with recurring metrical entity."""@en;
+	rdfs:comment """Verse with a recurring metrical entity."""@en;
 	rdfs:subClassOf text-structure:Verse. #, [
 #		a owl:Restriction; owl:onProperty text-structure:hasMetric; owl:someValuesFrom text-structure:Metric], [ 
 #		a owl:Restriction; owl:onProperty text-structure:hasMetric; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -324,7 +324,7 @@ text-structure:Meter
 text-structure:FreeVerse
 	a owl:Class;
 	rdfs:label "free verse"@en, "freie Vers"@de;
-	rdfs:comment """Verse without a fixed prosody."""@en; #°
+	rdfs:comment """Verse without a recurring metrical entity."""@en;
 	rdfs:subClassOf text-structure:ProsodicStructure.
 
 text-structure:Rhyme
