@@ -164,12 +164,6 @@ publish:PolyAuthorPublication
 	rdfs:comment """Publication of different expressions by different authors."""@en;
 	rdfs:subClassOf publish:Publication.
 
-# publish:DependentPublicationExpression # to be discussed
-#	a owl:Class;
-#	rdfs:label "dependent publication expression"@en, "abhängige Publikation-Expression"@de;
-#	rdfs:comment """Expression published together with other expressions by other authors."""@en;
-#	rdfs:subClassOf publish:Expression.
-
 publish:FirstPublication
 	a owl:Class;
 	rdfs:label "first publication"@en, "Erstausgabe"@de;
