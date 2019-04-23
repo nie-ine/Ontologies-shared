@@ -29,6 +29,7 @@
 	dct:contributor "Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 #	rdfs:seeAlso <https://files.ifi.uzh.ch/cl/siclemat/lehre/hs09/ecl1/script/html/script.html>;
+#	rdfs:seeAlso <http://home.uni-leipzig.de/burr/Verb/htm/LinkedDocuments/annotate.pdf>;
 
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
@@ -39,206 +40,771 @@
 # morphology syntax
 # morphology semantics
 
-# lingmor:WordForm
 
-lingmor:SyntacticWord # -> morph -> morpheme
+lingmor:WordForm # -> morph -> morpheme
 	a owl:Class;
-	rdfs:label "syntactic word"@en, "syntaktisches Wort"@de;
-	rdfs:comment """."""@en;
+	rdfs:label "word form"@en, "Wortform"@de;
+	rdfs:comment """Combination of the literal of a word with the morphosyntactic features."""@en;
 	rdfs:subClassOf ling:Concept, concept:SymbolicConcept, [
-#		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty ling:hasLanguage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasSyntacticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasSyntacticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty ling:hasLanguage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasLexeme; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasLexemeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-# type: unifies different identical literals (surface forms?)
-
-lingmor:Morph
-	a owl:Class;
-	rdfs:label "morph"@en, "Morph"@de;
-	rdfs:comment """Linguistic concept as the smallest entity in human natural language with a grammatical function, as free or bound."""@en;
-	rdfs:subClassOf ling:Concept.
-
-# morpheme: no content, just label
-
-lingmor:Root
-	a owl:Class;
-	rdfs:label "root morph"@en, "Morph"@de; #°
-	rdfs:comment """Individual or free morph with own semantics."""@en;
-	rdfs:subClassOf lingmor:Morph.
-
-lingmor:Affix
-	a owl:Class;
-	rdfs:label "affix"@en, "Affix"@de;
-	rdfs:comment """Bound morph without own semantics, depending on a free morph; part of a word."""@en;
-	rdfs:subClassOf lingmor:Morph. #, [
-#		a owl:Restriction; owl:onProperty lingmor:dependsOn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty lingmor:dependsOnValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-lingmor:SyntacticGender
-	a owl:Class;
-	rdfs:label "syntactic gender"@en, "syntactisches Genus"@de;
-	rdfs:comment """Syntactic gender form of a word."""@en;
-	rdfs:subClassOf ling:Concept.
-#	owl:oneOf (lingmor:masculine lingmor:feminine lingmor:neuter). # instances
-
-lingmor:Case
-	a owl:Class;
-	rdfs:label "case"@en, "Kasus"@de;
-	rdfs:comment """Case form of a word."""@en;
-	rdfs:subClassOf ling:Concept.
-
-lingmor:GermanCase
-	a owl:Class;
-	rdfs:label "German case"@en, "deutscher Kasus"@de;
-	rdfs:comment """German case form of a word."""@en;
-	rdfs:subClassOf lingmor:Case.
-#	owl:oneOf (lingmor:nominative lingmor:accusative lingmor:dativ lingmor:genitive). # instances
-
-lingmor:Number
-	a owl:Class;
-	rdfs:label "number"@en, "Numerus"@de;
-	rdfs:comment """Number form of a word."""@en;
-	rdfs:subClassOf ling:Concept.
-#	owl:oneOf (lingmor:singular lingmor:plural). # instances
+		a owl:Restriction; owl:onProperty lingmor:hasLexemeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasDegree; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasDegreeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasDerivationType; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasDerivationTypeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasPerson; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasPersonValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasStemType; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasStemTypeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasTense; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasTenseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalMood; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalMoodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalVoice; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalVoiceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ].
 
 lingmor:Lexeme
 	a owl:Class;
 	rdfs:label "lexeme"@en, "Lexem"@de;
-	rdfs:comment """Linguistic concept as individual semantic entity in human natural language."""@en;
-	rdfs:subClassOf ling:Concept, concept:SymbolicConcept, [
-		a owl:Restriction; owl:onProperty lingmor:hasSemanticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasSemanticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasLemma; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasLemmaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:comment """Collection of the wordforms that differ only in their morphosyntactic features."""@en;
+	rdfs:subClassOf ling:Concept, ling:SymbolicConcept, [
+		a owl:Restriction; owl:onProperty lingmor:hasLemma; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasPartOfSpeech; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasPartOfSpeechValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ].
 
-lingmor:SemanticGender
+lingmor:PartOfSpeech
 	a owl:Class;
-	rdfs:label "semantic gender"@en, "semantisches Genus"@de;
-	rdfs:comment """Semantic gender of a lexeme."""@en;
+	rdfs:label "part of speech"@en, "Wortart"@de;
+	rdfs:comment """Word with certain grammatical properties."""@en;
+	rdfs:subClassOf ling:Concept, [
+		a owl:Restriction; owl:onProperty lingmor:hasTag; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasSubTypeTag; owl:minCardinality "0"^^xsd:nonNegativeInteger ].
+
+lingmor:Noun
+	a owl:Class;
+	# EAGLES: Noun
+	rdfs:label "noun"@en, "Substantiv"@de;
+	rdfs:comment """Part of speech representing classes or instances."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+#	owl:sameAs gold:Noun.
+	
+lingmor:CommonNoun
+	a owl:Class;
+	# EAGLES: Noun: Common
+	rdfs:label "common noun"@en, "Substantiv"@de;
+	rdfs:comment """Part of speech representing a class."""@en;
+	rdfs:subClassOf lingmor:Noun.
+	
+lingmor:ProperNoun
+	a owl:Class;
+	# EAGLES: Noun: Proper
+	rdfs:label "proper noun"@en, "Name"@de;
+	rdfs:comment """Part of speech representing an instance."""@en;
+	rdfs:subClassOf lingmor:Noun.
+	
+lingmor:Verb
+	a owl:Class;
+	#  EAGLES: Verb
+	rdfs:label "verb"@en, "Verb"@de;
+	rdfs:comment """Part of speech governing sentences and linking subjects and objects."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:Adjective
+	a owl:Class;
+	#  EAGLES: Adjective 
+	rdfs:label "adjective"@en, "Adjektiv"@de;
+	rdfs:comment """Part of speech describing objects."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Pronoun
+	a owl:Class;
+	#  EAGLES: Pronoun/Determiner 
+	rdfs:label "pronoun/determiner"@en, "Pronomen/Begleiter"@de;
+	rdfs:comment """Part of speech quantifying or replacing objects."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:Article
+	a owl:Class;
+	#  EAGLES: Article 
+	rdfs:label "article"@en, "Artikel"@de;
+	rdfs:comment """Part of speech indicating if an object is known or newly introduced."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:DefiniteArticle
+	a owl:Class;
+	#  EAGLES: Article: Definite
+	rdfs:label "definite article"@en, "bestimmter Artikel"@de;
+	rdfs:comment """Part of speech indicating if an object is known introduced."""@en;
+	rdfs:subClassOf lingmor:Article.
+	
+lingmor:IndefiniteArticle
+	a owl:Class;
+	#  EAGLES: Article: Indefinite
+	rdfs:label "indefinite article"@en, "unbestimmter Artikel"@de;
+	rdfs:comment """Part of speech indicating if an object is newly introduced."""@en;
+	rdfs:subClassOf lingmor:Article.
+
+lingmor:Adverb
+	a owl:Class;
+	#  EAGLES: Adverb 
+	rdfs:label "adverb"@en, "Adverb"@de;
+	rdfs:comment """Part of speech describing actions."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Adposition
+	a owl:Class;
+	#  EAGLES: Adposition 
+	rdfs:label "adposition"@en, "Adposition"@de;
+	rdfs:comment """Part of speech indicating relationship to objects."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Preposition
+	a owl:Class;
+	#  EAGLES: Adposition: Preposition
+	rdfs:label "preposition"@en, "Präposition"@de;
+	rdfs:comment """Part of speech indicating relationship to objects, standing before objects."""@en;
+	rdfs:subClassOf lingmor:Adposition.
+	
+lingmor:Postposition
+	a owl:Class;
+	#  EAGLES: Adposition: Postposition
+	rdfs:label "postposition"@en, "Postposition"@de;
+	rdfs:comment """Part of speech indicating relationship to objects, standing after objects."""@en;
+	rdfs:subClassOf lingmor:Adposition.
+	
+lingmor:Conjunction
+	a owl:Class;
+	#  EAGLES: Conjunction 
+	rdfs:label "conjunction"@en, "Konjunktion"@de;
+	rdfs:comment """Part of speech that links syntactic entities."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:CoordinatingConjunction
+	a owl:Class;
+	#  EAGLES: Conjunction: Coordinating
+	rdfs:label "coordinating conjunction"@en, "nebenordnende Konjunktion"@de;
+	rdfs:comment """Part of speech that links syntactic entities on the same level."""@en;
+	rdfs:subClassOf lingmor:Conjunction.
+	
+lingmor:SubordinatingConjunction
+	a owl:Class;
+	#  EAGLES: Conjunction: Subordinating 
+	rdfs:label "subordinating conjunction"@en, "unterordnende Konjunktion, Subjunktion"@de;
+	rdfs:comment """Part of speech that orders one syntactic entity under another."""@en;
+	rdfs:subClassOf lingmor:Conjunction.
+	
+lingmor:Numeral
+	a owl:Class;
+	# EAGLES: Interjection
+	rdfs:label "numeral"@en, "Numerale"@de;
+	rdfs:comment """Part of speech designating a number."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:CardinalNumeral
+	a owl:Class;
+	#  EAGLES: Numeral: Cardinal 
+	rdfs:label "cardinal numeral"@en, "Kardinalzahl"@de;
+	rdfs:comment """Part of speech describing numbers as a measure."""@en;
+	rdfs:subClassOf lingmor:Numeral.
+	
+lingmor:OrdinalNumeral
+	a owl:Class;
+	#  EAGLES: Numeral: Ordinal 
+	rdfs:label "ordinal numeral"@en, "Ordinalzahl"@de;
+	rdfs:comment """Part of speech describing numbers as an order."""@en;
+	rdfs:subClassOf lingmor:Numeral.
+	
+lingmor:Interjection
+	a owl:Class;
+	# EAGLES: Interjection
+	rdfs:label "interjection"@en, "Interjektion"@de;
+	rdfs:comment """Part of speech designating a spontaneous feeling or reaction."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:NegativeParticle
+	a owl:Class;
+	# EAGLES: Unique/unassigned
+	rdfs:label "negative particle"@en, "Negationspartikel"@de;
+	rdfs:comment """Part of speech designating non traditionally accepted parts of speech with strong grammatical function."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:ExistentialParticle
+	a owl:Class;
+	# EAGLES: Unique/unassigned
+	rdfs:label "existential particle"@en, "..."@de;
+	rdfs:comment """Part of speech designating non traditionally accepted parts of speech with strong grammatical function."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:InfinitiveMarker
+	a owl:Class;
+	# EAGLES: Unique/unassigned
+	rdfs:label "infinitive marker"@en, "Infinitivpartikel"@de;
+	rdfs:comment """Part of speech designating non traditionally accepted parts of speech with strong grammatical function."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Residual
+	a owl:Class;
+	# EAGLES: Residual
+	rdfs:label "residual"@en, "Residual"@de;
+	rdfs:comment """Part of speech outside of the traditionally accepted range."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Punctuation
+	a owl:Class;
+	# EAGLES: Residual
+	rdfs:label "punctuation"@en, "Interpunktion"@de;
+	rdfs:comment """Part of speech describing the non letter or number based parts of a sentence."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+
+lingmor:MorphologicalCategory
+	a owl:Class;
+	rdfs:label "morphological category"@en, "morphologische Kategorie"@de;
+	rdfs:comment """Category in morphology that identifies the difference between word forms."""@en;
 	rdfs:subClassOf ling:Concept.
-#	owl:oneOf (lingmor:masculine lingmor:feminine lingmor:neuter). # instances
 
-lingmor:Lemma
+lingmor:Degree
 	a owl:Class;
-	rdfs:label "lemma"@en, "Lemma"@de;
+	rdfs:label "comparison degree"@en, "Komparationsstufe"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:MorphologicalCategory.
+
+lingmor:Positive
+	a owl:Class;
+	rdfs:label "positive"@en, "Positiv"@de;
+	rdfs:comment """Base degree of adjective comparison."""@en;
+	rdfs:subClassOf lingmor:Degree.
+	
+lingmor:Comparative
+	a owl:Class;
+	rdfs:label "comparative"@en, "Komparativ"@de;
+	rdfs:comment """Degree of adjective comparison that sets two or more entities into relation."""@en;
+	rdfs:subClassOf lingmor:Degree.
+	
+lingmor:Superlative
+	a owl:Class;
+	rdfs:label "superlative"@en, "Superlativ"@de;
+	rdfs:comment """Degree of adjective comparison that lies at the end of the scale."""@en;
+	rdfs:subClassOf lingmor:Degree.
+	
+lingmor:VerbalVoice
+	a owl:Class;
+	rdfs:label "verbal voice"@en, "Diathese"@de;
+	rdfs:comment """Property of verb forms that specifies the roles of the dependent entities."""@en;
+	rdfs:subClassOf lingmor:MorphologicalCategory.
+#	owl:sameAs gold:VoiceProperty.
+
+lingmor:ActiveVoice
+	a owl:Class;
+	rdfs:label "active voice"@en, "aktiv"@de;
+	rdfs:comment """Voice that (prototypically) sets the subject as the agent."""@en;
+	rdfs:subClassOf lingmor:VerbalVoice.
+#	owl:sameAs gold:ActiveVoice.
+	
+lingmor:PassiveVoice
+	a owl:Class;
+	rdfs:label "passive voice"@en, "passiv"@de;
+	rdfs:comment """Voice that (prototypically) sets the subject as the patient."""@en;
+	rdfs:subClassOf lingmor:VerbalVoice.
+#	owl:sameAs gold:PassiveVoice.
+	
+lingmor:MedialVoice
+	a owl:Class;
+	rdfs:label "medial voice"@en, "medial"@de;
 	rdfs:comment """."""@en;
-	rdfs:subClassOf ling:Concept, concept:SymbolicConcept.
+	rdfs:subClassOf lingmor:VerbalVoice.
+	
+lingmor:StaticVoice
+	a owl:Class;
+	rdfs:label "static voice"@en, "statisch"@de;
+	rdfs:comment """."""@en;
+	rdfs:subClassOf lingmor:VerbalVoice.
+
+lingmor:GrammaticalGender
+	a owl:Class;
+	rdfs:label "grammatical gender"@en, "grammatisches Geschlecht"@de;
+	rdfs:comment """Inflection class of nouns that loosely follows gender."""@en;
+	rdfs:subClassOf lingmor:MorphologicalCategory.
+#	owl:sameAs gold:GenderProperty.
+
+lingmor:MasculineGrammaticalGender
+	a owl:Class;
+	rdfs:label "male"@en, "Maskulinum"@de;
+	rdfs:comment """Masculine grammatical gender of e.g. Indoeuropean and Semitic languages."""@en;
+	rdfs:subClassOf lingmor:GrammaticalGender.
+#	owl:sameAs gold:MasculineGender.
+	
+lingmor:FeminineGrammaticalGender
+	a owl:Class;
+	rdfs:label "feminine"@en, "Femininum"@de;
+	rdfs:comment """Feminine grammatical gender of e.g. Indeuropean and Semitic languages."""@en;
+	rdfs:subClassOf lingmor:GrammaticalGender.
+#	owl:sameAs gold:FeminineGender.
+	
+lingmor:NeuterGrammaticalGender
+	a owl:Class;
+	rdfs:label "neuter"@en, "Neutrum"@de;
+	rdfs:comment """Neutral grammatical gender of Indoeuropean languages."""@en;
+	rdfs:subClassOf lingmor:GrammaticalGender.
+#	owl:sameAs gold:NeuterGender.
+	
+
+lingmor:Case
+	a owl:Class;
+	rdfs:label "grammatical case"@en, "Kasus"@de;
+	rdfs:comment """Declension patterns of nouns and pronouns following semantic roles."""@en;
+	rdfs:subClassOf lingmor:MorphologicalCategory.
+#	owl:sameAs gold:CaseProperty.
+
+lingmor:AblativeCase
+	a owl:Class;
+	rdfs:label "ablative case"@en, "Ablativ"@de;
+	rdfs:comment """Grammatical case specifying a separation."""@en;
+	rdfs:subClassOf lingmor:Case.
+#	owl:sameAs gold:AblativeCase.
+	
+lingmor:AccusativeCase
+	a owl:Class;
+	rdfs:label "accusative case"@en, "Akkusativ"@de;
+	rdfs:comment """Grammatical case for objects in accusative languages."""@en;
+	rdfs:subClassOf lingmor:Case.
+#	owl:sameAs gold:AccusativeCase.
+	
+lingmor:DativeCase
+	a owl:Class;
+	rdfs:label "dative case"@en, "Dativ"@de;
+	rdfs:comment """Grammatical case for indirect objects."""@en;
+	rdfs:subClassOf lingmor:Case.
+#	owl:sameAs gold:DativeCase.
+
+lingmor:GenitiveCase
+	a owl:Class;
+	rdfs:label "genitive case"@en, "Genitiv"@de;
+	rdfs:comment """Grammatical case indicating possession and similar relations."""@en;
+	rdfs:subClassOf lingmor:Case.
+#	owl:sameAs gold:GenitiveCase.
+	
+lingmor:InstrumentalCase
+	a owl:Class;
+	rdfs:label "instrumental case"@en, "Instrumental"@de;
+	rdfs:comment """Grammatical case indicating an instrument or a tool for an action."""@en;
+	rdfs:subClassOf lingmor:Case.
+#	owl:sameAs gold:InstrumentalCase.
+	
+lingmor:LocativeCase
+	a owl:Class;
+	rdfs:label "locative case"@en, "Lokativ"@de;
+	rdfs:comment """Grammatical case indicating a position."""@en;
+	rdfs:subClassOf lingmor:Case.
+#	owl:sameAs gold:LocativeCase.
+
+lingmor:NomintativeCase
+	a owl:Class;
+	rdfs:label "nominative case"@en, "Nominative"@de;
+	rdfs:comment """Grammatical case indicating the agent in accusative languages."""@en;
+	rdfs:subClassOf lingmor:Case.
+#	owl:sameAs gold:NominativeCase.
+	
+lingmor:VocativeCase
+	a owl:Class;
+	rdfs:label "vocative case"@en, "Vokativ"@de;
+	rdfs:comment """Case like form of nouns used to address people."""@en;
+	rdfs:subClassOf lingmor:Case.
+#	owl:sameAs gold:VocativeCase.
+
+lingmor:VerbalMood
+	a owl:Class;
+	rdfs:label "verbal mood"@en, "verbaler Modus"@de;
+	rdfs:comment """Property of verbs indicating real or hypothetic utterances."""@en;
+	rdfs:subClassOf lingmor:MorphologicalCategory.
+
+lingmor:ConditionalMood
+	a owl:Class;
+	rdfs:label "conditional mood"@en, "Konditional"@de;
+	rdfs:comment """Verbal mood expressiong conditions."""@en;
+	rdfs:subClassOf lingmor:VerbalMood.
+	
+lingmor:ImperativeMood
+	a owl:Class;
+	rdfs:label "imperative mood"@en, "Imperativ"@de;
+	rdfs:comment """Verbal mood expressing orders."""@en;
+	rdfs:subClassOf lingmor:VerbalMood.
+	
+lingmor:IndicativeMood
+	a owl:Class;
+	rdfs:label "indicative mood"@en, "Indikativ"@de;
+	rdfs:comment """Verbal mood for stating facts."""@en;
+	rdfs:subClassOf lingmor:VerbalMood.	
+	
+lingmor:InjuncitveMood
+	a owl:Class;
+	rdfs:label "injunctive mood"@en, "Injunktiv"@de;
+	rdfs:comment """Verbal mood ... ."""@en;
+	rdfs:subClassOf lingmor:VerbalMood.
+
+lingmor:OptativeMood
+	a owl:Class;
+	rdfs:label "optative mood"@en, "Optativ"@de;
+	rdfs:comment """Verbal mood indicating wishes."""@en;
+	rdfs:subClassOf lingmor:VerbalMood.
+	
+lingmor:PrecativeMood
+	a owl:Class;
+	rdfs:label "precative mood"@en, "Präkativ"@de;
+	rdfs:comment """Verbal mood ... ."""@en;
+	rdfs:subClassOf lingmor:VerbalMood.
+	
+lingmor:SubjunctiveMood
+	a owl:Class;
+	rdfs:label "subjunctive mood"@en, "Subjunktiv"@de;
+	rdfs:comment """Verbal mood ... ."""@en;
+	rdfs:subClassOf lingmor:VerbalMood.
+
+lingmor:Number
+	a owl:Class;
+	rdfs:label "number"@en, "Numerus"@de;
+	rdfs:comment """Number as a syntactic property."""@en;
+	rdfs:subClassOf lingmor:MorphologicalCategory.
+#	owl:sameAs gold:NumberProperty.
+
+lingmor:SingularNumber
+	a owl:Class;
+	rdfs:label "singular"@en, "Singular"@de;
+	rdfs:comment """Singular number as syntactic value."""@en;
+	rdfs:subClassOf lingmor:Number.
+#	owl:sameAs gold:SingularNumber.
+
+lingmor:DualNumber
+	a owl:Class;
+	rdfs:label "dual"@en, "Dual"@de;
+	rdfs:comment """Syntactic number for two."""@en;
+	rdfs:subClassOf lingmor:Number.
+#	owl:sameAs gold:DualNumber.
+	
+lingmor:PluralNumber
+	a owl:Class;
+	rdfs:label "plural"@en, "Plural"@de;
+	rdfs:comment """Plural number as syntactic value."""@en;
+	rdfs:subClassOf lingmor:Number.
+#	owl:sameAs gold:PluralNumber.
+
+lingmor:Person
+	a owl:Class;
+	rdfs:label "person"@en, "Person"@de;
+	rdfs:comment """Property indicating the relation between an entity in an utterance and the speaker."""@en;
+	rdfs:subClassOf lingmor:MorphologicalCategory.
+#	owl:sameAs gold:PersonProperty.
+
+lingmor:FirstPerson
+	a owl:Class;
+	rdfs:label "1st person"@en, "1. Person"@de;
+	rdfs:comment """Mentioned entitiy overlaps with speaker."""@en;
+	rdfs:subClassOf lingmor:Person.
+#	owl:sameAs gold:FirstPerson.
+	
+lingmor:SecondPerson
+	a owl:Class;
+	rdfs:label "2nd person"@en, "2. Person"@de;
+	rdfs:comment """Mentioned entity overlaps with listener."""@en;
+	rdfs:subClassOf lingmor:Person.
+#	owl:sameAs gold:SecondPerson.
+	
+lingmor:ThirdPerson
+	a owl:Class;
+	rdfs:label "3rd person"@en, "3. Person"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:Person.
+#	owl:sameAs gold:ThirdPerson.
+	
+lingmor:StemType
+	a owl:Class;
+	rdfs:label "stem type"@en, "Stammtyp"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:MorphologicalCategory.
+
+lingmor:Causative
+	a owl:Class;
+	rdfs:label "causative"@en, "Kausativ"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:StemType.
+	
+lingmor:Denominative
+	a owl:Class;
+	rdfs:label "denominative"@en, "Denominativ"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:StemType.
+
+lingmor:Desiderative
+	a owl:Class;
+	rdfs:label "desiderative"@en, "Desiderativ"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:StemType.
+
+lingmor:Intensive
+	a owl:Class;
+	rdfs:label "intensive"@en, "Intensiv"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:StemType.
+
+lingmor:Passive
+	a owl:Class;
+	rdfs:label "passive"@en, "Passiv"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:StemType.
+
+lingmor:Tense
+	a owl:Class;
+	rdfs:label "tense"@en, "Tempus"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:MorphologicalCategory.
+#	owl:sameAs gold:TenseProperty.
+
+lingmor:Aorist
+	a owl:Class;
+	rdfs:label "aorist"@en, "Aorist"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:Tense.
+
+lingmor:Future
+	a owl:Class;
+	rdfs:label "future"@en, "Futur"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:Tense.
+#	owl:sameAs gold:FutureTense.
+
+lingmor:Imperfect
+	a owl:Class;
+	rdfs:label "imperfect"@en, "Imperfekt"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:Tense.
+
+lingmor:Perfect
+	a owl:Class;
+	rdfs:label "perfect"@en, "Perfekt"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:Tense.
+#	owl:sameAs gold:PerfectTense.
+
+lingmor:Pluperfect
+	a owl:Class;
+	rdfs:label "pluperfect"@en, "Plusquamperfekt"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:Tense.
+#	owl:sameAs gold:PastInPastTense .
+
+lingmor:Present
+	a owl:Class;
+	rdfs:label "present"@en, "Präsens"@de;
+	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:subClassOf lingmor:Tense.
+#	owl:sameAs gold:PresentTense.
 
 #
 # PROPERTIES
 #
 
-lingmor:hasSyntacticWord
+lingmor:hasDegree
 	a owl:ObjectProperty;
-	rdfs:label "has syntactic word"@en, "hat syntaktisches Wort"@de;
-	rdfs:comment """Relating a token to a syntactic word."""@en;
-	rdfs:domain ling:Token;
-	rdfs:range lingmor:SyntacticWord;
+	rdfs:label "has degree"@en, "hat Komparationsstufe"@de;
+	rdfs:comment """Relating a wordform to a comparison degree."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range lingmor:Degree;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint ling:Token;
-	knora-base:objectClassConstraint lingmor:SyntacticWord.
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint lingmor:Degree.
 
-lingmor:hasSyntacticWordValue
+lingmor:hasDegreeValue
 	a owl:ObjectProperty;
-	rdfs:label "has syntactic word - statement"@en, "hat syntaktisches Wort - Festlegung"@de;
-	rdfs:comment """Relating a token to a reification statement of the relation between the token and a syntactic word."""@en;
+	rdfs:label "has degree - statement"@en, "hat Komparationsstufe - Festlegung"@de;
+	rdfs:comment """Relating a wordform to a comparison degree - reification."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint ling:Token;
+	knora-base:subjectClassConstraint lingmor:WordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-lingmor:hasSyntacticGender
+lingmor:hasVerbalVoice
 	a owl:ObjectProperty;
-	rdfs:label "has syntactic gender"@en, "hat syntactisches Genus"@de;
-	rdfs:comment """Relating a syntactic word to its syntactic gender."""@en;
-	rdfs:domain lingmor:SyntacticWord;
-	rdfs:range lingmor:SyntacticGender;
+	rdfs:label "has verbal voice"@en, "hat Diathese"@de;
+	rdfs:comment """Relating a verbform to a voice."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range lingmor:VerbalVoice;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint lingmor:SyntacticWord;
-	knora-base:objectClassConstraint lingmor:SyntacticGender.
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint lingmor:VerbalVoice.
 
-lingmor:hasSyntacticGenderValue
+lingmor:hasVerbalVoiceValue
 	a owl:ObjectProperty;
-	rdfs:label "has syntactic gender - statement"@en, "hat syntactisches Genus - Festlegung"@de;
-	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its syntactic gender."""@en;
+	rdfs:label "has verbal voice - statement"@en, "hat Diathese - Festlegung"@de;
+	rdfs:comment """Relating a verbform to a voice - reification."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint knora-base:LinkVAlue.
+
+lingmor:hasGrammaticalGender
+	a owl:ObjectProperty;
+	rdfs:label "has grammatical gender"@en, "hat grammatisches Geschlecht"@de;
+	rdfs:comment """Relating a wordform to a grammatical gender."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range lingmor:GrammaticalGender;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint lingmor:GrammaticalGender.
+
+lingmor:hasGrammaticalGenderValue
+	a owl:ObjectProperty;
+	rdfs:label "has grammatical gender - statement"@en, "hat grammatisches Geschlecht - Festlegung"@de;
+	rdfs:comment """Relating a wordform to a grammatical gender - reification."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:WordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 lingmor:hasCase
 	a owl:ObjectProperty;
-	rdfs:label "has case"@en, "hat Kasus"@de;
-	rdfs:comment """Relating a syntactic word to a case."""@en;
-	rdfs:domain lingmor:SyntacticWord;
+	rdfs:label "has grammatical case"@en, "hat Kasus"@de;
+	rdfs:comment """Relating a wordform to a grammatical case."""@en;
+	rdfs:domain lingmor:WordForm;
 	rdfs:range lingmor:Case;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:WordForm;
 	knora-base:objectClassConstraint lingmor:Case.
 
 lingmor:hasCaseValue
 	a owl:ObjectProperty;
-	rdfs:label "has case - statement"@en, "hat Kasus - Festlegung"@de;
-	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and a case."""@en;
+	rdfs:label "has grammatical case - statement"@en, "hat Kasus - Festlegung"@de;
+	rdfs:comment """Relating a wordform to a grammatical case - reification."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasVerbalMood
+	a owl:ObjectProperty;
+	rdfs:label "has verbal mode"@en, "hat Modus"@de;
+	rdfs:comment """Relating a verbform to mood."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range lingmor:VerbalMood;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint lingmor:VerbalMood.
+
+lingmor:hasVerbalMoodValue
+	a owl:ObjectProperty;
+	rdfs:label "has verbal mode - statement"@en, "hat Modus - Festlegung"@de;
+	rdfs:comment """Relating a verbform to mood - reification."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:WordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 lingmor:hasNumber
 	a owl:ObjectProperty;
-	rdfs:label "syntactic word has number"@en, "syntactisches Wort hat Numerus"@de;
-	rdfs:comment """Relating a syntactic word to its number."""@en;
-	rdfs:domain lingmor:SyntacticWord;
+	rdfs:label "has number"@en, "hat Zahl"@de;
+	rdfs:comment """Relating a wordform to number."""@en;
+	rdfs:domain lingmor:WordForm;
 	rdfs:range lingmor:Number;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:WordForm;
 	knora-base:objectClassConstraint lingmor:Number.
 
 lingmor:hasNumberValue
 	a owl:ObjectProperty;
-	rdfs:label "syntactic word has number - statement"@en, "syntactisches Wort hat Numerus - Festlegung"@de;
-	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its number."""@en;
+	rdfs:label "has number - statement"@en, "hat Zahl - Festlegung"@de;
+	rdfs:comment """Relating a wordform to number - reification."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasPerson
+	a owl:ObjectProperty;
+	rdfs:label "has person"@en, "hat Person"@de;
+	rdfs:comment """Relating a wordform to a person property."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range lingmor:Person;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint lingmor:Person.
+
+lingmor:hasPersonValue
+	a owl:ObjectProperty;
+	rdfs:label "has person - statement"@en, "hat Person - Festlegung"@de;
+	rdfs:comment """Relating a wordform to a person property - reification."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasStemType
+	a owl:ObjectProperty;
+	rdfs:label "has stem type"@en, "hat Stammtyp"@de;
+	rdfs:comment """Relating a wordform to information about derivation."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range lingmor:StemType;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint lingmor:StemType.
+
+lingmor:hasStemTypeValue
+	a owl:ObjectProperty;
+	rdfs:label "has stem type - statement"@en, "hat Stammtyp - Festlegung"@de;
+	rdfs:comment """Relating a wordform to information about derivation - reification."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasTense
+	a owl:ObjectProperty;
+	rdfs:label "has tense"@en, "hat Tempus"@de;
+	rdfs:comment """Relating a verbform to tense."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range lingmor:Tense;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint lingmor:Tense.
+
+lingmor:hasTenseValue
+	a owl:ObjectProperty;
+	rdfs:label "has tense - statement"@en, "hat Tempus - Festlegung"@de;
+	rdfs:comment """Relating a verbform to tense - reification."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:WordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 lingmor:hasLexeme
 	a owl:ObjectProperty;
 	rdfs:label "has lexeme"@en, "hat Lexem"@de;
-	rdfs:comment """Relating a syntactic word to its lexeme."""@en;
-	rdfs:domain lingmor:SyntacticWord;
+	rdfs:comment """Relating a wordform to a lexeme."""@en;
+	rdfs:domain lingmor:WordForm;
 	rdfs:range lingmor:Lexeme;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:WordForm;
 	knora-base:objectClassConstraint lingmor:Lexeme.
 
 lingmor:hasLexemeValue
 	a owl:ObjectProperty;
 	rdfs:label "has lexeme - statement"@en, "hat Lexem - Festlegung"@de;
-	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its lexeme."""@en;
+	rdfs:comment """Relating a wordform to a lexeme - reification."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint lingmor:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:WordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-lingmor:hasSemanticGender
+lingmor:hasPartOfSpeech
 	a owl:ObjectProperty;
-	rdfs:label "has semantic gender"@en, "hat semantisches Genus"@de;
-	rdfs:comment """Relating a lexeme to its semantic gender."""@en;
+	rdfs:label "has part of speech"@en, "hat Wortart"@de;
+	rdfs:comment """Relating a lexeme to a part of speech."""@en;
 	rdfs:domain lingmor:Lexeme;
-	rdfs:range lingmor:SemanticGender;
+	rdfs:range lingmor:PartOfSpeech;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:Lexeme;
-	knora-base:objectClassConstraint lingmor:SemanticGender.
+	knora-base:objectClassConstraint lingmor:PartOfSpeech.
 
-lingmor:hasSemanticGenderValue
+lingmor:hasPartOfSpeechValue
 	a owl:ObjectProperty;
-	rdfs:label "has semantic gender - statement"@en, "hat semantisches Genus - Festlegung"@de;
-	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and its semantic gender."""@en;
+	rdfs:label "has part of speech - statement"@en, "hat Wortart - Festlegung"@de;
+	rdfs:comment """Relating a lexeme to a part of speech."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint lingmor:Lexeme;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -246,17 +812,29 @@ lingmor:hasSemanticGenderValue
 lingmor:hasLemma
 	a owl:ObjectProperty;
 	rdfs:label "has lemma"@en, "hat Lemma"@de;
-	rdfs:comment """Relating a lexeme to a lemma."""@en;
+	rdfs:comment """The lemma that names a lexeme."""@en;
 	rdfs:domain lingmor:Lexeme;
-	rdfs:range lingmor:Lemma;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasTitle;
 	knora-base:subjectClassConstraint lingmor:Lexeme;
-	knora-base:objectClassConstraint lingmor:Lemma.
+	knora-base:objectClassConstraint knora-base:TextValue.
 
-lingmor:hasLemmaValue
+lingmor:hasTag
 	a owl:ObjectProperty;
-	rdfs:label "has lemma - statement"@en, "hat Lemma - Festlegung"@de;
-	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and a lemma."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint lingmor:Lexeme;
-	knora-base:objectClassConstraint knora-base:LinkValue.
+	rdfs:label "has tag"@en, "hat Tag"@de;
+	rdfs:comment """Relating a paragraph to its title."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+lingmor:hasSubTypeTag
+	a owl:ObjectProperty;
+	rdfs:label "has subtype tag"@en, "hat Subtyp-Tag"@de;
+	rdfs:comment """ (to simplify adaption of established tagsets)."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint lingmor:WordForm;
+	knora-base:objectClassConstraint knora-base:TextValue.

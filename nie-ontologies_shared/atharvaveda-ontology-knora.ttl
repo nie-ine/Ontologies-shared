@@ -10,6 +10,7 @@
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
+@prefix lingmor: <http://www.knora.org/ontology/shared/linguistic-morphology#>.
 @prefix indo: <http://www.knora.org/ontology/shared/indology#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 @prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.
@@ -94,6 +95,41 @@ athar:ConstitutedEdition #
 #   [ Aa ] denoting manuscripts with a specific meaning
 #   <..> denote wholly or partially lost text, e.g. due to damage suffered by the carrier
 
+athar:SamhitaWord
+	a owl:Class;
+	rdfs:label "Vedic word with sandhi"@en;
+	rdfs:comment """A vedic word that has been identified without dissolving sandhi."""@en;
+	rdfs:subClassOf text-structure:Word, [
+		a owl:Restriction; owl:onProperty athar:normalizedAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:normalizedAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:PadaWord
+	a owl:Class;
+	rdfs:label "Vedic word with all sandhi dissolved"@en;
+	rdfs:comment """A Vedic word that has been identified after dissolving sandhi."""@en;
+	rdfs:subClassOf text-structure:Word, textedit:DerivedTextExpression, [
+		a owl:Restriction; owl:onProperty athar:analyzedAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:analyzedAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:WordForm
+	a owl:Class;
+	rdfs:label "Vedic word with all sandhi dissolved"@en;
+	rdfs:comment """A Vedic word that has been identified after dissolving sandhi."""@en;
+	rdfs:subClassOf lingmor:WordForm, [
+		a owl:Restriction; owl:onProperty athar:wordHasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:wordHasSuffix; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasDerivationType; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasDerivationTypeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasPartOfSpeech; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasPartOfSpeechValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:DerivationType
+	a owl:Class;
+	rdfs:label "Derivation type of a Vedic wordform"@en;
+	rdfs:comment """A derivational class of the Vedic language."""@en;
+	rdfs:subClassOf ling:Concept.
+	
+
 #
 # PROPERTIES
 #
@@ -150,4 +186,96 @@ athar:isVerseOfHalfStropheValue
 	rdfs:comment """Relating an Atharvaveda verse to a reification statement of the relation between the verse and a half-strophe it is part of."""@en;
 	rdfs:subPropertyOf text-structure:isVerseOfHalfStropheValue;
 	knora-base:subjectClassConstraint athar:Verse;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+	
+athar:normalizedAs
+	a owl:ObjectProperty;
+	rdfs:label "has normalization"@en, "hat Normalisierung"@de;
+	rdfs:comment """Relating a samhita word to its correspondent pada words."""@en;
+	rdfs:domain athar:SamhitaWord;
+	rdfs:range athar:PadaWord;
+	rdfs:subPropertyOf textedit:hasDerivedTextExpression;
+	knora-base:subjectClassConstraint athar:SamhitaWord;
+	knora-base:objectClassConstraint athar:PadaWord.
+
+athar:normalizedAsValue
+	a owl:ObjectProperty;
+	rdfs:label "has normalization word - statement"@en, "hat Normalisierung - Festlegung"@de;
+	rdfs:comment """Relating a samhita word to its correspondent pada words."""@en;
+	rdfs:subPropertyOf textedit:hasDerivedTextExpressionValue;
+	knora-base:subjectClassConstraint athar:SamhitaWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+athar:analyzedAs
+	a owl:ObjectProperty;
+	rdfs:label "has morphological analysis"@en, "hat morphologische Analyse"@de;
+	rdfs:comment """Relating a pada word to its morphologic analyisis."""@en;
+	rdfs:domain athar:PadaWord;
+	rdfs:range athar:WordForm;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint athar:PadaWord;
+	knora-base:objectClassConstraint athar:Wordform.
+
+athar:analyzedAsValue
+	a owl:ObjectProperty;
+	rdfs:label "has morphological analysis - statement"@en, "hat morphologische Analyse - Festlegung"@de;
+	rdfs:comment """Relating a pada word to its morphologic analyisis."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint athar:PadaWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+athar:wordHasStem
+	a owl:ObjectProperty;
+	rdfs:label "has stem"@en, "hat Stamm"@de;
+	rdfs:comment """Stem of a wordform."""@en;
+	rdfs:domain athar:WordForm;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint athar:WordForm;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+athar:wordHasSuffix
+	a owl:ObjectProperty;
+	rdfs:label "has suffix"@en, "hat Suffix"@de;
+	rdfs:comment """Suffix of a wordform."""@en;
+	rdfs:domain athar:WordForm;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint athar:WordForm;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+athar:hasPartOfSpeech
+	a owl:ObjectProperty;
+	rdfs:label "has part of speech"@en, "hat Wortart"@de;
+	rdfs:comment """Relating Vedic wordform to its part of speech."""@en;
+	rdfs:domain athar:WordForm;
+	rdfs:range athar:PartOfSpeech;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint athar:WordForm;
+	knora-base:objectClassConstraint lingmor:PartOfSpeech.
+
+athar:hasPartOfSpeechValue
+	a owl:ObjectProperty;
+	rdfs:label "has part of speech - statement"@en, "hat Wortart - Festlegung"@de;
+	rdfs:comment """Relating Vedic wordform to its part of speech."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint athar:Wordform;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+athar:hasDerivationType
+	a owl:ObjectProperty;
+	rdfs:label "has derivation type"@en, "hat Derivationstyp"@de;
+	rdfs:comment """Relating Vedic wordform to its derivation type."""@en;
+	rdfs:domain athar:WordForm;
+	rdfs:range athar:DerivationType;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint athar:WordForm;
+	knora-base:objectClassConstraint athar:DerivationType.
+
+athar:hasDerivationTypeValue
+	a owl:ObjectProperty;
+	rdfs:label "has derivation type - statement"@en, "hat Derivationstyp - Festlegung"@de;
+	rdfs:comment """Relating Vedic wordform to its derivation type."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint athar:Wordform;
 	knora-base:objectClassConstraint knora-base:LinkValue.
