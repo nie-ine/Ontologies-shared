@@ -130,7 +130,49 @@ lingmor:Pronoun
 	rdfs:label "pronoun/determiner"@en, "Pronomen/Begleiter"@de;
 	rdfs:comment """Part of speech quantifying or replacing objects."""@en;
 	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:DemonstrativePronoun
+	a owl:Class;
+	rdfs:label "demonstrative pronoun"@en, "Demonstrativpronomen"@de;
+	rdfs:comment """Pronoun used to point."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+
+lingmor:IndefinitePronoun
+	a owl:Class;
+	rdfs:label "indefinite pronoun"@en, "Indefinitpronomen"@de;
+	rdfs:comment """Pronoun stating undefined entities."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+
+lingmor:InterrogativePronoun
+	a owl:Class;
+	rdfs:label "interrogative pronoun"@en, "Interrogativpronomen"@de;
+	rdfs:comment """Pronoun introducing questions."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
 	
+lingmor:PersonalPronoun
+	a owl:Class;
+	rdfs:label "personal pronoun"@en, "Personalpronomen"@de;
+	rdfs:comment """Pronoun that is declined by person."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+
+lingmor:ReciprocalPronoun
+	a owl:Class;
+	rdfs:label "reciprocal pronoun"@en, "Reziprokpronomen"@de;
+	rdfs:comment """Pronoun that points to a different part of the group that is the subject of the sentence."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+	
+lingmor:ReflexivePronoun
+	a owl:Class;
+	rdfs:label "reflexive pronoun"@en, "Reflexivpronomen"@de;
+	rdfs:comment """Pronoun that points back to the subject of the sentence."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+	
+lingmor:RelativePronoun
+	a owl:Class;
+	rdfs:label "relative pronoun"@en, "Relativpronomen"@de;
+	rdfs:comment """Pronoun that introduces a relative sentence."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+
 lingmor:Article
 	a owl:Class;
 	#  EAGLES: Article 
