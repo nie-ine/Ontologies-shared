@@ -317,7 +317,7 @@ kuno-raeber:PolyAuthorPublication
 	a owl:Class;
 	rdfs:label "Kuno Raeber poly-author publication"@en, "Mehrautorenpublikationen Kuno Raebers"@de;
 	rdfs:comment """Publication with a poem authored by Kuno Raeber among expressions by other authors."""@en;
-	rdfs:subClassOf publish:PolyAuthorPublication, [
+	rdfs:subClassOf publish:PolyAuthorPublication, infocar:ArchiveElement, [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasContentPartInPolyAuthorPublicationConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasContentPartInPolyAuthorPublicationConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
