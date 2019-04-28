@@ -60,6 +60,12 @@ kuno-raeber:PublicationTextPart
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+kuno-raeber:TypewrittenCommentary
+	a owl:Class;
+	rdfs:label "Kuno Raeber typewritten commentary"@en, "maschinengeschriebener Kommentar Kuno Raebers"@de;
+	rdfs:comment """Typewritten commentary authored by Kuno Raeber."""@en;
+	rdfs:subClassOf text:Commentary, text:TypewrittenText, text:Nonfiction, kuno-raeber:Text.
+
 kuno-raeber:Preface
 	a owl:Class;
 	rdfs:label "Kuno Raeber preface"@en, "Vorwort Kuno Raebers"@de;
