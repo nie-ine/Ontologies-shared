@@ -38,6 +38,7 @@ kuno-raeber-gui:Poem
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:isPartOfCycle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasNachlassIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPublishingStateIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasDateIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSynopsisIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -219,13 +220,13 @@ kuno-raeber-gui:hasAlphabeticIndex
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:IntValue.
 
-#kuno-raeber-gui:hasDateIndex
-#	a owl:ObjectProperty;
-#	rdfs:label "has date index"@en, "hat Datumsindex"@de;
-#	rdfs:comment """Relating a poem by Kuno Raeber to its date index."""@en;
-#	rdfs:subPropertyOf knora-base:hasValue;
-#	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
-#	knora-base:objectClassConstraint knora-base:IntValue.
+kuno-raeber-gui:hasDateIndex
+	a owl:ObjectProperty;
+	rdfs:label "has date index"@en, "hat Datumsindex"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to its date index."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:IntValue.
 
 kuno-raeber-gui:hasFictitiousCreationDate
 	a owl:ObjectProperty;
