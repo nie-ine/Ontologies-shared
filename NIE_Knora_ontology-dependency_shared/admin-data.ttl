@@ -1465,3 +1465,28 @@ Die Internetpublikation macht das digitalisierte Korpus dieser Frühdrucke  durc
   knora-base:isInProject <http://rdfh.ch/projects/0067>;
   knora-base:isInSystemAdminGroup "false"^^xsd:boolean;
   knora-base:isInProjectAdminGroup <http://rdfh.ch/projects/0067>.
+
+#
+# NIETZSCHE
+#
+
+<http://rdfh.ch/projects/0068> a knora-base:knoraProject;
+  knora-base:projectShortname "nietzsche"^^xsd:string;
+  knora-base:projectShortcode "0068"^^xsd:string;
+  knora-base:projectLongname """An ontology about Friedrich Nietzsches late work """^^xsd:string;
+  knora-base:projectDescription """Formal description of specific concepts in the scientific study and digital edition of Friedrich Nietzsches late work."""@en;
+  knora-base:status "true"^^xsd:boolean;
+  knora-base:hasSelfJoinEnabled "false"^^xsd:boolean.
+
+<http://rdfh.ch/users/nietzscheUser> a knora-base:User;
+  knora-base:username "nietzscheUser"^^xsd:string;
+  knora-base:userid "nietzscheUser"^^xsd:string;
+  knora-base:familyName "LateNietzsche"^^xsd:string;
+  knora-base:givenName "User"^^xsd:string;
+  knora-base:password "$e0801$FGl9FDIWw+D83OeNPGmD9u2VTqIkJopIQECgmb2DSWQLS0TeKSvYoWAkbEv6KxePPlCI3CP9MmVHuvnWv8/kag==$mlegCYdGXt+ghuo8i0rLjgOiNnGDW604Q5g/v7zwBPU="^^xsd:string;
+  knora-base:email "dominique.steinbach@unibas.ch"^^xsd:string;
+  knora-base:preferredLanguage "de"^^xsd:string;
+  knora-base:status "true"^^xsd:boolean;
+  knora-base:isInProject <http://rdfh.ch/projects/0068>;
+  knora-base:isInSystemAdminGroup "false"^^xsd:boolean;
+  knora-base:isInProjectAdminGroup <http://rdfh.ch/projects/0068>.
