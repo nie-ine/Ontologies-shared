@@ -14,6 +14,7 @@
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
+@prefix lingmor: <http://www.knora.org/ontology/shared/linguistic-morphology#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/shared/linguistics>.
@@ -42,11 +43,23 @@ ling:Concept
 		a owl:Restriction; owl:onProperty ling:hasLanguage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty ling:hasLanguageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+ling:Lexeme
+	a owl:Class;
+	rdfs:label "lexeme"@en, "Lexem"@de;
+	rdfs:comment """Linguistic concept as individual semantic entity in human natural language."""@en;
+	rdfs:subClassOf ling:Concept, language:HumanNaturalLanguageExpression, [
+		a owl:Restriction; owl:onProperty ling:hasSemanticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty ling:hasSemanticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty ling:hasLemma; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty ling:hasLemmaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 ling:Token
 	a owl:Class;
 	rdfs:label "token"@en, "Token"@de;
 	rdfs:comment """Linguistic concept as an individual unit in human natural language."""@en;
-	rdfs:subClassOf ling:Concept, text-structure:Word.
+	rdfs:subClassOf ling:Concept, [
+		a owl:Restriction; owl:onProperty ling:hasSyntacticWord; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty ling:hasSyntacticWordValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 ling:Symbol
 	a owl:Class;
@@ -65,7 +78,7 @@ ling:PartOfSpeech
 	a owl:Class;
 	rdfs:label "part of speech"@en, "Wortart"@de;
 	rdfs:comment """Word with certain grammatical properties."""@en;
-	rdfs:subClassOf text-structure:Word.
+	rdfs:subClassOf text-structure:SyntacticWord.
 
 ling:Noun
 	a owl:Class;
@@ -151,8 +164,80 @@ ling:hasSynonym
 	a owl:ObjectProperty;
 	rdfs:label "has synonym"@en, "hat Synonym"@de;
 	rdfs:comment """Relating a resource to a synonym of the name of the resource."""@en;
-	rdfs:domain rdfs:Resource;
+	rdfs:domain rdfs:Resource; #°
 	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+ling:hasLexeme
+	a owl:ObjectProperty;
+	rdfs:label "has lexeme"@en, "hat Lexem"@de;
+	rdfs:comment """Relating a syntactic word to its lexeme."""@en;
+	rdfs:domain text-structure:SyntacticWord;
+	rdfs:range ling:Lexeme;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:objectClassConstraint ling:Lexeme.
+
+ling:hasLexemeValue
+	a owl:ObjectProperty;
+	rdfs:label "has lexeme - statement"@en, "hat Lexem - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its lexeme."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+ling:hasSemanticGender
+	a owl:ObjectProperty;
+	rdfs:label "has semantic gender"@en, "hat semantisches Genus"@de;
+	rdfs:comment """Relating a lexeme to its semantic gender."""@en;
+	rdfs:domain ling:Lexeme;
+	rdfs:range lingmor:SemanticGender;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint ling:Lexeme;
+	knora-base:objectClassConstraint lingmor:SemanticGender.
+
+ling:hasSemanticGenderValue
+	a owl:ObjectProperty;
+	rdfs:label "has semantic gender - statement"@en, "hat semantisches Genus - Festlegung"@de;
+	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and its semantic gender."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint ling:Lexeme;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+ling:hasLemma
+	a owl:ObjectProperty;
+	rdfs:label "has lemma"@en, "hat Lemma"@de;
+	rdfs:comment """Relating a lexeme to a lemma."""@en;
+	rdfs:domain ling:Lexeme;
+	rdfs:range lingmor:Lemma;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint ling:Lexeme;
+	knora-base:objectClassConstraint lingmor:Lemma.
+
+ling:hasLemmaValue
+	a owl:ObjectProperty;
+	rdfs:label "has lemma - statement"@en, "hat Lemma - Festlegung"@de;
+	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and a lemma."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint ling:Lexeme;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+ling:hasSyntacticWord
+	a owl:ObjectProperty;
+	rdfs:label "has syntactic word"@en, "hat syntaktisches Wort"@de;
+	rdfs:comment """Relating a token to a syntactic word."""@en;
+	rdfs:domain ling:Token;
+	rdfs:range text-structure:SyntacticWord;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint ling:Token;
+	knora-base:objectClassConstraint text-structure:SyntacticWord.
+
+ling:hasSyntacticWordValue
+	a owl:ObjectProperty;
+	rdfs:label "has syntactic word - statement"@en, "hat syntaktisches Wort - Festlegung"@de;
+	rdfs:comment """Relating a token to a reification statement of the relation between the token and a syntactic word."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint ling:Token;
+	knora-base:objectClassConstraint knora-base:LinkValue.
