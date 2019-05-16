@@ -16,6 +16,8 @@
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
+@prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
+@prefix lingmor: <http://www.knora.org/ontology/shared/linguistic-morphology#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/shared/text-structure>.
@@ -28,9 +30,11 @@
 	skos:note """Text and text editing are described in other ontologies"""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:contributor "Roberta Padlina, tool coordinator and software developer, NIE-INE, Basel University, Switzerland"@en;
+	dct:contributor "Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
+	rdfs:seeAlso <https://files.ifi.uzh.ch/cl/siclemat/lehre/hs09/ecl1/script/html/script.html>;
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/005B>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
 # CLASSES
@@ -101,18 +105,24 @@ text-structure:ProsodicStructure
 	rdfs:comment """Text structure depending on prosody, i.e. syllable and/or metre as basic rhythmic structure and/or rhyme."""@en;
 	rdfs:subClassOf text-structure:CompositionalContentStructure.
 
-text-structure:Word
+text-structure:SyntacticWord
 	a owl:Class;
-	rdfs:label "word"@en, "Wort"@de;
-	rdfs:comment """Smallest independent syntactic and semantic entity composed of symbols."""@en;
+	rdfs:label "syntactic word"@en, "syntaktisches Wort"@de;
+	rdfs:comment """Smallest independent syntactic structure composed of symbols, that can be replaced in a sentence."""@en;
 #	skos:note """A word comprises one or more morphemes."""@en;
-	rdfs:subClassOf text-structure:SyntacticStructure, [
-#		a owl:Restriction; owl:onProperty text-structure:isWordOfSentence; owl:allValuesFrom text-structure:Sentence], [
+	rdfs:subClassOf text-structure:SyntacticStructure, ling:Concept, [
+#		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty ling:hasLanguage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty ling:hasLexeme; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty ling:hasLexemeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasSyntacticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasSyntacticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfSentence; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfSentenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty text-structure:isWordOfLine; owl:allValuesFrom text-structure:Line], [
-		a owl:Restriction; owl:onProperty text-structure:isWordOfLine; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text-structure:isWordOfLineValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text-structure:isWordOfVerse; owl:allValuesFrom text-structure:Verse], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfVerse; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfVerseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -121,7 +131,7 @@ text-structure:Sentence
 	a owl:Class;
 	rdfs:label "sentence"@en, "Satz"@de;
 	rdfs:comment """Syntactic structure unit comprising one or more linked words, typically a subject and predicate."""@en;
-	rdfs:subClassOf text-structure:SyntacticStructure, [
+	rdfs:subClassOf text-structure:SyntacticStructure, text-structure:ContentStructure, [
 #		a owl:Restriction; owl:onProperty text-structure:isSentenceOfParagraph; owl:allValuesFrom text-structure:Paragraph], [
 		a owl:Restriction; owl:onProperty text-structure:isSentenceOfParagraph; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isSentenceOfParagraphValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -162,6 +172,15 @@ text-structure:Section
 		a owl:Restriction; owl:onProperty text-structure:sectionHasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:sectionHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+text-structure:OrthographicWord # Grapheme
+	a owl:Class;
+	rdfs:label "orthographic word"@en, "orthographisches Wort"@de;
+	rdfs:comment """Smallest independent orthographic entity composed of symbols, identified by surrounding whitespace in a written text line."""@en;
+	rdfs:subClassOf text-structure:ReadabilityStructure, text:WrittenText, ling:Concept, [
+#		a owl:Restriction; owl:onProperty text-structure:isWordOfLine; owl:allValuesFrom text-structure:Line], [
+		a owl:Restriction; owl:onProperty text-structure:isWordOfLine; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isWordOfLineValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 text-structure:Line
 	a owl:Class;
 	rdfs:label "text line"@en, "Textzeile"@de;
@@ -194,7 +213,7 @@ text-structure:Page
 		a owl:Restriction; owl:onProperty text-structure:isPageOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isPageOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-text-structure:Table #* tableHasTitle, tableHasField, tableHasRow, tableHasColumn
+text-structure:Table #° tableHasTitle, tableHasField, tableHasRow, tableHasColumn
 	a owl:Class;
 	rdfs:label "text table"@en, "Texttabelle"@de;
 	rdfs:comment """Two-dimensional structure composed of one or more fields containing text, and  being part of a vertical column and a horizontal row, both with own identifier."""@en;
@@ -522,19 +541,37 @@ text-structure:hasIdentifierValue
 text-structure:isWordOfSentence
 	a owl:ObjectProperty;
 	rdfs:label "is word of sentence"@en, "ist Wort eines Satzes"@de;
-	rdfs:comment """Relating a word to a sentence it is part of."""@en;
-	rdfs:domain text-structure:Word;
+	rdfs:comment """Relating a syntactic word to a sentence it is part of."""@en;
+	rdfs:domain text-structure:SyntacticWord;
 	rdfs:range text-structure:Sentence;
 	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint text-structure:Word;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
 	knora-base:objectClassConstraint text-structure:Sentence.
 
 text-structure:isWordOfSentenceValue
 	a owl:ObjectProperty;
 	rdfs:label "is word of sentence - statement"@en, "ist Wort eines Satzes - Festlegung"@de;
-	rdfs:comment """Relating a word to a reification statement of the relation between the word and a sentence it is part of."""@en;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the word and a sentence it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint text-structure:Word;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text-structure:isWordOfVerse
+	a owl:ObjectProperty;
+	rdfs:label "is word of verse"@en, "ist Wort eines Verses"@de;
+	rdfs:comment """Relating a syntactic word to a verse it is part of."""@en;
+	rdfs:domain text-structure:SyntacticWord;
+	rdfs:range text-structure:Verse;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:objectClassConstraint text-structure:Verse.
+
+text-structure:isWordOfVerseValue
+	a owl:ObjectProperty;
+	rdfs:label "is word of verse - statement"@en, "ist Wort eines Verses - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the word and a verse it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-structure:isSentenceOfParagraph
@@ -670,19 +707,19 @@ text-structure:sectionHasNumber
 text-structure:isWordOfLine
 	a owl:ObjectProperty;
 	rdfs:label "is word of line"@en, "ist Wort einer Zeile"@de;
-	rdfs:comment """Relating a word to a line it is part of."""@en;
-	rdfs:domain text-structure:Word;
+	rdfs:comment """Relating an orthographic word to a line it is part of."""@en;
+	rdfs:domain text-structure:OrthographicWord;
 	rdfs:range text-structure:Line;
 	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint text-structure:Word;
+	knora-base:subjectClassConstraint text-structure:OrthographicWord;
 	knora-base:objectClassConstraint text-structure:Line.
 
 text-structure:isWordOfLineValue
 	a owl:ObjectProperty;
 	rdfs:label "is word of line - statement"@en, "ist Wort einer Zeile - Festlegung"@de;
-	rdfs:comment """Relating a word to a reification statement of the relation between the word and a line it is part of."""@en;
+	rdfs:comment """Relating an orthographic word to a reification statement of the relation between the word and a line it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint text-structure:Word;
+	knora-base:subjectClassConstraint text-structure:OrthographicWord;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-structure:isLineOfColumn
@@ -783,24 +820,6 @@ text-structure:isPageOfExpressionValue
 	rdfs:comment """Relating a text page to a reification statement of the relation between the page and a text expression it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text-structure:Page;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-text-structure:isWordOfVerse
-	a owl:ObjectProperty;
-	rdfs:label "is word of verse"@en, "ist Wort eines Verses"@de;
-	rdfs:comment """Relating a word to a verse it is part of."""@en;
-	rdfs:domain text-structure:Word;
-	rdfs:range text-structure:Verse;
-	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint text-structure:Word;
-	knora-base:objectClassConstraint text-structure:Verse.
-
-text-structure:isWordOfVerseValue
-	a owl:ObjectProperty;
-	rdfs:label "is word of verse - statement"@en, "ist Wort eines Verses - Festlegung"@de;
-	rdfs:comment """Relating a word to a reification statement of the relation between the word and a verse it is part of."""@en;
-	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint text-structure:Word;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-structure:isHalfOfVerse
