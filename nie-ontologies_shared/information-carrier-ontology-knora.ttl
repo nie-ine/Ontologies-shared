@@ -335,7 +335,8 @@ infocar:PrintIdentifier
 		a owl:Restriction; owl:onProperty infocar:printIdentifierHasLibrary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:printIdentifierHasCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty infocar:printIdentifierHasShelfMark; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:printIdentifierHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasLibraryNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasCollectionNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Incunabulum
 	a owl:Class;
@@ -1299,10 +1300,20 @@ infocar:printIdentifierHasCollection
 	knora-base:subjectClassConstraint infocar:PrintIdentifier;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
-infocar:printIdentifierHasNumber
+infocar:printIdentifierHasLibraryNumber
 	a owl:ObjectProperty;
-	rdfs:label "print identifier has number"@en, "Druckidentifikator hat Nummer"@de;
-	rdfs:comment """Relating a print identifier to its number."""@en;
+	rdfs:label "print identifier has library number"@en, "Druckidentifikator hat Bibliotheknummer"@de;
+	rdfs:comment """Relating a print identifier to its library number."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasCollectionNumber
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has collection number"@en, "Druckidentifikator hat Kollektionsnummer"@de;
+	rdfs:comment """Relating a print identifier to its collection number."""@en;
 	rdfs:domain infocar:PrintIdentifier;
 	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf knora-base:hasValue;
