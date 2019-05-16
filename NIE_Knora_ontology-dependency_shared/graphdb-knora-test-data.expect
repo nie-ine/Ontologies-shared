@@ -114,6 +114,8 @@ send "load ../ontologies/project-ontologies/datatypes-ontology-knora.ttl into ht
 expect $prompt
 send "load ../ontologies/project-ontologies/linguistic-morphology-ontology-knora.ttl into http://www.knora.org/ontology/shared/linguistic-morphology .\r"
 expect $prompt
+send "load ../ontologies/project-ontologies/nietzsche-ontology.ttl into http://www.knora.org/ontology/0068/nietzsche .\r"
+expect $prompt
 
 send "close .\r"
 expect $prompt
