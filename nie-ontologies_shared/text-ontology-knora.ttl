@@ -27,7 +27,7 @@
 	a owl:Ontology;
 	dct:title "An ontology about text"@en;
 	dct:description """Formal description of text in broadest sense, general subclasses, related classes, and properties."""@en;
-	skos:note """Text editing is described in a seperate ontology"""@en;
+	skos:note """Text structure, text editing, and text roles are described in respective ontologies"""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:contributor "Roberta Padlina, tool coordinator, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
@@ -99,6 +99,12 @@ text:WrittenText
 		a owl:Restriction; owl:onProperty infocar:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isWrittenWithValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+text:Handwriter
+	a owl:Class;
+	rdfs:label "handwriter"@en, "Handschreiber"@de, "écrivain"@fr, "manoscrittore"@it;
+	rdfs:comment """Role of a person writing text by hand."""@en;
+	rdfs:subClassOf human:PersonCreator.
+
 text:HandwrittenText
 	a owl:Class;
 	rdfs:label "handwritten text"@en, "handgeschriebener Text"@de, "texte manuscrit"@fr, "testo scritto a mano"@it;
@@ -117,6 +123,14 @@ text:TypewrittenText
 		a owl:Restriction; owl:onProperty infocar:isInTypescript; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isInTypescriptValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+text:PrintedText
+	a owl:Class;
+	rdfs:label "printed text"@en, "gedruckter Text"@de, "texte imprimé"@fr, "testo stampato"@it;
+	rdfs:comment """Text printed by any method, abstracted from its carrier."""@en;
+	rdfs:subClassOf text:Text, [
+		a owl:Restriction; owl:onProperty infocar:isInPrint; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:isInPrintValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 text:CopiedText
 	a owl:Class;
 	rdfs:label "copied text"@en, "kopierter Text"@de, "texte copié"@fr, "testo copiato"@it;
@@ -124,6 +138,13 @@ text:CopiedText
 	rdfs:subClassOf text:Text, [
 		a owl:Restriction; owl:onProperty infocar:isInTextCopy; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isInTextCopyValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text:Scribe
+	a owl:Class;
+	rdfs:label "scribe"@en, "Kopist"@de, "scribe"@fr, "scriba"@it, "scribes"@la;
+#	ling:hasSynonym "transcriber"@en;
+	rdfs:comment """Role of a person copying text by handwriting."""@en;
+	rdfs:subClassOf human:PersonCreator.
 
 text:TranscribedText
 	a owl:Class;
@@ -133,14 +154,6 @@ text:TranscribedText
 		a owl:Restriction; owl:onProperty infocar:isInTranscript; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isInTranscriptValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-text:PrintedText
-	a owl:Class;
-	rdfs:label "printed text"@en, "gedruckter Text"@de, "texte imprimé"@fr, "testo stampato"@it;
-	rdfs:comment """Text printed by any method, abstracted from its carrier."""@en;
-	rdfs:subClassOf text:Text, [
-		a owl:Restriction; owl:onProperty infocar:isInPrint; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:isInPrintValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
 text:PhotocopiedText
 	a owl:Class;
 	rdfs:label "photocopied text"@en, "fotokopierter Text"@de; #, "texte copié"@fr, "testo copiato"@it;
@@ -148,6 +161,59 @@ text:PhotocopiedText
 	rdfs:subClassOf text:CopiedText, [
 		a owl:Restriction; owl:onProperty infocar:isTextInPhotocopy; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isTextInPhotocopyValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text:AgentCiter
+	a owl:Class;
+	rdfs:label "agent citer"@en, "Agent-Zitierer"@de;
+	rdfs:comment """Role of a human agent, person or group, citing a text."""@en;
+	rdfs:subClassOf human:AgentRole.
+
+text:PersonCiter
+	a owl:Class;
+	rdfs:label "person citer"@en, "Person-ZitiererIn"@de;
+	rdfs:comment """Citer as role of a person."""@en;
+	rdfs:subClassOf text:AgentCiter, human:PersonRole.
+
+text:OrganizationCiter
+	a owl:Class;
+	rdfs:label "organization citer"@en, "Organisation-Zitiererin"@de;
+	rdfs:comment """Citer as role of an organization."""@en;
+	rdfs:subClassOf text:AgentCiter, org:Role.
+
+text:Citation
+	a owl:Class;
+	rdfs:label "citation"@en, "Zitat"@de, "citation"@fr, "citazione"@it;
+	rdfs:comment """Copy of a text expression, mostly a part of it, in another text expression, with reference to the first expression."""@en;
+	skos:note """A citation can also be referred to from the source text, having an identifier linked to both the source reference and the citation."""@en;
+	rdfs:subClassOf text:CopiedText, text-structure:ContentStructure, [
+		a owl:Restriction; owl:onProperty text:citationHasReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:citationHasReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:citationHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:citationHasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:citationHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:citationHasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:citationIsPartOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:citationIsPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text:CitationReference
+	a owl:Class;
+	rdfs:label "citation reference"@en, "Zitatreferenz"@de;
+	rdfs:comment """Reference of a citation to the referred."""@en;
+	rdfs:subClassOf document:TextStructureReference, [
+		a owl:Restriction; owl:onProperty text:hasCitationIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:hasCitationIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text:CitationIdentifier
+	a owl:Class;
+	rdfs:label "citation identifier"@en, "Zitatidentifikator"@de;
+	rdfs:comment """Identifier of a citation."""@en;
+	rdfs:subClassOf concept:Identifier, document:Structure.
+
+text:CitationNumber
+	a owl:Class;
+	rdfs:label "citation number"@en, "Zitatnummer"@de;
+	rdfs:comment """Number of a citation."""@en;
+	rdfs:subClassOf text:CitationIdentifier, math:Number.
 
 text:Translation
 	a owl:Class;
@@ -277,95 +343,11 @@ text:WomanOfLetters
 	rdfs:comment """Role of a woman devoted to literary activity."""@en;
 	rdfs:subClassOf human:PersonRole.
 
-text:Revisor
-	a owl:Class;
-	rdfs:label "revisor"@en, "Revisor"@de, "réviseur"@fr, "revisore"@it;
-	rdfs:comment """Role of a person checking on certain aspects of a text, possibly proposing changes to it."""@en;
-	rdfs:subClassOf human:PersonRole.
-
-text:Annotator
-	a owl:Class;
-	rdfs:label "annotator"@en, "Annotator"@de;
-	rdfs:comment """ adding a note to a text."""@en;
-	rdfs:subClassOf human:PersonCreator.
-
-text:PersonTranslator
-	a owl:Class;
-	rdfs:label "person text translator"@en, "Person TextübersetzerIn"@de; #, "traduct-eur/rice du texte"@fr, "tradutt-ore/rice di testo"@it;
-	rdfs:comment """Role of a person translating text by writing or printing."""@en;
-	rdfs:subClassOf language:PersonTranslator.
-
-text:Handwriter
-	a owl:Class;
-	rdfs:label "handwriter"@en, "Handschreiber"@de, "écrivain"@fr, "manoscrittore"@it;
-	rdfs:comment """Role of a person writing text by hand."""@en;
-	rdfs:subClassOf human:PersonCreator.
-
-text:Copyist
-	a owl:Class;
-	rdfs:label "copyist"@en, "Kopist"@de, "copiste"@fr, "copista"@it, "scribes"@la; # "scribe"@en, "Schreiber"@de;
-#	ling:hasSynonym "transcriber"@de;
-	rdfs:comment """Role of a person copying text by writing."""@en;
-	rdfs:subClassOf human:PersonCreator.
-
 text:Vulgarizer
 	a owl:Class;
 	rdfs:label "text vulgarizer"@en, "Text-VulgarisatorIn"@de, "vulgarisat-eur/rice du texte"@fr;
 	rdfs:comment """Role of a person vulgarizing a text, e.g. a scientific one, or creating one using vulgarizing terminology."""@en;
 	rdfs:subClassOf human:Vulgarizer.
-
-text:AgentCiter
-	a owl:Class;
-	rdfs:label "agent citer"@en, "Agent-Zitierer"@de;
-	rdfs:comment """Role of a human agent, person or group, citing a text."""@en;
-	rdfs:subClassOf human:AgentRole.
-
-text:PersonCiter
-	a owl:Class;
-	rdfs:label "person citer"@en, "Person-ZitiererIn"@de;
-	rdfs:comment """Citer as role of a person."""@en;
-	rdfs:subClassOf text:AgentCiter, human:PersonRole.
-
-text:OrganizationCiter
-	a owl:Class;
-	rdfs:label "organization citer"@en, "Organisation-Zitiererin"@de;
-	rdfs:comment """Citer as role of an organization."""@en;
-	rdfs:subClassOf text:AgentCiter, org:Role.
-
-text:Citation
-	a owl:Class;
-	rdfs:label "citation"@en, "Zitat"@de, "citation"@fr, "citazione"@it;
-	rdfs:comment """Copy of a text expression, mostly a part of it, in another text expression, with reference to the first expression."""@en;
-	skos:note """A citation can also be referred to from the source text, having an identifier linked to both the source reference and the citation."""@en;
-	rdfs:subClassOf text:CopiedText, text-structure:ContentStructure, [
-		a owl:Restriction; owl:onProperty text:citationHasReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:citationHasReferenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:citationHasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:citationHasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:citationHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:citationHasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:citationIsPartOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:citationIsPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-text:CitationReference
-	a owl:Class;
-	rdfs:label "citation reference"@en, "Zitatreferenz"@de;
-	rdfs:comment """Reference of a citation to the referred."""@en;
-	rdfs:subClassOf document:TextStructureReference, [
-		a owl:Restriction; owl:onProperty text:hasCitationIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasCitationIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-text:CitationIdentifier
-	a owl:Class;
-	rdfs:label "citation identifier"@en, "Zitatidentifikator"@de;
-	rdfs:comment """Identifier of a citation."""@en;
-	rdfs:subClassOf concept:Identifier, document:Structure.
-
-text:CitationNumber
-	a owl:Class;
-	rdfs:label "citation number"@en, "Zitatnummer"@de;
-	rdfs:comment """Number of a citation."""@en;
-	rdfs:subClassOf text:CitationIdentifier, math:Number.
 
 text:SentenceExpression
 	a owl:Class;
@@ -417,7 +399,7 @@ text:Commentator
 text:Commentary
 	a owl:Class;
 	rdfs:label "commentary"@en, "Kommentar"@de;
-	rdfs:comment """Text expression in the form of a series of comments as analysis, interpretation or explanation of another text expression."""@en;
+	rdfs:comment """Text expression in the form of a set of comments as analysis, interpretation or explanation of one or more text expressions."""@en;
 	rdfs:subClassOf text:IndividualExpression, [
 		a owl:Restriction; owl:onProperty text:isCommentaryOn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isCommentaryOnValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -1087,17 +1069,17 @@ text:isEntryOfDiaryExpressionValue
 text:isCommentaryOn
 	a owl:ObjectProperty;
 	rdfs:label "is commentary on"@en, "ist Kommentar zu"@de;
-	rdfs:comment """Relating a commentary to a text expression it comments on."""@en;
+	rdfs:comment """Relating a commentary to an expression it comments on."""@en;
 	rdfs:domain text:Commentary;
-	rdfs:range text:Expression;
+	rdfs:range document:Expression;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Commentary;
-	knora-base:objectClassConstraint text:Expression.
+	knora-base:objectClassConstraint document:Expression.
 
 text:isCommentaryOnValue
 	a owl:ObjectProperty;
 	rdfs:label "is commentary on - statement"@en, "ist Kommentar zu - Festlegung"@de;
-	rdfs:comment """Relating a commentary to a reification statement of the relation between the commentary and a text expression it comments on."""@en;
+	rdfs:comment """Relating a commentary to a reification statement of the relation between the commentary and an expression it comments on."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Commentary;
 	knora-base:objectClassConstraint knora-base:LinkValue.
