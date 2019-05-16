@@ -120,17 +120,17 @@ litera:Expression
 	a owl:Class;
 	rdfs:label "literary expression"@en, "literarische Expression"@de;
 	rdfs:comment """Text expression as literature."""@en, """Textexpression als Literatur."""@de;
-	rdfs:subClassOf text:IndividualExpression, [
+	rdfs:subClassOf text:Expression, [
 		a owl:Restriction; owl:onProperty litera:hasGenre; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty litera:hasGenreValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty litera:isPartOfAnthology; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty litera:isPartOfAnthologyValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty litera:hasGenreValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 litera:Anthology
 	a owl:Class;
 	rdfs:label "anthology"@en, "Anthologie"@de, "anthologie"@fr, "antologia"@it;
 	rdfs:comment """Collection of literary expressions or parts thereof, by one or more authors, selected along certain criteria."""@en;
-	rdfs:subClassOf text:Expression.
+	rdfs:subClassOf text:Expression, [
+		a owl:Restriction; owl:onProperty litera:hasExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty litera:hasExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 litera:Poem
 	a owl:Class;
@@ -319,22 +319,22 @@ litera:hasGenreValue
 	knora-base:subjectClassConstraint litera:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-litera:isPartOfAnthology
+litera:hasExpression
 	a owl:ObjectProperty;
-	rdfs:label "is part of anthology"@en, "ist Teil einer Anthologie"@de;
-	rdfs:comment """Relating a literary expression to an anthology it is part of."""@en;
-	rdfs:domain litera:Expression;
-	rdfs:range litera:Anthology;
-	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint litera:Expression;
-	knora-base:objectClassConstraint litera:Anthology.
+	rdfs:label "has expression"@en, "hat Expression"@de;
+	rdfs:comment """Relating an anthology to a literary expression it has."""@en;
+	rdfs:domain litera:Anthology;
+	rdfs:range litera:Expression;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint litera:Anthology;
+	knora-base:objectClassConstraint litera:Expression.
 
-litera:isPartOfAnthologyValue
+litera:hasExpressionValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of anthology - statement"@en, "ist Teil einer Anthologie - Festlegung"@de;
-	rdfs:comment """Relating a literary expression to a reification statement of the relation between the expression and an anthology it is part of."""@en;
-	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint litera:Expression;
+	rdfs:label "has expression - statement"@en, "hat Expression - Festlegung"@de;
+	rdfs:comment """Relating an anthology to a reification statement of the relation between the anthology and a literary expression it has."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint litera:Anthology;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 litera:hasNarrative
