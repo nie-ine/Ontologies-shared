@@ -133,13 +133,13 @@ parzival:Verse
 		a owl:Restriction; owl:onProperty parzival:isVerseOfDreissiger; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty parzival:isVerseOfDreissigerValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-parzival:UngroupedVerse
+parzival:AddedVerse
 	a owl:Class;
-	rdfs:label """ungrouped edition verse of 'Parzival'"""@en, """nicht gruppierter Editionvers 'Parzivals'"""@de;
-	rdfs:comment """Verse not belonging to a dreissiger, of a scientific edition of a copy of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf text-structure:Verse,  [
-		a owl:Restriction; owl:onProperty parzival:isVerseOfPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty parzival:isVerseOfPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:label """added edition verse of 'Parzival'"""@en, """hinzugefügter Editionvers 'Parzivals'"""@de;
+	rdfs:comment """Verse added to a dreissiger, of a scientific edition of a copy of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf text-structure:Verse, [
+		a owl:Restriction; owl:onProperty parzival:isAddedToDreissiger; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty parzival:isAddedToDreissigerValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 parzival:Dreissiger
 	a owl:Class;
@@ -158,7 +158,9 @@ parzival:DreissigerNumber
 	a owl:Class;
 	rdfs:label "dreissiger number"@en, "Dreissigernummer"@de;
 	rdfs:comment """Number of a dreissiger."""@en;
-	rdfs:subClassOf text-structure:Identifier, math:NaturalNumber.
+	rdfs:subClassOf text-structure:Identifier, math:NaturalNumber, [
+		a owl:Restriction; owl:onProperty knora-base:hasRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:hasRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 parzival:VerseSection
 	a owl:Class;
@@ -196,22 +198,22 @@ parzival:isVerseOfDreissigerValue
 	knora-base:subjectClassConstraint parzival:Verse;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-parzival:isVerseOfPage
+parzival:isAddedToDreissiger
 	a owl:ObjectProperty;
-	rdfs:label "is verse of page"@en, "ist Vers einer Seite"@de;
-	rdfs:comment """Relating an ungrouped edition verse to the edition page it is part of."""@en;
-	rdfs:domain parzival:UngroupedVerse;
-	rdfs:range parzival:EditionPage;
+	rdfs:label "is added to dreissiger"@en, "zum Dreissiger hinzugefügt"@de;
+	rdfs:comment """Relating an edition verse to the dreissiger it is added to."""@en;
+	rdfs:domain parzival:AddedVerse;
+	rdfs:range parzival:Dreissiger;
 	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint parzival:UngroupedVerse;
-	knora-base:objectClassConstraint parzival:EditionPage.
+	knora-base:subjectClassConstraint parzival:AddedVerse;
+	knora-base:objectClassConstraint parzival:Dreissiger.
 
-parzival:isVerseOfPageValue
+parzival:isAddedToDreissigerValue
 	a owl:ObjectProperty;
-	rdfs:label "is verse of page - statement"@en, "ist Vers einer Seite - Festlegung"@de;
-	rdfs:comment """Relating an ungrouped edition verse to a reification statement of the relation between the verse and the edition page it is part of."""@en;
+	rdfs:label "is added to dreissiger - statement"@en, "zum Dreissiger hinzugefügt - Festlegung"@de;
+	rdfs:comment """Relating an edition verse to a reification statement of the relation between the verse and the dreissiger page it is added to."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint parzival:UngroupedVerse;
+	knora-base:subjectClassConstraint parzival:AddedVerse;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 parzival:isDreissigerOfPage
