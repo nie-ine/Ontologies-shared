@@ -9,6 +9,7 @@
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
+@prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
@@ -54,7 +55,7 @@ delille:Canto
 	a owl:Class;
 	rdfs:label "Jacques Delille canto"@en, "Canto Jacques Delilles"@de, "chant de Jacques Delille"@fr, "canto di Jacques Delille"@it;
 	rdfs:comment """Group of strophes in a verse poem authored by Jacques Delille."""@en;
-	rdfs:subClassOf text-structure:VerseSection, text:ExpressionPart.
+	rdfs:subClassOf prosodic-structure:VerseSection, text:ExpressionPart.
 
 # delille:RhymingVerse
 #	a owl:Class;
