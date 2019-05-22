@@ -116,6 +116,10 @@ send "load ../ontologies/project-ontologies/linguistic-morphology-ontology-knora
 expect $prompt
 send "load ../ontologies/project-ontologies/nietzsche-ontology.ttl into http://www.knora.org/ontology/0068/nietzsche .\r"
 expect $prompt
+send "load ../ontologies/project-ontologies/prosodic-structure-ontology-knora.ttl into http://www.knora.org/ontology/shared/prosodic-structure .\r"
+expect $prompt
+send "load ../ontologies/project-ontologies/note-structure-ontology-knora.ttl into http://www.knora.org/ontology/shared/note-structure .\r"
+expect $prompt
 
 send "close .\r"
 expect $prompt
