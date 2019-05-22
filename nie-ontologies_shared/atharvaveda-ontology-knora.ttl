@@ -6,6 +6,7 @@
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
+@prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
@@ -50,7 +51,7 @@ athar:Strophe
 	a owl:Class;
 	rdfs:label "Atharvaveda strophe"@en, "Atharvaveda-Strophe"@de;
 	rdfs:comment """Group of verses or 2 half-strophes in the Atharvaveda."""@en;
-	rdfs:subClassOf text-structure:Strophe, text:ExpressionPart, [
+	rdfs:subClassOf prosodic-structure:Strophe, text:ExpressionPart, [
 		a owl:Restriction; owl:onProperty indo:hasIndologicComment; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isStropheOfSukta; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isStropheOfSuktaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -59,13 +60,13 @@ athar:HalfStrophe
 	a owl:Class;
 	rdfs:label "Atharvaveda half-strophe"@en, "Atharvaveda-Halbstrophe"@de;
 	rdfs:comment """Half a strophe in the Atharvaveda."""@en;
-	rdfs:subClassOf text-structure:HalfStrophe.
+	rdfs:subClassOf prosodic-structure:HalfStrophe.
 
 athar:Verse
 	a owl:Class;
 	rdfs:label "Atharvaveda pada"@sa, "Atharvaveda verse"@en, "Atharvaveda-Vers"@de;
 	rdfs:comment """Verse as part of a strophe in the Atharvaveda."""@en;
-	rdfs:subClassOf text-structure:Verse, [
+	rdfs:subClassOf prosodic-structure:Verse, [
 		a owl:Restriction; owl:onProperty athar:isVerseOfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isVerseOfStropheValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isVerseOfHalfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -104,7 +105,7 @@ athar:isStropheOfSukta
 	rdfs:comment """Relating an Atharvaveda strophe to its sukta."""@en;
 	rdfs:domain athar:Strophe;
 	rdfs:range athar:Sukta;
-	rdfs:subPropertyOf text-structure:isStropheOfPoem;
+	rdfs:subPropertyOf prosodic-structure:isStropheOfPoem;
 	knora-base:subjectClassConstraint athar:Strophe;
 	knora-base:objectClassConstraint athar:Sukta.
 
@@ -112,7 +113,7 @@ athar:isStropheOfSuktaValue
 	a owl:ObjectProperty;
 	rdfs:label "is strophe of sukta - statement"@en, "ist Strophe einer Sukta - Festlegung"@de;
 	rdfs:comment """Relating an Atharvaveda strophe to a reification statement of the relation between the strophe and its sukta."""@en;
-	rdfs:subPropertyOf text-structure:isStropheOfPoemValue;
+	rdfs:subPropertyOf prosodic-structure:isStropheOfPoemValue;
 	knora-base:subjectClassConstraint athar:Strophe;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -122,7 +123,7 @@ athar:isVerseOfStrophe
 	rdfs:comment """Relating an Atharvaveda verse to a strophe it is part of."""@en;
 	rdfs:domain athar:Verse;
 	rdfs:range athar:Strophe;
-	rdfs:subPropertyOf text-structure:isVerseOfStrophe;
+	rdfs:subPropertyOf prosodic-structure:isVerseOfStrophe;
 	knora-base:subjectClassConstraint athar:Verse;
 	knora-base:objectClassConstraint athar:Strophe.
 
@@ -130,7 +131,7 @@ athar:isVerseOfStropheValue
 	a owl:ObjectProperty;
 	rdfs:label "is verse of strophe - statement"@en, "ist Vers einer Strophe - Festlegung"@de;
 	rdfs:comment """Relating an Atharvaveda verse to a reification statement of the relation between the verse and a strophe it is part of."""@en;
-	rdfs:subPropertyOf text-structure:isVerseOfStropheValue;
+	rdfs:subPropertyOf prosodic-structure:isVerseOfStropheValue;
 	knora-base:subjectClassConstraint athar:Verse;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -140,7 +141,7 @@ athar:isVerseOfHalfStrophe
 	rdfs:comment """Relating an Atharvaveda verse to a half-strophe it is part of."""@en;
 	rdfs:domain athar:Verse;
 	rdfs:range athar:HalfStrophe;
-	rdfs:subPropertyOf text-structure:isVerseOfHalfStrophe;
+	rdfs:subPropertyOf prosodic-structure:isVerseOfHalfStrophe;
 	knora-base:subjectClassConstraint athar:Verse;
 	knora-base:objectClassConstraint athar:HalfStrophe.
 
@@ -148,6 +149,6 @@ athar:isVerseOfHalfStropheValue
 	a owl:ObjectProperty;
 	rdfs:label "is verse of strophe - statement"@en, "ist Vers einer Strophe - Festlegung"@de;
 	rdfs:comment """Relating an Atharvaveda verse to a reification statement of the relation between the verse and a half-strophe it is part of."""@en;
-	rdfs:subPropertyOf text-structure:isVerseOfHalfStropheValue;
+	rdfs:subPropertyOf prosodic-structure:isVerseOfHalfStropheValue;
 	knora-base:subjectClassConstraint athar:Verse;
 	knora-base:objectClassConstraint knora-base:LinkValue.
