@@ -46,7 +46,7 @@
 lingmor:Morph
 	a owl:Class;
 	rdfs:label "morph"@en, "Morph"@de;
-	rdfs:comment """Linguistic concept as the smallest entity in human natural language with a grammatical function, as free or bound."""@en;
+	rdfs:comment """Linguistic concept as the smallest entity in human natural language with a grammatical function, inflectable, free or bound."""@en;
 	rdfs:subClassOf ling:Concept.
 
 # morpheme: no content, just label
