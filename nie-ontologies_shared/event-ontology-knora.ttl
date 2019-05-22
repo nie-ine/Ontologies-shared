@@ -16,7 +16,7 @@
 
 <http://www.knora.org/ontology/shared/event>
 	a owl:Ontology;
-	dct:title "An ontology about event"@en;
+	dct:title "An ontology about 'event'"@en;
 	dct:description """Formal description of event, general subclasses such as action, related classes and properties."""@en;
 	skos:note """Basic model is a space-time thing, which can be described in different levels of abstraction, mostly with input and output, with a beginning and end, wherein a thing can change and/or act, in a certain way."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
@@ -76,6 +76,8 @@ event:Procedure
 	rdfs:label "procedure"@en, "Vorgehensweise"@de;
 	rdfs:comment """Action executed in one or more sub-actions, in a certain manner, obtaining a certain output under certain circumstances."""@en;
 	rdfs:subClassOf event:Action.
+
+# event:SubProcedure
 
 event:State
 	a owl:Class;

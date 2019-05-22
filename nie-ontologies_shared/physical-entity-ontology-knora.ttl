@@ -67,7 +67,7 @@ physical:Gone
 physical:Space
 	a owl:Class;
 	rdfs:label "space"@en, "Raum"@de;
-	rdfs:comment """."""@en; #*
+	rdfs:comment """."""@en; #°
 	rdfs:subClassOf physical:Entity, geo:SpatialThing, narespa:Space, [
 		a owl:Restriction; owl:onProperty physical:isPartOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty physical:isPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -80,7 +80,7 @@ physical:Space
 physical:Time
 	a owl:Class;
 	rdfs:label "time"@en, "Zeit"@de;
-	rdfs:comment """."""@en; #*
+	rdfs:comment """."""@en; #°
 	rdfs:subClassOf physical:Entity, naproti:Time. # quantity
 
 physical:Place
@@ -98,6 +98,7 @@ physical:EarthPlace
 		a owl:Restriction; owl:onProperty phygeo:hasLatitude; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty phygeo:hasLongitude; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+# phygeo:hasAltitude
 # cidoc:E44_Place_Appellation
 
 physical:Point
