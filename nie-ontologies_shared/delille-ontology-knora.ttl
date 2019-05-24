@@ -11,6 +11,7 @@
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
+@prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.

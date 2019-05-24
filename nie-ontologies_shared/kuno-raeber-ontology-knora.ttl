@@ -11,7 +11,9 @@
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
+@prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
+@prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix image: <http://www.knora.org/ontology/shared/image#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
@@ -125,7 +127,7 @@ kuno-raeber:ScientificEdition
 	a owl:Class;
 	rdfs:label "Kuno Raeber text scientific edition"@en, "wissenschaftliche Edition eines Kuno Raeber Textes"@de;
 	rdfs:comment """Scientific edition of a text authored by Kuno Raeber."""@en, """Wissenschaftliche Edition eines von Kuno Raeber verfassten Texts."""@de;
-	rdfs:subClassOf textedit:ScientificEdition, [
+	rdfs:subClassOf scientific-editing:ScientificEdition, [
 		a owl:Restriction; owl:onProperty language:hasContent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasPageIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasPageNumberIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -135,7 +137,7 @@ kuno-raeber:DiplomaticTranscription
 	a owl:Class;
 	rdfs:label "Kuno Raeber text diplomatic transcription"@en, "diplomatische Umschrift eines Kuno Raeber Textes"@de;
 	rdfs:comment """Diplomatic transcription of a text authored by Kuno Raeber."""@en, """Diplomatische Umschrift eines von Kuno Raeber verfassten Texts."""@de;
-	rdfs:subClassOf textedit:DiplomaticTranscription, [
+	rdfs:subClassOf scientific-editing:DiplomaticTranscription, [
 		a owl:Restriction; owl:onProperty language:hasContent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # needed due to restriction in dhl-knora
 		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 

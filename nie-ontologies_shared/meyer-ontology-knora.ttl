@@ -5,6 +5,7 @@
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
+@prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
@@ -42,7 +43,7 @@ meyer:CopiedLetterExpression
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer copied letter expression"@en, "kopierte Briefexpression Conrad Ferdinand Meyers"@de;
 	rdfs:comment """Copied text of a letter expression authored by Conrad Ferdinand Meyer or another person, and being a witness of the original."""@en;
-	rdfs:subClassOf textedit:Witness.
+	rdfs:subClassOf scientific-editing:Witness.
 
 meyer:TranscribedLetterExpression
 	a owl:Class;
@@ -66,7 +67,7 @@ meyer:CriticalEdition
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer critical edition"@en, "Conrad Ferdinand Meyers kritische Edition"@de;
 	rdfs:comment """Critically edited letter or draft authored by Conrad Ferdinand Meyer or another person, or of a copy thereof."""@en;
-	rdfs:subClassOf textedit:CriticalEdition, publish:Expression.
+	rdfs:subClassOf scientific-editing:CriticalEdition, publish:Expression.
 
 meyer:Letter
 	a owl:Class;
