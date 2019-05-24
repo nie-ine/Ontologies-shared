@@ -905,7 +905,7 @@ human:creationHasDate
 	rdfs:label "creation has date"@en, "Kreation hat Datum"@de;
 	rdfs:comment """Relating a creation by a person to a date it was created on."""@en;
 	rdfs:domain human:Creation;
-	rdfs:range xsd:date;
+	rdfs:range xsd:date; #°
 	# owl:propertyChainAxiom (event:isOutputOf event:hasEndDate)
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint human:Creation;

@@ -9,7 +9,6 @@
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
-@prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
 @prefix logic: <http://www.knora.org/ontology/shared/logic#>.

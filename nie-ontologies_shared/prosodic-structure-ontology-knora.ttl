@@ -225,6 +225,24 @@ prosodic-structure:isWordOfVerseValue
 	knora-base:subjectClassConstraint text-structure:SyntacticWord;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+prosodic-structure:isSpaceOfVerse
+	a owl:ObjectProperty;
+	rdfs:label "is whitespace of verse"@en, "ist Leerzeichen eines Verses"@de;
+	rdfs:comment """Relating a whitespace to a verse it is part of."""@en;
+	rdfs:domain text-structure:Whitespace;
+	rdfs:range prosodic-structure:Verse;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint text-structure:Whitespace;
+	knora-base:objectClassConstraint prosodic-structure:Verse.
+
+prosodic-structure:isSpaceOfVerseValue
+	a owl:ObjectProperty;
+	rdfs:label "is whitespace of verse - statement"@en, "ist Leerzeichen eines Verses - Festlegung"@de;
+	rdfs:comment """Relating a whitespace to a reification statement of the relation between the whitespace and a verse it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint text-structure:Whitespace;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 prosodic-structure:isVerseOfStrophe
 	a owl:ObjectProperty;
 	rdfs:label "is verse of strophe"@en, "ist Vers einer Strophe"@de;
