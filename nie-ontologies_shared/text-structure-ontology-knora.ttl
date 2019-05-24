@@ -14,7 +14,6 @@
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
-@prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
@@ -74,7 +73,7 @@ text-structure:ContentStructure
 	a owl:Class;
 	rdfs:label "content text structure"@en, "inhaltliche Textstruktur"@de;
 	rdfs:comment """Text structure depending on text content, e.g. a paragraph, section, prose, citation."""@en;
-	rdfs:subClassOf text-structure:Structure. # text:ExpressionPart
+	rdfs:subClassOf text-structure:Structure. #° text:ExpressionPart
 
 text-structure:SentenceStructure
 	a owl:Class;
@@ -134,8 +133,6 @@ text-structure:Sentence
 		a owl:Restriction; owl:onProperty text-structure:isSentenceOfProse; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isSentenceOfProseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-# text-structure:WrittenSentence: orthographic element: one or more words starting with a capital letter and ending in a full stop or period, question mark, or exclamation mark
-
 text-structure:Prose
 	a owl:Class;
 	rdfs:label "prose"@en, "Prosa"@de;
@@ -175,6 +172,17 @@ text-structure:OrthographicWord # Grapheme smallest meaningful contrastive unit 
 #		a owl:Restriction; owl:onProperty text-structure:isWordOfLine; owl:allValuesFrom text-structure:Line], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfLine; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfLineValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text-structure:Whitespace
+	a owl:Class;
+	rdfs:label "whitespace"@en, "leerzeichen"@de;
+	rdfs:comment """Empty space between orthographic words."""@en;
+	rdfs:subClassOf text-structure:ReadabilityStructure, [
+#		a owl:Restriction; owl:onProperty text-structure:isSpaceOfLine; owl:allValuesFrom text-structure:Line], [
+		a owl:Restriction; owl:onProperty text-structure:isSpaceOfLine; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isSpaceOfLineValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty prosodic-structure:isSpaceOfVerse; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty prosodic-structure:isSpaceOfVerseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text-structure:Line
 	a owl:Class;
@@ -454,6 +462,24 @@ text-structure:isWordOfLineValue
 	rdfs:comment """Relating an orthographic word to a reification statement of the relation between the word and a line it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text-structure:OrthographicWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text-structure:isSpaceOfLine
+	a owl:ObjectProperty;
+	rdfs:label "is whitespace of line"@en, "ist Leerzeichen einer Zeile"@de;
+	rdfs:comment """Relating a whitespace to a line it is part of."""@en;
+	rdfs:domain text-structure:Whitespace;
+	rdfs:range text-structure:Line;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint text-structure:Whitespace;
+	knora-base:objectClassConstraint text-structure:Line.
+
+text-structure:isSpaceOfLineValue
+	a owl:ObjectProperty;
+	rdfs:label "is whitespace of line - statement"@en, "ist Wort einer Zeile - Festlegung"@de;
+	rdfs:comment """Relating a whitespace to a reification statement of the relation between the whitespace and a line it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint text-structure:Whitespace;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-structure:isLineOfColumn
