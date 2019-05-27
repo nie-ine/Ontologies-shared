@@ -227,20 +227,20 @@ prosodic-structure:isWordOfVerseValue
 
 prosodic-structure:isSpaceOfVerse
 	a owl:ObjectProperty;
-	rdfs:label "is whitespace of verse"@en, "ist Leerzeichen eines Verses"@de;
-	rdfs:comment """Relating a whitespace to a verse it is part of."""@en;
-	rdfs:domain text-structure:Whitespace;
+	rdfs:label "is space of verse"@en, "ist Leerzeichen eines Verses"@de;
+	rdfs:comment """Relating a space to a verse it is part of."""@en;
+	rdfs:domain text-structure:Space;
 	rdfs:range prosodic-structure:Verse;
 	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint text-structure:Whitespace;
+	knora-base:subjectClassConstraint text-structure:Space;
 	knora-base:objectClassConstraint prosodic-structure:Verse.
 
 prosodic-structure:isSpaceOfVerseValue
 	a owl:ObjectProperty;
-	rdfs:label "is whitespace of verse - statement"@en, "ist Leerzeichen eines Verses - Festlegung"@de;
-	rdfs:comment """Relating a whitespace to a reification statement of the relation between the whitespace and a verse it is part of."""@en;
+	rdfs:label "is space of verse - statement"@en, "ist Leerzeichen eines Verses - Festlegung"@de;
+	rdfs:comment """Relating a space to a reification statement of the relation between the space and a verse it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint text-structure:Whitespace;
+	knora-base:subjectClassConstraint text-structure:Space;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 prosodic-structure:isVerseOfStrophe
