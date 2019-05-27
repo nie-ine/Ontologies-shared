@@ -102,7 +102,7 @@ text-structure:ReadabilityStructure
 text-structure:SyntacticWord
 	a owl:Class;
 	rdfs:label "syntactic word"@en, "syntaktisches Wort"@de;
-	rdfs:comment """Smallest independent syntactic structure composed of symbols, that can be replaced in a sentence."""@en;
+	rdfs:comment """Smallest independent syntactic structure composed of symbols, that can be replaced in a sentence or verse."""@en;
 #	skos:note """A word comprises one or more morphemes."""@en;
 	rdfs:subClassOf text-structure:SyntacticStructure, ling:Concept, [
 #		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -115,6 +115,10 @@ text-structure:SyntacticWord
 		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isWordBeforeSpace; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isWordBeforeSpaceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isWordBeforePunctuation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isWordBeforePunctuationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfSentence; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfSentenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty prosodic-structure:isWordOfVerse; owl:allValuesFrom prosodic-structure:Verse], [
@@ -124,7 +128,7 @@ text-structure:SyntacticWord
 text-structure:Sentence
 	a owl:Class;
 	rdfs:label "sentence"@en, "Satz"@de;
-	rdfs:comment """Syntactic structure unit comprising one or more linked words, typically a subject and predicate."""@en;
+	rdfs:comment """Syntactic structure comprising one or more linked syntactic words, typically a subject and predicate."""@en;
 	rdfs:subClassOf text-structure:SyntacticStructure, text-structure:ContentStructure, [
 #		a owl:Restriction; owl:onProperty text-structure:isSentenceOfParagraph; owl:allValuesFrom text-structure:Paragraph], [
 		a owl:Restriction; owl:onProperty text-structure:isSentenceOfParagraph; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -173,16 +177,32 @@ text-structure:OrthographicWord # Grapheme smallest meaningful contrastive unit 
 		a owl:Restriction; owl:onProperty text-structure:isWordOfLine; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfLineValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-text-structure:Whitespace
+text-structure:Space
 	a owl:Class;
-	rdfs:label "whitespace"@en, "leerzeichen"@de;
-	rdfs:comment """Empty space between orthographic words."""@en;
+	rdfs:label "space"@en, "Leerzeichen"@de;
+	rdfs:comment """Empty space between orthographic or syntactic words."""@en;
 	rdfs:subClassOf text-structure:ReadabilityStructure, [
+		a owl:Restriction; owl:onProperty text-structure:isSpaceBeforeWord; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isSpaceBeforeWordValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty text-structure:isSpaceOfLine; owl:allValuesFrom text-structure:Line], [
 		a owl:Restriction; owl:onProperty text-structure:isSpaceOfLine; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isSpaceOfLineValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty text-structure:isSpaceOfSentence; owl:allValuesFrom text-structure:Sentence], [
+		a owl:Restriction; owl:onProperty text-structure:isSpaceOfSentence; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isSpaceOfSentenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty text-structure:isSpaceOfVerse; owl:allValuesFrom text-structure:Verse], [
 		a owl:Restriction; owl:onProperty prosodic-structure:isSpaceOfVerse; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty prosodic-structure:isSpaceOfVerseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text-structure:Punctuation
+	a owl:Class;
+	rdfs:label "punctuation"@en, "Interpunktion"@de;
+	rdfs:comment """Language symbol in written text, different from a letter, to help interpret semantics of a sentence."""@en;
+	rdfs:subClassOf text-structure:ReadabilityStructure, text-structure:SyntacticStructure, ling:Symbol, [
+		a owl:Restriction; owl:onProperty text-structure:isPunctuationBeforeSpace; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isPunctuationBeforeSpaceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isPunctuationOfSentence; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isPunctuationOfSentenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text-structure:Line
 	a owl:Class;
@@ -298,10 +318,46 @@ text-structure:hasIdentifierValue
 	knora-base:subjectClassConstraint text-structure:Structure;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+text-structure:isWordBeforeSpace
+	a owl:ObjectProperty;
+	rdfs:label "is word before space"@en, "ist Wort vor einem Leerzeichen"@de;
+	rdfs:comment """Relating a syntactic word to the space it precedes."""@en;
+	rdfs:domain text-structure:SyntacticWord;
+	rdfs:range text-structure:Space;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:objectClassConstraint text-structure:Space.
+
+text-structure:isWordBeforeSpaceValue
+	a owl:ObjectProperty;
+	rdfs:label "is word before space - statement"@en, "ist Wort vor einem Leerzeichen - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the word and the space it precedes."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text-structure:isWordBeforePunctuation
+	a owl:ObjectProperty;
+	rdfs:label "is word before punctuation"@en, "ist Wort vor einer Interpunktion"@de;
+	rdfs:comment """Relating a syntactic word to the punctuation it precedes."""@en;
+	rdfs:domain text-structure:SyntacticWord;
+	rdfs:range text-structure:Punctuation;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:objectClassConstraint text-structure:Punctuation.
+
+text-structure:isWordBeforePunctuationValue
+	a owl:ObjectProperty;
+	rdfs:label "is word before punctuation - statement"@en, "ist Wort vor einer Interpunktion - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the word and the punctuation it precedes."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 text-structure:isWordOfSentence
 	a owl:ObjectProperty;
 	rdfs:label "is word of sentence"@en, "ist Wort eines Satzes"@de;
-	rdfs:comment """Relating a syntactic word to a sentence it is part of."""@en;
+	rdfs:comment """Relating a syntactic word to the sentence it is part of."""@en;
 	rdfs:domain text-structure:SyntacticWord;
 	rdfs:range text-structure:Sentence;
 	rdfs:subPropertyOf concept:isPartOf;
@@ -311,7 +367,7 @@ text-structure:isWordOfSentence
 text-structure:isWordOfSentenceValue
 	a owl:ObjectProperty;
 	rdfs:label "is word of sentence - statement"@en, "ist Wort eines Satzes - Festlegung"@de;
-	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the word and a sentence it is part of."""@en;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the word and the sentence it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text-structure:SyntacticWord;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -449,7 +505,7 @@ text-structure:sectionHasNumber
 text-structure:isWordOfLine
 	a owl:ObjectProperty;
 	rdfs:label "is word of line"@en, "ist Wort einer Zeile"@de;
-	rdfs:comment """Relating an orthographic word to a line it is part of."""@en;
+	rdfs:comment """Relating an orthographic word to the line it is part of."""@en;
 	rdfs:domain text-structure:OrthographicWord;
 	rdfs:range text-structure:Line;
 	rdfs:subPropertyOf concept:isPartOf;
@@ -459,27 +515,100 @@ text-structure:isWordOfLine
 text-structure:isWordOfLineValue
 	a owl:ObjectProperty;
 	rdfs:label "is word of line - statement"@en, "ist Wort einer Zeile - Festlegung"@de;
-	rdfs:comment """Relating an orthographic word to a reification statement of the relation between the word and a line it is part of."""@en;
+	rdfs:comment """Relating an orthographic word to a reification statement of the relation between the word and the line it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text-structure:OrthographicWord;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+text-structure:isSpaceBeforeWord
+	a owl:ObjectProperty;
+	rdfs:label "is space before word"@en, "ist Leerzeichen vor einem Wort"@de;
+	rdfs:comment """Relating a space to the syntactic word it precedes."""@en;
+	rdfs:domain text-structure:Space;
+	rdfs:range text-structure:SyntacticWord;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text-structure:Space;
+	knora-base:objectClassConstraint text-structure:SyntacticWord.
+
+text-structure:isSpaceBeforeWordValue
+	a owl:ObjectProperty;
+	rdfs:label "is space before word - statement"@en, "ist Leerzeichen vor einem Wort - Festlegung"@de;
+	rdfs:comment """Relating a space to a reification statement of the relation between the space and the syntactic word it precedes."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text-structure:Space;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+
 text-structure:isSpaceOfLine
 	a owl:ObjectProperty;
-	rdfs:label "is whitespace of line"@en, "ist Leerzeichen einer Zeile"@de;
-	rdfs:comment """Relating a whitespace to a line it is part of."""@en;
-	rdfs:domain text-structure:Whitespace;
+	rdfs:label "is space of line"@en, "ist Leerzeichen einer Zeile"@de;
+	rdfs:comment """Relating a space to a line it is part of."""@en;
+	rdfs:domain text-structure:Space;
 	rdfs:range text-structure:Line;
 	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint text-structure:Whitespace;
+	knora-base:subjectClassConstraint text-structure:Space;
 	knora-base:objectClassConstraint text-structure:Line.
 
 text-structure:isSpaceOfLineValue
 	a owl:ObjectProperty;
-	rdfs:label "is whitespace of line - statement"@en, "ist Wort einer Zeile - Festlegung"@de;
-	rdfs:comment """Relating a whitespace to a reification statement of the relation between the whitespace and a line it is part of."""@en;
+	rdfs:label "is space of line - statement"@en, "ist Leerzeichen einer Zeile - Festlegung"@de;
+	rdfs:comment """Relating a space to a reification statement of the relation between the space and a line it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint text-structure:Whitespace;
+	knora-base:subjectClassConstraint text-structure:Space;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text-structure:isSpaceOfSentence
+	a owl:ObjectProperty;
+	rdfs:label "is space of sentence"@en, "ist Leerzeichen eines Satzes"@de;
+	rdfs:comment """Relating a space to a sentence it is part of."""@en;
+	rdfs:domain text-structure:Space;
+	rdfs:range text-structure:Sentence;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint text-structure:Space;
+	knora-base:objectClassConstraint text-structure:Sentence.
+
+text-structure:isSpaceOfSentenceValue
+	a owl:ObjectProperty;
+	rdfs:label "is space of sentence - statement"@en, "ist Leerzeichen eines Satzes - Festlegung"@de;
+	rdfs:comment """Relating a space to a reification statement of the relation between the space and a sentence it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint text-structure:Space;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text-structure:isPunctuationBeforeSpace
+	a owl:ObjectProperty;
+	rdfs:label "is punctuation before space"@en, "ist Interpunktion vor einem Leerzeichen"@de;
+	rdfs:comment """Relating a punctuation to the space it precedes."""@en;
+	rdfs:domain text-structure:Punctuation;
+	rdfs:range text-structure:Space;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text-structure:Punctuation;
+	knora-base:objectClassConstraint text-structure:Space.
+
+text-structure:isPunctuationBeforeSpaceValue
+	a owl:ObjectProperty;
+	rdfs:label "is punctuation before space - statement"@en, "ist Interpunktion vor einem Leerzeichen - Festlegung"@de;
+	rdfs:comment """Relating a punctuation to a reification statement of the relation between the punctuation and the space it precedes."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text-structure:Punctuation;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text-structure:isPunctuationOfSentence
+	a owl:ObjectProperty;
+	rdfs:label "is punctuation of sentence"@en, "ist Interpunktion eines Satzes"@de;
+	rdfs:comment """Relating a punctuation to the sentence it is part of."""@en;
+	rdfs:domain text-structure:Punctuation;
+	rdfs:range text-structure:Sentence;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint text-structure:Punctuation;
+	knora-base:objectClassConstraint text-structure:Sentence.
+
+text-structure:isPunctuationOfSentenceValue
+	a owl:ObjectProperty;
+	rdfs:label "is punctuation of sentence - statement"@en, "ist Interpunktion eines Satzes - Festlegung"@de;
+	rdfs:comment """Relating a punctuation to a reification statement of the relation between the punctuation and the sentence it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint text-structure:Punctuation;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-structure:isLineOfColumn
