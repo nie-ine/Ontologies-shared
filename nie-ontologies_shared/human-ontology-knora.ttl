@@ -679,7 +679,7 @@ human:hasPreferredName
 	a owl:ObjectProperty;
 	rdfs:label "has preferred name"@en, "hat bevorzugter Name"@de;
 	rdfs:comment """Relating a person to a preferred name of that person."""@en;
-	rdfs:subPropertyOf text:hasName, text:hasPreferredName;
+	rdfs:subPropertyOf human:hasName, text:hasPreferredName;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
@@ -687,7 +687,7 @@ human:hasAlias
 	a owl:ObjectProperty;
 	rdfs:label "has alias"@en, "hat Alias"@de;
 	rdfs:comment """Relating a person to an alias of that person."""@en;
-	rdfs:subPropertyOf text:hasName, text:hasAlias;
+	rdfs:subPropertyOf human:hasName, text:hasAlias;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
