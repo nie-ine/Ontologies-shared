@@ -47,9 +47,10 @@ ling:Lexeme
 	a owl:Class;
 	rdfs:label "lexeme"@en, "Lexem"@de;
 	rdfs:comment """Linguistic concept as individual semantic entity in human natural language."""@en;
+	skos:note """As entry in a dictionary."""@en;
 	rdfs:subClassOf ling:Concept, language:HumanNaturalLanguageExpression, [
-		a owl:Restriction; owl:onProperty ling:hasSemanticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty ling:hasSemanticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty ling:hasSemanticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty ling:hasSemanticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty ling:hasLemma; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty ling:hasLemmaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -78,13 +79,14 @@ ling:PartOfSpeech
 	a owl:Class;
 	rdfs:label "part of speech"@en, "Wortart"@de;
 	rdfs:comment """Word with certain grammatical properties."""@en;
-	rdfs:subClassOf text-structure:SyntacticWord.
+	rdfs:subClassOf ling:Concept, text-structure:SyntacticWord.
 
 ling:Noun
 	a owl:Class;
 	rdfs:label "noun"@en, "Nomen"@de;
 	rdfs:comment """Noun as part of speech."""@en;
 	rdfs:subClassOf ling:PartOfSpeech.
+#	owl:sameAs gold:Noun.
 
 ling:Numeral
 	a owl:Class;
@@ -188,23 +190,23 @@ ling:hasLexemeValue
 	knora-base:subjectClassConstraint text-structure:SyntacticWord;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-ling:hasSemanticGender
-	a owl:ObjectProperty;
-	rdfs:label "has semantic gender"@en, "hat semantisches Genus"@de;
-	rdfs:comment """Relating a lexeme to its semantic gender."""@en;
-	rdfs:domain ling:Lexeme;
-	rdfs:range lingmor:SemanticGender;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint ling:Lexeme;
-	knora-base:objectClassConstraint lingmor:SemanticGender.
+# ling:hasSemanticGender
+#	a owl:ObjectProperty;
+#	rdfs:label "has semantic gender"@en, "hat semantisches Genus"@de;
+#	rdfs:comment """Relating a lexeme to its semantic gender."""@en;
+#	rdfs:domain ling:Lexeme;
+#	rdfs:range lingmor:SemanticGender;
+#	rdfs:subPropertyOf knora-base:hasLinkTo;
+#	knora-base:subjectClassConstraint ling:Lexeme;
+#	knora-base:objectClassConstraint lingmor:SemanticGender.
 
-ling:hasSemanticGenderValue
-	a owl:ObjectProperty;
-	rdfs:label "has semantic gender - statement"@en, "hat semantisches Genus - Festlegung"@de;
-	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and its semantic gender."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint ling:Lexeme;
-	knora-base:objectClassConstraint knora-base:LinkValue.
+# ling:hasSemanticGenderValue
+#	a owl:ObjectProperty;
+#	rdfs:label "has semantic gender - statement"@en, "hat semantisches Genus - Festlegung"@de;
+#	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and its semantic gender."""@en;
+#	rdfs:subPropertyOf knora-base:hasLinkToValue;
+#	knora-base:subjectClassConstraint ling:Lexeme;
+#	knora-base:objectClassConstraint knora-base:LinkValue.
 
 ling:hasLemma
 	a owl:ObjectProperty;
