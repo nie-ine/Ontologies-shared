@@ -13,6 +13,7 @@
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
@@ -101,7 +102,7 @@ textedit:DerivedTextExpression
 	a owl:Class;
 	rdfs:label "derived text expression"@en, "abgeleitete Textexpression"@de;
 	rdfs:comment """Text expression derived from another text expression with content changed beyond a version."""@en;
-	rdfs:subClassOf text:Expression, human:CreationDerivative, textedit:Edition.
+	rdfs:subClassOf text-expression:Expression, human:CreationDerivative, textedit:Edition.
 
 #
 # PROPERTIES
@@ -237,10 +238,10 @@ textedit:hasDerivedTextExpression
 	a owl:ObjectProperty;
 	rdfs:label "has derived text expression"@en, "hat abgeleitete Textexpression"@de;
 	rdfs:comment "Relating a text expression to another one derived from it."@en;
-	rdfs:domain text:Expression;
+	rdfs:domain text-expression:Expression;
 	rdfs:range textedit:DerivedTextExpression;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint textedit:DerivedTextExpression.
 
 textedit:hasDerivedTextExpressionValue
@@ -248,5 +249,5 @@ textedit:hasDerivedTextExpressionValue
 	rdfs:label "has derived text expression - statement"@en, "hat abgeleitete Textexpression - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the text expression and another one derived from it."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.

@@ -4,6 +4,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
@@ -31,13 +32,13 @@ meyer:LetterExpression
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer letter expression"@en, "Briefexpression Conrad Ferdinand Meyers"@de;
 	rdfs:comment """Letter expression authored by Conrad Ferdinand Meyer or another person."""@en;
-	rdfs:subClassOf text:LetterExpression, text:HandwrittenText.
+	rdfs:subClassOf text-expression:Letter, text:HandwrittenText.
 
 meyer:DraftLetterExpression
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer letter expression draft"@en, "Briefexpressionentwurf Conrad Ferdinand Meyers"@de;
 	rdfs:comment """Draft of a letter expression authored by Conrad Ferdinand Meyer or another person."""@en;
-	rdfs:subClassOf text:Draft.
+	rdfs:subClassOf text-expression:Draft.
 
 meyer:CopiedLetterExpression
 	a owl:Class;

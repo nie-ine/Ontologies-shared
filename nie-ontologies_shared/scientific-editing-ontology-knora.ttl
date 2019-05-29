@@ -13,6 +13,7 @@
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
@@ -273,7 +274,7 @@ scientific-editing:Witness
 	rdfs:label "witness text"@en, "Textzeuge"@de;
 	rdfs:comment """Copy of a text studied in a critical edition, as comparison or proof of existance of the original by looking for features of originality, possibly enabling the original's reconstruction."""@en;
 	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_w.aspx>;
-	rdfs:subClassOf text:CopiedText, text:Expression, [
+	rdfs:subClassOf text:CopiedText, text-expression:Expression, [
 		a owl:Restriction; owl:onProperty scientific-editing:witnessHasSiglum; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scientific-editing:witnessHasSiglumValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scientific-editing:isWitnessOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -350,10 +351,10 @@ scientific-editing:hasScientificEdition
 	a owl:ObjectProperty;
 	rdfs:label "has scientific text edition"@en, "hat wissenschaftliche Textedition"@de;
 	rdfs:comment "Relating a text expression to a scientific edition thereof."@en;
-	rdfs:domain text:Expression;
+	rdfs:domain text-expression:Expression;
 	rdfs:range scientific-editing:ScientificEdition;
 	rdfs:subPropertyOf textedit:hasDerivedTextExpression;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scientific-editing:ScientificEdition.
 
 scientific-editing:hasScientificEditionValue
@@ -361,17 +362,17 @@ scientific-editing:hasScientificEditionValue
 	rdfs:label "has scientific text edition - statement"@en, "hat wissenschaftliche Textedition - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the text expression and a scientific edition thereof."@en;
 	rdfs:subPropertyOf textedit:hasDerivedTextExpressionValue;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 scientific-editing:hasScientificEditionPage
 	a owl:ObjectProperty;
 	rdfs:label "has scientific text edition page"@en, "hat wissenschaftliche Texteditionseite"@de;
 	rdfs:comment "Relating a text expression to a scientific edition page thereof."@en;
-	rdfs:domain text:Expression;
+	rdfs:domain text-expression:Expression;
 	rdfs:range scientific-editing:Page;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scientific-editing:Page.
 
 scientific-editing:hasScientificEditionPageValue
@@ -379,7 +380,7 @@ scientific-editing:hasScientificEditionPageValue
 	rdfs:label "has scientific text edition page - statement"@en, "hat wissenschaftliche Texteditionseite - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the text expression and a scientific edition page thereof."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 scientific-editing:hasScientificEditor
@@ -494,10 +495,10 @@ scientific-editing:hasDiplomaticTranscription
 	a owl:ObjectProperty;
 	rdfs:label "has diplomatic transcription"@en, "hat diplomatische Umschrift"@de;
 	rdfs:comment "Relating a text to a diplomatic transcription thereof."@en;
-	rdfs:domain text:Expression;
+	rdfs:domain text-expression:Expression;
 	rdfs:range scientific-editing:DiplomaticTranscription;
 	rdfs:subPropertyOf scientific-editing:hasScientificEdition;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scientific-editing:DiplomaticTranscription.
 
 scientific-editing:hasDiplomaticTranscriptionValue
@@ -505,7 +506,7 @@ scientific-editing:hasDiplomaticTranscriptionValue
 	rdfs:label "has diplomatic transcription - statement"@en, "hat diplomatische Umschrift - Festlegung"@de;
 	rdfs:comment "Relating a text to a reification statement of the relation between the text and a diplomatic transcription thereof."@en;
 	rdfs:subPropertyOf scientific-editing:hasScientificEditionValue;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 scientific-editing:isDiplomaticTranscriptionOfTextOnPage
@@ -530,10 +531,10 @@ scientific-editing:hasCriticalEdition
 	a owl:ObjectProperty;
 	rdfs:label "has critical text edition"@en, "hat kritische Textedition"@de;
 	rdfs:comment "Relating a text expression to a critical edition thereof."@en;
-	rdfs:domain text:Expression;
+	rdfs:domain text-expression:Expression;
 	rdfs:range scientific-editing:CriticalEdition;
 	rdfs:subPropertyOf scientific-editing:hasScientificEdition;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scientific-editing:CriticalEdition.
 
 scientific-editing:hasCriticalEditionValue
@@ -541,7 +542,7 @@ scientific-editing:hasCriticalEditionValue
 	rdfs:label "has critical text edition - statement"@en, "hat kritische Textedition - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the text and a critical edition thereof."@en;
 	rdfs:subPropertyOf scientific-editing:hasScientificEditionValue;
-	knora-base:subjectClassConstraint text:Expression;
+	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 scientific-editing:hasCriticalEditor
@@ -865,10 +866,10 @@ scientific-editing:isWitnessOf
 	rdfs:label "is witness of"@en, "ist Textzeuge von"@de;
 	rdfs:comment """Relating a witness text expression to its original."""@en;
 	rdfs:domain scientific-editing:Witness;
-	rdfs:range text:Expression;
+	rdfs:range text-expression:Expression;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint scientific-editing:Witness;
-	knora-base:objectClassConstraint text:Expression.
+	knora-base:objectClassConstraint text-expression:Expression.
 
 scientific-editing:isWitnessOfValue
 	a owl:ObjectProperty;
@@ -1027,10 +1028,10 @@ scientific-editing:isCommentOn
 	rdfs:label "is comment on"@en, "ist Kommentar zu"@de;
 	rdfs:comment """Relating an editorial comment to a text expression it is a comment on."""@en;
 	rdfs:domain scientific-editing:EditorialComment;
-	rdfs:range text:Expression;
+	rdfs:range text-expression:Expression;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint scientific-editing:EditorialComment;
-	knora-base:objectClassConstraint text:Expression.
+	knora-base:objectClassConstraint text-expression:Expression.
 
 scientific-editing:isCommentOnValue
 	a owl:ObjectProperty;

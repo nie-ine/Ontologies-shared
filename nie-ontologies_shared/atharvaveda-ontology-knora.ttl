@@ -5,6 +5,7 @@
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
@@ -52,7 +53,7 @@ athar:Strophe
 	a owl:Class;
 	rdfs:label "Atharvaveda strophe"@en, "Atharvaveda-Strophe"@de;
 	rdfs:comment """Group of verses or 2 half-strophes in the Atharvaveda."""@en;
-	rdfs:subClassOf prosodic-structure:Strophe, text:ExpressionPart, [
+	rdfs:subClassOf prosodic-structure:Strophe, text-expression:ExpressionPart, [
 		a owl:Restriction; owl:onProperty indo:hasIndologicComment; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isStropheOfSukta; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isStropheOfSuktaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].

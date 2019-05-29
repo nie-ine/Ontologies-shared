@@ -8,6 +8,7 @@
 @prefix teach: <http://www.knora.org/ontology/shared/teaching#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
@@ -56,7 +57,7 @@ delille:Canto
 	a owl:Class;
 	rdfs:label "Jacques Delille canto"@en, "Canto Jacques Delilles"@de, "chant de Jacques Delille"@fr, "canto di Jacques Delille"@it;
 	rdfs:comment """Group of strophes in a verse poem authored by Jacques Delille."""@en;
-	rdfs:subClassOf prosodic-structure:VerseSection, text:ExpressionPart.
+	rdfs:subClassOf prosodic-structure:VerseSection, text-expression:ExpressionPart.
 
 # delille:RhymingVerse
 #	a owl:Class;
@@ -86,7 +87,7 @@ delille:Dictionary
 	a owl:Class;
 	rdfs:label "citing dictionary"@en, "zitierendes Wörterbuch"@de; #, ""@fr, ""@it;
 	rdfs:comment """Dictionary citing one or more verses of a poem authored by Jacques Delille."""@en;
-	rdfs:subClassOf text:Dictionary, publish:TextExpression.
+	rdfs:subClassOf text-expression:Dictionary, publish:TextExpression.
 
 delille:Manual
 	a owl:Class;
@@ -122,13 +123,13 @@ delille:ScientificExpression
 	a owl:Class;
 	rdfs:label "citing scientific publication expression"@en, "zitierende wissenschaftliche Publikation-Expression"@de;
 	rdfs:comment """Scientific publication expression citing one or more verses of a poem authored by Jacques Delille."""@en;
-	rdfs:subClassOf text:ScientificExpression, publish:TextExpression.
+	rdfs:subClassOf text-expression:ScientificExpression, publish:TextExpression.
 
 delille:VulgarizedScientificExpression
 	a owl:Class;
 	rdfs:label "citing vulgarized scientific publication expression"@en, "zitierende vulgarisierte wissenschaftliche Publikation-Expression"@de;
 	rdfs:comment """Vulgarized scientific publication expression citing one or more verses of a poem authored by Jacques Delille."""@en;
-	rdfs:subClassOf text:VulgarizedScientificExpression, publish:TextExpression.
+	rdfs:subClassOf text-expression:VulgarizedScientificExpression, publish:TextExpression.
 
 delille:Catalogue
 	a owl:Class;
@@ -140,7 +141,7 @@ delille:Commentary
 	a owl:Class;
 	rdfs:label "commentary"@en, "Kommentar"@de;
 	rdfs:comment """Commentary on a citation of a verse of a poem authored by Jacques Delille."""@en;
-	rdfs:subClassOf text:Commentary, text:ScientificExpression, publish:TextExpression.
+	rdfs:subClassOf text-expression:Commentary, text-expression:ScientificExpression, publish:TextExpression.
 
 delille:Argument
 	a owl:Class;

@@ -13,6 +13,7 @@
 @prefix math: <http://www.knora.org/ontology/shared/mathematics#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
@@ -133,10 +134,10 @@ note-structure:isNoteStructureOfExpression
 	rdfs:label "is note of expression"@en, "ist Notiz einer Expression"@de;
 	rdfs:comment """Relating a note structure to a text expression it is part of."""@en;
 	rdfs:domain note-structure:Note;
-	rdfs:range text:Expression;
+	rdfs:range text-expression:Expression;
 	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
 	knora-base:subjectClassConstraint note-structure:Note;
-	knora-base:objectClassConstraint text:Expression.
+	knora-base:objectClassConstraint text-expression:Expression.
 
 note-structure:isNoteStructureOfExpressionValue
 	a owl:ObjectProperty;
@@ -151,10 +152,10 @@ note-structure:isGlossOfExpression
 	rdfs:label "is gloss of expression"@en, "ist Glosse einer Expression"@de;
 	rdfs:comment """Relating a gloss to a text expression it is part of."""@en;
 	rdfs:domain note-structure:Gloss;
-	rdfs:range text:Expression;
+	rdfs:range text-expression:Expression;
 	rdfs:subPropertyOf note-structure:isNoteStructureOfExpression;
 	knora-base:subjectClassConstraint note-structure:Gloss;
-	knora-base:objectClassConstraint text:Expression.
+	knora-base:objectClassConstraint text-expression:Expression.
 
 note-structure:isGlossOfExpressionValue
 	a owl:ObjectProperty;

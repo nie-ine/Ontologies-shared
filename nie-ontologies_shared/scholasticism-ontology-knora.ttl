@@ -9,6 +9,7 @@
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
 @prefix logic: <http://www.knora.org/ontology/shared/logic#>.
@@ -77,7 +78,7 @@ schola:Commentary
 	a owl:Class;
 	rdfs:label "scholastic commentary"@en, "scholastischer Kommentar"@de, "commentarius scholasticus"@la;
 	rdfs:comment """Commentary made by a scholastic."""@en;
-	rdfs:subClassOf text:Commentary, [ # owl:unionOf (schola:ProceduralCommentary schola:GlossCommentary ...)
+	rdfs:subClassOf text-expression:Commentary, [ # owl:unionOf (schola:ProceduralCommentary schola:GlossCommentary ...)
 		a owl:Restriction; owl:onProperty schola:commentaryHasProcedure; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty schola:commentaryHasProcedureValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 

@@ -4,6 +4,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
@@ -31,7 +32,7 @@ dietrich:DiaryEntry
 	a owl:Class;
 	rdfs:label "diary entry by father Joseph Dietrich"@en, "Tagebucheintrag des Paters Joseph Dietrich"@de;
 	rdfs:comment """Diary entry authored by father Joseph Dietrich."""@en;
-	rdfs:subClassOf text:HandwrittenText, text:DiaryEntry.
+	rdfs:subClassOf text:HandwrittenText, text-expression:DiaryEntry.
 
 dietrich:DiaryVolume
 	a owl:Class;

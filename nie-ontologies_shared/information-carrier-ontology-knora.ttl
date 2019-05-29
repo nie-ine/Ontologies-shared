@@ -12,6 +12,7 @@
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix device: <http://www.knora.org/ontology/shared/device#>.
 @prefix image: <http://www.knora.org/ontology/shared/image#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
@@ -955,22 +956,22 @@ infocar:isTextInPhotocopyValue
 	knora-base:subjectClassConstraint text:PhotocopiedText;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-infocar:entryIsInDiary
+infocar:isEntryInDiary
 	a owl:ObjectProperty;
-	rdfs:label "entry is in diary"@en, "Eintrag ist in Tagebuch"@de;
-	rdfs:comment """Relating a diary entry to a diary it is in."""@en;
-	rdfs:domain text:DiaryEntry;
+	rdfs:label "is entry in diary"@en, "ist Eintrag in Tagebuch"@de;
+	rdfs:comment """Relating a diary entry to the diary it is in."""@en;
+	rdfs:domain text-expression:DiaryEntry;
 	rdfs:range infocar:Diary;
 	rdfs:subPropertyOf infocar:isOnCarrier;
-	knora-base:subjectClassConstraint text:DiaryEntry;
+	knora-base:subjectClassConstraint text-expression:DiaryEntry;
 	knora-base:objectClassConstraint infocar:Diary.
 
-infocar:entryIsInDiaryValue
+infocar:isEntryInDiaryValue
 	a owl:ObjectProperty;
-	rdfs:label "entry is in diary - statement"@en, "Eintrag ist in Tagebuch - Festlegung"@de;
-	rdfs:comment """Relating a diary entry to a reification statement of the relation between the entry and a diary it is in."""@en;
+	rdfs:label "is entry in diary - statement"@en, "ist Eintrag in Tagebuch - Festlegung"@de;
+	rdfs:comment """Relating a diary entry to a reification statement of the relation between the entry and the diary it is in."""@en;
 	rdfs:subPropertyOf infocar:isOnCarrierValue;
-	knora-base:subjectClassConstraint text:DiaryEntry;
+	knora-base:subjectClassConstraint text-expression:DiaryEntry;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:hasDiaryEnteringDate
@@ -978,35 +979,35 @@ infocar:hasDiaryEnteringDate
 	rdfs:label "has diary entering date"@en, "hat Tagebucheintragsdatum"@de;
 	rdfs:comment """Relating a diary entry to its date of entering in a diary."""@en;
 	rdfs:subPropertyOf human:creationHasDate;
-	knora-base:subjectClassConstraint text:DiaryEntry;
+	knora-base:subjectClassConstraint text-expression:DiaryEntry;
 	knora-base:objectClassConstraint knora-base:DateValue.
 
 infocar:isInDiary
 	a owl:ObjectProperty;
 	rdfs:label "is in diary"@en, "ist in Tagebuch"@de;
-	rdfs:comment """Relating a diary expression to a diary it is in."""@en;
-	rdfs:domain text:DiaryExpression;
+	rdfs:comment """Relating a diary expression to the physical diary it is in."""@en;
+	rdfs:domain text-expression:Diary;
 	rdfs:range infocar:Diary;
 	rdfs:subPropertyOf infocar:isOnCarrier;
-	knora-base:subjectClassConstraint text:DiaryExpression;
+	knora-base:subjectClassConstraint text-expression:Diary;
 	knora-base:objectClassConstraint infocar:Diary.
 
 infocar:isInDiaryValue
 	a owl:ObjectProperty;
 	rdfs:label "is in diary - statement"@en, "ist in Tagebuch - Festlegung"@de;
-	rdfs:comment """Relating a diary expression to a reification statement of the relation between the expression and a diary it is in."""@en;
+	rdfs:comment """Relating a diary expression to a reification statement of the relation between the expression and the physical diary it is in."""@en;
 	rdfs:subPropertyOf infocar:isOnCarrierValue;
-	knora-base:subjectClassConstraint text:DiaryExpression;
+	knora-base:subjectClassConstraint text-expression:Diary;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isInLetter
 	a owl:ObjectProperty;
 	rdfs:label "is in letter"@en, "ist in Brief"@de;
 	rdfs:comment """Relating a letter expression to a letter it is in."""@en;
-	rdfs:domain text:LetterExpression;
+	rdfs:domain text-expression:Letter;
 	rdfs:range infocar:Letter;
 	rdfs:subPropertyOf infocar:isOnCarrier;
-	knora-base:subjectClassConstraint text:LetterExpression;
+	knora-base:subjectClassConstraint text-expression:Letter;
 	knora-base:objectClassConstraint infocar:Letter.
 
 infocar:isInLetterValue
@@ -1014,17 +1015,17 @@ infocar:isInLetterValue
 	rdfs:label "is in letter - statement"@en, "ist in Brief - Festlegung"@de;
 	rdfs:comment """Relating a letter expression to a reification statement of the relation between the letter expression and a letter it is in."""@en;
 	rdfs:subPropertyOf infocar:isOnCarrierValue;
-	knora-base:subjectClassConstraint text:LetterExpression;
+	knora-base:subjectClassConstraint text-expression:Letter;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isTextInLetterEnclosure
 	a owl:ObjectProperty;
 	rdfs:label "is text in letter enclosure"@en, "ist Text in Briefbeilage"@de;
 	rdfs:comment """Relating a text expression to a letter enclosure it is in."""@en;
-	rdfs:domain text:LetterEnclosureExpression;
+	rdfs:domain text-expression:LetterEnclosure;
 	rdfs:range infocar:InformationLetterEnclosure;
 	rdfs:subPropertyOf infocar:isOnCarrier;
-	knora-base:subjectClassConstraint text:LetterEnclosureExpression;
+	knora-base:subjectClassConstraint text-expression:LetterEnclosure;
 	knora-base:objectClassConstraint infocar:InformationLetterEnclosure.
 
 infocar:isTextInLetterEnclosureValue
@@ -1032,7 +1033,7 @@ infocar:isTextInLetterEnclosureValue
 	rdfs:label "is text in letter enclosure - statement"@en, "ist Text in Briefbeilage - Festlegung"@de;
 	rdfs:comment """Relating a text expression to a reification statement of the relation between the expression and a letter enclosure it is in."""@en;
 	rdfs:subPropertyOf infocar:isOnCarrierValue;
-	knora-base:subjectClassConstraint text:LetterEnclosureExpression;
+	knora-base:subjectClassConstraint text-expression:LetterEnclosure;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:hasSender

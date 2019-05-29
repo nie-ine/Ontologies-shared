@@ -4,6 +4,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
@@ -30,7 +31,7 @@ lavater:LetterExpression
 	a owl:Class;
 	rdfs:label "Johann Caspar Lavater letter expression"@en, "Brief-Expression Johann Caspar Lavaters"@de;
 	rdfs:comment """Letter expression either authored by or written to by Johann Caspar Lavater."""@en;
-	rdfs:subClassOf text:LetterExpression, text:HandwrittenText.
+	rdfs:subClassOf text-expression:Letter, text:HandwrittenText.
 
 lavater:EditedLetter
 	a owl:Class;

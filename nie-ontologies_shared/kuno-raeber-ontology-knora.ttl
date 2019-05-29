@@ -10,6 +10,7 @@
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
@@ -45,7 +46,7 @@ kuno-raeber:Text
 	a owl:Class;
 	rdfs:label "Kuno Raeber text expression"@en, "Textexpression Kuno Raebers"@de;
 	rdfs:comment """Text expression authored by Kuno Raeber."""@en;
-	rdfs:subClassOf text:IndividualExpression, [
+	rdfs:subClassOf text-expression:IndividualExpression, [
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasDetailDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -58,7 +59,7 @@ kuno-raeber:PublicationTextPart
 	a owl:Class;
 	rdfs:label "Kuno Raeber publication text expression part"@en, "Publikation-Textexpressionsteil Kuno Raebers"@de;
 	rdfs:comment """Part of a publication text expression authored by Kuno Raeber."""@en;
-	rdfs:subClassOf text:ExpressionPart, publish:Expression, [
+	rdfs:subClassOf text-expression:ExpressionPart, publish:Expression, [
 		a owl:Restriction; owl:onProperty text:hasAlias; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -66,7 +67,7 @@ kuno-raeber:TypewrittenCommentary
 	a owl:Class;
 	rdfs:label "Kuno Raeber typewritten commentary"@en, "maschinengeschriebener Kommentar Kuno Raebers"@de;
 	rdfs:comment """Typewritten commentary authored by Kuno Raeber."""@en;
-	rdfs:subClassOf text:Commentary, text:TypewrittenText, text:Nonfiction, kuno-raeber:Text.
+	rdfs:subClassOf text-expression:Commentary, text:TypewrittenText, text:Nonfiction, kuno-raeber:Text.
 
 kuno-raeber:Preface
 	a owl:Class;
@@ -78,7 +79,7 @@ kuno-raeber:DraftHandwrittenPreface
 	a owl:Class;
 	rdfs:label "Kuno Raeber handwritten preface draft"@en, "handgeschriebener Vorwort-Entwurf Kuno Raebers"@de;
 	rdfs:comment """Draft handwritten preface authored by Kuno Raeber."""@en;
-	rdfs:subClassOf kuno-raeber:Preface, text:HandwrittenText, text:Draft.
+	rdfs:subClassOf kuno-raeber:Preface, text:HandwrittenText, text-expression:Draft.
 
 kuno-raeber:TypewrittenPreface
 	a owl:Class;
@@ -184,7 +185,7 @@ kuno-raeber:DiaryEntry
 	a owl:Class;
 	rdfs:label "Kuno Raeber diary entry"@en, "Tagebucheintrag Kuno Raebers"@de;
 	rdfs:comment """Diary entry authored by Kuno Raeber."""@en;
-	rdfs:subClassOf text:DiaryEntry, kuno-raeber:Text, [
+	rdfs:subClassOf text-expression:DiaryEntry, kuno-raeber:Text, [
 		a owl:Restriction; owl:onProperty kuno-raeber:isInDiary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isInDiaryValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isInDiaryConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -194,7 +195,7 @@ kuno-raeber:LetterExpression
 	a owl:Class;
 	rdfs:label "Kuno Raeber letter expression"@en, "Brief-Expression Kuno Raebers"@de;
 	rdfs:comment """Letter expression written by Kuno Raeber."""@en;
-	rdfs:subClassOf text:LetterExpression, text:WrittenText, kuno-raeber:Text, [
+	rdfs:subClassOf text-expression:Letter, text:WrittenText, kuno-raeber:Text, [
 		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 kuno-raeber:StillImageRepresentation
@@ -378,7 +379,7 @@ kuno-raeber:poemHasTitle
 	rdfs:comment """Relating a poem by Kuno Raeber to a title it has."""@en;
 	rdfs:domain kuno-raeber:Poem;
 	rdfs:range knora-base:TextValue;
-	rdfs:subPropertyOf text:expressionHasTitle;
+	rdfs:subPropertyOf text-expression:HasTitle;
 	knora-base:subjectClassConstraint kuno-raeber:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
@@ -634,7 +635,7 @@ kuno-raeber:isInDiary
 	rdfs:comment """Relating a diary entry by Kuno Raeber to the diary it is in."""@en;
 	rdfs:domain kuno-raeber:DiaryEntry;
 	rdfs:range kuno-raeber:Diary;
-	rdfs:subPropertyOf infocar:entryIsInDiary;
+	rdfs:subPropertyOf infocar:isEntryInDiary;
 	knora-base:subjectClassConstraint kuno-raeber:DiaryEntry;
 	knora-base:objectClassConstraint kuno-raeber:Diary.
 
@@ -642,7 +643,7 @@ kuno-raeber:isInDiaryValue
 	a owl:ObjectProperty;
 	rdfs:label "entry is in diary - statement"@en, "Eintrag ist in Tagebuch - Festlegung"@de;
 	rdfs:comment """Relating a diary entry by Kuno Raeber to a reification statement of the relation between the entry and the diary it is in."""@en;
-	rdfs:subPropertyOf infocar:entryIsInDiaryValue;
+	rdfs:subPropertyOf infocar:isEntryInDiaryValue;
 	knora-base:subjectClassConstraint kuno-raeber:DiaryEntry;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
