@@ -294,7 +294,7 @@ litera:Argument
 	rdfs:label "argument"@en, "Argument"@de;
 	rdfs:comment """Summary of a literary expression or part of it, often a poem, often at the beginning of a section, to orient a reader."""@en;
 #	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
-	rdfs:subClassOf text-expression:Introduction, [ # text:Summary.
+	rdfs:subClassOf text-expression:Introduction, [ # text-expression:Summary.
 		a owl:Restriction; owl:onProperty litera:isArgumentOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty litera:isArgumentOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
