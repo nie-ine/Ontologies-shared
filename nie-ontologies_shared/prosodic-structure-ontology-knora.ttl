@@ -49,7 +49,7 @@ prosodic-structure:ProsodicStructure
 prosodic-structure:Verse
 	a owl:Class;
 	rdfs:label "verse"@en, "Vers"@de;
-	rdfs:comment """Text line with prosody."""@en;
+	rdfs:comment """Text with prosody."""@en;
 	rdfs:subClassOf prosodic-structure:ProsodicStructure, [
 #		a owl:Restriction; owl:onProperty prosodic-structure:isVerseOfStrophe; owl:allValuesFrom prosodic-structure:Strophe], [ 
 		a owl:Restriction; owl:onProperty prosodic-structure:isVerseOfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
