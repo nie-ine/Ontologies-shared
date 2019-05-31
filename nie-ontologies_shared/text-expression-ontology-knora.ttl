@@ -46,8 +46,8 @@ text-expression:Expression
 	rdfs:label "text expression"@en, "Textexpression"@de, "expression textuelle"@fr, "espressione testuale"@it;
 	rdfs:comment """Document expression as text."""@en;
 	rdfs:subClassOf document:Expression, text:Text, [
-		a owl:Restriction; owl:onProperty text-expression:HasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text-expression:HasSubtitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-expression:hasTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-expression:hasSubtitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-expression:hasIncipit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-expression:hasExplicit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-expression:hasAuthor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -255,7 +255,7 @@ text-expression:Dictionary
 # PROPERTIES
 #
 
-text-expression:HasTitle
+text-expression:hasTitle
 	a owl:ObjectProperty;
 	rdfs:label "text expression has title"@en, "Textexpression hat Titel"@de;
 	rdfs:comment """Relating a text expression to a title it has."""@en;
@@ -265,7 +265,7 @@ text-expression:HasTitle
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
-text-expression:HasSubtitle
+text-expression:hasSubtitle
 	a owl:ObjectProperty;
 	rdfs:label "text expression has subtitle"@en, "Textexpression hat Untertitel"@de;
 	rdfs:comment """Relating a text expression to a subtitle it has."""@en;
