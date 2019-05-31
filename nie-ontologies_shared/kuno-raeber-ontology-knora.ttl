@@ -379,7 +379,7 @@ kuno-raeber:poemHasTitle
 	rdfs:comment """Relating a poem by Kuno Raeber to a title it has."""@en;
 	rdfs:domain kuno-raeber:Poem;
 	rdfs:range knora-base:TextValue;
-	rdfs:subPropertyOf text-expression:HasTitle;
+	rdfs:subPropertyOf text-expression:hasTitle;
 	knora-base:subjectClassConstraint kuno-raeber:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
