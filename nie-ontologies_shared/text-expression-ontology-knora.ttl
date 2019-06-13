@@ -97,8 +97,8 @@ text-expression:ExpressionPart
 	rdfs:label "text expression part"@en, "Textexpressionsteil"@de;
 	rdfs:comment """Part of an individual text expression, considered as incomplete."""@en;
 	rdfs:subClassOf text-expression:Expression, document:ExpressionPart, [
-		a owl:Restriction; owl:onProperty text-expression:isPartOfIndividualExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text-expression:isPartOfIndividualExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty text-expression:isPartOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-expression:isPartOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text-expression:Introduction
 	a owl:Class;
@@ -414,20 +414,20 @@ text-expression:hasMainAuthorValue
 	knora-base:subjectClassConstraint text-expression:PolyAuthorExpression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-text-expression:isPartOfIndividualExpression
+text-expression:isPartOfExpression
 	a owl:ObjectProperty;
-	rdfs:label "is part of individual text expression"@en, "ist Teil einer individuellen Textexpression"@de;
-	rdfs:comment """Relating a text expression part to an individual expression it is part of."""@en;
+	rdfs:label "is part of text expression"@en, "ist Teil einer Textexpression"@de;
+	rdfs:comment """Relating a text expression part to an expression it is part of."""@en;
 	rdfs:domain text-expression:ExpressionPart;
-	rdfs:range text-expression:IndividualExpression;
+	rdfs:range text-expression:Expression;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint text-expression:ExpressionPart;
-	knora-base:objectClassConstraint text-expression:IndividualExpression.
+	knora-base:objectClassConstraint text-expression:Expression.
 
-text-expression:isPartOfIndividualExpressionValue
+text-expression:isPartOfExpressionValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of individual text expression - statement"@en, "ist Teil einer individuellen Textexpression - Festlegung"@de;
-	rdfs:comment """Relating a text expression part to a reification statement of the relation between the part and an individual expression it is part of."""@en;
+	rdfs:label "is part of text expression - statement"@en, "ist Teil einer Textexpression - Festlegung"@de;
+	rdfs:comment """Relating a text expression part to a reification statement of the relation between the part and an expression it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text-expression:ExpressionPart;
 	knora-base:objectClassConstraint knora-base:LinkValue.
