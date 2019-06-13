@@ -46,8 +46,8 @@ note-structure:Note
 	rdfs:label "note structure"@en, "Notiz-Struktur"@de;
 	rdfs:comment """Text with note structure, not necessarily having sentences or being syntactically correct; e.g. a first registration of thought, or a remark added to another text."""@en;
 	rdfs:subClassOf text-structure:CompositionalContentStructure, [
-		a owl:Restriction; owl:onProperty note-structure:isNoteStructureOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty note-structure:isNoteStructureOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty note-structure:isNoteOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty note-structure:isNoteOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 note-structure:MarginalNote
 	a owl:Class;
@@ -129,9 +129,9 @@ note-structure:EndnoteNumber
 # PROPERTIES
 #
 
-note-structure:isNoteStructureOfExpression
+note-structure:isNoteOfExpression
 	a owl:ObjectProperty;
-	rdfs:label "is note of expression"@en, "ist Notiz einer Expression"@de;
+	rdfs:label "is note structure of expression"@en, "ist Notiz-Struktur einer Expression"@de;
 	rdfs:comment """Relating a note structure to a text expression it is part of."""@en;
 	rdfs:domain note-structure:Note;
 	rdfs:range text-expression:Expression;
@@ -139,10 +139,10 @@ note-structure:isNoteStructureOfExpression
 	knora-base:subjectClassConstraint note-structure:Note;
 	knora-base:objectClassConstraint text-expression:Expression.
 
-note-structure:isNoteStructureOfExpressionValue
+note-structure:isNoteOfExpressionValue
 	a owl:ObjectProperty;
-	rdfs:label "is note of expression - statement"@en, "ist Notiz einer Expression - Festlegung"@de;
-	rdfs:comment """Relating a note structure to a reification statement of the relation between the note and a text expression it is part of."""@en;
+	rdfs:label "is note structure of expression - statement"@en, "ist Notiz-Struktur einer Expression - Festlegung"@de;
+	rdfs:comment """Relating a note structure to a reification statement of the relation between the note structure and a text expression it is part of."""@en;
 	rdfs:subPropertyOf text-structure:isPartOfTextExpressionValue;
 	knora-base:subjectClassConstraint note-structure:Note;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -153,7 +153,7 @@ note-structure:isGlossOfExpression
 	rdfs:comment """Relating a gloss to a text expression it is part of."""@en;
 	rdfs:domain note-structure:Gloss;
 	rdfs:range text-expression:Expression;
-	rdfs:subPropertyOf note-structure:isNoteStructureOfExpression;
+	rdfs:subPropertyOf note-structure:isNoteOfExpression;
 	knora-base:subjectClassConstraint note-structure:Gloss;
 	knora-base:objectClassConstraint text-expression:Expression.
 
@@ -161,7 +161,7 @@ note-structure:isGlossOfExpressionValue
 	a owl:ObjectProperty;
 	rdfs:label "is gloss of expression - statement"@en, "ist Glosse einer Expression - Festlegung"@de;
 	rdfs:comment """Relating a gloss to a reification statement of the relation between the gloss and a text expression it is part of."""@en;
-	rdfs:subPropertyOf note-structure:isNoteStructureOfExpressionValue;
+	rdfs:subPropertyOf note-structure:isNoteOfExpressionValue;
 	knora-base:subjectClassConstraint note-structure:Gloss;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
