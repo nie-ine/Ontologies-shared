@@ -22,6 +22,7 @@
 
 <http://www.knora.org/ontology/shared/linguistic-morphology>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about language"@en;
 	dct:description """Formal description of linguistic-morphology, general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
@@ -36,34 +37,33 @@
 # CLASSES
 #
 
-# morphology syntax
-# morphology semantics
-
-# lingmor:WordForm
-
-# type: unifies different identical literals (surface forms?)
-
-lingmor:Morph
+lingmor:Morpheme
 	a owl:Class;
-	rdfs:label "morph"@en, "Morph"@de;
+	rdfs:label "morpheme"@en, "Morphem"@de;
 	rdfs:comment """Linguistic concept as the smallest entity in human natural language with a grammatical function, inflectable, free or bound."""@en;
 	rdfs:subClassOf ling:Concept.
 
-# morpheme: no content, just label
-
 lingmor:Root
 	a owl:Class;
-	rdfs:label "root morph"@en, "Morph"@de; #°
-	rdfs:comment """Individual or free morph with own semantics."""@en;
-	rdfs:subClassOf lingmor:Morph.
+	rdfs:label "root morpheme"@en, "Wortwurzel"@de;
+	rdfs:comment """Individual or free morpheme with own semantics."""@en;
+	rdfs:subClassOf lingmor:Morpheme.
 
 lingmor:Affix
 	a owl:Class;
 	rdfs:label "affix"@en, "Affix"@de;
-	rdfs:comment """Bound morph without own semantics, depending on a free morph; part of a word."""@en;
-	rdfs:subClassOf lingmor:Morph. #, [
+	rdfs:comment """Bound morpheme without own semantics, depending on a root; part of a word, complement of a word stem."""@en;
+	rdfs:subClassOf lingmor:Morpheme. #, [
 #		a owl:Restriction; owl:onProperty lingmor:dependsOn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty lingmor:dependsOnValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+# lingmor:Stem, stem, Wortstamm; for word formation adding affix along rule, inflection; root, derivational or compound; e.g. 'friend' in 'friendship' = new stem
+
+lingmor:Suffix # derivational e.g. '-ship' in 'friendship', inflectional suffix -s e.g. '-s' in 'friendships'
+	a owl:Class;
+	rdfs:label "suffix"@en, "Suffix"@de;
+	rdfs:comment """Affix at the end of a word, e.g. 'ship' in 'friendship'."""@en;
+	rdfs:subClassOf lingmor:Affix.
 
 lingmor:SyntacticGender
 	a owl:Class;
@@ -129,8 +129,8 @@ lingmor:hasSyntacticGenderValue
 
 lingmor:hasCase
 	a owl:ObjectProperty;
-	rdfs:label "has case"@en, "hat Kasus"@de;
-	rdfs:comment """Relating a syntactic word to a case."""@en;
+	rdfs:label "has grammatical case"@en, "hat Kasus"@de;
+	rdfs:comment """Relating a syntactic word to its grammatical case."""@en;
 	rdfs:domain text-structure:SyntacticWord;
 	rdfs:range lingmor:Case;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
@@ -139,8 +139,8 @@ lingmor:hasCase
 
 lingmor:hasCaseValue
 	a owl:ObjectProperty;
-	rdfs:label "has case - statement"@en, "hat Kasus - Festlegung"@de;
-	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and a case."""@en;
+	rdfs:label "has grammatical case - statement"@en, "hat Kasus - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its grammatical case."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text-structure:SyntacticWord;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -162,3 +162,4 @@ lingmor:hasNumberValue
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text-structure:SyntacticWord;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
