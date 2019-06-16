@@ -22,6 +22,7 @@
 
 <http://www.knora.org/ontology/shared/linguistics>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about language"@en;
 	dct:description """Formal description of linguistics, general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
@@ -29,7 +30,7 @@
 	dct:contributor "Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/005D>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
 # CLASSES
@@ -54,14 +55,6 @@ ling:Lexeme
 		a owl:Restriction; owl:onProperty ling:hasLemma; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty ling:hasLemmaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-ling:Token
-	a owl:Class;
-	rdfs:label "token"@en, "Token"@de;
-	rdfs:comment """Linguistic concept as an individual unit in human natural language."""@en;
-	rdfs:subClassOf ling:Concept, [
-		a owl:Restriction; owl:onProperty ling:hasSyntacticWord; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty ling:hasSyntacticWordValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
 ling:Symbol
 	a owl:Class;
 	rdfs:label "language symbol"@en, "Sprache-Symbol"@de;
@@ -78,7 +71,7 @@ ling:Literal
 ling:PartOfSpeech
 	a owl:Class;
 	rdfs:label "part of speech"@en, "Wortart"@de;
-	rdfs:comment """Word with certain grammatical properties."""@en;
+	rdfs:comment """Word with certain grammatical properties and syntactic role in the structure of a sentence."""@en;
 	rdfs:subClassOf ling:Concept, text-structure:SyntacticWord.
 
 ling:Noun
@@ -93,6 +86,8 @@ ling:Numeral
 	rdfs:label "numeral"@en, "Numerale"@de;
 	rdfs:comment """Part of speech designating a number."""@en;
 	rdfs:subClassOf ling:PartOfSpeech.
+
+# speech acts
 
 ling:Statement
 	a owl:Class;
@@ -111,6 +106,8 @@ ling:Question
 	rdfs:label "question"@en, "Frage"@de;
 	rdfs:comment """Sentence eliciting information."""@en;
 	rdfs:subClassOf text-structure:Sentence.
+
+# request
 
 ling:Answer
 	a owl:Class;
@@ -224,22 +221,4 @@ ling:hasLemmaValue
 	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and a lemma."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint ling:Lexeme;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-ling:hasSyntacticWord
-	a owl:ObjectProperty;
-	rdfs:label "has syntactic word"@en, "hat syntaktisches Wort"@de;
-	rdfs:comment """Relating a token to a syntactic word."""@en;
-	rdfs:domain ling:Token;
-	rdfs:range text-structure:SyntacticWord;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint ling:Token;
-	knora-base:objectClassConstraint text-structure:SyntacticWord.
-
-ling:hasSyntacticWordValue
-	a owl:ObjectProperty;
-	rdfs:label "has syntactic word - statement"@en, "hat syntaktisches Wort - Festlegung"@de;
-	rdfs:comment """Relating a token to a reification statement of the relation between the token and a syntactic word."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint ling:Token;
 	knora-base:objectClassConstraint knora-base:LinkValue.

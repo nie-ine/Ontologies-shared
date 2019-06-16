@@ -27,6 +27,7 @@
 
 <http://www.knora.org/ontology/shared/note-structure>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about note structure"@en;
 	dct:description """Formal description of note structure, subclasses, related classes, and properties."""@en;
 	skos:note """Extension of the text structure ontology."""@en;

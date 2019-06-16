@@ -22,6 +22,7 @@
 
 <http://www.knora.org/ontology/0041/atharvaveda>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about Atharvaveda"@en;
 	dct:description """Formal description of specific concepts in the scientific study of Atharvaveda."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;

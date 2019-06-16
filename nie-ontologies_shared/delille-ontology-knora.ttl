@@ -23,6 +23,7 @@
 
 <http://www.knora.org/ontology/0060/delille>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about Jacques Delille's poetry"@en; #*
 	dct:description """Formal description of specific concepts in the scientific study of poetry of Jacques Delille, 22 June 1738 – 1 May 1813."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;

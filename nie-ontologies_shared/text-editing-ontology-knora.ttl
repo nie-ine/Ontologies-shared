@@ -26,6 +26,7 @@
 
 <http://www.knora.org/ontology/shared/text-editing>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about text editing"@en;
 	dct:description """Formal description of text editing, general subclasses, related classes, and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
@@ -33,7 +34,7 @@
 	dct:publisher "Basel University, Switzerland"@en;
 	rdfs:seeAlso <https://digitallatin.github.io/guidelines/LDLT-Guidelines.html>;
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/005A>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
 # CLASSES

@@ -15,13 +15,14 @@
 
 <http://www.knora.org/ontology/shared/literature>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about literature"@en;
 	dct:description """Formal description of literature, its general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, and software developer, NIE-INE, University of Basel, Switzerland"@en;
 	dct:contributor "Roberta Padlina, tool coordinator and software developer, NIE-INE, University of Basel, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/0050>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
 # CLASSES
@@ -143,8 +144,6 @@ litera:Poem
 #		a owl:Restriction; owl:onProperty litera:hasPoetry; owl:allValuesFrom litera:Poetry], [
 		a owl:Restriction; owl:onProperty litera:hasPoetry; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty litera:hasPoetryValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-# metric analysis
 
 litera:VersePoem
 	a owl:Class;

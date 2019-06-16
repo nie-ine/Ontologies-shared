@@ -20,13 +20,14 @@
 
 <http://www.knora.org/ontology/shared/scholasticism>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about Scholasticism"@en;
 	dct:description """Formal description of elements in Scholasticism."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE, University of Basel, Switzerland"@en;
 	dct:contributor "Prof. Dr. Ueli Zahnd, Faculty of Theology, University of Basel, Switzerland"@en, "Gabriel Müller, Faculty of Theology, University of Basel, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/0057>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
 # CLASSES

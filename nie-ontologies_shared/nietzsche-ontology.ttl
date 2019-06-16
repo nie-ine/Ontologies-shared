@@ -13,6 +13,7 @@
 
 <http://www.knora.org/ontology/0068/nietzsche>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about the collected late works of Freidrich Nietzsche"@en;
 	dct:description """Formal description of specific concepts in the scientific study of Friedrich Nietzsches late work."""@en;
 	dct:creator "Dominique Steinbach, tool coordinator/software developer, NIE-INE/digital edition of der späte Nietzsche, Basel University, Switzerland"@en;

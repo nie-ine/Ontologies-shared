@@ -21,12 +21,13 @@
 
 <http://www.knora.org/ontology/shared/language>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about language"@en;
 	dct:description """Formal description of language, general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/004F>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
 # CLASSES
@@ -182,7 +183,7 @@ language:hasContent
 	rdfs:label "has content"@en, "hat Inhalt"@de;
 	rdfs:comment """Relating a human natural language expression to its content."""@en;
 	rdfs:domain language:HumanNaturalLanguageExpression;
-#	rdfs:range ling:Literal;
+#	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf concept:hasLiteral;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint knora-base:TextValue.

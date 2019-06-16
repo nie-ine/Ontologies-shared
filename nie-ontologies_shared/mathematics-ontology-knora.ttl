@@ -15,16 +15,17 @@
 
 <http://www.knora.org/ontology/shared/mathematics>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about mathematics"@en;
 	dct:description """Formal description of general concepts in mathematics."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:contributor "."@en;
 	dct:publisher "University of Basel, Switzerland"@en;
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/0061>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 
-# EMBRYONIC: declared 'middle-out', on the go as concepts are needed, not intended to contain upfront all elements
+# Declared 'middle-out', on the go as concepts are needed, not intended to contain upfront all elements
 
 
 #
@@ -62,7 +63,7 @@ math:Set
 #
 
 math:hasNumeral
-	a owl:ObjectProperty;
+	a owl:ObjectProperty; # -> a owl:DatatypeProperty;
 	rdfs:label "has numeral"@en, "hat Numerale"@de;
 	rdfs:comment """Relating a number to a numeral."""@en;
 	rdfs:domain math:Number;

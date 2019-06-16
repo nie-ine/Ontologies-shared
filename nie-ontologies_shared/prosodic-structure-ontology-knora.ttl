@@ -26,6 +26,7 @@
 
 <http://www.knora.org/ontology/shared/prosodic-structure>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about prosodic structure"@en;
 	dct:description """Formal description of prosodic structure, subclasses, related classes, and properties."""@en;
 	skos:note """Extension of the text structure ontology"""@en;
@@ -50,7 +51,6 @@ prosodic-structure:Verse
 	a owl:Class;
 	rdfs:label "verse"@en, "Vers"@de;
 	rdfs:comment """Text with prosody."""@en;
-°	skos:note """...""";
 	rdfs:subClassOf prosodic-structure:Structure, [
 #		a owl:Restriction; owl:onProperty prosodic-structure:isVerseOfStrophe; owl:allValuesFrom prosodic-structure:Strophe], [ 
 		a owl:Restriction; owl:onProperty prosodic-structure:isVerseOfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [

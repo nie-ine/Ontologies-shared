@@ -27,6 +27,7 @@
 
 <http://www.knora.org/ontology/shared/scientific-editing>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about scientific editing"@en;
 	dct:description """Formal description of scientific editing, general subclasses, related classes, and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;

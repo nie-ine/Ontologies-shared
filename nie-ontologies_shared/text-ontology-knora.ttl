@@ -26,6 +26,7 @@
 
 <http://www.knora.org/ontology/shared/text>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about text"@en;
 	dct:description """Formal description of text in broadest sense, general subclasses, related classes, and properties."""@en;
 	skos:note """Text structure, text editing, and text roles are described in respective ontologies"""@en;
@@ -34,7 +35,7 @@
 	dct:publisher "Basel University, Switzerland"@en;
 #	skos:note """Representation of text as an otherwise literal data element as object enabling relating it to other information"""@en.
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/0059>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
 # CLASSES
@@ -243,7 +244,7 @@ text:hasText
 	rdfs:label "has text"@en, "hat Text"@de;
 	rdfs:comment """Relating a resource to a text as a writable coherent set of signs representing semantics in a language."""@en;
 	rdfs:domain rdfs:Resource;
-#	rdfs:range text:Text ling:Literal;
+#	rdfs:range text:Text rdfs:Literal;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.

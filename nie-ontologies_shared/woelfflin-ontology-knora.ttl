@@ -13,6 +13,7 @@
 
 <http://www.knora.org/ontology/0066/woelfflin>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about the collected works of Heinrich Wölfflin"@en;
 	dct:description """Formal description of specific concepts in the scientific study "Heinrich Wölfflins gesammelte Werke"."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;

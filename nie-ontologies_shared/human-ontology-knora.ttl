@@ -22,12 +22,13 @@
 
 <http://www.knora.org/ontology/shared/human>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about human"@en;
 	dct:description """Formal description of a human, general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/0048>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
 # CLASSES
@@ -553,7 +554,7 @@ human:hasBirthdate
 	a owl:ObjectProperty;
 	rdfs:label "has birthdate"@en, "hat Geburtsdatum"@de;
 	rdfs:comment """Relating a person to the birthdate of that person."""@en;
-#	skos:note """It is possible to find different birthdates in different historical sources; an overall certainty period can be calculated."""@en; -> N3 rule
+	skos:note """It is possible to find different birthdates in different historical sources; an overall certainty period can be calculated."""@en;
 	rdfs:domain human:Person;
 	rdfs:range xsd:date;
 	rdfs:subPropertyOf knora-base:hasValue;	
@@ -583,7 +584,7 @@ human:hasDeathDate
 	a owl:ObjectProperty;
 	rdfs:label "has death date"@en, "hat Todesdatum"@de;
 	rdfs:comment """Relating a person to the death date of that person."""@en;
-#	skos:note """It is possible to find different death dates in different historical sources; an overall certainty period can be calculated."""@en;
+	skos:note """It is possible to find different death dates in different historical sources; an overall certainty period can be calculated."""@en;
 	rdfs:domain human:Person;
 	rdfs:range xsd:date;
 	rdfs:subPropertyOf knora-base:hasValue;
@@ -594,7 +595,7 @@ human:hasDeathplace
 	a owl:ObjectProperty;
 	rdfs:label "has deathplace"@en, "hat Todesort"@de;
 	rdfs:comment """Relating a person to the deathplace of that person."""@en;
-#	skos:note """It is possible to find different deathplaces in different historical sources."""@en;
+	skos:note """It is possible to find different deathplaces in different historical sources."""@en;
 	rdfs:domain human:Person;
 	rdfs:range physical:EarthPlace;
 	rdfs:subPropertyOf knora-base:hasLinkTo;	
@@ -659,7 +660,7 @@ human:hasFamilyName
 	a owl:ObjectProperty;
 	rdfs:label "has family name"@en, "hat Nachname"@de;
 	rdfs:comment """Relating a person to a family name of that person."""@en;
-#	skos:note """Further restriction given along specific law; e.g. a person can have her/his family name legally changed."""@en;
+	skos:note """Further restriction given along specific law; e.g. a person can have her/his family name legally changed."""@en;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -668,7 +669,7 @@ human:hasGivenName
 	a owl:ObjectProperty;
 	rdfs:label "has given name"@en, "hat Vorname"@de;
 	rdfs:comment """Relating a person to a given name of that person."""@en;
-#	skos:note """Further restriction given along specific law; e.g. a person can have her/his given name legally changed."""@en;
+	skos:note """Further restriction given along specific law; e.g. a person can have her/his given name legally changed."""@en;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:TextValue.
