@@ -8,6 +8,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
+@prefix agent: <http://www.knora.org/ontology/shared/agent#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
@@ -16,13 +17,14 @@
 
 <http://www.knora.org/ontology/shared/event>
 	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
 	dct:title "An ontology about 'event'"@en;
 	dct:description """Formal description of event, general subclasses such as action, related classes and properties."""@en;
 	skos:note """Basic model is a space-time thing, which can be described in different levels of abstraction, mostly with input and output, with a beginning and end, wherein a thing can change and/or act, in a certain way."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
-	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>. # <http://rdfh.ch/projects/0047>.
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
 # CLASSES
@@ -69,7 +71,9 @@ event:Action
 	a owl:Class;
 	rdfs:label "action"@en, "Aktion"@de;
 	rdfs:comment """Process involving one or more agents causing change."""@en;
-	rdfs:subClassOf event:Process.
+	rdfs:subClassOf event:Process, [
+		a owl:Restriction; owl:onProperty event:involvesRole; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty event:involvesRoleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 event:Procedure
 	a owl:Class;
@@ -239,6 +243,24 @@ event:isOutputOfValue
 	rdfs:comment """Relating an output to a reification statement of the relation between the output and a process."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint event:Output;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+event:involvesRole
+	a owl:ObjectProperty;
+	rdfs:label "involves role"@en, "involviert Rolle"@de;
+	rdfs:comment """Relating an action to a role it involves."""@en;
+	rdfs:domain event:Action;
+	rdfs:range agent:Role;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint event:Action;
+	knora-base:objectClassConstraint agent:Role.
+
+event:involvesRoleValue
+	a owl:ObjectProperty;
+	rdfs:label "involves role - statement"@en, "involviert Rolle - Festlegung"@de;
+	rdfs:comment """Relating an action to a reification statement of the relation between the action and a role it involves."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint event:Action;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 event:hasStage
