@@ -25,7 +25,8 @@ kuno-raeber-gui:Poem
 	rdfs:comment """Poem by Kuno Raeber."""@en, """Gedicht von Kuno Raeber."""@de;
 	rdfs:subClassOf knora-base:Resource, [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasCreationDateType; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPoemText; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:isOnPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -34,12 +35,10 @@ kuno-raeber-gui:Poem
 		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:cardinality "1"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSameEditionAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasStructure; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasRhyme; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:isInDialect; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:isPartOfCycle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasNachlassIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasPublishingStateIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasDateIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasConvoluteIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -47,8 +46,6 @@ kuno-raeber-gui:Poem
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSynopsisIRI; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSynopsisTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasAlphabeticIndex; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasFictitiousCreationDate; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasCreationYear; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber-gui:hasSupersedingNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
@@ -63,13 +60,21 @@ kuno-raeber-gui:hasPoemIRI
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
-kuno-raeber-gui:hasPoemCreationDate
+kuno-raeber-gui:hasCreationDate
 	a owl:ObjectProperty;
-	rdfs:label "has poem creation date"@en, "hat Gedicht-Kreationsdatum"@de;
+	rdfs:label "has creation date"@en, "hat Kreationsdatum"@de;
 	rdfs:comment """Relating a poem by Kuno Raeber to its creation date."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:DateValue.
+
+kuno-raeber-gui:hasCreationDateType
+	a owl:ObjectProperty;
+	rdfs:label "has poem creation date type"@en, "hat Gedicht-Kreationsdatumtyp"@de;
+	rdfs:comment """Relating a poem by Kuno Raeber to the its creation date type, i.e. a real or fictitious creation date, or creation year, represented by an integer."""@en;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
+	knora-base:objectClassConstraint knora-base:IntValue.
 
 kuno-raeber-gui:hasPoemTitle
 	a owl:ObjectProperty;
@@ -127,14 +132,6 @@ kuno-raeber-gui:isWrittenWith
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
-# kuno-raeber-gui:hasStructure
-#	a owl:ObjectProperty;
-#	rdfs:label "has structure"@en, "hat Struktur"@de;
-#	rdfs:comment """Relating a poem by Kuno Raeber to its structure."""@en;
-#	rdfs:subPropertyOf knora-base:hasValue;
-#	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
-#	knora-base:objectClassConstraint knora-base:TextValue.
-
 kuno-raeber-gui:hasRhyme
 	a owl:ObjectProperty;
 	rdfs:label "has rhyme"@en, "hat Reim"@de;
@@ -166,14 +163,6 @@ kuno-raeber-gui:isPartOfCycle
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:IntValue.
-
-# kuno-raeber-gui:hasNachlassIndex
-#	a owl:ObjectProperty;
-#	rdfs:label "has nachlass index"@en, "hat Nachlassindex"@de;
-#	rdfs:comment """Relating a poem by Kuno Raeber to its nachlass index."""@en;
-#	rdfs:subPropertyOf knora-base:hasValue;
-#	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
-#	knora-base:objectClassConstraint knora-base:IntValue.
 
 kuno-raeber-gui:hasPublishingStateIndex
 	a owl:ObjectProperty;
@@ -230,22 +219,6 @@ kuno-raeber-gui:hasDateIndex
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
 	knora-base:objectClassConstraint knora-base:IntValue.
-
-kuno-raeber-gui:hasFictitiousCreationDate
-	a owl:ObjectProperty;
-	rdfs:label "has fictitious creation date"@en, "hat fiktives Kreationsdatum"@de;
-	rdfs:comment """Relating a poem by Kuno Raeber to a fictitious creation date."""@en;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
-	knora-base:objectClassConstraint knora-base:DateValue.
-
-kuno-raeber-gui:hasCreationYear
-	a owl:ObjectProperty;
-	rdfs:label "has creation year"@en, "hat Kreationsjahr"@de;
-	rdfs:comment """Relating a poem by Kuno Raeber to a creation year."""@en;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint kuno-raeber-gui:Poem;
-	knora-base:objectClassConstraint knora-base:DateValue.
 
 kuno-raeber-gui:hasSupersedingNumber
 	a owl:ObjectProperty;
