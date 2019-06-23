@@ -122,7 +122,7 @@ human:Group
 human:Action
 	a owl:Class;
 	rdfs:label "human action"@en, "menschliche Aktion"@de;
-	rdfs:comment """Action with a human agent."""@en;
+	rdfs:comment """Action involving a human agent."""@en;
 	rdfs:subClassOf event:Action, [
 		a owl:Restriction; owl:onProperty human:hasSponsor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasSponsorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
