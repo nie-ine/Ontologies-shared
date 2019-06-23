@@ -185,6 +185,7 @@ text-structure:OrthographoSyntacticWord
 	a owl:Class;
 	rdfs:label "orthographo-syntactic word"@en, "orthographosyntaktisches Wort"@de;
 	rdfs:comment """Word being orthographic and syntactic."""@en;
+	skos:note """Common word."""@en;
 	rdfs:subClassOf text-structure:OrthographicWord, text-structure:SyntacticWord.
 
 text-structure:LineSpace
@@ -211,7 +212,7 @@ text-structure:Punctuation
 		a owl:Restriction; owl:onProperty text-structure:isPunctuationOfSentence; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isPunctuationOfSentenceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-text-structure:Line
+text-structure:Line # :hasEndOfLine
 	a owl:Class;
 	rdfs:label "text line"@en, "Textzeile"@de, "riga"@it;
 	rdfs:comment """Text structured as a line."""@en;
@@ -220,6 +221,16 @@ text-structure:Line
 		a owl:Restriction; owl:onProperty text-structure:isLineOfColumn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isLineOfColumnValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:lineHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+# page text line
+
+# page text line
+
+# horizontal page text line (max. length = page width - L/R margins)
+
+# vertical page text line (max. length (or height) = page height - top/bottom margins)
+
+# column text line (max. length = column width)
 
 text-structure:Column
 	a owl:Class;
