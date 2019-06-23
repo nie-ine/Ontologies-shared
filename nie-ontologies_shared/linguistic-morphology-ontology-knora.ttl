@@ -99,12 +99,6 @@ lingmor:SemanticGender
 	rdfs:subClassOf ling:Concept.
 #	owl:oneOf (lingmor:masculine lingmor:feminine lingmor:neuter). # instances
 
-lingmor:Lemma
-	a owl:Class;
-	rdfs:label "lemma"@en, "Lemma"@de;
-	rdfs:comment """."""@en;
-	rdfs:subClassOf ling:Concept, concept:SymbolicConcept.
-
 #
 # PROPERTIES
 #
