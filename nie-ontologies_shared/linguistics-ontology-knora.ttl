@@ -48,12 +48,18 @@ ling:Lexeme
 	a owl:Class;
 	rdfs:label "lexeme"@en, "Lexem"@de;
 	rdfs:comment """Linguistic concept as individual semantic entity in human natural language."""@en;
-	skos:note """As entry in a dictionary."""@en;
 	rdfs:subClassOf ling:Concept, language:HumanNaturalLanguageExpression, [
 #		a owl:Restriction; owl:onProperty ling:hasSemanticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty ling:hasSemanticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty ling:hasLemma; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty ling:hasLemmaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+ling:Lemma
+	a owl:Class;
+	rdfs:label "lemma"@en, "Lemma"@de;
+	rdfs:comment """Dictionary entry of a lexeme."""@en;
+	rdfs:seeAlso <http://www.alphabit.net/ATL3Leunitadianalisi.pdf>, <http://www.dcuci.univr.it/documenti/OccorrenzaIns/matdid/matdid121824.pdf>;
+	rdfs:subClassOf ling:Concept, concept:SymbolicConcept.
 
 ling:Symbol
 	a owl:Class;
@@ -210,10 +216,10 @@ ling:hasLemma
 	rdfs:label "has lemma"@en, "hat Lemma"@de;
 	rdfs:comment """Relating a lexeme to a lemma."""@en;
 	rdfs:domain ling:Lexeme;
-	rdfs:range lingmor:Lemma;
+	rdfs:range ling:Lemma;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint ling:Lexeme;
-	knora-base:objectClassConstraint lingmor:Lemma.
+	knora-base:objectClassConstraint ling:Lemma.
 
 ling:hasLemmaValue
 	a owl:ObjectProperty;
