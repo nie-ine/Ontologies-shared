@@ -90,7 +90,7 @@ kuno-raeber:TypewrittenPreface
 
 kuno-raeber:PublicationPreface
 	a owl:Class;
-	rdfs:label "Kuno Raeber publication preface"@en, "Publikation-Vorwort Kuno Raebers"@de;
+	rdfs:label "Kuno Raeber publication preface"@en, "Publikationsvorwort Kuno Raebers"@de;
 	rdfs:comment """Publication preface authored by Kuno Raeber."""@en;
 	rdfs:subClassOf kuno-raeber:Preface, publish:Expression.
 
@@ -243,14 +243,14 @@ kuno-raeber:Manuscript
 
 kuno-raeber:PoemManuscript
 	a owl:Class;
-	rdfs:label "Kuno Raeber poem manuscript"@en, "Gedicht-Manuskript Kuno Raebers"@de;
+	rdfs:label "Kuno Raeber poem manuscript"@en, "Gedichtmanuskript Kuno Raebers"@de;
 	rdfs:comment """Manuscript with a poem authored by Kuno Raeber."""@en;
 	rdfs:subClassOf kuno-raeber:Manuscript.
 
 kuno-raeber:ManuscriptConvolute
 	a owl:Class;
-	rdfs:label "Kuno Raeber poem manuscript convolute"@en, "Gedicht-Manuskriptenkonvolut Kuno Raebers"@de;
-	rdfs:comment """Poem manuscript convolute with poems authored by Kuno Raeber."""@en;
+	rdfs:label "Kuno Raeber manuscript convolute"@en, "Manuskriptenkonvolut Kuno Raebers"@de;
+	rdfs:comment """Convolute with manuscripts authored by Kuno Raeber."""@en;
 	rdfs:subClassOf kuno-raeber:Convolute, infocar:ArchiveElement, [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebook; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebookValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [	
@@ -287,24 +287,24 @@ kuno-raeber:Typescript
 
 kuno-raeber:PoemTypescript
 	a owl:Class;
-	rdfs:label "Kuno Raeber poem typescript"@en, "Gedicht-Typoskript Kuno Raebers"@de;
+	rdfs:label "Kuno Raeber poem typescript"@en, "Gedichttyposkript Kuno Raebers"@de;
 	rdfs:comment """Poem typescript by Kuno Raeber."""@en;
 	rdfs:subClassOf kuno-raeber:Typescript.
 
 kuno-raeber:TypescriptConvolute
 	a owl:Class;
-	rdfs:label "Kuno Raeber typescript convolute"@en, "Typoskriptenonvolut Kuno Raebers"@de;
-	rdfs:comment """Typescript convolute with poems authored by Kuno Raeber."""@en;
+	rdfs:label "Kuno Raeber typescript convolute"@en, "Typoskriptenconvolut Kuno Raebers"@de;
+	rdfs:comment """Convolute with typescripts authored by Kuno Raeber."""@en;
 	rdfs:subClassOf kuno-raeber:Convolute, infocar:ArchiveElement, [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebook; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfNotebookValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfManuscriptConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:containsLaterStagesOfManuscriptConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-kuno-raeber:TypescriptConvoluteWithImage # to be removed when knora-base:hasRepresentation will be implemented in Knora
+kuno-raeber:TypescriptConvoluteWithImage
 	a owl:Class;
-	rdfs:label "Kuno Raeber poem typescript convolute with image"@en, "Gedicht-Typoskriptenonvolut mit Bild Kuno Raebers"@de;
-	rdfs:comment """Poem typescript convolute with poems authored by Kuno Raeber, mit bild."""@en;
+	rdfs:label "Kuno Raeber typescript convolute with image"@en, "Typoskriptenconvolut Kuno Raebers mit Bild"@de;
+	rdfs:comment """Typescript convolute with poems authored by Kuno Raeber, mit bild."""@en;
 	rdfs:subClassOf kuno-raeber:TypescriptConvolute, [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -488,7 +488,7 @@ kuno-raeber:isInPolyAuthorPublicationConvoluteValue
 
 kuno-raeber:isPartOfManuscriptConvolute
 	a owl:ObjectProperty;
-	rdfs:label "is part of manuscript convolute"@en, "ist Teil von Manuskriptkonvolut"@de;
+	rdfs:label "is part of manuscript convolute"@en, "ist Teil eines Manuskriptenkonvoluts"@de;
 	rdfs:comment """Relating a manuscript by Kuno Raeber to the convolute it is part of."""@en;
 	rdfs:domain kuno-raeber:Manuscript;
 	rdfs:range kuno-raeber:ManuscriptConvolute;
@@ -498,8 +498,8 @@ kuno-raeber:isPartOfManuscriptConvolute
 
 kuno-raeber:isPartOfManuscriptConvoluteValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of manuscript convolute - statement"@en, "ist Teil von Manuskriptkonvolut - Festlegung"@de;
-	rdfs:comment """Relating a poem manuscript by Kuno Raeber to a reification statement of the relation between the poem manuscript and the convolute it is part of."""@en;
+	rdfs:label "is part of manuscript convolute - statement"@en, "ist Teil eines Manuskriptenkonvoluts - Festlegung"@de;
+	rdfs:comment """Relating a manuscript by Kuno Raeber to a reification statement of the relation between the manuscript and the convolute it is part of."""@en;
 	rdfs:subPropertyOf infocar:isPartOfConvoluteValue;
 	knora-base:subjectClassConstraint kuno-raeber:Manuscript;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -524,7 +524,7 @@ kuno-raeber:isPartOfPostcardConvoluteValue
 		
 kuno-raeber:isPartOfTypescriptConvolute
 	a owl:ObjectProperty;
-	rdfs:label "is part of typescript convolute"@en, "ist Teil von Typoskriptkonvolut"@de;
+	rdfs:label "is part of typescript convolute"@en, "ist Teil eines Typoskriptenkonvoluts"@de;
 	rdfs:comment """Relating a typescript by Kuno Raeber to the convolute it is part of."""@en;
 	rdfs:domain kuno-raeber:Typescript;
 	rdfs:range kuno-raeber:TypescriptConvolute;
@@ -534,7 +534,7 @@ kuno-raeber:isPartOfTypescriptConvolute
 
 kuno-raeber:isPartOfTypescriptConvoluteValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of typescript convolute - statement"@en, "ist Teil von Typoskriptkonvolut - Festlegung"@de;
+	rdfs:label "is part of typescript convolute - statement"@en, "ist Teil eines Typoskriptenkonvoluts - Festlegung"@de;
 	rdfs:comment """Relating a typescript by Kuno Raeber to a reification statement of the relation between the typescript and the convolute it is part of."""@en;
 	rdfs:subPropertyOf infocar:isPartOfConvoluteValue;
 	knora-base:subjectClassConstraint kuno-raeber:Typescript;
