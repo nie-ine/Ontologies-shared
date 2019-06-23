@@ -87,9 +87,11 @@ physical:Time
 physical:Place
 	a owl:Class;
 	rdfs:label "place"@en, "Platz"@de;
-	rdfs:comment """Specific space in a positioning reference system."""@en;
+	rdfs:comment """Specific space with a position reference, e.g. in a positioning reference system, e.g. the geodetic system of the Earth."""@en;
 	rdfs:subClassOf physical:Space, cidoc:E53_Place, [
 		a owl:Restriction; owl:onProperty physical:placeHasName; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+# physical:PlaceName SCO cidoc:E44_Place_Appellation
 
 physical:EarthPlace
 	a owl:Class;
@@ -100,7 +102,6 @@ physical:EarthPlace
 		a owl:Restriction; owl:onProperty phygeo:hasLongitude; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 # phygeo:hasAltitude
-# cidoc:E44_Place_Appellation
 
 physical:Point
 	a owl:Class;
@@ -126,7 +127,7 @@ physical:Distance
 	rdfs:comment """Length of the space between two points."""@en;
 	rdfs:subClassOf physical:Length, naprospadi:Distance.
 
-physical:Matter
+physical:Matter 
 	a owl:Class;
 	rdfs:label "matter"@en, "Materie"@de;
 	rdfs:comment """Physical entity having mass and volume."""@en;
@@ -170,7 +171,9 @@ physical:isPartOf
 	a owl:ObjectProperty; #, owl:TransitiveProperty;
 	rdfs:label "is part of"@en, "ist Teil von"@de;
 	rdfs:comment "Relating a space to another one it is part of."@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo; # cidoc:P46i_forms_part_of
+	rdfs:domain physical:Space;
+	rdfs:range physical:Space;	
+	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint physical:Space;
 	knora-base:objectClassConstraint physical:Space.
 
@@ -265,7 +268,7 @@ physical:placeHasName
 	rdfs:label "place has name"@en, "Platz hat Name"@de;
 	rdfs:comment """Relating a place to its name."""@en;
 	rdfs:domain physical:Place;
-	rdfs:range rdfs:Literal; #°
+	rdfs:range rdfs:Literal; #° physical:PlaceName
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint physical:Place;
 	knora-base:objectClassConstraint knora-base:TextValue.
