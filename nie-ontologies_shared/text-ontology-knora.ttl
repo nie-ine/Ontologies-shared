@@ -46,6 +46,8 @@ text:Text
 	rdfs:label "text"@en, "Text"@de, "texte"@fr, "testo"@it;
 	rdfs:comment """Human natural language expression serialized in writable form."""@en;
 	rdfs:subClassOf language:HumanNaturalLanguageExpression, [
+		a owl:Restriction; owl:onProperty text:isTextOfDocument; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isTextOfDocumentValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasPageNumberDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -93,7 +95,7 @@ text:Developing
 		a owl:Restriction; owl:onProperty event:hasStage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty event:hasStageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-text:WrittenText
+text:WrittenText # by character
 	a owl:Class;
 	rdfs:label "written text"@en, "geschriebener Text"@de, "texte écrit"@fr, "testo scritto"@it;
 	rdfs:comment """Text written by any method, e.g. manually, with an analogue or digital typewriter, or on a computer, abstracted from its carrier."""@en;
@@ -336,6 +338,24 @@ text:hasSpecialDescription
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+text:isTextOfDocument
+	a owl:ObjectProperty;
+	rdfs:label "is text of document"@en, "ist Text eines Dokumentes"@de;
+	rdfs:comment "Relating a text to the document it is part of."@en;
+	rdfs:domain text:Text;
+	rdfs:range document:Document;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint text:Text;
+	knora-base:objectClassConstraint document:Document.
+
+text:isTextOfDocumentValue
+	a owl:ObjectProperty;
+	rdfs:label "is text of document - statement"@en, "ist Text eines Dokumentes - Festlegung"@de;
+	rdfs:comment "Relating a text to a reification statement of the relation between the text and the document it is part of."@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint text:Text;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text:hasLineNumber
 	a owl:ObjectProperty;
