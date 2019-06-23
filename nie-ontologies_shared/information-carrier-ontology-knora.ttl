@@ -228,29 +228,33 @@ infocar:Manuscript
 		a owl:Restriction; owl:onProperty infocar:isManuscriptOfCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isManuscriptOfCollectionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-infocar:Codex
-	a owl:Class;
-	rdfs:label "codex"@en, "Kodex"@de;
-	rdfs:comment """Book as manuscript."""@en;
-	rdfs:subClassOf infocar:Book, infocar:Manuscript.
-
-infocar:ManuscriptIdentifier
+infocar:ManuscriptIdentifier # fragment, codicological part
 	a owl:Class;
 	rdfs:label "manuscript identifier"@en, "Manuskript-Identifikator"@de;
-	rdfs:comment """Identifier of a manuscript, comprising its location, library, collection, and number."""@en;
+	rdfs:comment """Identifier of a manuscript, comprising its location, preserving organization, repository, collection, and number, alternative number, and name."""@en;
 	rdfs:seeAlso <https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-msIdentifier.html>;
 	rdfs:subClassOf concept:Identifier, [
-		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasLocation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasLibrary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasLocationName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasPreserverName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasRepositoryName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasCollectionName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasShelfMark; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasManuscriptNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasManuscriptName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasAlternative; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:manuscriptIdentifierHasAlternativeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:ManuscriptCollection
 	a owl:Class;
 	rdfs:label "manuscript collection"@en, "Manuskriptkollektion"@de, "collection des manuscrits"@fr;
 	rdfs:comment """Collection of manuscripts."""@en;
 	rdfs:subClassOf infocar:Collection.
+
+infocar:Codex
+	a owl:Class;
+	rdfs:label "codex"@en, "Kodex"@de;
+	rdfs:comment """Book as manuscript."""@en;
+	rdfs:subClassOf infocar:Book, infocar:Manuscript.
 
 infocar:PalmLeafManuscript
 	a owl:Class;
@@ -287,7 +291,7 @@ infocar:Transcript
 	a owl:Class;
 	rdfs:label "transcript"@en, "Transkript"@de;
 #	ling:hasSynonym "Abschrift"@de;
-	rdfs:comment """Text copy created by character, by any method, e.g. handwriting, typewriting, digitizing."""@en; # printing
+	rdfs:comment """Text copy created by character, by any method, e.g. handwriting, typewriting, digitizing."""@en;
 	rdfs:subClassOf infocar:TextCopy, frbroo:F4_Manifestation_Singleton, [
 		a owl:Restriction; owl:onProperty infocar:hasTranscriber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:hasTranscriberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -330,15 +334,18 @@ infocar:Print
 
 infocar:PrintIdentifier
 	a owl:Class;
-	rdfs:label "print identifier"@en, "Manuskript-Identifikator"@de;
-	rdfs:comment """Identifier of a print, comprising its location, library, collection, and number."""@en;
+	rdfs:label "print identifier"@en, "Druck-Identifikator"@de;
+	rdfs:comment """Identifier of a print, comprising its location, preserving organization, repository, collection, number, name, and alternative."""@en;
 	rdfs:subClassOf concept:Identifier, [
-		a owl:Restriction; owl:onProperty infocar:printIdentifierHasLocation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:printIdentifierHasLibrary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:printIdentifierHasCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasLocationName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasPreserverName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasRepositoryName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasCollectionName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty infocar:printIdentifierHasShelfMark; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:printIdentifierHasLibraryNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:printIdentifierHasCollectionNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasPrintNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasPrintName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasAlternative; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty infocar:printIdentifierHasAlternativeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Incunabulum
 	a owl:Class;
@@ -382,8 +389,8 @@ infocar:Letter
 	rdfs:label "letter"@en, "Brief"@de, "lettre"@fr, "lettera"@it;
 	rdfs:comment """Written text, e.g. on a leaf, intended to be sent from (a) person(s) or (an) Organization(s) to another one, e.g. through a postal system."""@en;
 	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton, [
-		a owl:Restriction; owl:onProperty infocar:letterFollows; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterFollowsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty infocar:letterFollows; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty infocar:letterFollowsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:letterPrecedes; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:letterPrecedesValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:letterHasEnvelope; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -483,6 +490,66 @@ infocar:carrierHasDescription
 	knora-base:subjectClassConstraint infocar:Carrier;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
+infocar:hasSender
+	a owl:ObjectProperty;
+	rdfs:label "has sender"@en, "hat Absender"@de;
+	rdfs:comment """Relating an information carrier to a human agent - a person or a group - that sent it."""@en;
+	rdfs:domain infocar:Carrier;
+#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom infocar:Sender]];
+	rdfs:subPropertyOf physical:hasSender;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint human:Agent.
+
+infocar:hasSenderValue
+	a owl:ObjectProperty;
+	rdfs:label "has sender - statement"@en, "hat Absender - Festlegung"@de;
+	rdfs:comment """Relating an information carrier to a reification statement of the relation between that something and a human agent - a person or a group - that sent it."""@en;
+	rdfs:subPropertyOf physical:hasSenderValue;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:hasReceiver
+	a owl:ObjectProperty;
+	rdfs:label "has receiver"@en, "hat Empfänger"@de;
+	rdfs:comment """Relating an information carrier to a human agent - a person or a group - that received it."""@en;
+	rdfs:domain infocar:Carrier;
+#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom infocar:Receiver]];
+	rdfs:subPropertyOf physical:hasReceiver;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint human:Agent.
+
+infocar:hasReceiverValue
+	a owl:ObjectProperty;
+	rdfs:label "has receiver - statement"@en, "hat Empfänger - Festlegung"@de;
+	rdfs:comment """Relating an information carrier to a reification statement of the relation between that something and a human agent - a person or a group - that received it."""@en;
+	rdfs:subPropertyOf physical:hasReceiverValue;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:hasSendingDateDescription
+	a owl:ObjectProperty;
+	rdfs:label "has sending date description"@en, "hat Absendedatumbeschreibung"@de;
+	rdfs:comment """Relating an information carrier to a description of its sending date."""@en;
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:hasSendingDateAccuracyDescription
+	a owl:ObjectProperty;
+	rdfs:label "has sending date accuracy description"@en, "hat Absendedatumgenauigkeitbeschreibung"@de;
+	rdfs:comment """Relating an information carrier to a description of its sending date accuracy."""@en;
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:hasSendingDateProof
+	a owl:ObjectProperty;
+	rdfs:label "has sending date proof"@en, "hat Absendedatumbeleg"@de;
+	rdfs:comment """Relating an information carrier to a proof of its sending date."""@en;
+	rdfs:subPropertyOf text:hasDescription;
+	knora-base:subjectClassConstraint infocar:Carrier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
 infocar:isOnCarrier
 	a owl:ObjectProperty;
 	rdfs:label "is information on carrier"@en, "ist Information auf Träger"@de;
@@ -519,56 +586,40 @@ infocar:isOnElectronicCarrierValue
 	knora-base:subjectClassConstraint concept:Information;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-infocar:isPageOnCarrier
+infocar:isFragmentOf
 	a owl:ObjectProperty;
-	rdfs:label "is page on carrier"@en, "ist Seite auf Träger"@de;
-	rdfs:comment """Relating a document page to a carrier page it is on."""@en;
-	rdfs:domain document:Page;
-	rdfs:range infocar:Page;
-	rdfs:subPropertyOf infocar:isOnCarrier;
-	knora-base:subjectClassConstraint document:Page;
-	knora-base:objectClassConstraint infocar:Page.
+	rdfs:label "is fragment of"@en, "ist Fragment von"@de;
+	rdfs:comment "Relating a fragment of an information carrier to its whole."@en;
+	rdfs:domain infocar:Fragment;
+	rdfs:range infocar:Carrier;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:Fragment;
+	knora-base:objectClassConstraint infocar:Carrier.
 
-infocar:isPageOnCarrierValue
+infocar:isFragmentOfValue
 	a owl:ObjectProperty;
-	rdfs:label "is page on carrier - statement"@en, "ist Seite auf Träger - Festlegung"@de;
-	rdfs:comment """Relating a document page to a reification statement of the relation between the page and a carrier page it is on."""@en;
-	rdfs:subPropertyOf infocar:isOnCarrierValue;
-	knora-base:subjectClassConstraint document:Page;
+	rdfs:label "is fragment of - statement"@en, "ist Fragment von - Festlegung"@de;
+	rdfs:comment "Relating a fragment of an information carrier to a reification statement of the relation between the fragment and its whole."@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:Fragment;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-infocar:isTextOnPage
+infocar:isRemnantOf
 	a owl:ObjectProperty;
-	rdfs:label "is text on page"@en, "ist Text auf Seite"@de;
-	rdfs:comment """Relating a text to a carrier page it is on."""@en;
-	rdfs:domain text:Text;
-	rdfs:range infocar:Page;
-	rdfs:subPropertyOf infocar:isOnCarrier;
-	knora-base:subjectClassConstraint text:Text;
-	knora-base:objectClassConstraint infocar:Page.
+	rdfs:label "is remnant of"@en, "ist Überrest von"@de;
+	rdfs:comment "Relating a remnant of an information carrier to its whole."@en;
+	rdfs:domain infocar:Remnant;
+	rdfs:range infocar:Carrier;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:Remnant;
+	knora-base:objectClassConstraint infocar:Carrier.
 
-infocar:isTextOnPageValue
+infocar:isRemnantOfValue
 	a owl:ObjectProperty;
-	rdfs:label "is text on page - statement"@en, "ist Text auf Seite - Festlegung"@de;
-	rdfs:comment """Relating a text to a reification statement of the relation between the text and a carrier page it is on."""@en;
-	rdfs:subPropertyOf infocar:isOnCarrierValue;
-	knora-base:subjectClassConstraint text:Text;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:isWrittenWith
-	a owl:ObjectProperty;
-	rdfs:label "is written with"@en, "ist geschrieben mit"@de;
-	rdfs:comment "Relating a text to a utensil it is written with."@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text:WrittenText;
-	knora-base:objectClassConstraint infocar:WritingUtensil.
-
-infocar:isWrittenWithValue
-	a owl:ObjectProperty;
-	rdfs:label "is is written with - statement"@en, "ist geschrieben mit - Festlegung"@de;
-	rdfs:comment "Relating a text to a reification statement of the relation between the text and a utensil it is written with."@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint text:WrittenText;
+	rdfs:label "is remnant of - statement"@en, "ist Überrest von - Festlegung"@de;
+	rdfs:comment "Relating a remnant of an information carrier to a reification statement of the relation between the remnant and its whole."@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:Remnant;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:hasCarrierDescription
@@ -681,6 +732,42 @@ infocar:pageHasNumber
 	knora-base:subjectClassConstraint infocar:Page;
 	knora-base:objectClassConstraint knora-base:IntValue.
 
+infocar:isPageOnCarrier
+	a owl:ObjectProperty;
+	rdfs:label "is page on carrier"@en, "ist Seite auf Träger"@de;
+	rdfs:comment """Relating a document page to a carrier page it is on."""@en;
+	rdfs:domain document:Page;
+	rdfs:range infocar:Page;
+	rdfs:subPropertyOf infocar:isOnCarrier;
+	knora-base:subjectClassConstraint document:Page;
+	knora-base:objectClassConstraint infocar:Page.
+
+infocar:isPageOnCarrierValue
+	a owl:ObjectProperty;
+	rdfs:label "is page on carrier - statement"@en, "ist Seite auf Träger - Festlegung"@de;
+	rdfs:comment """Relating a document page to a reification statement of the relation between the page and a carrier page it is on."""@en;
+	rdfs:subPropertyOf infocar:isOnCarrierValue;
+	knora-base:subjectClassConstraint document:Page;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:isTextOnPage
+	a owl:ObjectProperty;
+	rdfs:label "is text on page"@en, "ist Text auf Seite"@de;
+	rdfs:comment """Relating a text to a carrier page it is on."""@en;
+	rdfs:domain text:Text;
+	rdfs:range infocar:Page;
+	rdfs:subPropertyOf infocar:isOnCarrier;
+	knora-base:subjectClassConstraint text:Text;
+	knora-base:objectClassConstraint infocar:Page.
+
+infocar:isTextOnPageValue
+	a owl:ObjectProperty;
+	rdfs:label "is text on page - statement"@en, "ist Text auf Seite - Festlegung"@de;
+	rdfs:comment """Relating a text to a reification statement of the relation between the text and a carrier page it is on."""@en;
+	rdfs:subPropertyOf infocar:isOnCarrierValue;
+	knora-base:subjectClassConstraint text:Text;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 infocar:isBindingOfBook
 	a owl:ObjectProperty;
 	rdfs:label "is binding of book"@en, "ist Einband eines Buchs"@de;
@@ -773,6 +860,22 @@ infocar:hasArchiveSignature
 	knora-base:subjectClassConstraint infocar:ArchiveElement;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
+infocar:isWrittenWith
+	a owl:ObjectProperty;
+	rdfs:label "is written with"@en, "ist geschrieben mit"@de;
+	rdfs:comment "Relating a text to a utensil it is written with."@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text:WrittenText;
+	knora-base:objectClassConstraint infocar:WritingUtensil.
+
+infocar:isWrittenWithValue
+	a owl:ObjectProperty;
+	rdfs:label "is is written with - statement"@en, "ist geschrieben mit - Festlegung"@de;
+	rdfs:comment "Relating a text to a reification statement of the relation between the text and a utensil it is written with."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text:WrittenText;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 infocar:manuscriptHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "manuscript has identifier"@en, "Manuskript hat Identifikator"@de;
@@ -790,46 +893,6 @@ infocar:manuscriptHasIdentifierValue
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint infocar:Manuscript;
 	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:manuscriptIdentifierHasLocation
-	a owl:ObjectProperty;
-	rdfs:label "manuscript identifier has location"@en, "Manuskriptidentifikator hat Ort"@de;
-	rdfs:comment """Relating a manuscript identifier to its location name."""@en;
-	rdfs:domain infocar:ManuscriptIdentifier;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:manuscriptIdentifierHasLibrary
-	a owl:ObjectProperty;
-	rdfs:label "manuscript identifier has library"@en, "Manuskriptidentifikator hat Bibliothek"@de;
-	rdfs:comment """Relating a manuscript identifier to its library name."""@en;
-	rdfs:domain infocar:ManuscriptIdentifier;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:manuscriptIdentifierHasCollection
-	a owl:ObjectProperty;
-	rdfs:label "manuscript identifier has collection"@en, "Manuskriptidentifikator hat Kollektion"@de;
-	rdfs:comment """Relating a manuscript identifier to its collection name."""@en;
-	rdfs:domain infocar:ManuscriptIdentifier;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:manuscriptIdentifierHasNumber
-	a owl:ObjectProperty;
-	rdfs:label "manuscript identifier has number"@en, "Manuskriptidentifikator hat Nummer"@de;
-	rdfs:comment """Relating a manuscript identifier to its number."""@en;
-	rdfs:domain infocar:ManuscriptIdentifier;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
-	knora-base:objectClassConstraint knora-base:TextValue.
 
 infocar:isManuscriptOfCollection
 	a owl:ObjectProperty;
@@ -865,6 +928,84 @@ infocar:isInManuscriptValue
 	rdfs:comment "Relating a handwritten text to a reification statement of the relation between the handwritten text and the manuscript that carries it."@en;
 	rdfs:subPropertyOf infocar:isOnCarrierValue;
 	knora-base:subjectClassConstraint text:HandwrittenText;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:manuscriptIdentifierHasLocationName
+	a owl:ObjectProperty;
+	rdfs:label "manuscript identifier has location name"@en, "Manuskriptidentifikator hat Ortsname"@de;
+	rdfs:comment """Relating a manuscript identifier to the name of the place where the manuscript is preserved."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
+	rdfs:range rdfs:Literal; # physical:PlaceName
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptIdentifierHasPreserverName
+	a owl:ObjectProperty;
+	rdfs:label "manuscript identifier has preserver name"@en, "Manuskriptidentifikator hat Erhaltername"@de;
+	rdfs:comment """Relating a manuscript identifier to the name of the manuscript's preserving organization."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptIdentifierHasRepositoryName
+	a owl:ObjectProperty;
+	rdfs:label "manuscript identifier has repository name"@en, "Manuskriptidentifikator hat Repositoriumname"@de;
+	rdfs:comment """Relating a manuscript identifier to the name of the repository where the manuscript is preserved."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptIdentifierHasCollectionName
+	a owl:ObjectProperty;
+	rdfs:label "manuscript identifier has collection name"@en, "Manuskriptidentifikator hat Kollektionsname"@de;
+	rdfs:comment """Relating a manuscript identifier to the name of the collection of which the manuscript is a part."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptIdentifierHasManuscriptNumber
+	a owl:ObjectProperty;
+	rdfs:label "manuscript identifier has manuscript number"@en, "Manuskriptidentifikator hat Manuskriptnummer"@de;
+	rdfs:comment """Relating a manuscript identifier to the manuscript's number."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptIdentifierHasManuscriptName
+	a owl:ObjectProperty;
+	rdfs:label "manuscript identifier has manuscript name"@en, "Manuskriptidentifikator hat Manuskriptname"@de;
+	rdfs:comment """Relating a manuscript identifier to the manuscript's name."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:manuscriptIdentifierHasAlternative
+	a owl:ObjectProperty;
+	rdfs:label "manuscript identifier has alternative"@en, "Manuskriptidentifikator hat Alternative"@de;
+	rdfs:comment """Relating a manuscript identifier to an alternative."""@en;
+	rdfs:domain infocar:ManuscriptIdentifier;
+	rdfs:range infocar:ManuscriptIdentifier;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
+	knora-base:objectClassConstraint infocar:ManuscriptIdentifier.
+
+infocar:manuscriptIdentifierHasAlternativeValue
+	a owl:ObjectProperty;
+	rdfs:label "manuscript identifier has alternative - statement"@en, "Manuskriptidentifikator hat Alternative - Festlegung"@de;
+	rdfs:comment "Relating a manuscript identifier to a reification statement of the relation between the identifier and an alternative."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:ManuscriptIdentifier;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isInTypescript
@@ -903,6 +1044,24 @@ infocar:isInTextCopyValue
 	knora-base:subjectClassConstraint text:CopiedText;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+infocar:hasTranscriber
+	a owl:ObjectProperty;
+	rdfs:label "has transcriber"@en, "hat TranskribiererIn"@de;
+	rdfs:comment """Relating a transcript to a person who created it."""@en;
+	rdfs:domain infocar:Transcript;
+#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Transcriber]];
+	rdfs:subPropertyOf human:hasCreator;
+	knora-base:subjectClassConstraint infocar:Transcript;
+	knora-base:objectClassConstraint human:Person.
+
+infocar:hasTranscriberValue
+	a owl:ObjectProperty;
+	rdfs:label "has transcriber - statement"@en, "hat TranskribiererIn - Festlegung"@de;
+	rdfs:comment """Relating a transcript to a reification statement of the relation between the transcript and a person who created it."""@en;
+	rdfs:subPropertyOf human:hasCreatorValue;
+	knora-base:subjectClassConstraint infocar:Transcript;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 infocar:isInTranscript
 	a owl:ObjectProperty;
 	rdfs:label "is in transcript"@en, "ist in Abschrift"@de;
@@ -919,6 +1078,136 @@ infocar:isInTranscriptValue
 	rdfs:comment "Relating a transcribed text to a reification statement of the relation between the text and the transcript that carries it."@en;
 	rdfs:subPropertyOf infocar:isInTextCopyValue;
 	knora-base:subjectClassConstraint text:TranscribedText;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:hasPrinter
+	a owl:ObjectProperty;
+	rdfs:label "has printer"@en, "hat Drucker"@de;
+	rdfs:comment """Relating a print to its printer."""@en;
+	rdfs:domain infocar:Print;
+#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom infocar:AgentPrinter]];
+	rdfs:subPropertyOf human:hasCreator;
+	knora-base:subjectClassConstraint infocar:Print;
+	knora-base:objectClassConstraint human:Agent.
+
+infocar:hasPrinterValue
+	a owl:ObjectProperty;
+	rdfs:label "has printer - statement"@en, "hat Drucker - Festlegung"@de;
+	rdfs:comment """Relating a print to a reification statement of the relation between the print and its printer."""@en;
+	rdfs:subPropertyOf human:hasCreatorValue;
+	knora-base:subjectClassConstraint infocar:Print;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:printHasIdentifier
+	a owl:ObjectProperty;
+	rdfs:label "print has identifier"@en, "Druck hat Identifikator"@de;
+	rdfs:comment """Relating a print to its identifier."""@en;
+	rdfs:domain infocar:Print;
+	rdfs:range infocar:PrintIdentifier;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Print;
+	knora-base:objectClassConstraint infocar:PrintIdentifier.
+
+infocar:printHasIdentifierValue
+	a owl:ObjectProperty;
+	rdfs:label "print has identifier - statement"@en, "Druck hat Identifikator - Festlegung"@de;
+	rdfs:comment """Relating a print to a reification statement of the relation between the print and its identifier."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Print;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:printIdentifierHasLocationName
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has location name"@en, "Druckidentifikator hat Ortsname"@de;
+	rdfs:comment """Relating a print identifier to the name of the place where the print is preserved."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal; # physical:PlaceName
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasPreserverName
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has preserver name"@en, "Druckidentifikator hat Erhaltername"@de;
+	rdfs:comment """Relating a print identifier to the name of the print's preserving organization."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasRepositoryName
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has repository name"@en, "Druckidentifikator hat Repositoriumname"@de;
+	rdfs:comment """Relating a print identifier to the name of the repository where the print is preserved."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasCollectionName
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has collection name"@en, "Druckidentifikator hat Kollektionsname"@de;
+	rdfs:comment """Relating a print identifier to the name of the collection of which the print is a part."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasPrintNumber
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has print number"@en, "Druckidentifikator hat Drucknummer"@de;
+	rdfs:comment """Relating a print identifier to the print's number."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasPrintName
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has print name"@en, "Druckidentifikator hat Druckname"@de;
+	rdfs:comment """Relating a print identifier to the print's name."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:printIdentifierHasAlternative
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has alternative"@en, "Druckidentifikator hat Alternative"@de;
+	rdfs:comment """Relating a print identifier to an alternative."""@en;
+	rdfs:domain infocar:PrintIdentifier;
+	rdfs:range infocar:PrintIdentifier;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint infocar:PrintIdentifier.
+
+infocar:printIdentifierHasAlternativeValue
+	a owl:ObjectProperty;
+	rdfs:label "print identifier has alternative - statement"@en, "Druckidentifikator hat Alternative - Festlegung"@de;
+	rdfs:comment "Relating a print identifier to a reification statement of the relation between the identifier and an alternative."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:PrintIdentifier;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:isPartOfPrintRun
+	a owl:ObjectProperty;
+	rdfs:label "is part of print run"@en, "ist Teil einer Druckauflage"@de;
+	rdfs:comment """Relating a print to the run it is part of."""@en;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:Print;
+	knora-base:objectClassConstraint infocar:PrintRun.
+
+infocar:isPartOfPrintRunValue
+	a owl:ObjectProperty;
+	rdfs:label "is part of print run - statement"@en, "ist Teil einer Druckauflage - Festlegung"@de;
+	rdfs:comment """Relating a print to a reification statement of the relation between the print and the run it is part of."""@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:Print;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isInPrint
@@ -1001,6 +1290,70 @@ infocar:isInDiaryValue
 	knora-base:subjectClassConstraint text-expression:Diary;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+infocar:letterPrecedes
+	a owl:ObjectProperty;
+	rdfs:label "letter precedes"@en, "Brief geht voraus an"@de;
+	rdfs:comment """Relating a letter to another letter that follows the former."""@en;
+	rdfs:domain infocar:Letter;
+	rdfs:range infocar:Letter;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint infocar:Letter.
+
+infocar:letterPrecedesValue
+	a owl:ObjectProperty;
+	rdfs:label "letter precedes - statement"@en, "Brief geht voraus an - Festlegung"@de;
+	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and another letter that follows the former."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:letterHasEnvelope
+	a owl:ObjectProperty;
+	rdfs:label "letter has envelope"@en, "Brief hat Umschlag"@de;
+	rdfs:comment """Relating a letter to an envelope it has."""@en;
+	rdfs:domain infocar:Letter;
+	rdfs:range infocar:Envelope;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint infocar:Envelope.
+
+infocar:letterHasEnvelopeValue
+	a owl:ObjectProperty;
+	rdfs:label "letter has envelope - statement"@en, "Brief hat Umschlag - Festlegung"@de;
+	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and an envelope it has."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+infocar:letterHasEnvelopeDescription
+	a owl:ObjectProperty;
+	rdfs:label "letter has envelope description"@en, "Brief hat Umschlagbeschreibung"@de;
+	rdfs:comment """Relating a letter to a description of its envelope."""@en;
+	rdfs:domain infocar:Letter;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+infocar:letterHasEnclosure
+	a owl:ObjectProperty;
+	rdfs:label "letter has enclosure"@en, "Brief hat Beilage"@de;
+	rdfs:comment """Relating a letter to an enclosure it has."""@en;
+	rdfs:domain infocar:Letter;
+	rdfs:range infocar:LetterEnclosure;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint infocar:LetterEnclosure.
+
+infocar:letterHasEnclosureValue
+	a owl:ObjectProperty;
+	rdfs:label "letter has enclosure - statement"@en, "Brief hat Beilage - Festlegung"@de;
+	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and an enclosure it has."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint infocar:Letter;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 infocar:isInLetter
 	a owl:ObjectProperty;
 	rdfs:label "is in letter"@en, "ist in Brief"@de;
@@ -1035,120 +1388,6 @@ infocar:isTextInLetterEnclosureValue
 	rdfs:comment """Relating a text expression to a reification statement of the relation between the expression and a letter enclosure it is in."""@en;
 	rdfs:subPropertyOf infocar:isOnCarrierValue;
 	knora-base:subjectClassConstraint text-expression:LetterEnclosure;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:hasSender
-	a owl:ObjectProperty;
-	rdfs:label "has sender"@en, "hat Absender"@de;
-	rdfs:comment """Relating an information carrier to a human agent - a person or a group - that sent it."""@en;
-	rdfs:domain infocar:Carrier;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom infocar:Sender]];
-	rdfs:subPropertyOf physical:hasSender;
-	knora-base:subjectClassConstraint infocar:Carrier;
-	knora-base:objectClassConstraint human:Agent.
-
-infocar:hasSenderValue
-	a owl:ObjectProperty;
-	rdfs:label "has sender - statement"@en, "hat Absender - Festlegung"@de;
-	rdfs:comment """Relating an information carrier to a reification statement of the relation between that something and a human agent - a person or a group - that sent it."""@en;
-	rdfs:subPropertyOf physical:hasSenderValue;
-	knora-base:subjectClassConstraint infocar:Carrier;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:hasReceiver
-	a owl:ObjectProperty;
-	rdfs:label "has receiver"@en, "hat Empfänger"@de;
-	rdfs:comment """Relating an information carrier to a human agent - a person or a group - that received it."""@en;
-	rdfs:domain infocar:Carrier;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom infocar:Receiver]];
-	rdfs:subPropertyOf physical:hasReceiver;
-	knora-base:subjectClassConstraint infocar:Carrier;
-	knora-base:objectClassConstraint human:Agent.
-
-infocar:hasReceiverValue
-	a owl:ObjectProperty;
-	rdfs:label "has receiver - statement"@en, "hat Empfänger - Festlegung"@de;
-	rdfs:comment """Relating an information carrier to a reification statement of the relation between that something and a human agent - a person or a group - that received it."""@en;
-	rdfs:subPropertyOf physical:hasReceiverValue;
-	knora-base:subjectClassConstraint infocar:Carrier;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:hasSendingDateDescription
-	a owl:ObjectProperty;
-	rdfs:label "has sending date description"@en, "hat Absendedatumbeschreibung"@de;
-	rdfs:comment """Relating an information carrier to a description of its sending date."""@en;
-	rdfs:subPropertyOf text:hasDescription;
-	knora-base:subjectClassConstraint infocar:Carrier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:hasSendingDateAccuracyDescription
-	a owl:ObjectProperty;
-	rdfs:label "has sending date accuracy description"@en, "hat Absendedatumgenauigkeitbeschreibung"@de;
-	rdfs:comment """Relating an information carrier to a description of its sending date accuracy."""@en;
-	rdfs:subPropertyOf text:hasDescription;
-	knora-base:subjectClassConstraint infocar:Carrier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:hasSendingDateProof
-	a owl:ObjectProperty;
-	rdfs:label "has sending date proof"@en, "hat Absendedatumbeleg"@de;
-	rdfs:comment """Relating an information carrier to a proof of its sending date."""@en;
-	rdfs:subPropertyOf text:hasDescription;
-	knora-base:subjectClassConstraint infocar:Carrier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:isFragmentOf
-	a owl:ObjectProperty;
-	rdfs:label "is fragment of"@en, "ist Fragment von"@de;
-	rdfs:comment "Relating a fragment of an information carrier to its whole."@en;
-	rdfs:domain infocar:Fragment;
-	rdfs:range infocar:Carrier;
-	rdfs:subPropertyOf physical:isPartOf;
-	knora-base:subjectClassConstraint infocar:Fragment;
-	knora-base:objectClassConstraint infocar:Carrier.
-
-infocar:isFragmentOfValue
-	a owl:ObjectProperty;
-	rdfs:label "is fragment of - statement"@en, "ist Fragment von - Festlegung"@de;
-	rdfs:comment "Relating a fragment of an information carrier to a reification statement of the relation between the fragment and its whole."@en;
-	rdfs:subPropertyOf physical:isPartOfValue;
-	knora-base:subjectClassConstraint infocar:Fragment;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:isRemnantOf
-	a owl:ObjectProperty;
-	rdfs:label "is remnant of"@en, "ist Überrest von"@de;
-	rdfs:comment "Relating a remnant of an information carrier to its whole."@en;
-	rdfs:domain infocar:Remnant;
-	rdfs:range infocar:Carrier;
-	rdfs:subPropertyOf physical:isPartOf;
-	knora-base:subjectClassConstraint infocar:Remnant;
-	knora-base:objectClassConstraint infocar:Carrier.
-
-infocar:isRemnantOfValue
-	a owl:ObjectProperty;
-	rdfs:label "is remnant of - statement"@en, "ist Überrest von - Festlegung"@de;
-	rdfs:comment "Relating a remnant of an information carrier to a reification statement of the relation between the remnant and its whole."@en;
-	rdfs:subPropertyOf physical:isPartOfValue;
-	knora-base:subjectClassConstraint infocar:Remnant;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:hasTranscriber
-	a owl:ObjectProperty;
-	rdfs:label "has transcriber"@en, "hat TranskribiererIn"@de;
-	rdfs:comment """Relating a transcript to a person who created it."""@en;
-	rdfs:domain infocar:Transcript;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Transcriber]];
-	rdfs:subPropertyOf human:hasCreator;
-	knora-base:subjectClassConstraint infocar:Transcript;
-	knora-base:objectClassConstraint human:Person.
-
-infocar:hasTranscriberValue
-	a owl:ObjectProperty;
-	rdfs:label "has transcriber - statement"@en, "hat TranskribiererIn - Festlegung"@de;
-	rdfs:comment """Relating a transcript to a reification statement of the relation between the transcript and a person who created it."""@en;
-	rdfs:subPropertyOf human:hasCreatorValue;
-	knora-base:subjectClassConstraint infocar:Transcript;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:convoluteHasTitle
@@ -1237,190 +1476,6 @@ infocar:containsLaterStagesOfValue
 	rdfs:comment """Relating a convolute to a reification statement of the relation between the convolute and another one whose information carriers bear later stages of the texts on the carriers of the former."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint infocar:Convolute;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:hasPrinter
-	a owl:ObjectProperty;
-	rdfs:label "has printer"@en, "hat Drucker"@de;
-	rdfs:comment """Relating a print to its printer."""@en;
-	rdfs:domain infocar:Print;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom infocar:AgentPrinter]];
-	rdfs:subPropertyOf human:hasCreator;
-	knora-base:subjectClassConstraint infocar:Print;
-	knora-base:objectClassConstraint human:Agent.
-
-infocar:hasPrinterValue
-	a owl:ObjectProperty;
-	rdfs:label "has printer - statement"@en, "hat Drucker - Festlegung"@de;
-	rdfs:comment """Relating a print to a reification statement of the relation between the print and its printer."""@en;
-	rdfs:subPropertyOf human:hasCreatorValue;
-	knora-base:subjectClassConstraint infocar:Print;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:printHasIdentifier
-	a owl:ObjectProperty;
-	rdfs:label "print has identifier"@en, "Druck hat Identifikator"@de;
-	rdfs:comment """Relating a print to its identifier."""@en;
-	rdfs:domain infocar:Print;
-	rdfs:range infocar:PrintIdentifier;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint infocar:Print;
-	knora-base:objectClassConstraint infocar:PrintIdentifier.
-
-infocar:printHasIdentifierValue
-	a owl:ObjectProperty;
-	rdfs:label "print has identifier - statement"@en, "Druck hat Identifikator - Festlegung"@de;
-	rdfs:comment """Relating a print to a reification statement of the relation between the print and its identifier."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint infocar:Print;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:printIdentifierHasLocation
-	a owl:ObjectProperty;
-	rdfs:label "print identifier has location"@en, "Druckidentifikator hat Ort"@de;
-	rdfs:comment """Relating a print identifier to its location name."""@en;
-	rdfs:domain infocar:PrintIdentifier;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint infocar:PrintIdentifier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:printIdentifierHasLibrary
-	a owl:ObjectProperty;
-	rdfs:label "print identifier has library"@en, "Druckidentifikator hat Bibliothek"@de;
-	rdfs:comment """Relating a print identifier to its library name."""@en;
-	rdfs:domain infocar:PrintIdentifier;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint infocar:PrintIdentifier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:printIdentifierHasCollection
-	a owl:ObjectProperty;
-	rdfs:label "print identifier has collection"@en, "Druckidentifikator hat Kollektion"@de;
-	rdfs:comment """Relating a print identifier to its collection name."""@en;
-	rdfs:domain infocar:PrintIdentifier;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint infocar:PrintIdentifier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:printIdentifierHasLibraryNumber
-	a owl:ObjectProperty;
-	rdfs:label "print identifier has library number"@en, "Druckidentifikator hat Bibliotheknummer"@de;
-	rdfs:comment """Relating a print identifier to its library number."""@en;
-	rdfs:domain infocar:PrintIdentifier;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint infocar:PrintIdentifier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:printIdentifierHasCollectionNumber
-	a owl:ObjectProperty;
-	rdfs:label "print identifier has collection number"@en, "Druckidentifikator hat Kollektionsnummer"@de;
-	rdfs:comment """Relating a print identifier to its collection number."""@en;
-	rdfs:domain infocar:PrintIdentifier;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint infocar:PrintIdentifier;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:isPartOfPrintRun
-	a owl:ObjectProperty;
-	rdfs:label "is part of print run"@en, "ist Teil einer Druckauflage"@de;
-	rdfs:comment """Relating a print to the run it is part of."""@en;
-	rdfs:subPropertyOf physical:isPartOf;
-	knora-base:subjectClassConstraint infocar:Print;
-	knora-base:objectClassConstraint infocar:PrintRun.
-
-infocar:isPartOfPrintRunValue
-	a owl:ObjectProperty;
-	rdfs:label "is part of print run - statement"@en, "ist Teil einer Druckauflage - Festlegung"@de;
-	rdfs:comment """Relating a print to a reification statement of the relation between the print and the run it is part of."""@en;
-	rdfs:subPropertyOf physical:isPartOfValue;
-	knora-base:subjectClassConstraint infocar:Print;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:letterFollows
-	a owl:ObjectProperty;
-	rdfs:label "letter follows"@en, "Brief folgt nach"@de;
-	rdfs:comment """Relating a letter to another letter that precedes the former."""@en;
-	rdfs:domain infocar:Letter;
-	rdfs:range infocar:Letter;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint infocar:Letter.
-
-infocar:letterFollowsValue
-	a owl:ObjectProperty;
-	rdfs:label "letter follows - statement"@en, "Brief folgt nach - Festlegung"@de;
-	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and another letter that precedes the former."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:letterPrecedes
-	a owl:ObjectProperty;
-	rdfs:label "letter precedes"@en, "Brief geht voraus an"@de;
-	rdfs:comment """Relating a letter to another letter that follows the former."""@en;
-	rdfs:domain infocar:Letter;
-	rdfs:range infocar:Letter;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint infocar:Letter.
-
-infocar:letterPrecedesValue
-	a owl:ObjectProperty;
-	rdfs:label "letter precedes - statement"@en, "Brief geht voraus an - Festlegung"@de;
-	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and another letter that follows the former."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:letterHasEnvelope
-	a owl:ObjectProperty;
-	rdfs:label "letter has envelope"@en, "Brief hat Umschlag"@de;
-	rdfs:comment """Relating a letter to an envelope it has."""@en;
-	rdfs:domain infocar:Letter;
-	rdfs:range infocar:Envelope;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint infocar:Envelope.
-
-infocar:letterHasEnvelopeValue
-	a owl:ObjectProperty;
-	rdfs:label "letter has envelope - statement"@en, "Brief hat Umschlag - Festlegung"@de;
-	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and an envelope it has."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:letterHasEnvelopeDescription
-	a owl:ObjectProperty;
-	rdfs:label "letter has envelope description"@en, "Brief hat Umschlagbeschreibung"@de;
-	rdfs:comment """Relating a letter to a description of its envelope."""@en;
-	rdfs:domain infocar:Letter;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:letterHasEnclosure
-	a owl:ObjectProperty;
-	rdfs:label "letter has enclosure"@en, "Brief hat Beilage"@de;
-	rdfs:comment """Relating a letter to an enclosure it has."""@en;
-	rdfs:domain infocar:Letter;
-	rdfs:range infocar:LetterEnclosure;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint infocar:LetterEnclosure.
-
-infocar:letterHasEnclosureValue
-	a owl:ObjectProperty;
-	rdfs:label "letter has enclosure - statement"@en, "Brief hat Beilage - Festlegung"@de;
-	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and an enclosure it has."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint infocar:Letter;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:isPartOfConvolute
