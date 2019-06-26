@@ -54,6 +54,7 @@ infocar:Fragment
 	a owl:Class;
  	rdfs:label "information carrier fragment"@en,"Informationsträgerfragment"@de; #, "support d'information"@fr;
  	rdfs:comment """Fragment of information on a carrier."""@en;
+ 	skos:note """Fragments can possibly be reassembled."""@en;
 	rdfs:subClassOf human:PhysicalCreation, [
 		a owl:Restriction; owl:onProperty infocar:isFragmentOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isFragmentOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
