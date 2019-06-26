@@ -47,7 +47,7 @@ parzival:CopiedVerseNovel
 	a owl:Class;
 	rdfs:label """copied version of 'Parzival'"""@en, """kopierte Version 'Parzivals'"""@de;
 	rdfs:comment """Copied version of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf litera:VerseNovel, scientific-editing:Witness.
+	rdfs:subClassOf text:CopiedText, litera:VerseNovel, scientific-editing:Witness.
 
 parzival:HandwrittenTranscribedVerseNovel
 	a owl:Class;
@@ -71,7 +71,7 @@ parzival:VerseNovelCopy
 	a owl:Class;
 	rdfs:label """copy of 'Parzival'"""@en, """Kopie 'Parzivals'"""@de;
 	rdfs:comment """Copy of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf infocar:Copy, infocar:Book.
+	rdfs:subClassOf infocar:TextCopy, infocar:Book.
 
 parzival:ManualVerseNovelTranscript
 	a owl:Class;
