@@ -214,12 +214,9 @@ text-structure:Punctuation
 
 text-structure:Line # :hasEndOfLine
 	a owl:Class;
-	rdfs:label "text line"@en, "Textzeile"@de, "riga"@it;
+	rdfs:label "text line"@en, "Textzeile"@de, "ligne de texte"@fr, "riga di testo"@it;
 	rdfs:comment """Text structured as a line."""@en;
 	rdfs:subClassOf text-structure:ReadabilityStructure, [
-#		a owl:Restriction; owl:onProperty text-structure:isLineOfColumn; owl:allValuesFrom document:Column], [
-		a owl:Restriction; owl:onProperty text-structure:isLineOfColumn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text-structure:isLineOfColumnValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:lineHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 # page text line
@@ -230,11 +227,9 @@ text-structure:Line # :hasEndOfLine
 
 # vertical page text line (max. length (or height) = page height - top/bottom margins)
 
-# column text line (max. length = column width)
-
 text-structure:Column
 	a owl:Class;
-	rdfs:label "text column"@en, "Textspalte"@de;
+	rdfs:label "text column"@en, "Textspalte"@de, "colonne de texte"@fr, "colonna di testo"@it;
 	rdfs:comment """Text structured as a column."""@en;
 	rdfs:subClassOf text-structure:ReadabilityStructure, [
 #		a owl:Restriction; owl:onProperty text-structure:isTextOfColumn; owl:allValuesFrom document:Column], [
@@ -244,15 +239,35 @@ text-structure:Column
 		a owl:Restriction; owl:onProperty text-structure:isColumnOfPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isColumnOfPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+text-structure:ColumnLine
+	a owl:Class;
+	rdfs:label "text column line"@en, "Textspaltezeile"@de, "ligne de colonne de texte"@fr, "riga di colonna di testo"@it;
+	rdfs:comment """Text line of a text column."""@en;
+	skos:note """Maximum length of a column line equals the column width."""@en;
+	rdfs:subClassOf text-structure:Line, [
+#		a owl:Restriction; owl:onProperty text-structure:isLineOfColumn; owl:allValuesFrom document:Column], [
+		a owl:Restriction; owl:onProperty text-structure:isLineOfColumn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isLineOfColumnValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 text-structure:Page
 	a owl:Class;
-	rdfs:label "text page"@en, "Textseite"@de;
+	rdfs:label "text page"@en, "Textseite"@de, "page de texte"@fr, "pagina di testo"@it;
 	rdfs:comment """Text structured as a page."""@en;
 	rdfs:subClassOf text-structure:ReadabilityStructure, [
 		a owl:Restriction; owl:onProperty text-structure:isTextOfPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isTextOfPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isPageOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isPageOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text-structure:PageLine
+	a owl:Class;
+	rdfs:label "text page line"@en, "Textseitezeile"@de, "ligne de page de texte"@fr, "riga di pagina di testo"@it;
+	rdfs:comment """Text line of a text page."""@en;
+	skos:note """Maximum length of a page line equals the page width minus margins."""@en;
+	rdfs:subClassOf text-structure:Line, [
+#		a owl:Restriction; owl:onProperty text-structure:isLineOfColumn; owl:allValuesFrom document:Column], [
+		a owl:Restriction; owl:onProperty text-structure:isLineOfPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:isLineOfPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text-structure:Table #° tableHasTitle, tableHasField, tableHasRow, tableHasColumn
 	a owl:Class;
@@ -628,24 +643,6 @@ text-structure:isPunctuationOfSentenceValue
 	knora-base:subjectClassConstraint text-structure:Punctuation;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-text-structure:isLineOfColumn
-	a owl:ObjectProperty;
-	rdfs:label "is line of column"@en, "ist Zeile einer Spalte"@de;
-	rdfs:comment """Relating a text line to a column it is part of."""@en;
-	rdfs:domain text-structure:Line;
-	rdfs:range text-structure:Column;
-	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint text-structure:Line;
-	knora-base:objectClassConstraint text-structure:Column.
-
-text-structure:isLineOfColumnValue
-	a owl:ObjectProperty;
-	rdfs:label "is line of column - statement"@en, "ist Zeile einer Spalte - Festlegung"@de;
-	rdfs:comment """Relating a text line to a reification statement of the relation between the line and a column it is part of."""@en;
-	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint text-structure:Line;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
 text-structure:lineHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "line has number"@en, "Linie hat Nummer"@de;
@@ -655,6 +652,24 @@ text-structure:lineHasNumber
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint text-structure:Line;
 	knora-base:objectClassConstraint knora-base:IntValue.
+
+text-structure:isLineOfColumn
+	a owl:ObjectProperty;
+	rdfs:label "is line of column"@en, "ist Zeile einer Spalte"@de;
+	rdfs:comment """Relating a text line to a column it is part of."""@en;
+	rdfs:domain text-structure:ColumnLine;
+	rdfs:range text-structure:Column;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint text-structure:ColumnLine;
+	knora-base:objectClassConstraint text-structure:Column.
+
+text-structure:isLineOfColumnValue
+	a owl:ObjectProperty;
+	rdfs:label "is line of column - statement"@en, "ist Zeile einer Spalte - Festlegung"@de;
+	rdfs:comment """Relating a text line to a reification statement of the relation between the line and a column it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint text-structure:ColumnLine;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-structure:isTextOfColumn
 	a owl:ObjectProperty;
@@ -726,6 +741,24 @@ text-structure:isPageOfExpressionValue
 	rdfs:comment """Relating a text page to a reification statement of the relation between the page and a text expression it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text-structure:Page;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text-structure:isLineOfPage
+	a owl:ObjectProperty;
+	rdfs:label "is line of page"@en, "ist Zeile einer Seite"@de;
+	rdfs:comment """Relating a text line to a page it is part of."""@en;
+	rdfs:domain text-structure:PageLine;
+	rdfs:range text-structure:Page;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint text-structure:PageLine;
+	knora-base:objectClassConstraint text-structure:Page.
+
+text-structure:isLineOfPageValue
+	a owl:ObjectProperty;
+	rdfs:label "is line of page - statement"@en, "ist Zeile einer Seite - Festlegung"@de;
+	rdfs:comment """Relating a text line to a reification statement of the relation between the line and a page it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint text-structure:PageLine;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-structure:isLetterStructureOfExpression
