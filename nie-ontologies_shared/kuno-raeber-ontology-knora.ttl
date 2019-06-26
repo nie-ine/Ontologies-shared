@@ -192,6 +192,14 @@ kuno-raeber:DiaryEntry
 		a owl:Restriction; owl:onProperty kuno-raeber:isInDiaryConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isInDiaryConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+kuno-raeber:DraftLetterExpression
+	a owl:Class;
+	rdfs:label "Kuno Raeber draft letter expression"@en,"Briefentwurf-Expression Kuno Raebers"@de;
+	rdfs:comment """Draft letter expression written by or to Kuno Raeber."""@en;
+	rdfs:subClassOf text:HandwrittenText, kuno-raeber:Text, text-expression:Draft. # infocar:ArchiveElement.
+
+# in infocar:Draft notebook, manuscript
+
 kuno-raeber:LetterExpression
 	a owl:Class;
 	rdfs:label "Kuno Raeber letter expression"@en, "Brief-Expression Kuno Raebers"@de;
@@ -221,6 +229,14 @@ kuno-raeber:Convolute
 	rdfs:subClassOf infocar:Convolute, [
 		a owl:Restriction; owl:onProperty text:hasComment; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+kuno-raeber:ConvoluteElement
+	a owl:Class;
+	rdfs:label "Kuno Raeber convolute element"@en, "Element eines Kuno Raeber-Konvoluts"@de;
+	rdfs:comment """Element of a Kuno Raeber convolute."""@en;
+	rdfs:subClassOf infocar:ConvoluteElement, [
+		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 kuno-raeber:PoemNotebook
 	a owl:Class;
 	rdfs:label "Kuno Raeber poem notebook"@en, "Gedichten-Notizbuch Kuno Raebers"@de;
@@ -237,7 +253,7 @@ kuno-raeber:Manuscript
 	a owl:Class;
 	rdfs:label "Kuno Raeber manuscript"@en, "Manuskript Kuno Raebers"@de;
 	rdfs:comment """Manuscript authored by Kuno Raeber."""@en;
-	rdfs:subClassOf infocar:Leaf, infocar:Manuscript, infocar:ConvoluteElement, infocar:ArchiveElement, [
+	rdfs:subClassOf infocar:Leaf, infocar:Manuscript, kuno-raeber:ConvoluteElement, infocar:ArchiveElement, [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfManuscriptConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfManuscriptConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -281,7 +297,7 @@ kuno-raeber:Typescript
 	a owl:Class;
 	rdfs:label "Kuno Raeber typescript"@en, "Typoskript Kuno Raebers"@de;
 	rdfs:comment """Typescript by Kuno Raeber."""@en;
-	rdfs:subClassOf infocar:Leaf, infocar:Typescript, infocar:ConvoluteElement, infocar:ArchiveElement, [
+	rdfs:subClassOf infocar:Leaf, infocar:Typescript, kuno-raeber:ConvoluteElement, infocar:ArchiveElement, [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfTypescriptConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfTypescriptConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -664,6 +680,24 @@ kuno-raeber:isInDiaryConvoluteValue
 	rdfs:comment """Relating a diary entry by Kuno Raeber to a reification statement of the relation between the diary entry and a diary convolute it is in."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint kuno-raeber:DiaryEntry;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+kuno-raeber:isPartOfConvolute
+	a owl:ObjectProperty;
+	rdfs:label "is part of convolute"@en, "ist Teil eines Konvoluts"@de;
+	rdfs:comment """Relating an element of a Kuno Raeber convolute to the convolute."""@en;
+	rdfs:domain kuno-raeber:ConvoluteElement;
+	rdfs:range kuno-raeber:Convolute;
+	rdfs:subPropertyOf infocar:isPartOfConvolute;
+	knora-base:subjectClassConstraint kuno-raeber:ConvoluteElement;
+	knora-base:objectClassConstraint kuno-raeber:Convolute.
+
+kuno-raeber:isPartOfConvoluteValue
+	a owl:ObjectProperty;
+	rdfs:label "is part of convolute - statement"@en, "ist Teil eines Konvoluts - Festlegung"@de;
+	rdfs:comment """Relating an element of a Kuno Raeber convolute to a reification statement of the relation between the element and the convolute."""@en;
+	rdfs:subPropertyOf infocar:isPartOfConvoluteValue;
+	knora-base:subjectClassConstraint kuno-raeber:ConvoluteElement;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 kuno-raeber:isPartOfLetterConvolute
