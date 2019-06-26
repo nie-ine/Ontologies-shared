@@ -48,8 +48,6 @@ text:Text
 	rdfs:subClassOf language:HumanNaturalLanguageExpression, [
 		a owl:Restriction; owl:onProperty text:isTextOfDocument; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:isTextOfDocumentValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasContentNature; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:hasContentNatureValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasLineNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasVersionIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasPageNumberDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -88,24 +86,6 @@ text:Text
 		a owl:Restriction; owl:onProperty textedit:hasSameEditionAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isTextOnPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isTextOnPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-text:ContentNature
-	a owl:Class;
-	rdfs:label "text content nature"@en, "textinhaltliche Art"@de;
-	rdfs:comment """Nature of the content of a text."""@en;
-	rdfs:subClassOf text:Text.
-
-text:Nonfiction
-	a owl:Class;
-	rdfs:label "nonfiction text"@en, "Sachtext"@de;
-	rdfs:comment """Text having content based on fact."""@en;
-	rdfs:subClassOf text:ContentNature, concept:Nonfiction.
-
-text:Fiction
-	a owl:Class;
-	rdfs:label "fiction text"@en, "Fiktiontext"@de;
-	rdfs:comment """Text having content derived from imagination."""@en;
-	rdfs:subClassOf text:ContentNature, concept:Fiction.
 
 text:Developing
 	a owl:Class;
@@ -245,6 +225,18 @@ text:Translation
 	rdfs:comment """Translation from text to text."""@en;
 	rdfs:subClassOf text:Text, language:Translation. #, event:Output.
 
+text:Nonfiction
+	a owl:Class;
+	rdfs:label "nonfiction text"@en, "Sachtext"@de;
+	rdfs:comment """Text having content based on fact."""@en;
+	rdfs:subClassOf text:Text, concept:Nonfiction.
+
+text:Fiction
+	a owl:Class;
+	rdfs:label "fiction text"@en, "Fiktiontext"@de;
+	rdfs:comment """Text having content derived from imagination."""@en;
+	rdfs:subClassOf text:Text, concept:Fiction.
+
 #
 # PROPERTIES
 #
@@ -362,24 +354,6 @@ text:isTextOfDocumentValue
 	rdfs:label "is text of document - statement"@en, "ist Text eines Dokumentes - Festlegung"@de;
 	rdfs:comment "Relating a text to a reification statement of the relation between the text and the document it is part of."@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint text:Text;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-text:hasContentNature
-	a owl:ObjectProperty;
-	rdfs:label "has content nature"@en, "hat textinhaltliche Art"@de;
-	rdfs:comment """Relating a text to a content nature it has."""@en;
-	rdfs:domain text:Text;
-	rdfs:range text:ContentNature;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text:Text;
-	knora-base:objectClassConstraint text:ContentNature.
-
-text:hasContentNatureValue
-	a owl:ObjectProperty;
-	rdfs:label "has content nature - statement"@en, "hat textinhaltliche Art - Festlegung"@de;
-	rdfs:comment """Relating a text to a reification statement of the relation between the text and a content nature it has."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
