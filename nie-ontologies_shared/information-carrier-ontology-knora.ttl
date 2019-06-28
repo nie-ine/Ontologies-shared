@@ -15,6 +15,7 @@
 @prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix device: <http://www.knora.org/ontology/shared/device#>.
 @prefix image: <http://www.knora.org/ontology/shared/image#>.
+@prefix letter-corresponding: <http://www.knora.org/ontology/shared/letter-corresponding#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
@@ -121,8 +122,8 @@ infocar:Page
 		a owl:Restriction; owl:onProperty infocar:isPageOfLeafValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPageOfBook; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isPageOfBookValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:isPageOfLetter; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:isPageOfLetterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:isPageOfLetter; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:isPageOfLetterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:pageHasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Book
@@ -384,39 +385,6 @@ infocar:PersonReceiver
 	rdfs:label "person receiver"@en, "Person-Empfänger"@de;
 	rdfs:comment """Role of a person receiving information on carrier."""@en;
 	rdfs:subClassOf human:PersonReceiver.
-
-infocar:Letter
-	a owl:Class;
-	rdfs:label "letter"@en, "Brief"@de, "lettre"@fr, "lettera"@it;
-	rdfs:comment """Written text, e.g. on a leaf, intended to be sent from (a) person(s) or (an) Organization(s) to another one, e.g. through a postal system."""@en;
-	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton, [
-#		a owl:Restriction; owl:onProperty infocar:letterFollows; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-#		a owl:Restriction; owl:onProperty infocar:letterFollowsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterPrecedes; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterPrecedesValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterHasEnvelope; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterHasEnvelopeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterHasEnvelopeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterHasEnclosure; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:letterHasEnclosureValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-infocar:LetterEnclosure
-	a owl:Class;
-	rdfs:label "letter enclosure"@en, "Briefbeilage"@de;
-	rdfs:comment """Something added to a letter being sent, e.g. another information carrier."""@en;
-	rdfs:subClassOf human:PhysicalCreation.
-
-infocar:InformationLetterEnclosure
-	a owl:Class;
-	rdfs:label "information letter enclosure"@en, "Information-Briefbeilage"@de;
-	rdfs:comment """Information carrier as letter enclosure."""@en;
-	rdfs:subClassOf infocar:LetterEnclosure, infocar:Carrier.
-
-infocar:Envelope
-	a owl:Class;
-	rdfs:label "envelope"@en, "Umschlag"@de;
-	rdfs:comment """Flat paper container with a sealable flap for sending something, e.g. a letter, from (a) person(s) or (an) Organization(s) to another one, e.g. through a postal system."""@en;
-	rdfs:subClassOf human:PhysicalCreation.
 
 infocar:Postcard
 	a owl:Class;
@@ -701,24 +669,6 @@ infocar:isPageOfBookValue
 	a owl:ObjectProperty;
 	rdfs:label "is page of book - statement"@en, "ist Seite eines Buchs - Festlegung"@de;
 	rdfs:comment """Relating a page to a reification statement of the relation between the page and a book its leaf is part of."""@en;
-	rdfs:subPropertyOf physical:isPartOfValue;
-	knora-base:subjectClassConstraint infocar:Page;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:isPageOfLetter
-	a owl:ObjectProperty;
-	rdfs:label "is page of letter"@en, "ist Seite eines Briefes"@de;
-	rdfs:comment """Relating a page to the letter it is part of."""@en;
-	rdfs:domain infocar:Page;
-	rdfs:range infocar:Letter;
-	rdfs:subPropertyOf physical:isPartOf;
-	knora-base:subjectClassConstraint infocar:Page;
-	knora-base:objectClassConstraint infocar:Letter.
-
-infocar:isPageOfLetterValue
-	a owl:ObjectProperty;
-	rdfs:label "is page of letter - statement"@en, "ist Seite eines Briefes - Festlegung"@de;
-	rdfs:comment """Relating a page to a reification statement of the relation between the page and the letter it is part of."""@en;
 	rdfs:subPropertyOf physical:isPartOfValue;
 	knora-base:subjectClassConstraint infocar:Page;
 	knora-base:objectClassConstraint knora-base:LinkValue.
@@ -1289,106 +1239,6 @@ infocar:isInDiaryValue
 	rdfs:comment """Relating a diary expression to a reification statement of the relation between the expression and the physical diary it is in."""@en;
 	rdfs:subPropertyOf infocar:isOnCarrierValue;
 	knora-base:subjectClassConstraint text-expression:Diary;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:letterPrecedes
-	a owl:ObjectProperty;
-	rdfs:label "letter precedes"@en, "Brief geht voraus an"@de;
-	rdfs:comment """Relating a letter to another letter that follows the former."""@en;
-	rdfs:domain infocar:Letter;
-	rdfs:range infocar:Letter;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint infocar:Letter.
-
-infocar:letterPrecedesValue
-	a owl:ObjectProperty;
-	rdfs:label "letter precedes - statement"@en, "Brief geht voraus an - Festlegung"@de;
-	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and another letter that follows the former."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:letterHasEnvelope
-	a owl:ObjectProperty;
-	rdfs:label "letter has envelope"@en, "Brief hat Umschlag"@de;
-	rdfs:comment """Relating a letter to an envelope it has."""@en;
-	rdfs:domain infocar:Letter;
-	rdfs:range infocar:Envelope;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint infocar:Envelope.
-
-infocar:letterHasEnvelopeValue
-	a owl:ObjectProperty;
-	rdfs:label "letter has envelope - statement"@en, "Brief hat Umschlag - Festlegung"@de;
-	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and an envelope it has."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:letterHasEnvelopeDescription
-	a owl:ObjectProperty;
-	rdfs:label "letter has envelope description"@en, "Brief hat Umschlagbeschreibung"@de;
-	rdfs:comment """Relating a letter to a description of its envelope."""@en;
-	rdfs:domain infocar:Letter;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf knora-base:hasValue;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-infocar:letterHasEnclosure
-	a owl:ObjectProperty;
-	rdfs:label "letter has enclosure"@en, "Brief hat Beilage"@de;
-	rdfs:comment """Relating a letter to an enclosure it has."""@en;
-	rdfs:domain infocar:Letter;
-	rdfs:range infocar:LetterEnclosure;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint infocar:LetterEnclosure.
-
-infocar:letterHasEnclosureValue
-	a owl:ObjectProperty;
-	rdfs:label "letter has enclosure - statement"@en, "Brief hat Beilage - Festlegung"@de;
-	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and an enclosure it has."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint infocar:Letter;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:isInLetter
-	a owl:ObjectProperty;
-	rdfs:label "is in letter"@en, "ist in Brief"@de;
-	rdfs:comment """Relating a letter expression to a letter it is in."""@en;
-	rdfs:domain text-expression:Letter;
-	rdfs:range infocar:Letter;
-	rdfs:subPropertyOf infocar:isOnCarrier;
-	knora-base:subjectClassConstraint text-expression:Letter;
-	knora-base:objectClassConstraint infocar:Letter.
-
-infocar:isInLetterValue
-	a owl:ObjectProperty;
-	rdfs:label "is in letter - statement"@en, "ist in Brief - Festlegung"@de;
-	rdfs:comment """Relating a letter expression to a reification statement of the relation between the letter expression and a letter it is in."""@en;
-	rdfs:subPropertyOf infocar:isOnCarrierValue;
-	knora-base:subjectClassConstraint text-expression:Letter;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-infocar:isTextInLetterEnclosure
-	a owl:ObjectProperty;
-	rdfs:label "is text in letter enclosure"@en, "ist Text in Briefbeilage"@de;
-	rdfs:comment """Relating a text expression to a letter enclosure it is in."""@en;
-	rdfs:domain text-expression:LetterEnclosure;
-	rdfs:range infocar:InformationLetterEnclosure;
-	rdfs:subPropertyOf infocar:isOnCarrier;
-	knora-base:subjectClassConstraint text-expression:LetterEnclosure;
-	knora-base:objectClassConstraint infocar:InformationLetterEnclosure.
-
-infocar:isTextInLetterEnclosureValue
-	a owl:ObjectProperty;
-	rdfs:label "is text in letter enclosure - statement"@en, "ist Text in Briefbeilage - Festlegung"@de;
-	rdfs:comment """Relating a text expression to a reification statement of the relation between the expression and a letter enclosure it is in."""@en;
-	rdfs:subPropertyOf infocar:isOnCarrierValue;
-	knora-base:subjectClassConstraint text-expression:LetterEnclosure;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 infocar:convoluteHasTitle
