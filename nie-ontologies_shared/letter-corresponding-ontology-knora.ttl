@@ -1,0 +1,259 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
+@prefix event: <http://www.knora.org/ontology/shared/event#>.
+@prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
+@prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
+@prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
+@prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
+
+@base <http://www.knora.org/ontology/shared/letter-corresponding>.
+@prefix letter-corresponding: <http://www.knora.org/ontology/shared/letter-corresponding#>.
+
+<http://www.knora.org/ontology/shared/letter-corresponding>
+	a owl:Ontology;
+	dct:license <http://creativecommons.org/licenses/by/3.0/>;
+	dct:title "An ontology about letter corresponding"@en;
+	dct:description """Formal description of letter corresponding, related classes, and properties."""@en;
+	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
+	dct:contributor
+		"Roberta Padlina, tool coordinator and software developer, NIE-INE, University of Basel, Switzerland"@en,
+		"Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
+	dct:publisher "Basel University, Switzerland"@en;
+
+	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
+
+#
+# CLASSES
+#
+
+letter-corresponding:Corresponding
+ 	a owl:Class;
+ 	rdfs:label "corresponding"@en,"Korrespondieren"@de;
+ 	rdfs:comment """Communicating by exchanging letters."""@en;
+	rdfs:subClassOf human:Procedure.
+
+letter-corresponding:Exchanging
+ 	a owl:Class;
+ 	rdfs:label "exchanging"@en,"Auswechselen"@de;
+ 	rdfs:comment """Sending-receiving cycle in corresponding."""@en;
+	rdfs:subClassOf human:Procedure, [
+		a owl:Restriction; owl:onProperty letter-corresponding:isExchangingOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:isExchangingOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+letter-corresponding:Expression
+	a owl:Class;
+	rdfs:label "letter expression"@en, "Brief-Expression"@de;
+	rdfs:comment """Text expression with a letter content and possibly structure."""@en;
+	rdfs:subClassOf text-expression:IndividualExpression, [
+		a owl:Restriction; owl:onProperty letter-corresponding:isInLetter; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:isInLetterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+letter-corresponding:Structure
+	a owl:Class;
+	rdfs:label "letter structure"@en, "Briefstruktur"@de;
+	rdfs:comment """Text with letter structure."""@en;
+	rdfs:subClassOf text-structure:CompositionalContentStructure, [
+		a owl:Restriction; owl:onProperty letter-corresponding:isStructureOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:isStructureOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+letter-corresponding:Letter
+	a owl:Class;
+	rdfs:label "letter"@en, "Brief"@de, "lettre"@fr, "lettera"@it;
+	rdfs:comment """Written text, e.g. on a leaf, intended to be sent from (a) person(s) or (an) Organization(s) to (an)other one(s), e.g. through a postal system."""@en;
+	rdfs:subClassOf infocar:Carrier, frbroo:F4_Manifestation_Singleton, [
+		a owl:Restriction; owl:onProperty letter-corresponding:follows; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:followsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:hasEnvelope; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:hasEnvelopeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:hasEnvelopeDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:hasEnclosure; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:hasEnclosureValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+letter-corresponding:Envelope
+	a owl:Class;
+	rdfs:label "envelope"@en, "Umschlag"@de;
+	rdfs:comment """Flat paper container with a sealable flap for sending something, e.g. a letter, from (a) person(s) or (an) Organization(s) to another one, e.g. through a postal system."""@en;
+	rdfs:subClassOf human:PhysicalCreation.
+
+letter-corresponding:EnclosureExpression
+	a owl:Class;
+	rdfs:label "letter enclosure text expression"@en, "Briefbeilage-Textexpression"@de;
+	rdfs:comment """Text expression of a letter enclosure."""@en;
+	rdfs:subClassOf text-expression:IndividualExpression, [
+		a owl:Restriction; owl:onProperty letter-corresponding:isTextInEnclosure; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:isTextInEnclosureValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+letter-corresponding:Enclosure
+	a owl:Class;
+	rdfs:label "letter enclosure"@en, "Briefbeilage"@de;
+	rdfs:comment """Something added to a letter being sent, e.g. another information carrier."""@en;
+	rdfs:subClassOf human:PhysicalCreation.
+
+letter-corresponding:InformationEnclosure
+	a owl:Class;
+	rdfs:label "information letter enclosure"@en, "Information-Briefbeilage"@de;
+	rdfs:comment """Information carrier as letter enclosure."""@en;
+	rdfs:subClassOf letter-corresponding:Enclosure, infocar:Carrier.
+
+#
+# PROPERTIES
+#
+
+letter-corresponding:isExchangingOf
+	a owl:ObjectProperty;
+	rdfs:label "is exchanging of"@en, "ist Auswechselen von"@de;
+	rdfs:comment """Relating an exchanging to its corresponding it is a suprocedure of."""@en;
+	rdfs:domain letter-corresponding:Exchanging;
+	rdfs:range letter-corresponding:Corresponding;
+	rdfs:subPropertyOf event:isSubProcedureOf;
+	knora-base:subjectClassConstraint letter-corresponding:Exchanging;
+	knora-base:objectClassConstraint letter-corresponding:Corresponding.
+
+letter-corresponding:isExchangingOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is exchanging of - statement"@en, "ist Auswechselen von - Festlegung"@de;
+	rdfs:comment """Relating an exchanging to a reification statement of the relation between the exchanging and its corresponding."""@en;
+	rdfs:subPropertyOf event:isSubProcedureOfValue;
+	knora-base:subjectClassConstraint letter-corresponding:Exchanging;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+letter-corresponding:isInLetter
+	a owl:ObjectProperty;
+	rdfs:label "is in letter"@en, "ist in Brief"@de;
+	rdfs:comment """Relating a letter expression to a letter it is in."""@en;
+	rdfs:domain letter-corresponding:Expression;
+	rdfs:range letter-corresponding:Letter;
+	rdfs:subPropertyOf infocar:isOnCarrier;
+	knora-base:subjectClassConstraint letter-corresponding:Expression;
+	knora-base:objectClassConstraint letter-corresponding:Letter.
+
+letter-corresponding:isInLetterValue
+	a owl:ObjectProperty;
+	rdfs:label "is in letter - statement"@en, "ist in Brief - Festlegung"@de;
+	rdfs:comment """Relating a letter expression to a reification statement of the relation between the letter expression and a letter it is in."""@en;
+	rdfs:subPropertyOf infocar:isOnCarrierValue;
+	knora-base:subjectClassConstraint letter-corresponding:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+letter-corresponding:isStructureOfExpression
+	a owl:ObjectProperty;
+	rdfs:label "is letter structure of expression"@en, "ist Briefstruktur einer Expression"@de;
+	rdfs:comment """Relating a letter structure to a text expression it is part of."""@en;
+	rdfs:domain letter-corresponding:Structure;
+	rdfs:range letter-corresponding:Expression;
+	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
+	knora-base:subjectClassConstraint letter-corresponding:Structure;
+	knora-base:objectClassConstraint letter-corresponding:Expression.
+
+letter-corresponding:isStructureOfExpressionValue
+	a owl:ObjectProperty;
+	rdfs:label "is letter structure of expression - statement"@en, "ist Briefstruktur einer Expression - Festlegung"@de;
+	rdfs:comment """Relating a letter structure to a reification statement of the relation between the structure and a text expression it is part of."""@en;
+	rdfs:subPropertyOf text-structure:isPartOfTextExpressionValue;
+	knora-base:subjectClassConstraint letter-corresponding:Structure;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+letter-corresponding:follows
+	a owl:ObjectProperty;
+	rdfs:label "letter follows"@en, "Brief folgt"@de;
+	rdfs:comment """Relating a letter to a preceding letter."""@en;
+	rdfs:domain letter-corresponding:Letter;
+	rdfs:range letter-corresponding:Letter;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint letter-corresponding:Letter;
+	knora-base:objectClassConstraint letter-corresponding:Letter.
+
+letter-corresponding:followsValue
+	a owl:ObjectProperty;
+	rdfs:label "letter follows - statement"@en, "Brief folgt - Festlegung"@de;
+	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and a preceding letter."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint letter-corresponding:Letter;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+letter-corresponding:hasEnvelope
+	a owl:ObjectProperty;
+	rdfs:label "letter has envelope"@en, "Brief hat Umschlag"@de;
+	rdfs:comment """Relating a letter to an envelope it has."""@en;
+	rdfs:domain letter-corresponding:Letter;
+	rdfs:range letter-corresponding:Envelope;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint letter-corresponding:Letter;
+	knora-base:objectClassConstraint letter-corresponding:Envelope.
+
+letter-corresponding:hasEnvelopeValue
+	a owl:ObjectProperty;
+	rdfs:label "letter has envelope - statement"@en, "Brief hat Umschlag - Festlegung"@de;
+	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and an envelope it has."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint letter-corresponding:Letter;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+letter-corresponding:hasEnvelopeDescription
+	a owl:ObjectProperty;
+	rdfs:label "letter has envelope description"@en, "Brief hat Umschlagbeschreibung"@de;
+	rdfs:comment """Relating a letter to a description of its envelope."""@en;
+	rdfs:domain letter-corresponding:Letter;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint letter-corresponding:Letter;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+letter-corresponding:hasEnclosure
+	a owl:ObjectProperty;
+	rdfs:label "letter has enclosure"@en, "Brief hat Beilage"@de;
+	rdfs:comment """Relating a letter to an enclosure it has."""@en;
+	rdfs:domain letter-corresponding:Letter;
+	rdfs:range letter-corresponding:Enclosure;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint letter-corresponding:Letter;
+	knora-base:objectClassConstraint letter-corresponding:Enclosure.
+
+letter-corresponding:hasEnclosureValue
+	a owl:ObjectProperty;
+	rdfs:label "letter has enclosure - statement"@en, "Brief hat Beilage - Festlegung"@de;
+	rdfs:comment """Relating a letter to a reification statement of the relation between the letter and an enclosure it has."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint letter-corresponding:Letter;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+letter-corresponding:isPageOfLetter
+	a owl:ObjectProperty;
+	rdfs:label "is page of letter"@en, "ist Seite eines Briefes"@de;
+	rdfs:comment """Relating a page to the letter it is part of."""@en;
+	rdfs:domain infocar:Page;
+	rdfs:range letter-corresponding:Letter;
+	rdfs:subPropertyOf physical:isPartOf;
+	knora-base:subjectClassConstraint infocar:Page;
+	knora-base:objectClassConstraint letter-corresponding:Letter.
+
+letter-corresponding:isPageOfLetterValue
+	a owl:ObjectProperty;
+	rdfs:label "is page of letter - statement"@en, "ist Seite eines Briefes - Festlegung"@de;
+	rdfs:comment """Relating a page to a reification statement of the relation between the page and the letter it is part of."""@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint infocar:Page;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+letter-corresponding:isTextInEnclosure
+	a owl:ObjectProperty;
+	rdfs:label "is text expression in letter enclosure"@en, "ist Textexpression in Briefbeilage"@de;
+	rdfs:comment """Relating a text expression to a letter information enclosure it is in."""@en;
+	rdfs:domain letter-corresponding:EnclosureExpression;
+	rdfs:range letter-corresponding:InformationEnclosure;
+	rdfs:subPropertyOf infocar:isOnCarrier;
+	knora-base:subjectClassConstraint letter-corresponding:EnclosureExpression;
+	knora-base:objectClassConstraint letter-corresponding:InformationEnclosure.
+
+letter-corresponding:isTextInEnclosureValue
+	a owl:ObjectProperty;
+	rdfs:label "is text expression in letter enclosure - statement"@en, "ist Text in Briefbeilage - Festlegung"@de;
+	rdfs:comment """Relating a text expression to a reification statement of the relation between the expression and a letter information enclosure it is in."""@en;
+	rdfs:subPropertyOf infocar:isOnCarrierValue;
+	knora-base:subjectClassConstraint letter-corresponding:EnclosureExpression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
