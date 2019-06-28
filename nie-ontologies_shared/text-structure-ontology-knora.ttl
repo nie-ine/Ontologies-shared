@@ -295,14 +295,6 @@ text-structure:Diary
 		a owl:Restriction; owl:onProperty text-structure:isDiaryStructureOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isDiaryStructureOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-text-structure:Letter
-	a owl:Class;
-	rdfs:label "letter structure"@en, "Briefstruktur"@de;
-	rdfs:comment """Text with letter structure."""@en;
-	rdfs:subClassOf text-structure:CompositionalContentStructure, [
-		a owl:Restriction; owl:onProperty text-structure:isLetterStructureOfExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text-structure:isLetterStructureOfExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
 text-structure:Postcard
 	a owl:Class;
 	rdfs:label "postcard structure"@en, "Postkarte-Struktur"@de;
@@ -759,24 +751,6 @@ text-structure:isLineOfPageValue
 	rdfs:comment """Relating a text line to a reification statement of the relation between the line and a page it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint text-structure:PageLine;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-text-structure:isLetterStructureOfExpression
-	a owl:ObjectProperty;
-	rdfs:label "is letter structure of expression"@en, "ist Briefstruktur einer Expression"@de;
-	rdfs:comment """Relating a letter structure to a text expression it is part of."""@en;
-	rdfs:domain text-structure:Letter;
-	rdfs:range text-expression:Expression;
-	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
-	knora-base:subjectClassConstraint text-structure:Letter;
-	knora-base:objectClassConstraint text-expression:Expression.
-
-text-structure:isLetterStructureOfExpressionValue
-	a owl:ObjectProperty;
-	rdfs:label "is letter structure of expression - statement"@en, "ist Briefstruktur einer Expression - Festlegung"@de;
-	rdfs:comment """Relating a letter structure to a reification statement of the relation between the letter structure and a text expression it is part of."""@en;
-	rdfs:subPropertyOf text-structure:isPartOfTextExpressionValue;
-	knora-base:subjectClassConstraint text-structure:Letter;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-structure:isPostcardStructureOfExpression
