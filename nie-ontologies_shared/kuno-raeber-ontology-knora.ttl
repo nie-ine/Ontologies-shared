@@ -19,6 +19,7 @@
 @prefix image: <http://www.knora.org/ontology/shared/image#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
+@prefix letter-corresponding: <http://www.knora.org/ontology/shared/letter-corresponding#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/004D/kuno-raeber>.
@@ -204,7 +205,7 @@ kuno-raeber:LetterExpression
 	a owl:Class;
 	rdfs:label "Kuno Raeber letter expression"@en, "Brief-Expression Kuno Raebers"@de;
 	rdfs:comment """Letter expression written by Kuno Raeber."""@en;
-	rdfs:subClassOf text-expression:Letter, text:WrittenText, kuno-raeber:Text, [
+	rdfs:subClassOf letter-corresponding:Expression, text:WrittenText, kuno-raeber:Text, [
 		a owl:Restriction; owl:onProperty text:hasSpecialDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 kuno-raeber:StillImageRepresentation
@@ -370,7 +371,7 @@ kuno-raeber:Letter
 	a owl:Class;
 	rdfs:label "Kuno Raeber letter"@en,"Brief Kuno Raebers"@de;
 	rdfs:comment """Letter written by or to Kuno Raeber."""@en;
-	rdfs:subClassOf infocar:Letter, infocar:ArchiveElement, [
+	rdfs:subClassOf letter-corresponding:Letter, infocar:ArchiveElement, [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfLetterConvolute; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isPartOfLetterConvoluteValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 

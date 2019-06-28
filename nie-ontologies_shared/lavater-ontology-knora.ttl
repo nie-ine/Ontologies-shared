@@ -8,6 +8,7 @@
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
 @prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
+@prefix letter-corresponding: <http://www.knora.org/ontology/shared/letter-corresponding#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0064/lavater>.
@@ -32,7 +33,7 @@ lavater:LetterExpression
 	a owl:Class;
 	rdfs:label "Johann Caspar Lavater letter expression"@en, "Brief-Expression Johann Caspar Lavaters"@de;
 	rdfs:comment """Letter expression either authored by or written to by Johann Caspar Lavater."""@en;
-	rdfs:subClassOf text-expression:Letter, text:HandwrittenText.
+	rdfs:subClassOf letter-corresponding:Expression, text:HandwrittenText.
 
 lavater:EditedLetter
 	a owl:Class;
@@ -44,7 +45,7 @@ lavater:Letter
 	a owl:Class;
 	rdfs:label "Johann Caspar Lavater letter"@en, "Johann Caspar Lavater-Brief"@de, "lettre de Johann Caspar Lavater"@fr, "lettera di Johann Caspar Lavater"@it;
 	rdfs:comment """Letter send by or to Johann Caspar Lavater."""@en;
-	rdfs:subClassOf infocar:Letter, infocar:ConvoluteElement, infocar:ArchiveElement.
+	rdfs:subClassOf letter-corresponding:Letter, infocar:ConvoluteElement, infocar:ArchiveElement.
 
 lavater:Page
 	a owl:Class;

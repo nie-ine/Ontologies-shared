@@ -9,6 +9,7 @@
 @prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
+@prefix letter-corresponding: <http://www.knora.org/ontology/shared/letter-corresponding#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
 @base <http://www.knora.org/ontology/0062/meyer>.
@@ -33,7 +34,7 @@ meyer:LetterExpression
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer letter expression"@en, "Briefexpression Conrad Ferdinand Meyers"@de;
 	rdfs:comment """Letter expression authored by Conrad Ferdinand Meyer or another person."""@en;
-	rdfs:subClassOf text-expression:Letter, text:HandwrittenText.
+	rdfs:subClassOf letter-corresponding:Expression, text:HandwrittenText.
 
 meyer:DraftLetterExpression
 	a owl:Class;
@@ -75,7 +76,7 @@ meyer:Letter
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer letter"@en, "Conrad Ferdinand Meyer-Brief"@de, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
 	rdfs:comment """Letter send by or to Conrad Ferdinand Meyer."""@en;
-	rdfs:subClassOf infocar:Letter, infocar:ArchiveElement.
+	rdfs:subClassOf letter-corresponding:Letter, infocar:ArchiveElement.
 
 meyer:PostcardLetter
 	a owl:Class;
