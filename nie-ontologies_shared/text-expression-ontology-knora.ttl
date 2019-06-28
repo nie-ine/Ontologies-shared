@@ -183,22 +183,6 @@ text-expression:Diary
 		a owl:Restriction; owl:onProperty infocar:isInDiary; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isInDiaryValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-text-expression:Letter
-	a owl:Class;
-	rdfs:label "letter expression"@en, "Brief-Expression"@de;
-	rdfs:comment """Text expression with a letter content and possibly structure."""@en;
-	rdfs:subClassOf text-expression:IndividualExpression, [
-		a owl:Restriction; owl:onProperty infocar:isInLetter; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:isInLetterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-text-expression:LetterEnclosure
-	a owl:Class;
-	rdfs:label "letter enclosure text expression"@en, "Briefbeilage-Textexpression"@de;
-	rdfs:comment """Text expression of a letter enclosure."""@en;
-	rdfs:subClassOf text-expression:IndividualExpression, [
-		a owl:Restriction; owl:onProperty infocar:isTextInLetterEnclosure; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:isTextInLetterEnclosureValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
 text-expression:Commentator
 	a owl:Class;
 	rdfs:label "commentator"@en, "KommentatorIn"@de;
