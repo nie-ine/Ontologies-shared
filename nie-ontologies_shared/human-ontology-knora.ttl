@@ -133,7 +133,7 @@ human:Procedure
 	rdfs:comment """Procedure with a human agent."""@en;
 	rdfs:subClassOf event:Procedure.
 
-human:BiologicalSex # :subClassOf :Trait
+human:BiologicalSex
 	a owl:Class;
 	rdfs:label "human biological sex"@en, "menschliches biologisches Geschlecht"@de;
 	rdfs:comment """Biological trait of a human based on reproductive functions."""@en;
