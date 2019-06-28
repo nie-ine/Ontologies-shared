@@ -124,6 +124,8 @@ send "load ../ontologies/project-ontologies/scientific-editing-ontology-knora.tt
 expect $prompt
 send "load ../ontologies/project-ontologies/text-expression-ontology-knora.ttl into http://www.knora.org/ontology/shared/text-expression .\r"
 expect $prompt
+send "load ../ontologies/project-ontologies/letter-corresponding-ontology-knora.ttl into http://www.knora.org/ontology/shared/letter-corresponding .\r"
+expect $prompt
 
 send "close .\r"
 expect $prompt
