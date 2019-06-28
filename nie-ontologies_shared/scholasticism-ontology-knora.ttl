@@ -24,7 +24,10 @@
 	dct:title "An ontology about Scholasticism"@en;
 	dct:description """Formal description of elements in Scholasticism."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE, University of Basel, Switzerland"@en;
-	dct:contributor "Prof. Dr. Ueli Zahnd, Faculty of Theology, University of Basel, Switzerland"@en, "Gabriel Müller, Faculty of Theology, University of Basel, Switzerland"@en;
+	dct:contributor
+		"Prof. Dr. Ueli Zahnd, Faculty of Theology, University of Basel, Switzerland"@en,
+		"Gabriel Müller, Faculty of Theology, University of Basel, Switzerland"@en,
+		"Roberta Padlina, tool coordinator and software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
@@ -57,17 +60,17 @@ schola:Role
 	rdfs:comment """Role a scholastic has."""@en;
 	rdfs:subClassOf human:PersonRole.
 
-# schola:Complilator
-#	a owl:Class;
-#	rdfs:label "reportator"@la, "reportator"@en, "Reportator"@de;
-#	rdfs:comment """Role of a scholastic student registering the content of a lesson."""@en; #* also secretary of lecturer, RP
-#	rdfs:subClassOf schola:Role.
-
 schola:Reportator
 	a owl:Class;
 	rdfs:label "reportator"@la, "reportator"@en, "Reportator"@de;
 	rdfs:comment """Role of a scholastic student registering the content of a lesson."""@en; #* also secretary of lecturer, RP
 	rdfs:subClassOf schola:Role.
+
+schola:Translator
+	a owl:Class;
+	rdfs:label "translator"@la, "translator"@en, "Übersetzer"@de;
+	rdfs:comment """Role of a scholastic translating a text by handwriting."""@en;
+	rdfs:subClassOf language:PersonTranslator.
 
 # schola:Expression
 #	a owl:Class;
