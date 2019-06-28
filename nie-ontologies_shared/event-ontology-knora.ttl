@@ -79,9 +79,9 @@ event:Procedure
 	a owl:Class;
 	rdfs:label "procedure"@en, "Vorgehensweise"@de;
 	rdfs:comment """Action executed in one or more sub-actions, in a certain manner, obtaining a certain output under certain circumstances."""@en;
-	rdfs:subClassOf event:Action.
-
-# event:SubProcedure
+	rdfs:subClassOf event:Action, [
+		a owl:Restriction; owl:onProperty event:isSubProcedureOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty event:isSubProcedureOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 event:State
 	a owl:Class;
@@ -279,6 +279,24 @@ event:hasStageValue
 	rdfs:comment """Relating a process to a reification statement of the relation between the process and a stage thereof."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint event:Process;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+event:isSubProcedureOf
+	a owl:ObjectProperty;
+	rdfs:label "is sub-procedure of"@en, "ist Subverfahren von"@de;
+	rdfs:comment """Relating a procedure to an encompassing procedure thereof."""@en;
+	rdfs:domain event:Procedure;
+	rdfs:range event:Procedure;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint event:Procedure;
+	knora-base:objectClassConstraint event:Procedure.
+
+event:isSubProcedureOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is sub-procedure of - statement"@en, "ist Subverfahren von - Festlegung"@de;
+	rdfs:comment """Relating a process to a reification statement of the relation between the process and an encompassing procedure thereof."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint event:Procedure;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 event:hasGenesisDescription
