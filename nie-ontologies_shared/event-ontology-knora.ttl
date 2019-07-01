@@ -6,6 +6,7 @@
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix schema: <http://schema.org/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
 @prefix agent: <http://www.knora.org/ontology/shared/agent#>.
@@ -155,6 +156,24 @@ event:hasName
 	knora-base:subjectClassConstraint event:Event;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
+event:isSubEventOf
+	a owl:ObjectProperty;
+	rdfs:label "is sub-event of"@en, "ist Subereignis von"@de;
+	rdfs:comment "Relating an event to another one it is part of."@en;
+	rdfs:domain event:Event;
+	rdfs:range event:Event;	
+	rdfs:subPropertyOf physical:isPartOf, schema:subEvent;
+	knora-base:subjectClassConstraint event:Event;
+	knora-base:objectClassConstraint event:Event.
+
+event:isSubEventOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is sub-event of - statement"@en, "ist Subereignis von - Festlegung"@de;
+	rdfs:comment "Relating a event to a reification statement of the relation between the event and another one it is part of."@en;
+	rdfs:subPropertyOf physical:isPartOfValue;
+	knora-base:subjectClassConstraint event:Event;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 event:hasEvent
 	a owl:ObjectProperty;
 	rdfs:label "has event"@en, "hat Ereignis"@de;
@@ -284,18 +303,18 @@ event:hasStageValue
 event:isSubProcedureOf
 	a owl:ObjectProperty;
 	rdfs:label "is sub-procedure of"@en, "ist Subverfahren von"@de;
-	rdfs:comment """Relating a procedure to an encompassing procedure thereof."""@en;
+	rdfs:comment """Relating a procedure to another one it is part of."""@en;
 	rdfs:domain event:Procedure;
 	rdfs:range event:Procedure;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
+	rdfs:subPropertyOf event:isSubEventOf;
 	knora-base:subjectClassConstraint event:Procedure;
 	knora-base:objectClassConstraint event:Procedure.
 
 event:isSubProcedureOfValue
 	a owl:ObjectProperty;
 	rdfs:label "is sub-procedure of - statement"@en, "ist Subverfahren von - Festlegung"@de;
-	rdfs:comment """Relating a process to a reification statement of the relation between the process and an encompassing procedure thereof."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	rdfs:comment """Relating a procedure to a reification statement of the relation between the procedure and another one it is part of."""@en;
+	rdfs:subPropertyOf event:isSubEventOfValue;
 	knora-base:subjectClassConstraint event:Procedure;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
