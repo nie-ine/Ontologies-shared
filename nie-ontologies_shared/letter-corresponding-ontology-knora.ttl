@@ -45,6 +45,14 @@ letter-corresponding:Exchanging
 		a owl:Restriction; owl:onProperty letter-corresponding:isExchangingOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty letter-corresponding:isExchangingOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+letter-corresponding:Compiling
+ 	a owl:Class;
+ 	rdfs:label "compiling"@en,"Zusammenstellen"@de;
+ 	rdfs:comment """Preparing a letter for sending, mostly by putting it in an envelope, possibly adding an enclosure."""@en;
+	rdfs:subClassOf human:Procedure, [
+		a owl:Restriction; owl:onProperty letter-corresponding:isCompilingOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty letter-corresponding:isCompilingOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 letter-corresponding:Expression
 	a owl:Class;
 	rdfs:label "letter expression"@en, "Brief-Expression"@de;
@@ -120,6 +128,24 @@ letter-corresponding:isExchangingOfValue
 	rdfs:comment """Relating an exchanging to a reification statement of the relation between the exchanging and its corresponding."""@en;
 	rdfs:subPropertyOf event:isSubProcedureOfValue;
 	knora-base:subjectClassConstraint letter-corresponding:Exchanging;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+letter-corresponding:isCompilingOf
+	a owl:ObjectProperty;
+	rdfs:label "is compiling of"@en, "ist Zusammenstellen von"@de;
+	rdfs:comment """Relating a compiling to its exchanging it is a suprocedure of."""@en;
+	rdfs:domain letter-corresponding:Compiling;
+	rdfs:range letter-corresponding:Exchanging;
+	rdfs:subPropertyOf event:isSubProcedureOf;
+	knora-base:subjectClassConstraint letter-corresponding:Compiling;
+	knora-base:objectClassConstraint letter-corresponding:Exchanging.
+
+letter-corresponding:isCompilingOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is compiling of - statement"@en, "ist Zusammenstellen von - Festlegung"@de;
+	rdfs:comment """Relating an compiling to a reification statement of the relation between the compiling and its exchanging."""@en;
+	rdfs:subPropertyOf event:isSubProcedureOfValue;
+	knora-base:subjectClassConstraint letter-corresponding:Compiling;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 letter-corresponding:isInLetter
