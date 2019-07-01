@@ -26,8 +26,9 @@
 	dct:title "An ontology about language"@en;
 	dct:description """Formal description of linguistic-morphology, general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
-	dct:contributor "Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
-	dct:contributor "Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
+	dct:contributor
+		"Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en,
+		"Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 	rdfs:seeAlso <https://files.ifi.uzh.ch/cl/siclemat/lehre/hs09/ecl1/script/html/script.html>;
 
@@ -36,6 +37,21 @@
 #
 # CLASSES
 #
+
+lingmor:SyntacticWordForm
+	a owl:Class;
+	rdfs:label "syntactic word form"@en, "syntaktische Wortform"@de;
+	rdfs:comment """Linguistic concept unifying infinite syntactic words with identical literal."""@en;
+	skos:note """A sentence can contain 2 times the syntactic word 'sun', unified by 1 syntactic word form 'sun'."""@en;
+	rdfs:subClassOf ling:Concept, [
+		a owl:Restriction; owl:onProperty lingmor:hasLexeme; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasLexemeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 lingmor:Morpheme
 	a owl:Class;
@@ -65,20 +81,101 @@ lingmor:Suffix # derivational e.g. '-ship' in 'friendship', inflectional suffix 
 	rdfs:comment """Affix at the end of a word, e.g. 'ship' in 'friendship'."""@en;
 	rdfs:subClassOf lingmor:Affix.
 
-lingmor:SyntacticGender
+lingmor:GrammaticalGender
 	a owl:Class;
-	rdfs:label "syntactic gender"@en, "syntactisches Genus"@de;
-	rdfs:comment """Syntactic gender form of a word."""@en;
-	rdfs:subClassOf ling:Concept.
+	rdfs:label "grammatical gender"@en, "grammatisches Genus"@de; #° Geschlecht
+	rdfs:comment """Grammatical declension of a noun indicating a gender, independent from a semantic gender."""@en; #°
+	rdfs:subClassOf ling:Concept. # lingmor:MorphologicalCategory
 #	owl:oneOf (lingmor:masculine lingmor:feminine lingmor:neuter). # instances
+
+lingmor:MasculineGrammaticalGender
+	a owl:Class;
+	rdfs:label "masculine grammatical gender"@en, "grammatisches Maskulinum"@de;
+	rdfs:comment """Grammatical gender being masculine."""@en;
+	skos:note """E.g. in Indoeuropean and Semitic languages."""@en;
+#	owl:sameAs gold:MasculineGender;
+	rdfs:subClassOf lingmor:GrammaticalGender.
+	
+lingmor:FeminineGrammaticalGender
+	a owl:Class;
+	rdfs:label "feminine grammatical gender"@en, "grammatisches Femininum"@de;
+	rdfs:comment """Grammatical gender being feminine."""@en;
+	skos:note """E.g. in Indoeuropean and Semitic languages."""@en;
+#	owl:sameAs gold:FeminineGender;
+	rdfs:subClassOf lingmor:GrammaticalGender.
+
+lingmor:NeuterGrammaticalGender
+	a owl:Class;
+	rdfs:label "neuter grammatical gender"@en, "grammatisches Neutrum"@de;
+	rdfs:comment """Grammatical gender being neuter."""@en;
+	skos:note """E.g. in Indoeuropean languages."""@en;
+#	owl:sameAs gold:NeuterGender;
+	rdfs:subClassOf lingmor:GrammaticalGender.
 
 lingmor:Case
 	a owl:Class;
-	rdfs:label "case"@en, "Kasus"@de;
-	rdfs:comment """Case form of a word."""@en;
-	rdfs:subClassOf ling:Concept.
+	rdfs:label "grammatical case"@en, "Kasus"@de;
+	rdfs:comment """Grammatical declension of a noun, pronoun, adjective, participle, article, or numeral, expressing its grammatical function, hence its semantic relation to other words in a sentence, clause or phrase."""@en;
+#	owl:sameAs gold:CaseProperty;
+	rdfs:subClassOf ling:Concept. #° lingmor:MorphologicalConcept
 
-lingmor:GermanCase
+lingmor:NomintativeCase
+	a owl:Class;
+	rdfs:label "nominative case"@en, "Nominative"@de;
+	rdfs:comment """Grammatical case indicating the agent in an accusative language."""@en; #° subject
+#	owl:sameAs gold:NominativeCase;
+	rdfs:subClassOf lingmor:Case.
+
+lingmor:VocativeCase
+	a owl:Class;
+	rdfs:label "vocative case"@en, "Vokativ"@de;
+	rdfs:comment """Grammatical case of a noun or pronoun used to address a person in grammatical sense."""@en;
+#	owl:sameAs gold:VocativeCase;
+	rdfs:subClassOf lingmor:Case.
+
+lingmor:AccusativeCase
+	a owl:Class;
+	rdfs:label "accusative case"@en, "Akkusativ"@de;
+	rdfs:comment """Grammatical case indicating the object in an accusative language."""@en;
+#	owl:sameAs gold:AccusativeCase;
+	rdfs:subClassOf lingmor:Case.
+
+lingmor:DativeCase
+	a owl:Class;
+	rdfs:label "dative case"@en, "Dativ"@de;
+	rdfs:comment """Grammatical case indicating an indirect object."""@en;
+#	owl:sameAs gold:DativeCase;
+	rdfs:subClassOf lingmor:Case.
+
+lingmor:GenitiveCase
+	a owl:Class;
+	rdfs:label "genitive case"@en, "Genitiv"@de;
+	rdfs:comment """Grammatical case indicating possession and similar relations."""@en; #°
+#	owl:sameAs gold:GenitiveCase;
+	rdfs:subClassOf lingmor:Case.
+
+lingmor:AblativeCase
+	a owl:Class;
+	rdfs:label "ablative case"@en, "Ablativ"@de;
+	rdfs:comment """Grammatical case specifying a separation."""@en;
+#	owl:sameAs gold:AblativeCase;
+	rdfs:subClassOf lingmor:Case.
+
+lingmor:InstrumentalCase
+	a owl:Class;
+	rdfs:label "instrumental case"@en, "Instrumental"@de;
+	rdfs:comment """Grammatical case indicating an instrument or a tool for an action."""@en;
+#	owl:sameAs gold:InstrumentalCase;
+	rdfs:subClassOf lingmor:Case.
+	
+lingmor:LocativeCase
+	a owl:Class;
+	rdfs:label "locative case"@en, "Lokativ"@de;
+	rdfs:comment """Grammatical case indicating a position."""@en; #° location
+#	owl:sameAs gold:LocativeCase;
+	rdfs:subClassOf lingmor:Case.
+
+lingmor:GermanCase # exemplary
 	a owl:Class;
 	rdfs:label "German case"@en, "deutscher Kasus"@de;
 	rdfs:comment """German case form of a word."""@en;
@@ -88,9 +185,31 @@ lingmor:GermanCase
 lingmor:Number
 	a owl:Class;
 	rdfs:label "number"@en, "Numerus"@de;
-	rdfs:comment """Number form of a word."""@en;
-	rdfs:subClassOf ling:Concept.
+	rdfs:comment """Grammatical declension of a word expressing a number of a word."""@en; #°
+	rdfs:subClassOf ling:Concept. #° lingmor:MorphologicalConcept
+#	owl:sameAs gold:NumberProperty;
 #	owl:oneOf (lingmor:singular lingmor:plural). # instances
+
+lingmor:Singular
+	a owl:Class;
+	rdfs:label "singular"@en, "Singular"@de;
+	rdfs:comment """Number of a word indicating a singularity."""@en;
+#	owl:sameAs gold:SingularNumber;
+	rdfs:subClassOf lingmor:Number.
+
+lingmor:Dual
+	a owl:Class;
+	rdfs:label "dual"@en, "Dual"@de;
+	rdfs:comment """Number of a word indicating a duality."""@en;
+#	owl:sameAs gold:DualNumber;
+	rdfs:subClassOf lingmor:Number.
+	
+lingmor:Plural
+	a owl:Class;
+	rdfs:label "plural"@en, "Plural"@de;
+	rdfs:comment """Number of a word indicating a plurality."""@en;
+#	owl:sameAs gold:PluralNumber;
+	rdfs:subClassOf lingmor:Number.
 
 lingmor:SemanticGender
 	a owl:Class;
@@ -103,57 +222,74 @@ lingmor:SemanticGender
 # PROPERTIES
 #
 
-lingmor:hasSyntacticGender
+lingmor:hasLexeme
 	a owl:ObjectProperty;
-	rdfs:label "has syntactic gender"@en, "hat syntactisches Genus"@de;
-	rdfs:comment """Relating a syntactic word to its syntactic gender."""@en;
-	rdfs:domain text-structure:SyntacticWord;
-	rdfs:range lingmor:SyntacticGender;
+	rdfs:label "has lexeme"@en, "hat Lexem"@de;
+	rdfs:comment """Relating a syntactic word form to its lexeme."""@en;
+	rdfs:domain lingmor:SyntacticWordForm;
+	rdfs:range ling:Lexeme;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text-structure:SyntacticWord;
-	knora-base:objectClassConstraint lingmor:SyntacticGender.
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint ling:Lexeme.
 
-lingmor:hasSyntacticGenderValue
+lingmor:hasLexemeValue
 	a owl:ObjectProperty;
-	rdfs:label "has syntactic gender - statement"@en, "hat syntactisches Genus - Festlegung"@de;
-	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its syntactic gender."""@en;
+	rdfs:label "has lexeme - statement"@en, "hat Lexem - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word form to a reification statement of the relation between the syntactic word form and its lexeme."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasGrammaticalGender
+	a owl:ObjectProperty;
+	rdfs:label "has grammatical gender"@en, "hat grammatisches Genus"@de;
+	rdfs:comment """Relating a syntactic word form to its grammatical gender."""@en;
+	rdfs:domain lingmor:SyntacticWordForm;
+	rdfs:range lingmor:GrammaticalGender;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint lingmor:GrammaticalGender.
+
+lingmor:hasGrammaticalGenderValue
+	a owl:ObjectProperty;
+	rdfs:label "has grammatical gender - statement"@en, "hat grammatisches Genus - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word form to a reification statement of the relation between the syntactic word form and its grammatical gender."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 lingmor:hasCase
 	a owl:ObjectProperty;
 	rdfs:label "has grammatical case"@en, "hat Kasus"@de;
-	rdfs:comment """Relating a syntactic word to its grammatical case."""@en;
-	rdfs:domain text-structure:SyntacticWord;
+	rdfs:comment """Relating a syntactic word form to its grammatical case."""@en;
+	rdfs:domain lingmor:SyntacticWordForm;
 	rdfs:range lingmor:Case;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:Case.
 
 lingmor:hasCaseValue
 	a owl:ObjectProperty;
 	rdfs:label "has grammatical case - statement"@en, "hat Kasus - Festlegung"@de;
-	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its grammatical case."""@en;
+	rdfs:comment """Relating a syntactic word form to a reification statement of the relation between the syntactic word form and its grammatical case."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 lingmor:hasNumber
 	a owl:ObjectProperty;
-	rdfs:label "syntactic word has number"@en, "syntactisches Wort hat Numerus"@de;
+	rdfs:label "syntactic word form has number"@en, "syntactische Wortform hat Numerus"@de;
 	rdfs:comment """Relating a syntactic word to its number."""@en;
-	rdfs:domain text-structure:SyntacticWord;
+	rdfs:domain lingmor:SyntacticWordForm;
 	rdfs:range lingmor:Number;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:Number.
 
 lingmor:hasNumberValue
 	a owl:ObjectProperty;
-	rdfs:label "syntactic word has number - statement"@en, "syntactisches Wort hat Numerus - Festlegung"@de;
-	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the syntactic word and its number."""@en;
+	rdfs:label "syntactic word form has number - statement"@en, "syntactische Wortform hat Numerus - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word form to a reification statement of the relation between the syntactic word form and its number."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
-
