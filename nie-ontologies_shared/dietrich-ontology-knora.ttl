@@ -6,7 +6,7 @@
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
-@prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
+@prefix scholarly-editing: <http://www.knora.org/ontology/shared/scholarly-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 @prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.

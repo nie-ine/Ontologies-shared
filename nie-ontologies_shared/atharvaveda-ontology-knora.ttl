@@ -9,7 +9,7 @@
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
-@prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
+@prefix scholarly-editing: <http://www.knora.org/ontology/shared/scholarly-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
@@ -75,23 +75,27 @@ athar:Verse
 		a owl:Restriction; owl:onProperty athar:isVerseOfHalfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isVerseOfHalfStropheValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+# pada word: syntactic word
+
+# Deviating stem and suffix
+
 # athar:ConstitutedEdition
 #	a owl:Class;
 #	rdfs:label "Atharvaveda pada patha"@sa, "Atharvaveda constituted text edition"@en, "konstituierter Text Atharvavedas"@de;
 #	rdfs:comment """constituted text edition as created in the Atharvaveda project."""@en;
-#	rdfs:subClassOf scientific-editing:ConstitutedEdition.
+#	rdfs:subClassOf scholarly-editing:ConstitutedEdition.
 
 # athar:CriticalEdition
 #	a owl:Class;
 #	rdfs:label "critical text edition"@en, "kritische Textedition"@de;
 #	rdfs:comment """critical text edition as created in the Atharvaveda project."""@en;
-#	rdfs:subClassOf scientific-editing:CriticalEdition
+#	rdfs:subClassOf scholarly-editing:CriticalEdition
 
 # athar:CriticalApparatus
 #	a owl:Class;
 #	rdfs:label "critical apparatus"@en, "textkritischer Apparat"@de;
 #	rdfs:comment """Critical apparatus used in the Atharvaveda project at the Zürich University 2018."""@en;
-#	rdfs:subClassOf scientific-editing:CriticalApparatus.
+#	rdfs:subClassOf scholarly-editing:CriticalApparatus.
 
 # Special markup that can appear:
 #   [[...]] denoting editorial observations on the preceding reading(s)

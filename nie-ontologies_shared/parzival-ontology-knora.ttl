@@ -9,7 +9,7 @@
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
-@prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
+@prefix scholarly-editing: <http://www.knora.org/ontology/shared/scholarly-editing#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix prosodic-structure: <http://www.knora.org/ontology/shared/prosodic-structure#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
@@ -47,7 +47,7 @@ parzival:CopiedVerseNovel
 	a owl:Class;
 	rdfs:label """copied version of 'Parzival'"""@en, """kopierte Version 'Parzivals'"""@de;
 	rdfs:comment """Copied version of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf text:CopiedText, litera:VerseNovel, scientific-editing:Witness.
+	rdfs:subClassOf text:CopiedText, litera:VerseNovel, scholarly-editing:Witness.
 
 parzival:HandwrittenTranscribedVerseNovel
 	a owl:Class;
@@ -113,7 +113,7 @@ parzival:EditionPage
 	a owl:Class;
 	rdfs:label """edition page of 'Parzival'"""@en, """Editionseite 'Parzivals'"""@de;
 	rdfs:comment """Page of a scientific edition of a copy of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf scientific-editing:Page, text-expression:ExpressionPart.
+	rdfs:subClassOf scholarly-editing:Page, text-expression:ExpressionPart.
 
 parzival:Page
 	a owl:Class;
@@ -127,7 +127,7 @@ parzival:ScientificEdition
 	a owl:Class;
 	rdfs:label """scientific text edition of 'Parzival'"""@en, """wissenschaftliche Textedition von 'Parzival'"""@de;
 	rdfs:comment """Scientific text edition of a transcript of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf scientific-editing:ScientificEdition, publish:Expression.
+	rdfs:subClassOf scholarly-editing:ScientificEdition, publish:Expression.
 
 parzival:Verse
 	a owl:Class;
@@ -178,7 +178,7 @@ parzival:CriticalEdition
 	a owl:Class;
 	rdfs:label """critical text edition of a dreissiger"""@en, """kritische Textedition eines Dreissigers"""@de;
 	rdfs:comment """Critical text edition of a dreissiger depending on one or more transcripts of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf scientific-editing:CriticalEdition, text-expression:ExpressionPart, publish:Expression.
+	rdfs:subClassOf scholarly-editing:CriticalEdition, text-expression:ExpressionPart, publish:Expression.
 
 #
 # PROPERTIES

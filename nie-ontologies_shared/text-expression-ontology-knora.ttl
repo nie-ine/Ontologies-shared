@@ -16,7 +16,7 @@
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
-@prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
+@prefix scholarly-editing: <http://www.knora.org/ontology/shared/scholarly-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix publish: <http://www.knora.org/ontology/shared/publishing#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
@@ -62,14 +62,14 @@ text-expression:Expression
 		a owl:Restriction; owl:onProperty text-expression:hasCriticalEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasDerivedTextExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasDerivedTextExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scientific-editing:hasScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scientific-editing:hasScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scientific-editing:hasScientificEditionPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scientific-editing:hasScientificEditionPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scientific-editing:hasDiplomaticTranscription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scientific-editing:hasDiplomaticTranscriptionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scientific-editing:hasCriticalEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scientific-editing:hasCriticalEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEditionPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEditionPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasDiplomaticTranscription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasDiplomaticTranscriptionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasCriticalEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasCriticalEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text-expression:Draft
 	a owl:Class;

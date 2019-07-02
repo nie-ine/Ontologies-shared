@@ -6,7 +6,7 @@
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix textedit: <http://www.knora.org/ontology/shared/text-editing#>.
-@prefix scientific-editing: <http://www.knora.org/ontology/shared/scientific-editing#>.
+@prefix scholarly-editing: <http://www.knora.org/ontology/shared/scholarly-editing#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix letter-corresponding: <http://www.knora.org/ontology/shared/letter-corresponding#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
@@ -39,7 +39,7 @@ lavater:EditedLetter
 	a owl:Class;
 	rdfs:label "edited Johann Caspar Lavater letter expression"@en, "edierter Brief-Expression Johann Caspar Lavaters"@de;
 	rdfs:comment """Letter expression either authored or received by Johann Caspar Lavater, and critically edited."""@en;
-	rdfs:subClassOf scientific-editing:CriticalEdition.
+	rdfs:subClassOf scholarly-editing:CriticalEdition.
 
 lavater:Letter
 	a owl:Class;

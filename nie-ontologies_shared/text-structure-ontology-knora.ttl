@@ -106,18 +106,11 @@ text-structure:SyntacticWord
 	a owl:Class;
 	rdfs:label "syntactic word"@en, "syntaktisches Wort"@de;
 	rdfs:comment """Smallest independent syntactic structure composed of symbols that can be replaced in a sentence or verse."""@en;
-#	skos:note """A word comprises one or more morphemes."""@en;
 	rdfs:subClassOf text-structure:SyntacticStructure, ling:Concept, [
 #		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 #		a owl:Restriction; owl:onProperty ling:hasLanguage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty ling:hasLexeme; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty ling:hasLexemeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasSyntacticGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # grammatic
-		a owl:Restriction; owl:onProperty lingmor:hasSyntacticGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:syntacticWordHasForm; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-structure:syntacticWordHasFormValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordBeforePunctuation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordBeforePunctuationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isWordOfSentence; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -341,6 +334,24 @@ text-structure:hasIdentifierValue
 	rdfs:comment """Relating a text structure to a reification statement of the relation between the structure and its identifier."""@en;
 	rdfs:subPropertyOf document:contentStructureHasIdentifierValue;
 	knora-base:subjectClassConstraint text-structure:Structure;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text-structure:syntacticWordHasForm
+	a owl:ObjectProperty;
+	rdfs:label "syntactic word has form"@en, "syntaktisches Wort hat Form"@de;
+	rdfs:comment """Relating a syntactic word to its form."""@en;
+	rdfs:domain text-structure:SyntacticWord;
+	rdfs:range lingmor:SyntacticWordForm;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
+	knora-base:objectClassConstraint lingmor:SyntacticWordForm.
+
+text-structure:syntacticWordHasFormValue
+	a owl:ObjectProperty;
+	rdfs:label "syntactic word has form - statement"@en, "syntaktisches Wort hat Form - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word to a reification statement of the relation between the word and its form."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text-structure:SyntacticWord;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-structure:isWordBeforePunctuation
