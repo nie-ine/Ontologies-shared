@@ -40,40 +40,40 @@
 # CLASSES
 #
 
-scholarly-editing:EditionScientist # -> EditionScholar ?
+scholarly-editing:EditionScientist
 	a owl:Class;
 	rdfs:label "edition scientist"@en, "EditionswissenschaftlerIn"@de;
 	rdfs:comment """Role of a person practicing edition science."""@en;
 	rdfs:subClassOf human:Scientist.
 
-scholarly-editing:ScientificEditor # -> scholarly Editor ?
+scholarly-editing:Editor
 	a owl:Class;
-	rdfs:label "scientific editor"@en, "wissenschaftliche Editor"@de, "éditrice scientifique"@fr;
-	rdfs:comment """Role of a person editing a text expression scientifically."""@en;
+	rdfs:label "scholarly editor"@en, "wissenschaftliche Editor"@de, "éditeur scientifique"@fr;
+	rdfs:comment """Role of a person editing a text expression scientifically as practised in Humanities."""@en;
 	skos:note """Different from an editor of scientific literature, who is not necessarily a scientist."""@en;
 	rdfs:subClassOf textedit:Editor, scholarly-editing:EditionScientist.
 
-scholarly-editing:ScientificOrganizationEditor  # -> OrganizationEditor ?
+scholarly-editing:OrganizationEditor
 	a owl:Class;
-	rdfs:label "scientific organization-editor"@en, "wissenschaftliche Organisation-Editor"@de;
-	rdfs:comment """Role of an orgnization editing a text expression scientifically."""@en;
+	rdfs:label "scholarly organization-editor"@en, "wissenschaftliche Organisation-Editor"@de;
+	rdfs:comment """Role of an orgnization editing a text expression scientifically as practised in Humanities."""@en;
 	rdfs:subClassOf org:Creator.
 
-scholarly-editing:ScientificEdition # -> scholarly edition ?
+scholarly-editing:Edition
 	a owl:Class;
-	rdfs:label "scientific edition"@en, "wissenschaftliche Edition"@de;
+	rdfs:label "scholarly edition"@en, "wissenschaftliche Edition"@de;
 	rdfs:comment """Derived text expression edited for scientific purpose."""@en;
 	rdfs:subClassOf textedit:DerivedTextExpression , [
-		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty scholarly-editing:hasEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 scholarly-editing:Page
 	a owl:Class;
 	rdfs:label """scientific edition text page"""@en, """wissenschaftliche Editiontextseite"""@de;
 	rdfs:comment """Page of a scientific edition."""@en;
 	rdfs:subClassOf text-structure:Page, [
-		a owl:Restriction; owl:onProperty scholarly-editing:isPageOfScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scholarly-editing:isPageOfScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty scholarly-editing:isPageOfEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:isPageOfEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 scholarly-editing:EditorialSymbol
 	a owl:Class;
@@ -113,7 +113,7 @@ scholarly-editing:DiplomaticTranscription
 #	ling:hasSynonym "Lesehilfe"@de;
 	rdfs:comment """Transcription of a text with editorial symbols indicating visual textual properties to describe the textual state."""@en;
 	skos:note """Mostly done for autographs or juridical text; without interpretation.""";
-	rdfs:subClassOf scholarly-editing:ScientificEdition, [
+	rdfs:subClassOf scholarly-editing:Edition, [
 		a owl:Restriction; owl:onProperty scholarly-editing:isDiplomaticTranscriptionOfTextOnPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:isDiplomaticTranscriptionOfTextOnPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -129,7 +129,7 @@ scholarly-editing:CriticalEdition
 	a owl:Class;
 	rdfs:label "critical text edition"@en, "kritische Textedition"@de;
 	rdfs:comment """Edition to which a critical editor added evidence and interpretation of a text creation and historical transmission, using a critical apparatus, allowing readers to assess the editor's choice."""@en;
-	rdfs:subClassOf scholarly-editing:ScientificEdition, [
+	rdfs:subClassOf scholarly-editing:Edition, [
 		a owl:Restriction; owl:onProperty scholarly-editing:hasCriticalEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:hasCriticalEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -146,7 +146,7 @@ scholarly-editing:ConstitutedEdition
 	rdfs:label "constituted text edition"@en, "konstituierter Text Edition"@de;
 #	ling:hasSynonym "Lesetext"@de;
 	rdfs:comment """Plain text expression as endresult of critical editing of another text expression."""@en;
-	rdfs:subClassOf scholarly-editing:ScientificEdition.
+	rdfs:subClassOf scholarly-editing:Edition.
 
 scholarly-editing:EditorialStructure
 	a owl:Class;
@@ -169,8 +169,8 @@ scholarly-editing:Siglum
 	rdfs:label "siglum"@en, "Siglum"@de, "siglum"@fr, "siglum"@it;
 	rdfs:comment """One or more symbols as identifier of an expression as original or witness in a scientific edition."""@en;
 	rdfs:subClassOf document:ExpressionIdentifier, [
-		a owl:Restriction; owl:onProperty scholarly-editing:isSiglumOfScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scholarly-editing:isSiglumOfScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty scholarly-editing:isSiglumOfEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:isSiglumOfEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 scholarly-editing:Apparatus
 	a owl:Class;
@@ -336,8 +336,8 @@ scholarly-editing:EditorialComment
 	rdfs:subClassOf scholarly-editing:EditorialStructure, [
 		a owl:Restriction; owl:onProperty scholarly-editing:isCommentOn; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:isCommentOnValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scholarly-editing:isCommentOfScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scholarly-editing:isCommentOfScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:isCommentOfEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:isCommentOfEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:isCommentOfEntry; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:isCommentOfEntryValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:commentHasReference; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -348,17 +348,17 @@ scholarly-editing:EditorialComment
 # PROPERTIES
 #
 
-scholarly-editing:hasScientificEdition
+scholarly-editing:hasEdition
 	a owl:ObjectProperty;
 	rdfs:label "has scientific text edition"@en, "hat wissenschaftliche Textedition"@de;
 	rdfs:comment "Relating a text expression to a scientific edition thereof."@en;
 	rdfs:domain text-expression:Expression;
-	rdfs:range scholarly-editing:ScientificEdition;
+	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf textedit:hasDerivedTextExpression;
 	knora-base:subjectClassConstraint text-expression:Expression;
-	knora-base:objectClassConstraint scholarly-editing:ScientificEdition.
+	knora-base:objectClassConstraint scholarly-editing:Edition.
 
-scholarly-editing:hasScientificEditionValue
+scholarly-editing:hasEditionValue
 	a owl:ObjectProperty;
 	rdfs:label "has scientific text edition - statement"@en, "hat wissenschaftliche Textedition - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the text expression and a scientific edition thereof."@en;
@@ -366,7 +366,7 @@ scholarly-editing:hasScientificEditionValue
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-scholarly-editing:hasScientificEditionPage
+scholarly-editing:hasEditionPage
 	a owl:ObjectProperty;
 	rdfs:label "has scientific text edition page"@en, "hat wissenschaftliche Texteditionseite"@de;
 	rdfs:comment "Relating a text expression to a scientific edition page thereof."@en;
@@ -376,7 +376,7 @@ scholarly-editing:hasScientificEditionPage
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scholarly-editing:Page.
 
-scholarly-editing:hasScientificEditionPageValue
+scholarly-editing:hasEditionPageValue
 	a owl:ObjectProperty;
 	rdfs:label "has scientific text edition page - statement"@en, "hat wissenschaftliche Texteditionseite - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the text expression and a scientific edition page thereof."@en;
@@ -384,35 +384,35 @@ scholarly-editing:hasScientificEditionPageValue
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-scholarly-editing:hasScientificEditor
+scholarly-editing:hasEditor
 	a owl:ObjectProperty;
 	rdfs:label "scientific edition has scientific editor"@en, "wissenschaftliche Edition hat wissenschaftliche Editor"@de;
 	rdfs:comment "Relating a scientific edition to a scientific editor who created it."@en;
-	rdfs:domain scholarly-editing:ScientificEdition;
+	rdfs:domain scholarly-editing:Edition;
 #	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom textedit:ScientificEditor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo; # textedit:hasEditor
-	knora-base:subjectClassConstraint scholarly-editing:ScientificEdition;
+	knora-base:subjectClassConstraint scholarly-editing:Edition;
 	knora-base:objectClassConstraint human:Agent.
 
-scholarly-editing:hasScientificEditorValue
+scholarly-editing:hasEditorValue
 	a owl:ObjectProperty;
 	rdfs:label "scientific edition has scientific editor - statement"@en, "wissenschaftliche Edition hat wissenschaftliche Editor - Festlegung"@de;
 	rdfs:comment "Relating a scientific edition to a reification statement of the relation between the scientific edition and a scientific editor who created it."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint scholarly-editing:ScientificEdition;
+	knora-base:subjectClassConstraint scholarly-editing:Edition;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-scholarly-editing:isPageOfScientificEdition
+scholarly-editing:isPageOfEdition
 	a owl:ObjectProperty;
 	rdfs:label "is page of scientific edition"@en, "ist Seite einer wissenschaftlichen Edition"@de;
 	rdfs:comment """Relating a page to its scientific edition."""@en;
 	rdfs:domain scholarly-editing:Page;
-	rdfs:range scholarly-editing:ScientificEdition;
+	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf text-structure:isPageOfExpression;
 	knora-base:subjectClassConstraint scholarly-editing:Page;
-	knora-base:objectClassConstraint scholarly-editing:ScientificEdition.
+	knora-base:objectClassConstraint scholarly-editing:Edition.
 
-scholarly-editing:isPageOfScientificEditionValue
+scholarly-editing:isPageOfEditionValue
  	a owl:ObjectProperty;
 	rdfs:label "is page of scientific edition - statement"@en, "ist Seite einer wissenschaftlichen Edition - Festlegung"@de;
 	rdfs:comment "Relating a page to a reification statement of the relation between the page and its scientific edition."@en;
@@ -498,7 +498,7 @@ scholarly-editing:hasDiplomaticTranscription
 	rdfs:comment "Relating a text to a diplomatic transcription thereof."@en;
 	rdfs:domain text-expression:Expression;
 	rdfs:range scholarly-editing:DiplomaticTranscription;
-	rdfs:subPropertyOf scholarly-editing:hasScientificEdition;
+	rdfs:subPropertyOf scholarly-editing:hasEdition;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scholarly-editing:DiplomaticTranscription.
 
@@ -506,7 +506,7 @@ scholarly-editing:hasDiplomaticTranscriptionValue
 	a owl:ObjectProperty;
 	rdfs:label "has diplomatic transcription - statement"@en, "hat diplomatische Umschrift - Festlegung"@de;
 	rdfs:comment "Relating a text to a reification statement of the relation between the text and a diplomatic transcription thereof."@en;
-	rdfs:subPropertyOf scholarly-editing:hasScientificEditionValue;
+	rdfs:subPropertyOf scholarly-editing:hasEditionValue;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -534,7 +534,7 @@ scholarly-editing:hasCriticalEdition
 	rdfs:comment "Relating a text expression to a critical edition thereof."@en;
 	rdfs:domain text-expression:Expression;
 	rdfs:range scholarly-editing:CriticalEdition;
-	rdfs:subPropertyOf scholarly-editing:hasScientificEdition;
+	rdfs:subPropertyOf scholarly-editing:hasEdition;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scholarly-editing:CriticalEdition.
 
@@ -542,7 +542,7 @@ scholarly-editing:hasCriticalEditionValue
 	a owl:ObjectProperty;
 	rdfs:label "has critical text edition - statement"@en, "hat kritische Textedition - Festlegung"@de;
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the text and a critical edition thereof."@en;
-	rdfs:subPropertyOf scholarly-editing:hasScientificEditionValue;
+	rdfs:subPropertyOf scholarly-editing:hasEditionValue;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -600,17 +600,17 @@ scholarly-editing:hasSiglumValue
 	knora-base:subjectClassConstraint scholarly-editing:SiglumReference;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-scholarly-editing:isSiglumOfScientificEdition
+scholarly-editing:isSiglumOfEdition
 	a owl:ObjectProperty;
 	rdfs:label "îs siglum of scientific edition"@en, "ist Siglum einer wissenschaftliche Edition"@de;
 	rdfs:comment """Relating a siglum to its scientific edition."""@en;
 	rdfs:domain scholarly-editing:Siglum;
-	rdfs:range scholarly-editing:ScientificEdition;
+	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf document:isStructureOfDocument;
 	knora-base:subjectClassConstraint scholarly-editing:Siglum;
-	knora-base:objectClassConstraint scholarly-editing:ScientificEdition.
+	knora-base:objectClassConstraint scholarly-editing:Edition.
 
-scholarly-editing:isSiglumOfScientificEditionValue
+scholarly-editing:isSiglumOfEditionValue
 	a owl:ObjectProperty;
 	rdfs:label "îs siglum of scientific edition - statement"@en, "ist Siglum einer wissenschaftliche Edition - Festlegung"@de;
 	rdfs:comment """Relating a siglum to a reification statement of the relation between the siglum and its scientific edition."""@en;
@@ -623,10 +623,10 @@ scholarly-editing:isApparatusOf
 	rdfs:label "is apparatus of"@en, "ist Apparat von"@de;
 	rdfs:comment """Relating an editing apparatus to its scientific edition."""@en;
 	rdfs:domain scholarly-editing:Apparatus;
-	rdfs:range scholarly-editing:ScientificEdition;
+	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
 	knora-base:subjectClassConstraint scholarly-editing:Apparatus;
-	knora-base:objectClassConstraint scholarly-editing:ScientificEdition.
+	knora-base:objectClassConstraint scholarly-editing:Edition.
 
 scholarly-editing:isApparatusOfValue
 	a owl:ObjectProperty;
@@ -669,10 +669,10 @@ scholarly-editing:isDoctrinalApparatusOf
 	rdfs:label "is doctrinal apparatus of"@en, "ist doktrinaler Apparat von"@de;
 	rdfs:comment """Relating a doctrinal apparatus to its scientific edition."""@en;
 	rdfs:domain scholarly-editing:DoctrinalApparatus;
-	rdfs:range scholarly-editing:ScientificEdition;
+	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf scholarly-editing:isApparatusOf;
 	knora-base:subjectClassConstraint scholarly-editing:DoctrinalApparatus;
-	knora-base:objectClassConstraint scholarly-editing:ScientificEdition.
+	knora-base:objectClassConstraint scholarly-editing:Edition.
 
 scholarly-editing:isDoctrinalApparatusOfValue
 	a owl:ObjectProperty;
@@ -705,10 +705,10 @@ scholarly-editing:isApparatusFontiumOf
 	rdfs:label "is apparatus fontium of"@en, "ist Apparatus Fontium von"@de;
 	rdfs:comment """Relating an apparatus fontium to its scientific edition."""@en;
 	rdfs:domain scholarly-editing:ApparatusFontium;
-	rdfs:range scholarly-editing:ScientificEdition;
+	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf scholarly-editing:isApparatusOf;
 	knora-base:subjectClassConstraint scholarly-editing:ApparatusFontium;
-	knora-base:objectClassConstraint scholarly-editing:ScientificEdition.
+	knora-base:objectClassConstraint scholarly-editing:Edition.
 
 scholarly-editing:isApparatusFontiumOfValue
 	a owl:ObjectProperty;
@@ -777,10 +777,10 @@ scholarly-editing:isStructureApparatusOf
 	rdfs:label "is structure apparatus of"@en, "ist Strukturapparat von"@de;
 	rdfs:comment """Relating a structure apparatus to its scientific edition."""@en;
 	rdfs:domain scholarly-editing:StructureApparatus;
-	rdfs:range scholarly-editing:ScientificEdition;
+	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf scholarly-editing:isApparatusOf;
 	knora-base:subjectClassConstraint scholarly-editing:StructureApparatus;
-	knora-base:objectClassConstraint scholarly-editing:ScientificEdition.
+	knora-base:objectClassConstraint scholarly-editing:Edition.
 
 scholarly-editing:isStructureApparatusOfValue
 	a owl:ObjectProperty;
@@ -1042,17 +1042,17 @@ scholarly-editing:isCommentOnValue
 	knora-base:subjectClassConstraint scholarly-editing:EditorialComment;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-scholarly-editing:isCommentOfScientificEdition
+scholarly-editing:isCommentOfEdition
 	a owl:ObjectProperty;
 	rdfs:label "is comment of scientific edition"@en, "ist Kommentar der wissenschaftlichen Edition"@de;
 	rdfs:comment """Relating an editorial comment to its scientific edition."""@en;
 	rdfs:domain scholarly-editing:EditorialComment;
-	rdfs:range scholarly-editing:ScientificEdition;
+	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
 	knora-base:subjectClassConstraint scholarly-editing:EditorialComment;
-	knora-base:objectClassConstraint scholarly-editing:ScientificEdition.
+	knora-base:objectClassConstraint scholarly-editing:Edition.
 
-scholarly-editing:isCommentOfScientificEditionValue
+scholarly-editing:isCommentOfEditionValue
 	a owl:ObjectProperty;
 	rdfs:label "is comment of scientific edition - statement"@en, "ist Kommentar der wissenschaftlichen Edition - Festlegung"@de;
 	rdfs:comment """Relating an editorial comment to a reification statement of the relation between the comment and its scientific edition."""@en;
