@@ -62,10 +62,10 @@ text-expression:Expression
 		a owl:Restriction; owl:onProperty text-expression:hasCriticalEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasDerivedTextExpression; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasDerivedTextExpressionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEditionPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty scholarly-editing:hasScientificEditionPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasEditionPage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty scholarly-editing:hasEditionPageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:hasDiplomaticTranscription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:hasDiplomaticTranscriptionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:hasCriticalEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -332,7 +332,7 @@ text-expression:hasScientificEditor
 	rdfs:label "text expression has scientific editor"@en, "Textexpression hat wissenschaftliche Editor"@de;
 	rdfs:comment "Relating a text expression to a person who edited it scientifically."@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:ScientificEditor]];
+#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:Editor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint human:Person.
@@ -350,7 +350,7 @@ text-expression:hasCriticalEditor
 	rdfs:label "text expression has critical editor"@en, "Textexpression hat kritische Editor"@de;
 	rdfs:comment "Relating a text expression to a person who edited it critically."@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:CriticalEditor]];
+#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:CriticalEditor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint human:Person.
