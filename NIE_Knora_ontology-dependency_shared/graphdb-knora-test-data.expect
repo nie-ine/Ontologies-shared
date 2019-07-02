@@ -120,7 +120,7 @@ send "load ../ontologies/project-ontologies/prosodic-structure-ontology-knora.tt
 expect $prompt
 send "load ../ontologies/project-ontologies/note-structure-ontology-knora.ttl into http://www.knora.org/ontology/shared/note-structure .\r"
 expect $prompt
-send "load ../ontologies/project-ontologies/scientific-editing-ontology-knora.ttl into http://www.knora.org/ontology/shared/scientific-editing .\r"
+send "load ../ontologies/project-ontologies/scholarly-editing-ontology-knora.ttl into http://www.knora.org/ontology/shared/scholarly-editing .\r"
 expect $prompt
 send "load ../ontologies/project-ontologies/text-expression-ontology-knora.ttl into http://www.knora.org/ontology/shared/text-expression .\r"
 expect $prompt
