@@ -123,11 +123,11 @@ parzival:Page
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty knora-base:hasRepresentationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-parzival:ScientificEdition
+parzival:ScholarlyEdition
 	a owl:Class;
-	rdfs:label """scientific text edition of 'Parzival'"""@en, """wissenschaftliche Textedition von 'Parzival'"""@de;
-	rdfs:comment """Scientific text edition of a transcript of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:subClassOf scholarly-editing:ScientificEdition, publish:Expression.
+	rdfs:label """scholarly text edition of 'Parzival'"""@en, """wissenschaftliche Textedition von 'Parzival'"""@de;
+	rdfs:comment """Scholarly text edition of a transcript of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
+	rdfs:subClassOf scholarly-editing:Edition, publish:Expression.
 
 parzival:Verse
 	a owl:Class;
