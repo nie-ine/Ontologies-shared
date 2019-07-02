@@ -126,11 +126,11 @@ kuno-raeber:Poem
 		a owl:Restriction; owl:onProperty kuno-raeber:hasReferenceTitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasStrophe; owl:maxCardinality "1"^^xsd:nonNegativeInteger].
 
-kuno-raeber:ScientificEdition
+kuno-raeber:ScholarlyEdition
 	a owl:Class;
-	rdfs:label "Kuno Raeber text scientific edition"@en, "wissenschaftliche Edition eines Kuno Raeber Textes"@de;
-	rdfs:comment """Scientific edition of a text authored by Kuno Raeber."""@en, """Wissenschaftliche Edition eines von Kuno Raeber verfassten Texts."""@de;
-	rdfs:subClassOf scholarly-editing:ScientificEdition, [
+	rdfs:label "scholarly Kuno Raeber text edition"@en, "wissenschaftliche Edition eines Kuno Raeber Textes"@de;
+	rdfs:comment """Scholarly edition of a text authored by Kuno Raeber."""@en, """Wissenschaftliche Edition eines von Kuno Raeber verfassten Texts."""@de;
+	rdfs:subClassOf scholarly-editing:Edition, [
 		a owl:Restriction; owl:onProperty language:hasContent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasPageIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:hasPageNumberIndicator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
