@@ -129,7 +129,7 @@ human:Action
 
 human:Procedure
 	a owl:Class;
-	rdfs:label "human procedure"@en, "menschliche Vorgehensweise"@de;
+	rdfs:label "human procedure"@en, "menschliches Verfahren"@de;
 	rdfs:comment """Procedure with a human agent."""@en;
 	rdfs:subClassOf event:Procedure.
 
