@@ -115,10 +115,10 @@ text:Developing
 		a owl:Restriction; owl:onProperty event:hasStage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty event:hasStageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-text:WrittenText # by character
+text:WrittenText
 	a owl:Class;
 	rdfs:label "written text"@en, "geschriebener Text"@de, "texte écrit"@fr, "testo scritto"@it;
-	rdfs:comment """Text written by any method, e.g. manually, with an analogue or digital typewriter, or on a computer, abstracted from its carrier."""@en;
+	rdfs:comment """Text written by symbol, by any method, e.g. manually, with a typewriter, or on a computer, abstracted from its carrier."""@en;
 	rdfs:subClassOf text:Text, [
 		a owl:Restriction; owl:onProperty infocar:isWrittenWith; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isWrittenWithValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -126,13 +126,13 @@ text:WrittenText # by character
 text:Handwriter
 	a owl:Class;
 	rdfs:label "handwriter"@en, "Handschreiber"@de, "écrivain"@fr, "manoscrittore"@it;
-	rdfs:comment """Role of a person writing text by hand."""@en;
+	rdfs:comment """Role of a person writing text symbols by hand."""@en;
 	rdfs:subClassOf human:PersonCreator.
 
 text:HandwrittenText
 	a owl:Class;
 	rdfs:label "handwritten text"@en, "handgeschriebener Text"@de, "texte manuscrit"@fr, "testo scritto a mano"@it;
-	rdfs:comment """Text written by hand."""@en;
+	rdfs:comment """Text with symbols formed by hand, abstracted from its manuscript."""@en;
 	rdfs:subClassOf text:WrittenText, [
 		a owl:Restriction; owl:onProperty text:hasHandwriter; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasHandwriterValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -163,7 +163,7 @@ text:CopiedText
 		a owl:Restriction; owl:onProperty infocar:isInTextCopy; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isInTextCopyValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-text:Scribe
+text:Scribe #°° copyist
 	a owl:Class;
 	rdfs:label "scribe"@en, "Kopist"@de, "scribe"@fr, "scriba"@it, "scribes"@la;
 #	ling:hasSynonym "transcriber"@en;
