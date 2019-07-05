@@ -329,8 +329,8 @@ text-expression:hasCommentatorValue
 
 text-expression:hasScientificEditor
 	a owl:ObjectProperty;
-	rdfs:label "text expression has scientific editor"@en, "Textexpression hat wissenschaftliche Editor"@de;
-	rdfs:comment "Relating a text expression to a person who edited it scientifically."@en;
+	rdfs:label "text expression has scholarly editor"@en, "Textexpression hat wissenschaftliche Editor"@de;
+	rdfs:comment "Relating a text expression to a scholar who edited it scientifically."@en;
 	rdfs:domain text-expression:Expression;
 #	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:Editor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
@@ -339,8 +339,8 @@ text-expression:hasScientificEditor
 
 text-expression:hasScientificEditorValue
 	a owl:ObjectProperty;
-	rdfs:label "text expression has scientific editor - statement"@en, "Textexpression hat wissenschaftliche Editor - Festlegung"@de;
-	rdfs:comment "Relating a text expression to a reification statement of the relation between the expression and person who edited it scientifically."@en;
+	rdfs:label "text expression has scholarly editor - statement"@en, "Textexpression hat wissenschaftliche Editor - Festlegung"@de;
+	rdfs:comment "Relating a text expression to a reification statement of the relation between the expression and a scholar who edited it scientifically."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
