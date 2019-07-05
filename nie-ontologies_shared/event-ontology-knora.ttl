@@ -78,7 +78,7 @@ event:Action
 
 event:Procedure
 	a owl:Class;
-	rdfs:label "procedure"@en, "Vorgehensweise"@de;
+	rdfs:label "procedure"@en, "Verfahren"@de;
 	rdfs:comment """Action executed in one or more sub-actions, in a certain manner, obtaining a certain output under certain circumstances."""@en;
 	rdfs:subClassOf event:Action, [
 		a owl:Restriction; owl:onProperty event:isSubProcedureOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
