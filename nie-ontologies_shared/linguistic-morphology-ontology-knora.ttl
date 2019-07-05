@@ -51,7 +51,9 @@ lingmor:SyntacticWordForm
 		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasPartOfSpeech; owl:minCardinality "0"^^xsd:nonNegativeInteger ], [
+		a owl:Restriction; owl:onProperty lingmor:hasPartOfSpeechValue; owl:minCardinality "0"^^xsd:nonNegativeInteger ].
 
 lingmor:Morpheme
 	a owl:Class;
@@ -218,6 +220,215 @@ lingmor:SemanticGender
 	rdfs:subClassOf ling:Concept.
 #	owl:oneOf (lingmor:masculine lingmor:feminine lingmor:neuter). # instances
 
+lingmor:PartOfSpeech
+	a owl:Class;
+	rdfs:label "part of speech"@en, "Wortart"@de;
+	rdfs:comment """Word with certain grammatical properties and syntactic role in the structure of a sentence."""@en;
+	rdfs:subClassOf ling:Concept.
+
+lingmor:Noun # EAGLES: Noun
+	a owl:Class;
+	rdfs:label "noun"@en;
+	rdfs:comment """Part of speech representing a class or instance."""@en;
+#	owl:sameAs gold:Noun;
+	skos:note """In German there is no grouping concept for 'Substantiv' and 'Pronomen'."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:CommonNoun # EAGLES: Noun: Common
+	a owl:Class;
+	rdfs:label "common noun"@en, "Substantiv"@de;
+	rdfs:comment """Part of speech representing a concept or class."""@en;
+	skos:note """In German written with starting capital."""@en;
+	rdfs:subClassOf lingmor:Noun.
+
+lingmor:ProperNoun # EAGLES: Noun: Proper
+	a owl:Class;
+	rdfs:label "proper noun"@en, "Eigenname"@de;
+	rdfs:comment """Part of speech representing an instance."""@en;
+	skos:note """Written with starting capital, for naming, e.g. a person, a geographical entity (e.g. a country); in English and German also a calendar entity (e.g. resp. 'Monday', 'Montag')"""@en;
+	rdfs:subClassOf lingmor:Noun.
+
+lingmor:Verb # EAGLES: Verb
+	a owl:Class;
+	rdfs:label "verb"@en, "Verb"@de;
+	rdfs:comment """Part of speech governing a sentences by introducing existence, change, action, and linking a subject and object."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:Adjective	# EAGLES: Adjective
+	a owl:Class;
+	rdfs:label "adjective"@en, "Adjektiv"@de;
+	rdfs:comment """Part of speech describing an object."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Pronoun # EAGLES: Pronoun/Determiner
+	a owl:Class; 
+	rdfs:label "pronoun"@en, "Pronomen"@de; # determiner, Begleiter
+	rdfs:comment """Part of speech quantifying or replacing an object."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:DemonstrativePronoun
+	a owl:Class;
+	rdfs:label "demonstrative pronoun"@en, "Demonstrativpronomen"@de;
+	rdfs:comment """Pronoun used to point."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+
+lingmor:IndefinitePronoun
+	a owl:Class;
+	rdfs:label "indefinite pronoun"@en, "Indefinitpronomen"@de;
+	rdfs:comment """Pronoun stating an undefined entity."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+
+lingmor:InterrogativePronoun
+	a owl:Class;
+	rdfs:label "interrogative pronoun"@en, "Interrogativpronomen"@de;
+	rdfs:comment """Pronoun introducing a question."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+	
+lingmor:PersonalPronoun
+	a owl:Class;
+	rdfs:label "personal pronoun"@en, "Personalpronomen"@de;
+	rdfs:comment """Pronoun referring to a person, and declined by person, gender, number, case and formality."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+
+lingmor:ReciprocalPronoun
+	a owl:Class;
+	rdfs:label "reciprocal pronoun"@en, "Reziprokpronomen"@de;
+	rdfs:comment """Pronoun pointing to the different members of the group as subject of the sentence, e.g. 'each other'."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+	
+lingmor:ReflexivePronoun
+	a owl:Class;
+	rdfs:label "reflexive pronoun"@en, "Reflexivpronomen"@de;
+	rdfs:comment """Pronoun pointing back to the subject of the sentence, e.g. 'yourself'."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+	
+lingmor:RelativePronoun
+	a owl:Class;
+	rdfs:label "relative pronoun"@en, "Relativpronomen"@de;
+	rdfs:comment """Pronoun introducing a relative clause."""@en;
+	rdfs:subClassOf lingmor:Pronoun.
+
+lingmor:Article # EAGLES: Article
+	a owl:Class;
+	rdfs:label "article"@en, "Artikel"@de;
+	rdfs:comment """Part of speech specifying grammatical definiteness, i.e. indicating if an object is known or newly introduced."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:DefiniteArticle # EAGLES: Article: Definite
+	a owl:Class;
+	rdfs:label "definite article"@en, "bestimmter Artikel"@de;
+	rdfs:comment """Article indicating that an object is known."""@en;
+	rdfs:subClassOf lingmor:Article.
+	
+lingmor:IndefiniteArticle # EAGLES: Article: Indefinite
+	a owl:Class;
+	rdfs:label "indefinite article"@en, "unbestimmter Artikel"@de;
+	rdfs:comment """Article indicating that an object is newly introduced."""@en;
+	rdfs:subClassOf lingmor:Article.
+
+lingmor:Adverb # EAGLES: Adverb 
+	a owl:Class;
+	rdfs:label "adverb"@en, "Adverb"@de;
+	rdfs:comment """Part of speech modifying a verb (e.g. describing an action), adjective, pronoun, clause, preposition, or sentence."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Adposition # EAGLES: Adposition 
+	a owl:Class;
+	rdfs:label "adposition"@en, "Adposition"@de;
+	rdfs:comment """Part of speech indicating a relationship to objects."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Preposition # EAGLES: Adposition: Preposition
+	a owl:Class;
+	rdfs:label "preposition"@en, "Präposition"@de;
+	rdfs:comment """Part of speech indicating relationship to objects, standing before them."""@en;
+	rdfs:subClassOf lingmor:Adposition.
+	
+lingmor:Postposition # EAGLES: Adposition: Postposition
+	a owl:Class;
+	rdfs:label "postposition"@en, "Postposition"@de;
+	rdfs:comment """Part of speech indicating relationship to objects, standing after them."""@en;
+	rdfs:subClassOf lingmor:Adposition.
+
+lingmor:Conjunction #  EAGLES: Conjunction
+	a owl:Class; 
+	rdfs:label "conjunction"@en, "Konjunktion"@de;
+	rdfs:comment """Part of speech linking syntactic entities."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:CoordinatingConjunction #  EAGLES: Conjunction: Coordinating
+	a owl:Class;
+	rdfs:label "coordinating conjunction"@en, "nebenordnende Konjunktion"@de;
+	rdfs:comment """Part of speech that links syntactic entities on the same level."""@en;
+	rdfs:subClassOf lingmor:Conjunction.
+	
+lingmor:SubordinatingConjunction #  EAGLES: Conjunction: Subordinating
+	a owl:Class;
+	rdfs:label "subordinating conjunction"@en, "unterordnende Konjunktion, Subjunktion"@de;
+	rdfs:comment """Part of speech that orders one syntactic entity under another."""@en;
+	rdfs:subClassOf lingmor:Conjunction.
+
+lingmor:Numeral
+	a owl:Class;
+	rdfs:label "numeral"@en, "Numerale"@de;
+	rdfs:comment """Part of speech designating a number."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:CardinalNumeral
+	a owl:Class;
+	#  EAGLES: Numeral: Cardinal 
+	rdfs:label "cardinal numeral"@en, "Kardinalzahl"@de;
+	rdfs:comment """Part of speech describing numbers as a measure."""@en;
+	rdfs:subClassOf lingmor:Numeral.
+	
+lingmor:OrdinalNumeral
+	a owl:Class;
+	#  EAGLES: Numeral: Ordinal 
+	rdfs:label "ordinal numeral"@en, "Ordinalzahl"@de;
+	rdfs:comment """Part of speech describing numbers as an order."""@en;
+	rdfs:subClassOf lingmor:Numeral.
+	
+lingmor:Interjection
+	a owl:Class;
+	# EAGLES: Interjection
+	rdfs:label "interjection"@en, "Interjektion"@de;
+	rdfs:comment """Part of speech designating a spontaneous feeling or reaction."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:NegativeParticle
+	a owl:Class;
+	# EAGLES: Unique/unassigned
+	rdfs:label "negative particle"@en, "Negationspartikel"@de;
+	rdfs:comment """Part of speech designating non traditionally accepted parts of speech with strong grammatical function."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:ExistentialParticle
+	a owl:Class;
+	# EAGLES: Unique/unassigned
+	rdfs:label "existential particle"@en, "..."@de;
+	rdfs:comment """Part of speech designating non traditionally accepted parts of speech with strong grammatical function."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+	
+lingmor:InfinitiveMarker
+	a owl:Class;
+	# EAGLES: Unique/unassigned
+	rdfs:label "infinitive marker"@en, "Infinitivpartikel"@de;
+	rdfs:comment """Part of speech designating non traditionally accepted parts of speech with strong grammatical function."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Residual
+	a owl:Class;
+	# EAGLES: Residual
+	rdfs:label "residual"@en, "Residual"@de;
+	rdfs:comment """Part of speech outside of the traditionally accepted range."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
+lingmor:Punctuation
+	a owl:Class;
+	rdfs:label "punctuation"@en, "Interpunktion"@de;
+	rdfs:comment """Part of speech describing the non letter or number based parts of a sentence."""@en;
+	rdfs:subClassOf lingmor:PartOfSpeech.
+
 #
 # PROPERTIES
 #
@@ -290,6 +501,24 @@ lingmor:hasNumberValue
 	a owl:ObjectProperty;
 	rdfs:label "syntactic word form has number - statement"@en, "syntactische Wortform hat Numerus - Festlegung"@de;
 	rdfs:comment """Relating a syntactic word form to a reification statement of the relation between the syntactic word form and its number."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasPartOfSpeech
+	a owl:ObjectProperty;
+	rdfs:label "has part of speech"@en, "hat Wortart"@de;
+	rdfs:comment """Relating a syntactic word form to its part of speech."""@en;
+	rdfs:domain lingmor:SyntacticWordForm;
+	rdfs:range lingmor:PartOfSpeech;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint lingmor:PartOfSpeech.
+
+lingmor:hasPartOfSpeechValue
+	a owl:ObjectProperty;
+	rdfs:label "has part of speech - statement"@en, "hat Wortart - Festlegung"@de;
+	rdfs:comment """Relating a syntactic word form to a reification statement of the relation between the syntactic word form and its part of speech."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
