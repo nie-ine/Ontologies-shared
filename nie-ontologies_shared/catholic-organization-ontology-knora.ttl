@@ -17,7 +17,9 @@
 	dct:title "An ontology about catholic organization"@en;
 	dct:description """Formal description of catholic organization, general subclasses, related classes, properties, and instances."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
-	dct:contributor "Prof. Dr. Ueli Zahnd, Faculty of Theology, University of Basel, Switzerland"@en, "Gabriel Müller, Faculty of Theology, University of Basel, Switzerland"@en;
+	dct:contributor
+		"Prof. Dr. Ueli Zahnd, Faculty of Theology, University of Basel, Switzerland"@en,
+		"Roberta Padlina, tool coordinator and software developer, NIE-INE, University of Basel, Switzerland"@en;
 
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
@@ -40,13 +42,6 @@ cathorg:Person
 	rdfs:subClassOf org:ReligiousPerson, [
 		a owl:Restriction; owl:onProperty cathorg:isMemberOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty cathorg:isMemberOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
-
-cathorg:Order
-	a owl:Class;
-	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-organization#>;
-	rdfs:label "catholic order"@en, "katholische Orden"@de;
-	rdfs:comment """Catholic organization whose member is male and celibatarian, founded by... ."""@en; #*
-	rdfs:subClassOf cathorg:Organization.
 
 cathorg:SecularClergy
 	a owl:Class;
