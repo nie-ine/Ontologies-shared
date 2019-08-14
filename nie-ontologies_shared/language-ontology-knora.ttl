@@ -37,7 +37,8 @@ language:Language
 	a owl:Class;
 	rdfs:label "language"@en, "Sprache"@de;
 	rdfs:comment """Dynamic set of sensory carriers, e.g. a sign, symbol, word, including sound and gesture, to express meaning, and used along rules or grammar model, e.g. syntax for serialization."""@en;
-	rdfs:subClassOf dct:LinguisticSystem, knora-base:Resource.
+	rdfs:subClassOf dct:LinguisticSystem, knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 language:HumanLanguage
 	a owl:Class;
