@@ -58,7 +58,8 @@ event:Input
 	rdfs:comment """Precondition to change in a process."""@en;
 	rdfs:subClassOf knora-base:Resource, [
 		a owl:Restriction; owl:onProperty event:isInputOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty event:isInputOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty event:isInputOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 event:Output
 	a owl:Class;
@@ -66,7 +67,9 @@ event:Output
 	rdfs:comment """Postcondition to change in a process."""@en;
 	rdfs:subClassOf knora-base:Resource, [
 		a owl:Restriction; owl:onProperty event:isOutputOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty event:isOutputOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty event:isOutputOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 
 event:Action
 	a owl:Class;
@@ -88,13 +91,15 @@ event:State
 	a owl:Class;
 	rdfs:label "state"@en, "Zustand"@de;
 	rdfs:comment """Mode of being."""@en;
-	rdfs:subClassOf knora-base:Resource.
+	rdfs:subClassOf knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 event:Stage
 	a owl:Class;
 	rdfs:label "stage"@en, "Stufe"@de;
 	rdfs:comment """Extent of a process."""@en;
-	rdfs:subClassOf knora-base:Resource.
+	rdfs:subClassOf knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 event:Staging
 	a owl:Class;
@@ -106,7 +111,8 @@ event:Intent
 	a owl:Class;
 	rdfs:label "intent"@en, "Absicht"@de;
 	rdfs:comment """Purpose of an action."""@en;
-	rdfs:subClassOf knora-base:Resource.
+	rdfs:subClassOf knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 event:Creating
 	a owl:Class;
