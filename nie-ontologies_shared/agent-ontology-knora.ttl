@@ -62,7 +62,8 @@ agent:Role
 	rdfs:label "agent's role"@en;
 	rdfs:comment """Specific function of an agent."""@en;
 	owl:disjointWith agent:Agent;
-	rdfs:subClassOf knora-base:Resource. #*
+	rdfs:subClassOf knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger]. #°
 
 agent:GroupRole
 	a owl:Class;
@@ -101,7 +102,7 @@ agent:UserCredential
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/agent#>;
 	rdfs:label "user credential"@en, "Benutzeranmeldeinformationen"@de;
 	rdfs:comment """Convincible information as input to get user access, e.g. to a digital multiuser computer system."""@en;
-	rdfs:subClassOf event:Input, knora-base:Resource.
+	rdfs:subClassOf event:Input.
 
 #
 # PROPERTIES
