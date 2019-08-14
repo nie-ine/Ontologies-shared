@@ -107,7 +107,8 @@ human:PersonLike
 	rdfs:label "person-like resource"@en, "Person-ähnliche Entität"@de;
 	rdfs:comment """Person like resource having non-human features."""@en;
 	skos:note """E.g. Jesus is for a believer a person also having non-human features."""@en;
-	rdfs:subClassOf knora-base:Resource.
+	rdfs:subClassOf knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 human:Group
 	a owl:Class;
@@ -137,7 +138,8 @@ human:BiologicalSex
 	a owl:Class;
 	rdfs:label "human biological sex"@en, "menschliches biologisches Geschlecht"@de;
 	rdfs:comment """Biological trait of a human based on reproductive functions."""@en;
-	rdfs:subClassOf knora-base:Resource.
+	rdfs:subClassOf knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 #	owl:disjointUnionOf (human:FemaleSex human:MaleSex human:Intersexual).
 
 human:Female
@@ -166,7 +168,8 @@ human:Ability
 	a owl:Class;
 	rdfs:label "human ability"@en, "menschliche Fähigkeit"@de;
 	rdfs:comment """Possibility of a person to do something."""@en;
-	rdfs:subClassOf knora-base:Resource.
+	rdfs:subClassOf knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 human:AgentRole
 	a owl:Class;
@@ -198,7 +201,8 @@ human:Use
 	a owl:Class;
 	rdfs:label "use"@en, "Verwendungszweck"@de;
 	rdfs:comment """Purpose for or way in which something is used."""@en;
-	rdfs:subClassOf knora-base:Resource.
+	rdfs:subClassOf knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 human:AgentUser
 	a owl:Class;
@@ -265,12 +269,6 @@ human:PhysicalCreation
 	rdfs:comment """Person's creation as physical resource."""@en;
 	rdfs:subClassOf human:Creation, physical:Matter. # rdfs:subClassOf cidoc:E24_Physical_Man-Made_Thing rdfs:subClassOf cidoc:E72_Legal_Object: legal aspect TBD
 
-#human:Product
-#	a owl:Class;
-#	rdfs:label "product"@en;
-#	rdfs:comment """Physical creation as result of producing."""@en;
-#	rdfs:subClassOf physical:Product.
-
 human:Copy
 	a owl:Class;
 	rdfs:label "copy"@en, "Kopie"@de;
@@ -331,7 +329,8 @@ human:Property # check cidoc
 	a owl:Class;
 	rdfs:label "property"@en, "Besitz"@de;
 	rdfs:comment """Something physical or non-physical belonging to someone."""@en;
-	rdfs:subClassOf knora-base:Resource.
+	rdfs:subClassOf knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 human:AgentSponsor
 	a owl:Class;
