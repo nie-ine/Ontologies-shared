@@ -66,12 +66,6 @@ meyer:PhotocopiedLetterExpression
 	rdfs:comment """Photocopied text of a letter expression authored by Conrad Ferdinand Meyer or another person."""@en;
 	rdfs:subClassOf meyer:CopiedLetterExpression, text:PhotocopiedText.
 
-meyer:CriticalEdition
-	a owl:Class;
-	rdfs:label "Conrad Ferdinand Meyer critical edition"@en, "Conrad Ferdinand Meyers kritische Edition"@de;
-	rdfs:comment """Critically edited letter or draft authored by Conrad Ferdinand Meyer or another person, or of a copy thereof."""@en;
-	rdfs:subClassOf scholarly-editing:CriticalEdition, publish:Expression.
-
 meyer:Letter
 	a owl:Class;
 	rdfs:label "Conrad Ferdinand Meyer letter"@en, "Conrad Ferdinand Meyer-Brief"@de, "lettre de Conrad Ferdinand Meyer"@fr, "lettera di Conrad Ferdinand Meyer"@it;
@@ -133,6 +127,12 @@ meyer:LetterConvolute
 	rdfs:label "Conrad Ferdinand Meyer letter convolute"@en,"Briefekonvolut Conrad Ferdinand Meyers"@de;
 	rdfs:comment """Convolute of letters send by and to Conrad Ferdinand Meyer."""@en;
 	rdfs:subClassOf infocar:Convolute, infocar:ArchiveElement.
+
+meyer:CriticalEdition
+	a owl:Class;
+	rdfs:label "Conrad Ferdinand Meyer critical edition"@en, "Conrad Ferdinand Meyers kritische Edition"@de;
+	rdfs:comment """Critically edited letter or draft authored by Conrad Ferdinand Meyer or another person, or of a copy thereof."""@en;
+	rdfs:subClassOf scholarly-editing:CriticalEdition, publish:Expression.
 
 #
 # PROPERTIES
