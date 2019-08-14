@@ -54,18 +54,16 @@ textedit:Edition
 		a owl:Restriction; owl:onProperty textedit:hasEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-# textedit:Compilator
+textedit:Annotator
+	a owl:Class;
+	rdfs:label "annotator"@en, "Annotator"@de, "annotator"@la;
+	rdfs:comment """Role of a person adding notes *annotations* to a text, creating an annotated edition."""@en;
+	rdfs:subClassOf textedit:Editor.
 
 textedit:Glossator
 	a owl:Class;
-	rdfs:label "glossator"@la, "glossator"@en, "Glossator"@de;
+	rdfs:label "glossator"@en, "Glossator"@de, "glossator"@la;
 	rdfs:comment """Role of a person adding glosses to a text."""@en;
-	rdfs:subClassOf textedit:Editor.
-
-textedit:Redactor
-	a owl:Class;
-	rdfs:label "redactor"@la, "redactor"@en, "Redactor"@de;
-	rdfs:comment """Editor assembling parts of texts to a new coherent text."""@en;
 	rdfs:subClassOf textedit:Editor.
 
 textedit:Abbreviator
@@ -78,7 +76,9 @@ textedit:Abbreviation # derivative?
 	a owl:Class;
 	rdfs:label "abbreviation"@en, "Kurzfassung"@de;
 	rdfs:comment """Shortened edition."""@en;
-	rdfs:subClassOf textedit:Edition.
+	rdfs:subClassOf textedit:Edition, [
+		a owl:Restriction; owl:onProperty textedit:hasAbbreviator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:hasAbbreviatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 textedit:Paraphrase # derivative? # scientific?
 	a owl:Class;
@@ -125,60 +125,6 @@ textedit:hasEditorValue
 	rdfs:comment """Relating an edition to a reification statement of the relation between the edition and a person who created it."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint textedit:Edition;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-textedit:hasRedactor
-	a owl:ObjectProperty;
-	rdfs:label "has redactor"@en, "hat Redaktor"@de;
-	rdfs:comment """Relating a text to a person who redacted it."""@en;
-	rdfs:domain text:Text;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Redactor]];
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text:Text;
-	knora-base:objectClassConstraint human:Person.
-
-textedit:hasRedactorValue
-	a owl:ObjectProperty;
-	rdfs:label "has redactor - statement"@en, "hat Redaktor - Festlegung"@de;
-	rdfs:comment """Relating a text to a reification statement of the relation between the text and a person who redacted it."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint text:Text;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-textedit:hasGlossator
-	a owl:ObjectProperty;
-	rdfs:label "has glossator"@en, "hat Glossator"@de;
-	rdfs:comment """Relating a text to a person who glossed it."""@en;
-	rdfs:domain text:Text;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Glossator]];
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text:Text;
-	knora-base:objectClassConstraint human:Person.
-
-textedit:hasGlossatorValue
-	a owl:ObjectProperty;
-	rdfs:label "has glossator - statement"@en, "hat Glossator - Festlegung"@de;
-	rdfs:comment """Relating a text to a reification statement of the relation between the text and a person who glossed it."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint text:Text;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-textedit:hasAbbreviator
-	a owl:ObjectProperty;
-	rdfs:label "has abbreviator"@en, "hat Abkurzer"@de;
-	rdfs:comment """Relating a text to a person who abbreviated it."""@en;
-	rdfs:domain text:Text;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Abbreviator]];
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint text:Text;
-	knora-base:objectClassConstraint human:Person.
-
-textedit:hasAbbreviatorValue
-	a owl:ObjectProperty;
-	rdfs:label "has abbreviator - statement"@en, "hat Abkurzer - Festlegung"@de;
-	rdfs:comment """Relating a text to a reification statement of the relation between the text and a person who abbreviated it."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 textedit:hasEdition
@@ -251,4 +197,22 @@ textedit:hasDerivedTextExpressionValue
 	rdfs:comment "Relating a text expression to a reification statement of the relation between the text expression and another one derived from it."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text-expression:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:hasAbbreviator
+	a owl:ObjectProperty;
+	rdfs:label "has abbreviator"@en, "hat Abkurzer"@de;
+	rdfs:comment """Relating an abbreviation to a person who created it."""@en;
+	rdfs:domain textedit:Abbreviation;
+#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Abbreviator]];
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint textedit:Abbreviation;
+	knora-base:objectClassConstraint human:Person.
+
+textedit:hasAbbreviatorValue
+	a owl:ObjectProperty;
+	rdfs:label "has abbreviator - statement"@en, "hat Abkurzer - Festlegung"@de;
+	rdfs:comment """Relating an abbreviation to a reification statement of the relation between the abbreviation and a person who created it."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint textedit:Abbreviation;
 	knora-base:objectClassConstraint knora-base:LinkValue.
