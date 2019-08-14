@@ -37,13 +37,14 @@ physical:Entity
 	a owl:Class;
 	rdfs:label "physical entity"@en, "physische Entität"@de;
 	rdfs:comment """."""@en; #°
-	rdfs:subClassOf knora-base:Resource, [ #° to link to cidoc:
+	rdfs:subClassOf knora-base:Resource, [ #° to link to cidoc
 		a owl:Restriction; owl:onProperty human:hasUse; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasUseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty physical:hasLocation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty physical:hasLocationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty physical:hasExistingState; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty physical:hasExistingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty physical:hasExistingStateValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 physical:ExistingState
 	a owl:Class;
@@ -113,13 +114,15 @@ physical:Size
 	a owl:Class;
 	rdfs:label "size"@en, "Grösse"@de;
 	rdfs:comment """Spatial extent having 1 to 3 dimensions."""@en;
-	rdfs:subClassOf naprospadi:Size, knora-base:Resource.
+	rdfs:subClassOf naprospadi:Size, knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 physical:Length
 	a owl:Class;
 	rdfs:label "length"@en, "Länge"@de;
 	rdfs:comment """Spatial quantity representing 1 dimension."""@en;
-	rdfs:subClassOf naprospadi:Length, knora-base:Resource.
+	rdfs:subClassOf naprospadi:Length, knora-base:Resource, [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 physical:Distance
 	a owl:Class;
