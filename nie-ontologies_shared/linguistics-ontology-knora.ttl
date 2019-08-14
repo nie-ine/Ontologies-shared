@@ -26,8 +26,9 @@
 	dct:title "An ontology about language"@en;
 	dct:description """Formal description of linguistics, general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
-	dct:contributor "Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
-	dct:contributor "Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
+	dct:contributor
+		"Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en,
+		"Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
