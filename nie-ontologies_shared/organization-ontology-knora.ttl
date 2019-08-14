@@ -64,7 +64,7 @@ org:Administration
 	rdfs:comment """Role of an organization administering a group of people on any level, e.g. international, national, regional or city level."""@en;
 	rdfs:subClassOf org:Role.
 
-org:ReligiousOrganization #* OR to group religions
+org:ReligiousOrganization
 	a owl:Class;
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/organization#>;
 	rdfs:label "religious organization"@en, "religiöse Organisation"@de;
@@ -102,7 +102,7 @@ org:Company
 
 org:CulturalHeritageInstitution
 	a owl:Class;
-	rdfs:label "memory institution"@en, "Gedächtnisinstitution"@de;
+	rdfs:label "cultural heritage institution"@en, "Kulturerbeinstitution"@de;
 	rdfs:comment """Organization having a role of preserving a repository of public knowledge, such as a library, an archive, museum, sites and monuments record, clearinghouse, a provider of a digital library, and a data aggregation service, which serve as memories for given societies or mankind."""@en;
 	rdfs:subClassOf org:Organization. #, [
 #		a owl:Restriction; owl:onProperty org:hasRole; owl:someValuesFrom org:Preserver].
@@ -206,7 +206,7 @@ org:isMemberOfValue
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-# org:organizationIsMemberOf
+# org:organizationIsMemberOf SPO human:groupIsMemberOf
 
 org:isMemberOfReligiousOrganization
 	a owl:ObjectProperty;
