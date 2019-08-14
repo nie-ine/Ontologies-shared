@@ -480,7 +480,8 @@ infocar:Hyperlink # software
 	rdfs:comment """Link from a hypertext document structure to another location, activated by clicking on a highlighted word or image."""@en;
 	rdfs:subClassOf knora-base:Resource, [
 		a owl:Restriction; owl:onProperty infocar:hyperlinkHasName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty infocar:hyperlinkHasURL; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty infocar:hyperlinkHasURL; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 #
 # PROPERTIES
