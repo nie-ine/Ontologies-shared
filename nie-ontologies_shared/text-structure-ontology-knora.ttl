@@ -32,8 +32,9 @@
 	skos:note """Text and text editing are described in other ontologies"""@en;
 	skos:note """Prosodic structure and note structure are described in other ontologies"""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
-	dct:contributor "Roberta Padlina, tool coordinator and software developer, NIE-INE, Basel University, Switzerland"@en;
-	dct:contributor "Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
+	dct:contributor
+		"Roberta Padlina, tool coordinator and software developer, NIE-INE, Basel University, Switzerland"@en,
+		"Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 	rdfs:seeAlso <https://files.ifi.uzh.ch/cl/siclemat/lehre/hs09/ecl1/script/html/script.html>;
 
@@ -100,7 +101,7 @@ text-structure:ReadabilityStructure
 	a owl:Class;
 	rdfs:label "text readability structure"@en, "Textlesbarkeitstruktur"@de;
 	rdfs:comment """Compositional text structure providing text readability, e.g. a line, column, page."""@en;
-	rdfs:subClassOf text:WrittenText, text-structure:CompositionalStructure.
+	rdfs:subClassOf text:SurfaceText, text-structure:CompositionalStructure.
 
 text-structure:SyntacticWord
 	a owl:Class;
@@ -131,7 +132,12 @@ text-structure:Sentence
 		a owl:Restriction; owl:onProperty text-structure:isSentenceOfProse; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-structure:isSentenceOfProseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-#	skos:note """A written sentence can be considered as a directed text line or text vector."""@en; sco text-structure:Line
+text-structure:SurfaceSentence
+	a owl:Class;
+	rdfs:label "surface sentence"@en, "Flächesatz"@de;
+	rdfs:comment """Sentence expressed on a surface."""@en;
+	skos:note """A surface sentence can be considered as a syntactic directed text line or text vector."""@en;
+	rdfs:subClassOf text-structure:Sentence, text-structure:Line.
 
 text-structure:Prose
 	a owl:Class;
@@ -145,7 +151,7 @@ text-structure:Prose
 text-structure:Paragraph
 	a owl:Class;
 	rdfs:label "paragraph"@en, "Paragraf"@de;
-	rdfs:comment """Composition of sentences ending with a line break."""@en; #*
+	rdfs:comment """Composition of sentences ending with a line break."""@en; #°
 	rdfs:subClassOf text-structure:SentenceStructure, text-structure:CompositionalContentStructure, [
 #		a owl:Restriction; owl:onProperty text-structure:isParagraphOfSection; owl:allValuesFrom text-structure:Section], [
 		a owl:Restriction; owl:onProperty text-structure:isParagraphOfSection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
