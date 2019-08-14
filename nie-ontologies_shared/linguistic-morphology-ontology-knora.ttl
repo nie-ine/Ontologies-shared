@@ -26,9 +26,7 @@
 	dct:title "An ontology about language"@en;
 	dct:description """Formal description of linguistic-morphology, general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
-	dct:contributor
-		"Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en,
-		"Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
+	dct:contributor "Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 	rdfs:seeAlso <https://files.ifi.uzh.ch/cl/siclemat/lehre/hs09/ecl1/script/html/script.html>;
 
@@ -224,9 +222,10 @@ lingmor:PartOfSpeech
 	a owl:Class;
 	rdfs:label "part of speech"@en, "Wortart"@de;
 	rdfs:comment """Word with certain grammatical properties and syntactic role in the structure of a sentence."""@en;
-	rdfs:subClassOf ling:Concept.
+	rdfs:subClassOf ling:Concept, [
+		a owl:Restriction; owl:onProperty lingmor:hasTag; owl:minCardinality "0"^^xsd:nonNegativeInteger]. 
 
-lingmor:Noun # EAGLES: Noun
+lingmor:Noun # EAGLES: Noun;
 	a owl:Class;
 	rdfs:label "noun"@en;
 	rdfs:comment """Part of speech representing a class or instance."""@en;
@@ -254,7 +253,7 @@ lingmor:Verb # EAGLES: Verb
 	rdfs:comment """Part of speech governing a sentences by introducing existence, change, action, and linking a subject and object."""@en;
 	rdfs:subClassOf lingmor:PartOfSpeech.
 	
-lingmor:Adjective	# EAGLES: Adjective
+lingmor:Adjective # EAGLES: Adjective
 	a owl:Class;
 	rdfs:label "adjective"@en, "Adjektiv"@de;
 	rdfs:comment """Part of speech describing an object."""@en;
@@ -522,3 +521,13 @@ lingmor:hasPartOfSpeechValue
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+lingmor:hasTag
+	a owl:ObjectProperty;
+	rdfs:label "has tag"@en, "hat Tag"@de;
+	rdfs:comment """Relating a human natural language expression to a linguistic comment as a textual statement about the expression."""@en;
+	rdfs:domain lingmor:PartOfSpeech;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint lingmor:PartOfSpeech;
+	knora-base:objectClassConstraint knora-base:TextValue.
