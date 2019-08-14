@@ -17,7 +17,9 @@
 	dct:title "An ontology about catholic orders"@en;
 	dct:description """Formal description of catholic orders, general subclasses, related classes, properties, and instances."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
-	dct:contributor "Prof. Dr. Ueli Zahnd, Faculty of Theology, University of Basel, Switzerland"@en, "Gabriel Müller, Faculty of Theology, University of Basel, Switzerland"@en;
+	dct:contributor
+		"Prof. Dr. Ueli Zahnd, Faculty of Theology, University of Basel, Switzerland"@en,
+		"Gabriel Müller, Faculty of Theology, University of Basel, Switzerland"@en;
 
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
@@ -25,47 +27,63 @@
 # INSTANCES
 #
 
+cathord:Person
+	a owl:Class;
+	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
+	rdfs:label "catholic order person"@en, "Person eines katholischen Ordens"@de; # "personne d'un ordre catholique"@fr, "persona cattolica"@it;
+	rdfs:comment """Catholic person belonging to an order."""@en;
+	rdfs:subClassOf cathorg:Person, [
+		a owl:Restriction; owl:onProperty cathord:isMemberOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty cathord:isMemberOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+cathord:Order
+	a owl:Class;
+	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
+	rdfs:label "catholic order"@en, "katholische Orden"@de;
+	rdfs:comment """Catholic organization whose member is by acceptance rule male and celibatarian, founded by... ."""@en; #°
+	rdfs:subClassOf cathorg:Organization.
+
 cathord:AugustinianFriars
 	a owl:Class;
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
 	rdfs:label "Ordo Fratrum Sancti Augustini"@la, "Order of Augustinian Friars"@en;
 	rdfs:comment """."""@en; #*
-	rdfs:subClassOf cathorg:Order.
+	rdfs:subClassOf cathord:Order.
 
 cathord:Benedictines
 	a owl:Class;
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
 	rdfs:label "Ordo Sancti Benedicti"@la, "Order of Benedictines"@en;
 	rdfs:comment """."""@en; #*
-	rdfs:subClassOf cathorg:Order.
+	rdfs:subClassOf cathord:Order.
 
 cathord:Carmelites
 	a owl:Class;
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
 	rdfs:label "Ordo Fratrum Beatissimae Mariae Virginis de Monte Carmelo"@la, "Order of Carmelites"@en;
 	rdfs:comment """."""@en; #*
-	rdfs:subClassOf cathorg:Order.
+	rdfs:subClassOf cathord:Order.
 
 cathord:Carthusians
 	a owl:Class;
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
 	rdfs:label "Ordo Cartusiensis"@la, "Order of Carthusians"@en;
 	rdfs:comment """."""@en; #*
-	rdfs:subClassOf cathorg:Order.
+	rdfs:subClassOf cathord:Order.
 
 cathord:Cistercians
 	a owl:Class;
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
 	rdfs:label "Ordo Cisterciensis"@la, "Order of Cistercians"@en;
 	rdfs:comment """."""@en; #*
-	rdfs:subClassOf cathorg:Order.
+	rdfs:subClassOf cathord:Order.
 
 cathord:Franciscans
 	a owl:Class;
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
 	rdfs:label "Ordo Fratrum Minorum"@la, "Order of Franciscans"@en;
 	rdfs:comment """."""@en; #*
-	rdfs:subClassOf cathorg:Order.
+	rdfs:subClassOf cathord:Order.
 
 cathord:ConventualFranciscans
 	a owl:Class;
@@ -86,14 +104,14 @@ cathord:Dominicans
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
 	rdfs:label "Ordo Fratrum Praedicatorum"@la, "Order of Dominicans"@en;
 	rdfs:comment """."""@en; #*
-	rdfs:subClassOf cathorg:Order.
+	rdfs:subClassOf cathord:Order.
 
 cathord:Jesuits
 	a owl:Class;
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/catholic-orders#>;
 	rdfs:label "Societas Iesu"@la, "Order of Jesuits"@en;
 	rdfs:comment """."""@en; #*
-	rdfs:subClassOf cathorg:Order.
+	rdfs:subClassOf cathord:Order.
 
 #
 # PROPERTIES
@@ -102,17 +120,17 @@ cathord:Jesuits
 cathord:isMemberOf
 	a owl:ObjectProperty;
 	rdfs:label "is member of catholic order"@en, "ist Mitglied einem katholischen Orden"@de;
-	rdfs:comment """Relating a person to a catholic order the person is a member of."""@en;
-	rdfs:domain cathorg:Person;
-	rdfs:range cathorg:Order;
+	rdfs:comment """Relating a catholic person to a catholic order the person is a member of."""@en;
+	rdfs:domain cathord:Person;
+	rdfs:range cathord:Order;
 	rdfs:subPropertyOf cathorg:isMemberOf;
-	knora-base:subjectClassConstraint cathorg:Person;
-	knora-base:objectClassConstraint cathorg:Order.
+	knora-base:subjectClassConstraint cathord:Person;
+	knora-base:objectClassConstraint cathord:Order.
 
 cathord:isMemberOfValue
 	a owl:ObjectProperty;
 	rdfs:label "is member of catholic order - statement"@en, "ist Mitglied einem katholischen Orden - Festlegung"@de;
-	rdfs:comment """Relating a person to a reification statement of the relation between the person and a catholic order the person is a member of."""@en;
+	rdfs:comment """Relating a catholic person to a reification statement of the relation between the person and a catholic order the person is a member of."""@en;
 	rdfs:subPropertyOf cathorg:isMemberOfValue;
-	knora-base:subjectClassConstraint cathorg:Person;
+	knora-base:subjectClassConstraint cathord:Person;
 	knora-base:objectClassConstraint knora-base:LinkValue.
