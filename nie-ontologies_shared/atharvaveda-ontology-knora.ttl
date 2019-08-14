@@ -15,7 +15,6 @@
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
 @prefix indo: <http://www.knora.org/ontology/shared/indology#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
-@prefix salsah-gui: <http://www.knora.org/ontology/salsah-gui#>.
 
 @base <http://www.knora.org/ontology/0041/atharvaveda>.
 @prefix athar: <http://www.knora.org/ontology/0041/atharvaveda#>.
@@ -26,8 +25,9 @@
 	dct:title "An ontology about Atharvaveda"@en;
 	dct:description """Formal description of specific concepts in the scientific study of Atharvaveda."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
-	dct:contributor "Magdalena Plamada, PhD, Zürich University, Switzerland"@en;
-	dct:contributor "Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
+	dct:contributor
+		"Magdalena Plamada, PhD, Zürich University, Switzerland"@en,
+		"Reto Baumgartner, tool coordinator and software developer, NIE-INE, University of Zürich, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
 
 	knora-base:attachedToProject <http://rdfh.ch/projects/0041>.
@@ -35,6 +35,20 @@
 #
 # CLASSES
 #
+
+athar:Atharvaveda
+	a owl:Class;
+	rdfs:label "Atharvaveda"@sa, "Atharvaveda"@en, "Atharvaveda"@de;
+	rdfs:comment """Fourth Veda, containing the knowledge of atharvāṇas, the procedures for everyday life in Hinduism, compiled about 1200 to 1000 BC."""@en;
+	rdfs:subClassOf indo:Veda.
+
+athar:Paippalada-Samhita
+	a owl:Class;
+	rdfs:label "Paippalāda-Samhitā"@sa, "Paippalāda-Samhitā"@en, "Paippalāda-Samhitā"@de;
+	rdfs:comment """."""@en;
+	rdfs:subClassOf athar:Atharvaveda, [
+		a owl:Restriction; owl:onProperty athar:paippaladaHasGenre; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:paippaladaHasGenreValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]. 
 
 athar:Kanda
 	a owl:Class;
@@ -75,36 +89,27 @@ athar:Verse
 		a owl:Restriction; owl:onProperty athar:isVerseOfHalfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isVerseOfHalfStropheValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-# pada word: syntactic word
-
-# Deviating stem and suffix
-
-# athar:ConstitutedEdition
-#	a owl:Class;
-#	rdfs:label "Atharvaveda pada patha"@sa, "Atharvaveda constituted text edition"@en, "konstituierter Text Atharvavedas"@de;
-#	rdfs:comment """constituted text edition as created in the Atharvaveda project."""@en;
-#	rdfs:subClassOf scholarly-editing:ConstitutedEdition.
-
-# athar:CriticalEdition
-#	a owl:Class;
-#	rdfs:label "critical text edition"@en, "kritische Textedition"@de;
-#	rdfs:comment """critical text edition as created in the Atharvaveda project."""@en;
-#	rdfs:subClassOf scholarly-editing:CriticalEdition
-
-# athar:CriticalApparatus
-#	a owl:Class;
-#	rdfs:label "critical apparatus"@en, "textkritischer Apparat"@de;
-#	rdfs:comment """Critical apparatus used in the Atharvaveda project at the Zürich University 2018."""@en;
-#	rdfs:subClassOf scholarly-editing:CriticalApparatus.
-
-# Special markup that can appear:
-#   [[...]] denoting editorial observations on the preceding reading(s)
-#   [ Aa ] denoting manuscripts with a specific meaning
-#   <..> denote wholly or partially lost text, e.g. due to damage suffered by the carrier
-
 #
 # PROPERTIES
 #
+
+athar:paippaladaHasGenre
+	a owl:ObjectProperty;
+	rdfs:label "Paippalāda has genre"@en, "Paippalāda hat Gattung"@de;
+	rdfs:comment """Relating a Paippalāda to its genre."""@en;
+	rdfs:domain athar:Paippalada-Samhita;
+	rdfs:range indo:Samhita;
+	rdfs:subPropertyOf indo:vedaHasGenre;
+	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
+	knora-base:objectClassConstraint indo:Samhita.
+
+athar:paippaladaHasGenreValue
+	a owl:ObjectProperty;
+	rdfs:label "Paippalāda has genre - statement"@en, "Paippalāda hat Gattung - Festlegung"@de;
+	rdfs:comment """Relating a Paippalāda to a reification statement of the relation between the Paippalāda and its genre."""@en;
+	rdfs:subPropertyOf indo:vedaHasGenreValue;
+	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 athar:isSuktaOfKanda
 	a owl:ObjectProperty;
