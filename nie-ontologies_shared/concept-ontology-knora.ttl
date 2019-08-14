@@ -117,7 +117,7 @@ concept:IndividualWork # question
 concept:Information
 	a owl:Class;
 	rdfs:label "information"@en, "Information"@de;
-	rdfs:comment """Symbolic propositional concept resolving uncertainty."""@en;
+	rdfs:comment """Symbolic propositional concept resolving uncertainty."""@en; #°°
 	rdfs:subClassOf concept:PropositionalConcept, concept:SymbolicConcept, cidoc:E73_Information_Object, [
 		a owl:Restriction; owl:onProperty concept:informationHasSubject; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty concept:informationHasSubjectValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
