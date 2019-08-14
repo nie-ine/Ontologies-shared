@@ -19,7 +19,6 @@
 	dct:title "An ontology about mathematics"@en;
 	dct:description """Formal description of general concepts in mathematics."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist, software developer, NIE-INE, Basel University, Switzerland"@en;
-	dct:contributor "."@en;
 	dct:publisher "University of Basel, Switzerland"@en;
 
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
