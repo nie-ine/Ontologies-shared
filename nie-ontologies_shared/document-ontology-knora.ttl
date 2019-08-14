@@ -68,13 +68,7 @@ document:Layout
 	rdfs:comment """Way in which the content of a page is set out."""@en;
 	rdfs:subClassOf document:Element.
 
-# Format
-# Character Type, Size
-# Shape
-# Color
-# Readability Line
-
-document:Space # :isSpaceBetween (column column)
+document:Space
 	a owl:Class;
 	rdfs:label "document space"@en, "Leerraum eines Dokumentes"@de;
 	rdfs:comment """Empty space between document content structures, e.g. lines, columns, paragraphs, sections, strophes, images."""@en;
