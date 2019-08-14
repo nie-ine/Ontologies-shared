@@ -196,10 +196,8 @@ kuno-raeber:DiaryEntry
 kuno-raeber:DraftLetterExpression
 	a owl:Class;
 	rdfs:label "Kuno Raeber draft letter expression"@en,"Briefentwurf-Expression Kuno Raebers"@de;
-	rdfs:comment """Draft letter expression written by or to Kuno Raeber."""@en;
+	rdfs:comment """Draft letter expression authored by Kuno Raeber."""@en;
 	rdfs:subClassOf text:HandwrittenText, kuno-raeber:Text, text-expression:Draft. # infocar:ArchiveElement.
-
-# in infocar:Draft notebook, manuscript
 
 kuno-raeber:LetterExpression
 	a owl:Class;
