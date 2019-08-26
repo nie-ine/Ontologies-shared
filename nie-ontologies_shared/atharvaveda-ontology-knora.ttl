@@ -39,27 +39,34 @@
 athar:Atharvaveda
 	a owl:Class;
 	rdfs:label "Atharvaveda"@sa, "Atharvaveda"@en, "Atharvaveda"@de;
-	rdfs:comment """Fourth Veda, containing the knowledge of atharvāṇas, the procedures for everyday life in Hinduism, compiled about 1200 to 1000 BC."""@en;
+	rdfs:comment """Fourth Veda, containing the knowledge of atharvāṇas, the procedures of beliefs and rituals addressing practical issues of daily life of the Vedic society in Hinduism, compiled about 1200 to 1000 BC."""@en;
+	skos:note """The Atharvaveda contains 20 Kandas."""@en;
 	rdfs:subClassOf indo:Veda.
 
 athar:Paippalada-Samhita
 	a owl:Class;
-	rdfs:label "Paippalāda-Samhitā"@sa, "Paippalāda-Samhitā"@en, "Paippalāda-Samhitā"@de;
-	rdfs:comment """."""@en;
-	rdfs:subClassOf athar:Atharvaveda, [
+	rdfs:label "Paippalāda-Samhitā"@sa, "Paippalada-Samhita"@en, "Paippalada-Samhita"@de;
+	rdfs:comment """One of the nine recensions of the Atharvaveda, along the different shakhas or Hindu theological schools, specialized in learning Vedic texts. Only this one and the Shaunakiya recension are extent."""@en;
+	rdfs:subClassOf athar:Atharvaveda, textedit:Edition, [
 		a owl:Restriction; owl:onProperty athar:paippaladaHasGenre; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty athar:paippaladaHasGenreValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]. 
+		a owl:Restriction; owl:onProperty athar:paippaladaHasGenreValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:paippaladaHasRecitingStyle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:paippaladaHasRecitingStyleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 athar:Kanda
 	a owl:Class;
-	rdfs:label "Atharvaveda kāṇḍa"@sa, "Atharvaveda verse songbook"@en, "Atharvaveda-Versgesangbuch"@de;
-	rdfs:comment """Verse songbook of the Atharvaveda."""@en;
-	rdfs:subClassOf litera:VerseSongbook.
+	rdfs:label "Atharvaveda kāṇḍa"@sa, "Atharvaveda kanda"@en, "Atharvaveda Kanda"@de;
+	rdfs:comment """Kande or verse section of the Atharvaveda."""@en;
+	skos:note """The Atharvaveda contains 20 Kandas."""@en;
+	rdfs:subClassOf prosodic-structure:VerseSection, indo:Expression, [
+		a owl:Restriction; owl:onProperty athar:isKandaOfAtharvaveda; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:isKandaOfAtharvavedaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 athar:Sukta
 	a owl:Class;
 	rdfs:label "Atharvaveda sūkta"@sa, "Atharvaveda sukta"@en, "Atharvaveda-Sukta"@de;
 	rdfs:comment """Sukta in the Atharvaveda."""@en;
+	skos:note """The Atharvaveda contains 730 Suktas."""@en;
 	rdfs:subClassOf litera:VerseSong, indo:Expression, text:HandwrittenText, [
 		a owl:Restriction; owl:onProperty athar:isSuktaOfKanda; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isSuktaOfKandaValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
@@ -83,6 +90,7 @@ athar:Verse
 	a owl:Class;
 	rdfs:label "Atharvaveda pada"@sa, "Atharvaveda verse"@en, "Atharvaveda-Vers"@de;
 	rdfs:comment """Verse as part of a strophe in the Atharvaveda."""@en;
+	skos:note """The Atharvaveda contains about 6000 verses."""@en;
 	rdfs:subClassOf prosodic-structure:Verse, [
 		a owl:Restriction; owl:onProperty athar:isVerseOfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isVerseOfStropheValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -95,8 +103,8 @@ athar:Verse
 
 athar:paippaladaHasGenre
 	a owl:ObjectProperty;
-	rdfs:label "Paippalāda has genre"@en, "Paippalāda hat Gattung"@de;
-	rdfs:comment """Relating a Paippalāda to its genre."""@en;
+	rdfs:label "Paippalada has genre"@en, "Paippalada hat Gattung"@de;
+	rdfs:comment """Relating a Paippalada to its genre."""@en;
 	rdfs:domain athar:Paippalada-Samhita;
 	rdfs:range indo:Samhita;
 	rdfs:subPropertyOf indo:vedaHasGenre;
@@ -105,10 +113,46 @@ athar:paippaladaHasGenre
 
 athar:paippaladaHasGenreValue
 	a owl:ObjectProperty;
-	rdfs:label "Paippalāda has genre - statement"@en, "Paippalāda hat Gattung - Festlegung"@de;
-	rdfs:comment """Relating a Paippalāda to a reification statement of the relation between the Paippalāda and its genre."""@en;
+	rdfs:label "Paippalada has genre - statement"@en, "Paippalada hat Gattung - Festlegung"@de;
+	rdfs:comment """Relating a Paippalada to a reification statement of the relation between the Paippalada and its genre."""@en;
 	rdfs:subPropertyOf indo:vedaHasGenreValue;
 	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+athar:paippaladaHasRecitingStyle
+	a owl:ObjectProperty;
+	rdfs:label "Paippalada has reciting style"@en, "Paippalada hat Rezitationsstil"@de;
+	rdfs:comment """Relating a Paippalada to a reciting style it has."""@en;
+	rdfs:domain athar:Paippalada-Samhita;
+	rdfs:range indo:Samhitapatha;
+	rdfs:subPropertyOf indo:vedaHasRecitingStyle;
+	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
+	knora-base:objectClassConstraint indo:Samhitapatha.
+
+athar:paippaladaHasRecitingStyleValue
+	a owl:ObjectProperty;
+	rdfs:label "Veda has reciting style - statement"@en, "Veda hat Rezitationsstil - Festlegung"@de;
+	rdfs:comment """Relating a Veda to a reification statement of the relation between the Veda and a reciting style it has."""@en;
+	rdfs:subPropertyOf indo:vedaHasRecitingStyleValue;
+	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+athar:isKandaOfAtharvaveda
+	a owl:ObjectProperty;
+	rdfs:label "is kanda of Atharvaveda"@en, "ist Kanda einer Atharvaveda"@de;
+	rdfs:comment """Relating a kanda to its Atharvaveda."""@en;
+	rdfs:domain athar:Kanda;
+	rdfs:range athar:Atharvaveda;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint athar:Kanda;
+	knora-base:objectClassConstraint athar:Atharvaveda.
+
+athar:isKandaOfAtharvavedaValue
+	a owl:ObjectProperty;
+	rdfs:label "is kanda of Atharvaveda - statement"@en, "ist Kanda einer Atharvaveda - Festlegung"@de;
+	rdfs:comment """Relating a kanda to a reification statement of the relation between the kanda and its Atharvaveda."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint athar:Kanda;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 athar:isSuktaOfKanda
