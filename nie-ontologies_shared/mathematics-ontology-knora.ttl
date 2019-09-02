@@ -24,7 +24,7 @@
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 
-# Declared 'middle-out', on the go as concepts are needed, not intended to contain upfront all elements
+# Declared 'middle-out', on the go as elements are needed, in a way more general or more specific elements can be added easily, not intended to contain upfront all elements
 
 
 #
@@ -34,8 +34,8 @@
 math:MathematicalObject
 	a owl:Class;
 	rdfs:label "mathematical object"@en, "mathematisches Objekt"@de;
-	rdfs:comment """Symbolic concept in mathematics."""@en;
-	rdfs:subClassOf concept:SymbolicConcept.
+	rdfs:comment """Symbolic entity in mathematics."""@en;
+	rdfs:subClassOf concept:SymbolicEntity.
 
 math:Number
 	a owl:Class;
@@ -66,7 +66,7 @@ math:hasNumeral
 	rdfs:label "has numeral"@en, "hat Numerale"@de;
 	rdfs:comment """Relating a number to a numeral."""@en;
 	rdfs:domain math:Number;
-#	rdfs:range xsd:integer;
+	rdfs:range xsd:integer;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint math:Number;
 	knora-base:objectClassConstraint knora-base:IntValue.
