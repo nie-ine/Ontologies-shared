@@ -41,7 +41,7 @@ ling:Concept
 	a owl:Class;
 	rdfs:label "linguistic concept"@en, "linguistisches Konzept"@de;
 	rdfs:comment """Concept in the knowledge domain of linguistics."""@en;
-	rdfs:subClassOf concept:Concept, [
+	rdfs:subClassOf concept:ConceptualEntity, [
 		a owl:Restriction; owl:onProperty ling:hasLanguage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty ling:hasLanguageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -60,7 +60,7 @@ ling:Lemma
 	rdfs:label "lemma"@en, "Lemma"@de;
 	rdfs:comment """Dictionary entry of a lexeme."""@en;
 	rdfs:seeAlso <http://www.alphabit.net/ATL3Leunitadianalisi.pdf>, <http://www.dcuci.univr.it/documenti/OccorrenzaIns/matdid/matdid121824.pdf>;
-	rdfs:subClassOf ling:Concept, concept:SymbolicConcept.
+	rdfs:subClassOf ling:Concept, concept:SymbolicEntity.
 
 ling:Symbol
 	a owl:Class;
