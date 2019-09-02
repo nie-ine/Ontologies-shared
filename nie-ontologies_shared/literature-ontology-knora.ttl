@@ -32,7 +32,7 @@ litera:Literature
 	a owl:Class;
 	rdfs:label "literature"@en, "Literatur"@de;
 	rdfs:comment """Written text as art."""@en; # distinctively written with certain expressive quality
-	rdfs:subClassOf text:WrittenText.
+	rdfs:subClassOf text:WrittenText, text:ContentNature.
 
 litera:Fiction
 	a owl:Class;
@@ -209,9 +209,9 @@ litera:Novel
 	rdfs:subClassOf litera:Expression, text-expression:SentenceExpression, [
 		a owl:Restriction; owl:onProperty litera:hasNovelist; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty litera:hasNovelistValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty litera:hasFiction; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # litera:hasGenre
+		a owl:Restriction; owl:onProperty litera:hasFiction; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty litera:hasFictionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty litera:hasNarrative; owl:minCardinality "0"^^xsd:nonNegativeInteger], [ # litera:hasGenre
+		a owl:Restriction; owl:onProperty litera:hasNarrative; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty litera:hasNarrativeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 litera:NonfictionNovel
@@ -432,7 +432,7 @@ litera:hasPoet
 	rdfs:label "has poet"@en, "hat Dichter"@de;
 	rdfs:comment """Relating a poem to a person who authored it."""@en;
 	rdfs:domain litera:Poem;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom litera:Poet]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom litera:Poet]];
 	rdfs:subPropertyOf text-expression:hasAuthor;
 	knora-base:subjectClassConstraint litera:Poem;
 	knora-base:objectClassConstraint human:Person.
@@ -450,7 +450,7 @@ litera:hasNovelist
 	rdfs:label "has novelist"@en, "hat RomanautorIn"@de;
 	rdfs:comment """Relating a novel to a person who authored it."""@en;
 	rdfs:domain litera:Novel;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom litera:Novelist]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom litera:Novelist]];
 	rdfs:subPropertyOf text-expression:hasAuthor;
 	knora-base:subjectClassConstraint litera:Novel;
 	knora-base:objectClassConstraint human:Person.
