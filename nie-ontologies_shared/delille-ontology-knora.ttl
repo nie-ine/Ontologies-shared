@@ -60,30 +60,6 @@ delille:Canto
 	rdfs:comment """Group of strophes in a verse poem authored by Jacques Delille."""@en;
 	rdfs:subClassOf prosodic-structure:VerseSection, text-expression:ExpressionPart.
 
-# delille:RhymingVerse
-#	a owl:Class;
-#	rdfs:label "Jacques Delille rhyming verse"@en, "gereimter Vers Jacques Delilles"@de;
-#	rdfs:comment """Rhyming verse in a verse poem authored by Jacques Delille."""@en;
-#	rdfs:subClassOf text-structure:RhymingVerse.
-
-# delille:Citation
-#	a owl:Class;
-#	rdfs:label "Citation of a Jacques Delille poem verse"@en, "Zitat eines Jacques Delilles Gedichtverses"@de; #, "de Jacques Delille"@fr, "di Jacques Delille"@it;
-#	rdfs:comment """Citation of a Jacques Delille poem verse."""@en;
-#	rdfs:subClassOf text:Citation.
-
-# delille:CitationReference
-#	a owl:Class;
-#	rdfs:label "citation reference verse number"@en, "Zitatreferenz-Versnummer"@de;
-#	rdfs:comment """Citation reference of a Jacques Delille poem verse as the latter's number."""@en;
-#	rdfs:subClassOf text:CitationReference.
-
-# delille:CitingExpression
-#	a owl:Class;
-#	rdfs:label "citing expression"@en, "zitierende Expression"@de; #, ""@fr, ""@it;
-#	rdfs:comment """Publication text expression citing one or more verses of a poem authored by Jacques Delille."""@en;
-#	rdfs:subClassOf publish:TextExpression.
-
 delille:Dictionary
 	a owl:Class;
 	rdfs:label "citing dictionary"@en, "zitierendes Wörterbuch"@de; #, ""@fr, ""@it;
