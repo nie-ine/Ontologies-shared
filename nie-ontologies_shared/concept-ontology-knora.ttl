@@ -37,7 +37,9 @@ concept:ConceptualEntity
 	a owl:Class;
 	rdfs:label "conceptual entity"@en, "konzeptuelle Entität"@de;
 	rdfs:comment """Abstract idea created by a person, as product of cognition."""@en;
-	rdfs:subClassOf human:Creation, frbroo:F6_Concept. # rdfs:subClassOf cidoc:E28_Conceptual_Object
+	rdfs:subClassOf human:Creation, frbroo:F6_Concept, [ # rdfs:subClassOf cidoc:E28_Conceptual_Object
+		a owl:Restriction; owl:onProperty concept:isPartOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty concept:isPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 concept:Set
 	a owl:Class;
@@ -74,8 +76,6 @@ concept:SymbolicEntity
 	rdfs:label "symbolic entity"@en, "symbolische Entität"@de;
 	rdfs:comment """Conceptual entity represented by one or more symbols."""@en;
 	rdfs:subClassOf concept:ConceptualEntity, cidoc:E90_Symbolic_Object, [
-		a owl:Restriction; owl:onProperty concept:isPartOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty concept:isPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty concept:hasLiteral; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 concept:Identifier
@@ -202,6 +202,8 @@ concept:informationHasSubjectDescription
 	a owl:ObjectProperty;
 	rdfs:label "information has subject description"@en, "Information hat Themabeschreibung"@de;
 	rdfs:comment """Relating information to a description of its subject."""@en;
+	rdfs:domain concept:Information;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint concept:Information;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -231,7 +233,7 @@ concept:hasLiteral
 	rdfs:label "has literal"@en, "hat Literale"@de;
 	rdfs:comment """Relating a symbolic entity to a literal that expresses it."""@en;
 	rdfs:domain concept:SymbolicEntity;
-#	rdfs:range rdfs:Literal;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint concept:SymbolicEntity;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -241,7 +243,7 @@ concept:hasEncoder
 	rdfs:label "information has encoder"@en, "Information hat Encoder"@de;
 	rdfs:comment "Relating information to a person who encoded it."@en;
 	rdfs:domain concept:Information;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom infocar:Encoder]];
+	rdfs:range  human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom infocar:Encoder]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint concept:Information;
 	knora-base:objectClassConstraint human:Person.
