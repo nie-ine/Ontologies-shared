@@ -149,7 +149,7 @@ language:Translation
 	rdfs:comment """Human natural language expression transferred from another natural language."""@en;
 	skos:note """Can follow the original to a degree, hence differ from another translation; e.g. a free translation gives a general meaning."""@en;
 	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_t.aspx>;
-	rdfs:subClassOf language:HumanNaturalLanguageExpression, [ #, event:Output.
+	rdfs:subClassOf language:HumanNaturalLanguageExpression, [
 		a owl:Restriction; owl:onProperty language:translationHasTranslator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty language:translationHasTranslatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -186,7 +186,7 @@ language:hasContent
 	rdfs:label "has content"@en, "hat Inhalt"@de;
 	rdfs:comment """Relating a human natural language expression to its content."""@en;
 	rdfs:domain language:HumanNaturalLanguageExpression;
-#	rdfs:range rdfs:Literal;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf concept:hasLiteral;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -286,7 +286,7 @@ language:hasPersonTranslator
 	rdfs:label "has person-translator"@en, "hat Person-Übersetzer"@de;
 	rdfs:comment """Relating a natural language expression to a person who translated it."""@en;
 	rdfs:domain language:HumanNaturalLanguageExpression;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom language:PersonTranslator]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom language:PersonTranslator]];
 	rdfs:subPropertyOf language:hasTranslator;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint human:Person.
@@ -322,7 +322,7 @@ language:translationHasPersonTranslator
 	rdfs:label "translation has person-translator"@en, "Übersetzung hat Person-Übersetzer"@de;
 	rdfs:comment """Relating a translation to a person who created it."""@en;
 	rdfs:domain language:PersonTranslation;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom language:PersonTranslator]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom language:PersonTranslator]];
 	rdfs:subPropertyOf language:translationHasTranslator;
 	knora-base:subjectClassConstraint language:PersonTranslation;
 	knora-base:objectClassConstraint human:Person.
