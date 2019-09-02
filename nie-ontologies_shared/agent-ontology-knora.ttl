@@ -192,7 +192,7 @@ agent:hasCreator
 	rdfs:label "has creator"@en, "hat ErschafferIn"@de;
 	rdfs:comment """Relating something to an agent that created it."""@en;
 	rdfs:domain rdfs:Resource;
-#	rdfs:range [rdfs:subClassOf agent:Agent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom agent:Creator]];
+	rdfs:range agent:Agent; # [rdfs:subClassOf agent:Agent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom agent:Creator]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint agent:Agent.
@@ -210,7 +210,7 @@ agent:hasUser
 	rdfs:label "has user"@en, "hat Benutzer"@de;
 	rdfs:comment """Relating something to an agent using it."""@en;
 	rdfs:domain rdfs:Resource;
-#	rdfs:range [rdfs:subClassOf agent:Agent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom agent:User]];
+	rdfs:range agent:Agent; # [rdfs:subClassOf agent:Agent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom agent:User]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint agent:Agent.
