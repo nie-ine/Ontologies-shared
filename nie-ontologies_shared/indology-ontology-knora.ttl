@@ -28,7 +28,7 @@
 
 indo:Literature
 	a owl:Class;
-	rdfs:label "Indian literature"@en, "indische Literatur"@de;
+ 	rdfs:label "Indian literature"@en, "indische Literatur"@de; # check
 	rdfs:comment """Literature in Indian culture."""@en;
 	rdfs:subClassOf litera:Literature.
 
@@ -44,11 +44,13 @@ indo:Veda
 	rdfs:comment """Hindu text written in Vedic Sanskrit, in a period dated roughly from 1700 to 400 BC."""@en;
 	rdfs:subClassOf indo:Expression, [
 		a owl:Restriction; owl:onProperty indo:vedaHasGenre; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty indo:vedaHasGenreValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty indo:vedaHasGenreValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty indo:vedaHasRecitingStyle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty indo:vedaHasRecitingStyleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 indo:VedaLiterature
 	a owl:Class;
-	rdfs:label "Veda Indian literature"@en, "vedische indische Literatur"@de;
+	rdfs:label "Veda literature"@en, "vedische indische Literatur"@de;
 	rdfs:comment """Indian literature in a Veda."""@en;
 	rdfs:subClassOf indo:Literature.  # owl:oneOf (Samhita Aranyaka Brahmana Upanishad)
 
@@ -57,6 +59,25 @@ indo:Samhita
 	rdfs:label "Samhita"@sa, "Samhita"@en, "Samhita"@de;
 	rdfs:comment """One of the four text styles, and the oldest part, in a Veda, wherein text or verses are methodically put together."""@en;
 	rdfs:subClassOf indo:VedaLiterature.
+
+indo:Patha
+	a owl:Class;
+	rdfs:label "pāṭha"@sa, "patha"@en, "Patha"@de;
+	rdfs:comment """Style to recite or chant a Vedic mantra in the oral tradition of the Vedas, enabling its memorization."""@en;
+	skos:note """There are eleven Pathas, with increasing difficulty, divided in 3 simpler or natural, and 8 complex ones."""@en; # owl:oneOf (Samhitapatha Padapatha Kramapatha Jatapatha Maalaapatha Sikhapatha Rekhapatha Dhwajapatha Dandapatha Rathaapatha Ghanapatha)
+	rdfs:subClassOf knora-base:Resource.
+
+indo:Samhitapatha
+	a owl:Class;
+	rdfs:label "Samhita-pāṭha"@sa, "Samhitapatha"@en, "Samhitapatha"@de;
+	rdfs:comment """One of the eleven Pathas, with continuous recitation of Sanskrit words bound by the phonetic rules of euphonic combination."""@en;
+	rdfs:subClassOf indo:Patha.
+
+indo:Padapatha
+	a owl:Class;
+	rdfs:label "Pada-pāṭha"@sa, "Padapatha"@en, "Padapatha"@de;
+	rdfs:comment """One of the eleven Pathas, with a word by word recitation, marked by a conscious pause after every word, and after any special grammatical code embedded in the text; suppresses euphonic combination and restores each word in its original intended form."""@en;
+	rdfs:subClassOf indo:Patha.
 
 #
 # PROPERTIES
@@ -67,7 +88,7 @@ indo:hasIndologicComment
 	rdfs:label "has Indological comment"@en, "hat indologischer Kommentar"@de;
 	rdfs:comment """Relating something to an Indological comment as a textual statement about that something."""@en;
 	rdfs:domain knora-base:Resource;
-#	rdfs:range rdfs:Literal;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasComment;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -87,5 +108,23 @@ indo:vedaHasGenreValue
 	rdfs:label "Veda has literary genre - statement"@en, "Veda hat literarische Gattung - Festlegung"@de;
 	rdfs:comment """Relating a Veda to a reification statement of the relation between the Veda and a genre it has."""@en;
 	rdfs:subPropertyOf litera:hasGenreValue;
+	knora-base:subjectClassConstraint indo:Veda;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+indo:vedaHasRecitingStyle
+	a owl:ObjectProperty;
+	rdfs:label "Veda has reciting style"@en, "Veda hat Rezitationsstil"@de;
+	rdfs:comment """Relating a Veda to a reciting style it has."""@en;
+	rdfs:domain indo:Veda;
+	rdfs:range indo:Patha;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint indo:Veda;
+	knora-base:objectClassConstraint indo:Patha.
+
+indo:vedaHasRecitingStyleValue
+	a owl:ObjectProperty;
+	rdfs:label "Veda has reciting style - statement"@en, "Veda hat Rezitationsstil - Festlegung"@de;
+	rdfs:comment """Relating a Veda to a reification statement of the relation between the Veda and a reciting style it has."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint indo:Veda;
 	knora-base:objectClassConstraint knora-base:LinkValue.
