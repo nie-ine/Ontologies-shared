@@ -261,7 +261,27 @@ human:Creation
 		a owl:Restriction; owl:onProperty agent:hasUser; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty agent:hasUserValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty human:hasSponsor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty human:hasSponsorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty human:hasSponsorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:isCreationOfSet; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty human:isCreationOfSetValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+human:CreationGroup
+	a owl:Class;
+	rdfs:label "human creations group"@en, "menschliche Kreationsgruppe"@de;
+	rdfs:comment """Group of human creations."""@en;
+	rdfs:subClassOf knora-base:Resource.
+
+human:CreationSet
+	a owl:Class;
+	rdfs:label "human creations set"@en, "menschliche Kreationsreihe"@de;
+	rdfs:comment """Group of human creations belonging together."""@en;
+	rdfs:subClassOf human:CreationGroup.
+
+human:Collection
+	a owl:Class;
+	rdfs:label "collection"@en, "Sammlung"@de;
+	rdfs:comment """Things brought together as a human creation."""@en;
+	rdfs:subClassOf human:Creation.
 
 human:PhysicalCreation
 	a owl:Class;
@@ -325,7 +345,7 @@ human:PersonOwner
 	rdfs:comment """Role of a person having a property."""@en;
 	rdfs:subClassOf human:PersonRole, human:AgentOwner.
 
-human:Property # check cidoc
+human:Property
 	a owl:Class;
 	rdfs:label "property"@en, "Besitz"@de;
 	rdfs:comment """Something physical or non-physical belonging to someone."""@en;
@@ -764,7 +784,7 @@ human:adheringToThought
 	rdfs:comment """Relating a person to a body of thought the person adheres to."""@en;
 	rdfs:domain human:Person;
 	rdfs:range concept:ThoughtBody;
-	rdfs:subPropertyOf knora-base:hasLinkTo; #*
+	rdfs:subPropertyOf knora-base:hasLinkTo; #°
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint concept:ThoughtBody.
 
@@ -853,7 +873,7 @@ human:hasCreator
 	rdfs:label "has creator"@en, "hat ErschafferIn"@de;
 	rdfs:comment """Relating a creation to a human agent - a person or a group - that created it."""@en;
 	rdfs:domain human:Creation;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:AgentCreator]];
+	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:AgentCreator]];
 	rdfs:subPropertyOf agent:hasCreator;
 	knora-base:subjectClassConstraint human:Creation;
 	knora-base:objectClassConstraint human:Agent.
@@ -872,7 +892,7 @@ human:hasAuthor
 	rdfs:comment """Relating a creation to a person who authored it."""@en;
 	skos:note """A creation can have more than one author."""@en;
 	rdfs:domain human:Creation;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom human:Author]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom human:Author]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint human:Creation;
 	knora-base:objectClassConstraint human:Person.
@@ -946,7 +966,7 @@ human:hasUser
 	rdfs:label "has user"@en, "hat Benutzerin"@de;
 	rdfs:comment """Relating something to an agent - a person or a group - using it."""@en;
 	rdfs:domain rdfs:Resource;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom human:User]];
+	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom human:User]];
 	rdfs:subPropertyOf agent:hasUser;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint human:Agent.
@@ -964,7 +984,7 @@ human:hasOwner
 	rdfs:label "has owner"@en, "hat EignerIn"@de;
 	rdfs:comment """Relating something to a human agent - a person or a group - owning it."""@en;
 	rdfs:domain rdfs:Resource;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:AgentOwner]];
+	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:AgentOwner]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint human:Agent.
@@ -982,7 +1002,7 @@ human:hasSponsor
 	rdfs:label "has sponsor"@en, "hat Sponsor"@de;
 	rdfs:comment """Relating something to a human agent - a person or a group - sponsoring it."""@en;
 	rdfs:domain rdfs:Resource;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:AgentSponsor]];
+	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:AgentSponsor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint human:Agent.
@@ -995,12 +1015,30 @@ human:hasSponsorValue
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+human:isCreationOfSet #°
+	a owl:ObjectProperty;
+	rdfs:label "is creation of set"@en, "ist Kreation einer Reihe"@de;
+	rdfs:comment """Relating a creation to a set it is part of."""@en;
+	rdfs:domain human:Creation;
+	rdfs:range human:CreationSet;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint human:Creation;
+	knora-base:objectClassConstraint human:CreationSet.
+
+human:isCreationOfSetValue
+	a owl:ObjectProperty;
+	rdfs:label "is creation of set - statement"@en, "ist Kreation einer Reihe - Festlegung"@de;
+	rdfs:comment """Relating a creation to a reification statement of the relation between the creation and a set it is part of."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint human:Creation;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 human:hasPreserver
 	a owl:ObjectProperty;
 	rdfs:label "has preserver"@en, "hat Erhalter"@de;
 	rdfs:comment """Relating a material resoruce to a human agent - a person or a group - preserving it."""@en;
 	rdfs:domain physical:Matter;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:AgentPreserver]];
+	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:AgentPreserver]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint human:Agent.
