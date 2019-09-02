@@ -234,7 +234,7 @@ org:isMemberOfAdministration
 	rdfs:label "is member of administration"@en, "ist Mitglied einer Verwaltung"@de;
 	rdfs:comment """Relating a person to an administration organization the person is a member of."""@en;
 	rdfs:domain human:Person;
-#	rdfs:range [rdfs:subClassOf org:Organization, [a owl:Restriction; owl:onProperty org:hasRole; owl:someValuesFrom org:Administration]];
+	rdfs:range org:Organization; # [rdfs:subClassOf org:Organization, [a owl:Restriction; owl:onProperty org:hasRole; owl:someValuesFrom org:Administration]];
 	rdfs:subPropertyOf org:isMemberOf;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint org:Organization.
