@@ -54,6 +54,20 @@ textedit:Edition
 		a owl:Restriction; owl:onProperty textedit:hasEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+textedit:Revisor
+	a owl:Class;
+	rdfs:label "text revisor"@en, "Text-Revisor"@de;
+	rdfs:comment """Role of a person revising a text."""@en;
+	rdfs:subClassOf textedit:Editor.
+
+textedit:Revision
+	a owl:Class;
+	rdfs:label "text revision"@en, "Textprüfung"@de;
+	rdfs:comment """Edited text as a result of revising."""@en;
+	rdfs:subClassOf textedit:Edition , [
+		a owl:Restriction; owl:onProperty textedit:hasRevisor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:hasRevisorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 textedit:Annotator
 	a owl:Class;
 	rdfs:label "annotator"@en, "Annotator"@de, "annotator"@la;
@@ -114,7 +128,7 @@ textedit:hasEditor
 	rdfs:label "edition has editor"@en, "Edition hat Editor"@de;
 	rdfs:comment """Relating an edition to a person who created it."""@en;
 	rdfs:domain textedit:Edition;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Editor]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Editor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint textedit:Edition;
 	knora-base:objectClassConstraint human:Person.
@@ -163,6 +177,24 @@ textedit:hasSameEditionAsValue
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
+textedit:hasRevisor
+	a owl:ObjectProperty;
+	rdfs:label "text revision has revisor"@en, "Textprüfung hat Revisor"@de;
+	rdfs:comment """Relating a text revision to a person who created it."""@en;
+	rdfs:domain textedit:Revision;
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Revisor]];
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint textedit:Revision;
+	knora-base:objectClassConstraint human:Person.
+
+textedit:hasRevisorValue
+	a owl:ObjectProperty;
+	rdfs:label "text revision has revisor - statement"@en, "Textprüfung hat Revisor - Festlegung"@de;
+	rdfs:comment """Relating a text revision to a reification statement of the relation between the revision and a person who created it."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint textedit:Revision;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
 textedit:hasTransliteration
 	a owl:ObjectProperty;
 	rdfs:label "has transliteration"@en, "hat Transliteration"@de;
@@ -204,7 +236,7 @@ textedit:hasAbbreviator
 	rdfs:label "has abbreviator"@en, "hat Abkurzer"@de;
 	rdfs:comment """Relating an abbreviation to a person who created it."""@en;
 	rdfs:domain textedit:Abbreviation;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Abbreviator]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Abbreviator]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint textedit:Abbreviation;
 	knora-base:objectClassConstraint human:Person.
