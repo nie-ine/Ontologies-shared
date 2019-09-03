@@ -56,7 +56,7 @@ scholarly-editing:Editor
 scholarly-editing:OrganizationEditor
 	a owl:Class;
 	rdfs:label "scholarly organization-editor"@en, "wissenschaftliche Organisation-Editor"@de;
-	rdfs:comment """Role of an orgnization editing a text expression scientifically."""@en;
+	rdfs:comment """Role of an organization editing a text expression scientifically."""@en;
 	rdfs:subClassOf org:Creator.
 
 scholarly-editing:Edition
@@ -69,7 +69,7 @@ scholarly-editing:Edition
 
 scholarly-editing:Page
 	a owl:Class;
-	rdfs:label """scholarly edition text page"""@en, """wissenschaftliche Editiontextseite"""@de;
+	rdfs:label "scholarly edition text page"@en, "wissenschaftliche Editiontextseite"@de;
 	rdfs:comment """Page of a scholarly edition."""@en;
 	rdfs:subClassOf text-structure:Page, [
 		a owl:Restriction; owl:onProperty scholarly-editing:isPageOfEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -79,7 +79,7 @@ scholarly-editing:EditorialSymbol
 	a owl:Class;
 	rdfs:label "editorial symbol"@en, "editorisches Zeichen"@de;
 	rdfs:comment """Symbol in a scholarly edition indicating a textual property of the original text."""@en;
-	rdfs:subClassOf concept:SymbolicConcept, [
+	rdfs:subClassOf concept:SymbolicEntity, [
 		a owl:Restriction; owl:onProperty scholarly-editing:isEditorialSymbolOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:isEditorialSymbolOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -389,7 +389,7 @@ scholarly-editing:hasEditor
 	rdfs:label "scholarly edition has scholarly editor"@en, "wissenschaftliche Edition hat wissenschaftliche Editor"@de;
 	rdfs:comment "Relating a scholarly edition to a scholarly editor who created it."@en;
 	rdfs:domain scholarly-editing:Edition;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom textedit:ScholarlyEditor]];
+	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom textedit:ScholarlyEditor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo; # textedit:hasEditor
 	knora-base:subjectClassConstraint scholarly-editing:Edition;
 	knora-base:objectClassConstraint human:Agent.
@@ -551,7 +551,7 @@ scholarly-editing:hasCriticalEditor
 	rdfs:label "has critical editor"@en, "hat kritische Editor"@de;
 	rdfs:comment "Relating a critical edition to a critical editor who created it."@en;
 	rdfs:domain scholarly-editing:CriticalEdition;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:CriticalEditor]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:CriticalEditor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo; # scholarly-editing:hasScholarlyEditor
 	knora-base:subjectClassConstraint scholarly-editing:CriticalEdition;
 	knora-base:objectClassConstraint human:Person.
@@ -1101,7 +1101,7 @@ scholarly-editing:commentHasContent
 	rdfs:label "editorial comment has content"@en, "editorischer Kommentar hat Inhalt"@de;
 	rdfs:comment """Relating an editorial comment to its content."""@en;
 	rdfs:domain scholarly-editing:EditorialComment;
-#	rdfs:range rdfs:Literal;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf language:hasContent;
 	knora-base:subjectClassConstraint scholarly-editing:EditorialComment;
 	knora-base:objectClassConstraint knora-base:TextValue.
