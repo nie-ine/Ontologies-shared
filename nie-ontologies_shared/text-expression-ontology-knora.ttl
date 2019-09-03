@@ -245,7 +245,7 @@ text-expression:hasTitle
 	rdfs:label "text expression has title"@en, "Textexpression hat Titel"@de;
 	rdfs:comment """Relating a text expression to a title it has."""@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range rdfs:Literal;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf document:expressionHasTitle;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -255,7 +255,7 @@ text-expression:hasSubtitle
 	rdfs:label "text expression has subtitle"@en, "Textexpression hat Untertitel"@de;
 	rdfs:comment """Relating a text expression to a subtitle it has."""@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range doc:Literal;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf document:expressionHasSubtitle;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -265,7 +265,7 @@ text-expression:hasIncipit
 	rdfs:label "has incipit"@en, "hat Incipit"@de;
 	rdfs:comment """Relating an untitled text expression to a beginning part thereof to identify the text."""@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range rdfs:Literal;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasText;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -275,7 +275,7 @@ text-expression:hasExplicit
 	rdfs:label "has explicit"@en, "hat Explicit"@de;
 	rdfs:comment """Relating an untitled text expression to an end part thereof to identify the text."""@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range rdfs:Literal;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasText;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -286,7 +286,7 @@ text-expression:hasAuthor
 	rdfs:comment """Relating a text expression to a person who authored it."""@en;
 	skos:note """A text can have more than one author."""@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text-expression:Author]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text-expression:Author]];
 	rdfs:subPropertyOf human:hasAuthor;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint human:Person.
@@ -304,7 +304,7 @@ text-expression:hasIdeationalExtent
 	rdfs:label "has ideational extent"@en, "hat ideeller Umfang"@de;
 	rdfs:comment """Relating a text expression to a description of its ideational extent."""@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range rdfs:Literal;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -314,7 +314,7 @@ text-expression:hasCommentator
 	rdfs:label "text expression has commentator"@en, "Textexpression hat KommentatorIn"@de;
 	rdfs:comment "Relating a text expression to a person who commented on it."@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text-expression:Commentator]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text-expression:Commentator]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint human:Person.
@@ -332,7 +332,7 @@ text-expression:hasScientificEditor
 	rdfs:label "text expression has scholarly editor"@en, "Textexpression hat wissenschaftliche Editor"@de;
 	rdfs:comment "Relating a text expression to a scholar who edited it scientifically."@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:Editor]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:Editor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint human:Person.
@@ -350,7 +350,7 @@ text-expression:hasCriticalEditor
 	rdfs:label "text expression has critical editor"@en, "Textexpression hat kritische Editor"@de;
 	rdfs:comment "Relating a text expression to a person who edited it critically."@en;
 	rdfs:domain text-expression:Expression;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:CriticalEditor]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:CriticalEditor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint human:Person.
@@ -386,7 +386,7 @@ text-expression:hasMainAuthor
 	rdfs:label "has main author"@en, "hat Hauptautor"@de;
 	rdfs:comment """Relating a poly-author text expression to its main author."""@en;
 	rdfs:domain text-expression:PolyAuthorExpression;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text-expression:MainAuthor]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text-expression:MainAuthor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text-expression:PolyAuthorExpression;
 	knora-base:objectClassConstraint human:Person.
