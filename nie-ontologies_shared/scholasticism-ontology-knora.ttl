@@ -217,7 +217,7 @@ schola:commentaryHasProcedureValue
 	rdfs:label "commentary has reportator"@en, "Kommentar hat Reportator"@de;
 	rdfs:comment """Relating a reportatio commentary of a lecture to a scholastic who reported it."""@en;
 	rdfs:domain schola:ReportatioCommentary;
-#	rdfs:range [rdfs:subClassOf schola:Scholastic, [a owl:Restriction; owl:onProperty schola:hasRole; owl:someValuesFrom schola:Reportator];
+	rdfs:range schola:Scholastic; # [rdfs:subClassOf schola:Scholastic, [a owl:Restriction; owl:onProperty schola:hasRole; owl:someValuesFrom schola:Reportator];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint schola:ReportatioCommentary;
 	knora-base:objectClassConstraint schola:Scholastic.
