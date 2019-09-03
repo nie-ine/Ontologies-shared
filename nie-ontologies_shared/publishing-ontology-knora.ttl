@@ -505,7 +505,7 @@ publish:hasRedactor
 	rdfs:label "has redactor"@en, "hat Redakteur"@de;
 	rdfs:comment """Relating a publication expression to a redactor thereof."""@en;
 	rdfs:domain publish:Expression;
-#	rdfs:range [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom publish:Redactor]];
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom publish:Redactor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint publish:Expression;
 	knora-base:objectClassConstraint human:Person.
@@ -581,7 +581,7 @@ publish:hasPublisher
 	rdfs:label "has publisher"@en, "hat Herausgeber"@de;
 	rdfs:comment """Relating a publication to its publisher."""@en;
 	rdfs:domain publish:Publication;
-#	rdfs:range [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom publish:AgentPublisher]];
+	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom publish:AgentPublisher]];
 	rdfs:subPropertyOf human:hasCreator;
 	knora-base:subjectClassConstraint publish:Publication;
 	knora-base:objectClassConstraint human:Agent.
