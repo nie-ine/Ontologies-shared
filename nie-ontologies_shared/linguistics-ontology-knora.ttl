@@ -119,6 +119,26 @@ ling:Evaluation
 # PROPERTIES
 #
 
+ling:hasSynonym
+	a owl:ObjectProperty;
+	rdfs:label "has synonym"@en, "hat Synonym"@de;
+	rdfs:comment """Relating a resource to a synonym of the name of the resource."""@en;
+	rdfs:domain rdfs:Resource; #°
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasName;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+ling:hasComment
+	a owl:ObjectProperty;
+	rdfs:label "has linguistic comment"@en, "hat linguistischer Kommentar"@de;
+	rdfs:comment """Relating a human natural language expression to a linguistic comment as a textual statement about the expression."""@en;
+	rdfs:domain language:HumanNaturalLanguageExpression;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf text:hasComment;
+	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
 ling:hasLanguage
 	a owl:ObjectProperty;
 	rdfs:label "has language"@en, "hat Sprache"@de;
@@ -136,44 +156,6 @@ ling:hasLanguageValue
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint ling:Concept;
 	knora-base:objectClassConstraint knora-base:LinkValue.
-
-ling:hasComment
-	a owl:ObjectProperty;
-	rdfs:label "has linguistic comment"@en, "hat linguistischer Kommentar"@de;
-	rdfs:comment """Relating a human natural language expression to a linguistic comment as a textual statement about the expression."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasComment;
-	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-ling:hasSynonym
-	a owl:ObjectProperty;
-	rdfs:label "has synonym"@en, "hat Synonym"@de;
-	rdfs:comment """Relating a resource to a synonym of the name of the resource."""@en;
-	rdfs:domain rdfs:Resource; #°
-	rdfs:range rdfs:Literal;
-	rdfs:subPropertyOf text:hasName;
-	knora-base:subjectClassConstraint knora-base:Resource;
-	knora-base:objectClassConstraint knora-base:TextValue.
-
-# ling:hasSemanticGender
-#	a owl:ObjectProperty;
-#	rdfs:label "has semantic gender"@en, "hat semantisches Genus"@de;
-#	rdfs:comment """Relating a lexeme to its semantic gender."""@en;
-#	rdfs:domain ling:Lexeme;
-#	rdfs:range lingmor:SemanticGender;
-#	rdfs:subPropertyOf knora-base:hasLinkTo;
-#	knora-base:subjectClassConstraint ling:Lexeme;
-#	knora-base:objectClassConstraint lingmor:SemanticGender.
-
-# ling:hasSemanticGenderValue
-#	a owl:ObjectProperty;
-#	rdfs:label "has semantic gender - statement"@en, "hat semantisches Genus - Festlegung"@de;
-#	rdfs:comment """Relating a lexeme to a reification statement of the relation between the lexeme and its semantic gender."""@en;
-#	rdfs:subPropertyOf knora-base:hasLinkToValue;
-#	knora-base:subjectClassConstraint ling:Lexeme;
-#	knora-base:objectClassConstraint knora-base:LinkValue.
 
 ling:hasLemma
 	a owl:ObjectProperty;
