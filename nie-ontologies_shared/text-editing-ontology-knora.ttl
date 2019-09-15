@@ -68,6 +68,15 @@ textedit:Revision
 		a owl:Restriction; owl:onProperty textedit:hasRevisor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasRevisorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+textedit:Recension
+	a owl:Class;
+	rdfs:label "recension"@en, "Rezension"@de;
+	rdfs:comment """Critical revision of a text, e.g. a literary classic, i.e. based on a critical examination of earlier texts and authoritative sources, usually undertaken only after a consensus has developed among leading scholars concerning the weight of evidence."""@en;
+	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_r.aspx>;
+	rdfs:subClassOf textedit:Revision , [
+		a owl:Restriction; owl:onProperty textedit:hasRecensor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty textedit:hasRecensorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 textedit:Annotator
 	a owl:Class;
 	rdfs:label "annotator"@en, "Annotator"@de, "annotator"@la;
@@ -86,7 +95,7 @@ textedit:Abbreviator
 	rdfs:comment """Editor shortening a text."""@en;
 	rdfs:subClassOf textedit:Editor.
 
-textedit:Abbreviation # derivative?
+textedit:Abbreviation # derivative, depending on extent?
 	a owl:Class;
 	rdfs:label "abbreviation"@en, "Kurzfassung"@de;
 	rdfs:comment """Shortened edition."""@en;
@@ -193,6 +202,24 @@ textedit:hasRevisorValue
 	rdfs:comment """Relating a text revision to a reification statement of the relation between the revision and a person who created it."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint textedit:Revision;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+textedit:hasRecensor
+	a owl:ObjectProperty;
+	rdfs:label "has recensor"@en, "hat Rezensor"@de;
+	rdfs:comment """Relating a recension to a person who created it."""@en;
+	rdfs:domain textedit:Recension;
+	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Recensor]];
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint textedit:Recension;
+	knora-base:objectClassConstraint human:Person.
+
+textedit:hasRecensorValue
+	a owl:ObjectProperty;
+	rdfs:label "has recensor - statement"@en, "hat Rezensor - Festlegung"@de;
+	rdfs:comment """Relating a recension to a reification statement of the relation between the recension and a person who created it."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint textedit:Recension;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 textedit:hasTransliteration
