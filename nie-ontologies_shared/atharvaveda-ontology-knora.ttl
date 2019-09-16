@@ -107,10 +107,10 @@ athar:AdjectiveForm
 		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 athar:AbsolutiveForm
 	a owl:Class;
@@ -125,12 +125,12 @@ athar:GerundForm
 	rdfs:subClassOf lingmor:SyntacticWordForm, [
 		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 athar:InfinitiveForm
 	a owl:Class;
@@ -145,14 +145,14 @@ athar:NounForm
 	rdfs:subClassOf lingmor:SyntacticWordForm, [
 		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasComparisonDegree; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasComparisonDegree; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasComparisonDegreeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 athar:GenderedPronoundForm
 	a owl:Class;
@@ -161,12 +161,12 @@ athar:GenderedPronoundForm
 	rdfs:subClassOf lingmor:SyntacticWordForm, [
 		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 athar:PassivePastParticipleForm
 	a owl:Class;
@@ -175,22 +175,22 @@ athar:PassivePastParticipleForm
 	rdfs:subClassOf lingmor:SyntacticWordForm, [
 		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasTense; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasTense; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasTenseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasVerbalMood; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalMood; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasVerbalMoodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasVerbalVoice; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalVoice; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasVerbalVoiceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasDerivation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasDerivation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:hasDerivationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasVerbStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasVerbStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:hasVerbStemValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 athar:UngenderedPronoundForm
 	a owl:Class;
@@ -201,10 +201,10 @@ athar:UngenderedPronoundForm
 		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasPerson; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasPerson; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasPersonValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 athar:FiniteVerbForm
 	a owl:Class;
@@ -213,20 +213,20 @@ athar:FiniteVerbForm
 	rdfs:subClassOf lingmor:SyntacticWordForm, [
 		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasPerson; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasPerson; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasPersonValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasTense; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasTense; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasTenseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasVerbalMood; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalMood; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasVerbalMoodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty lingmor:hasVerbalVoice; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalVoice; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty lingmor:hasVerbalVoiceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasDerivation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasDerivation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:hasDerivationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasVerbStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasVerbStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:hasVerbStemValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 athar:Derivation
   a owl:Class;
