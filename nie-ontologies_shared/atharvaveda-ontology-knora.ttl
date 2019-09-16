@@ -13,6 +13,7 @@
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix litera: <http://www.knora.org/ontology/shared/literature#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
+@prefix lingmor: <http://www.knora.org/ontology/shared/linguistic-morphology#>.
 @prefix indo: <http://www.knora.org/ontology/shared/indology#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
@@ -96,6 +97,156 @@ athar:Verse
 		a owl:Restriction; owl:onProperty athar:isVerseOfStropheValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isVerseOfHalfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isVerseOfHalfStropheValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:AdjectiveForm
+	a owl:Class;
+	rdfs:label "adjective form"@en, "Adjektivform"@de;
+	rdfs:comment """Linguistic concept unifying occurrences of adjectives with identical literal and grammemes."""@en;
+	rdfs:subClassOf lingmor:SyntacticWordForm, [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:AbsolutiveForm
+	a owl:Class;
+	rdfs:label "absolutive form"@en, "Absolutivform"@de;
+	rdfs:comment """Linguistic concept unifying occurrences of absolutives with identical literal."""@en;
+	rdfs:subClassOf lingmor:SyntacticWordForm.
+
+athar:GerundForm
+	a owl:Class;
+	rdfs:label "gerund form"@en, "Gerundiumform"@de;
+	rdfs:comment """Linguistic concept unifying occurrences of gerunds with identical literal and grammemes."""@en;
+	rdfs:subClassOf lingmor:SyntacticWordForm, [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:InfinitiveForm
+	a owl:Class;
+	rdfs:label "infinitive form"@en, "Infinitivform"@de;
+	rdfs:comment """Linguistic concept unifying occurrences of infinitives with identical literal."""@en;
+	rdfs:subClassOf lingmor:SyntacticWordForm.
+
+athar:NounForm
+	a owl:Class;
+	rdfs:label "noun form"@en, "Nomen-Form"@de;
+	rdfs:comment """Linguistic concept unifying occurrences of nouns with identical literal and grammemes."""@en;
+	rdfs:subClassOf lingmor:SyntacticWordForm, [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasComparisonDegree; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasComparisonDegreeValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:GenderedPronoundForm
+	a owl:Class;
+	rdfs:label "gendered pronoun form"@en, "Pronomen-Form mit Geschlecht"@de;
+	rdfs:comment """Linguistic concept unifying occurrences of gendered pronouns with identical literal and grammemes."""@en;
+	rdfs:subClassOf lingmor:SyntacticWordForm, [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:PassivePastParticipleForm
+	a owl:Class;
+	rdfs:label "past participle form"@en, "Pronomen-Form Vergangenheit"@de;
+	rdfs:comment """Linguistic concept unifying occurrences of past participles with identical literal and grammemes."""@en;
+	rdfs:subClassOf lingmor:SyntacticWordForm, [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGender; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasGrammaticalGenderValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasTense; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasTenseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasVerbalMood; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalMoodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasVerbalVoice; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalVoiceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasDerivation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasDerivationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasVerbStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasVerbStemValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:UngenderedPronoundForm
+	a owl:Class;
+	rdfs:label "ungendered pronoun form"@en, "Pronomen-Form ohne Geschlecht"@de;
+	rdfs:comment """Linguistic concept unifying occurrences of ungendered pronouns with identical literal grammemes."""@en;
+	rdfs:subClassOf lingmor:SyntacticWordForm, [
+		a owl:Restriction; owl:onProperty lingmor:hasCase; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasCaseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasPerson; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasPersonValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:FiniteVerbForm
+	a owl:Class;
+	rdfs:label "finite verb form"@en, "finite Verbform"@de;
+	rdfs:comment """Linguistic concept unifying occurrences of finite verb forms with identical literal and grammemes."""@en;
+	rdfs:subClassOf lingmor:SyntacticWordForm, [
+		a owl:Restriction; owl:onProperty lingmor:hasNumber; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasNumberValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasPerson; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasPersonValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasTense; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasTenseValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasVerbalMood; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalMoodValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty lingmor:hasVerbalVoice; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty lingmor:hasVerbalVoiceValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasDerivation; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasDerivationValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasVerbStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:hasVerbStemValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasStem; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+    a owl:Restriction; owl:onProperty athar:hasTermination; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+athar:Derivation
+  a owl:Class;
+ 	rdfs:label "derivation"@en, "Derivation"@de;
+	rdfs:comment """Derivation encodes the declension class of verbs."""@en;
+	rdfs:subClassOf ling:Concept. #° lingmor:MorphologicalConcept
+
+athar:VerbStem
+  a owl:Class;
+ 	rdfs:label "verb stem"@en, "Verbstamm"@de;
+	rdfs:comment """Verb stems encode additional specific meaning to a verb stem."""@en;
+	rdfs:subClassOf ling:Concept. #° lingmor:MorphologicalConcept
+
+athar:CompoundCase
+	a owl:Class;
+	rdfs:label "compound case"@en, "Kompositumteil"@de;
+	rdfs:comment """Grammatical case indicating the part of a compound noun."""@en; #° subject
+	rdfs:subClassOf lingmor:Case.
+
+
 
 #
 # PROPERTIES
@@ -226,3 +377,59 @@ athar:isVerseOfHalfStropheValue
 	rdfs:subPropertyOf prosodic-structure:isVerseOfHalfStropheValue;
 	knora-base:subjectClassConstraint athar:Verse;
 	knora-base:objectClassConstraint knora-base:LinkValue.
+
+athar:hasVerbStem
+	a owl:ObjectProperty;
+	rdfs:label "has verb stem"@en, "hat Verbastamm"@de;
+	rdfs:comment """Relating a verb form to information about its stem."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range athar:VerbStem;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint athar:VerbStem.
+
+athar:hasVerbStemValue
+	a owl:ObjectProperty;
+	rdfs:label "has stem type - statement"@en, "hat Verbstamm - Festlegung"@de;
+	rdfs:comment """Relating a verb form to information about its stem - reification."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+athar:hasDerivation
+	a owl:ObjectProperty;
+	rdfs:label "has stem type"@en, "hat Stammtyp"@de;
+	rdfs:comment """Relating a verb form to information about derivation."""@en;
+	rdfs:domain lingmor:WordForm;
+	rdfs:range lingmor:Derivation;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint athar:Derivation.
+
+athar:hasDerivationValue
+	a owl:ObjectProperty;
+	rdfs:label "has stem type - statement"@en, "hat Stammtyp - Festlegung"@de;
+	rdfs:comment """Relating a verb form to information about derivation - reification."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+athar:hasStem
+	a owl:ObjectProperty;
+	rdfs:label "has stem"@en, "hat Stamm"@de;
+	rdfs:comment """Relating a human natural language expression to a linguistic comment as a textual statement about the expression."""@en;
+	rdfs:domain lingmor:SyntacticWordForm;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint knora-base:TextValue.
+
+athar:hasTermination
+	a owl:ObjectProperty;
+	rdfs:label "has termination"@en, "hat Endung"@de;
+	rdfs:comment """Relating a human natural language expression to a linguistic comment as a textual statement about the expression."""@en;
+	rdfs:domain lingmor:SyntacticWordForm;
+	rdfs:range rdfs:Literal;
+	rdfs:subPropertyOf knora-base:hasValue;
+	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
+	knora-base:objectClassConstraint knora-base:TextValue.
