@@ -39,7 +39,7 @@
 lingmor:SyntacticWordForm
 	a owl:Class;
 	rdfs:label "syntactic word form"@en, "syntaktische Wortform"@de;
-	rdfs:comment """Linguistic concept unifying infinite syntactic words with identical literal."""@en;
+	rdfs:comment """Linguistic concept unifying occurrences of syntactic words with identical literal and grammemes."""@en;
 	skos:note """A sentence can contain 2 times the syntactic word 'sun', unified by 1 syntactic word form 'sun'."""@en;
 	rdfs:subClassOf ling:Concept, [
 		a owl:Restriction; owl:onProperty lingmor:hasLexeme; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
