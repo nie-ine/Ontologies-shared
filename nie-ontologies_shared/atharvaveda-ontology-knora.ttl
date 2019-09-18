@@ -56,7 +56,7 @@ athar:Paippalada-Samhita
 athar:Kanda
 	a owl:Class;
 	rdfs:label "Atharvaveda kāṇḍa"@sa, "Atharvaveda kanda"@en, "Atharvaveda Kanda"@de;
-	rdfs:comment """Kande or verse section of the Atharvaveda."""@en;
+	rdfs:comment """Kanda or verse section of the Atharvaveda."""@en;
 	skos:note """The Atharvaveda contains 20 Kandas."""@en;
 	rdfs:subClassOf prosodic-structure:VerseSection, indo:Expression, [
 		a owl:Restriction; owl:onProperty athar:isKandaOfAtharvaveda; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
