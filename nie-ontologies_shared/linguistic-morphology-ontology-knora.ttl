@@ -10,6 +10,7 @@
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix agent: <http://www.knora.org/ontology/shared/agent#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
@@ -220,47 +221,47 @@ lingmor:SubjunctiveMood
 lingmor:Tense
 	a owl:Class;
 	rdfs:label "tense"@en, "Tempus"@de;
-	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:comment """..."""@en;
 #	owl:sameAs gold:TenseProperty;
 	rdfs:subClassOf ling:Concept. #° lingmor:MorphologicalConcept
 
 lingmor:Aorist
 	a owl:Class;
 	rdfs:label "aorist"@en, "Aorist"@de;
-	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:comment """..."""@en;
 	rdfs:subClassOf lingmor:Tense.
 
 lingmor:Future
 	a owl:Class;
 	rdfs:label "future"@en, "Futur"@de;
-	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:comment """..."""@en;
 #	owl:sameAs gold:FutureTense;
 	rdfs:subClassOf lingmor:Tense.
 
 lingmor:Imperfect
 	a owl:Class;
 	rdfs:label "imperfect"@en, "Imperfekt"@de;
-	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:comment """..."""@en;
 	rdfs:subClassOf lingmor:Tense.
 
 lingmor:Perfect
 	a owl:Class;
 	rdfs:label "perfect"@en, "Perfekt"@de;
-	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:comment """..."""@en;
 #	owl:sameAs gold:PerfectTense;
 	rdfs:subClassOf lingmor:Tense.
 
 lingmor:Pluperfect
 	a owl:Class;
 	rdfs:label "pluperfect"@en, "Plusquamperfekt"@de;
-	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:comment """..."""@en;
 #	owl:sameAs gold:PastInPastTense;
 	rdfs:subClassOf lingmor:Tense.
 
 lingmor:Present
 	a owl:Class;
 	rdfs:label "present"@en, "Präsens"@de;
-	rdfs:comment """Degree of comparison in adjectives or adverbs."""@en;
+	rdfs:comment """..."""@en;
 #	owl:sameAs gold:PresentTense;
 	rdfs:subClassOf lingmor:Tense.
 
@@ -650,7 +651,7 @@ lingmor:hasGrammaticalGenderValue
 
 lingmor:hasComparisonDegree
 	a owl:ObjectProperty;
-	rdfs:label "has degree"@en, "hat Komparationsstufe"@de;
+	rdfs:label "has comparison degree"@en, "hat Komparationsstufe"@de;
 	rdfs:comment """Relating a wordform to a comparison degree."""@en;
 	rdfs:domain lingmor:SyntacticWordForm;
 	rdfs:range lingmor:ComparisonDegree;
@@ -660,7 +661,7 @@ lingmor:hasComparisonDegree
 
 lingmor:hasComparisonDegreeValue
 	a owl:ObjectProperty;
-	rdfs:label "has degree - statement"@en, "hat Komparationsstufe - Festlegung"@de;
+	rdfs:label "has comparison degree - statement"@en, "hat Komparationsstufe - Festlegung"@de;
 	rdfs:comment """Relating a wordform to a comparison degree - reification."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
