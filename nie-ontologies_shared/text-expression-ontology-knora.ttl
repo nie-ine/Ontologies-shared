@@ -8,6 +8,7 @@
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix org: <http://www.knora.org/ontology/shared/organization#>.
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
@@ -126,7 +127,7 @@ text-expression:Author
 	rdfs:label "text author"@en, "Textautor"@de, "auteur du texte"@fr, "autore di testo"@it;
 	rdfs:comment """Role of a person being responsible for the creation of a text expression."""@en;
 	skos:note """Often an author is also the creator of a text expression."""@en;
-	rdfs:subClassOf human:Author.
+	rdfs:subClassOf creating:Author.
 
 text-expression:MainAuthor
 	a owl:Class;
@@ -287,7 +288,7 @@ text-expression:hasAuthor
 	skos:note """A text can have more than one author."""@en;
 	rdfs:domain text-expression:Expression;
 	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text-expression:Author]];
-	rdfs:subPropertyOf human:hasAuthor;
+	rdfs:subPropertyOf creating:hasAuthor;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint human:Person.
 
@@ -295,7 +296,7 @@ text-expression:hasAuthorValue
 	a owl:ObjectProperty;
 	rdfs:label "text has author - statement"@en, "Text hat Autor - Festlegung"@de;
 	rdfs:comment """Relating a text expression to a reification statement of the relation between the text and a person who authored it."""@en;
-	rdfs:subPropertyOf human:hasAuthorValue;
+	rdfs:subPropertyOf creating:hasAuthorValue;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
