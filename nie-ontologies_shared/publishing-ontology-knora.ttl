@@ -8,6 +8,7 @@
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix agent: <http://www.knora.org/ontology/shared/agent#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix org: <http://www.knora.org/ontology/shared/organization#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
@@ -86,13 +87,13 @@ publish:Redactor
 	a owl:Class;
 	rdfs:label "redactor"@en, "Redaktor"@de;
 	rdfs:comment """Editor preparing an expression for publication."""@en;
-	rdfs:subClassOf human:PersonCreator.
+	rdfs:subClassOf creating:PersonCreator.
 
 publish:AgentPublisher
 	a owl:Class;
 	rdfs:label "agent publisher"@en, "Agent-Herausgeber"@de;
 	rdfs:comment """Role of an agent, person or group, that is publishing."""@en;
-	rdfs:subClassOf human:AgentCreator.
+	rdfs:subClassOf creating:AgentCreator.
 
 publish:PersonPublisher
 	a owl:Class;
@@ -169,7 +170,7 @@ publish:FirstPublication
 	a owl:Class;
 	rdfs:label "first publication"@en, "Erstausgabe"@de;
 	rdfs:comment """Earliest publication of an expression."""@en;
-	rdfs:subClassOf publish:Publication. # human:FirstVersion
+	rdfs:subClassOf publish:Publication. # creating:FirstVersion
 
 publish:LastPublication
 	a owl:Class;
@@ -534,7 +535,7 @@ publish:hasDate
 	rdfs:comment """Relating a publication to the date it is published on."""@en;
 	rdfs:domain publish:Publication;
 	rdfs:range xsd:date;
-	rdfs:subPropertyOf human:creationHasDate;
+	rdfs:subPropertyOf creating:creationHasDate;
 	knora-base:subjectClassConstraint publish:Publication;
 	knora-base:objectClassConstraint knora-base:DateValue.
 
@@ -582,7 +583,7 @@ publish:hasPublisher
 	rdfs:comment """Relating a publication to its publisher."""@en;
 	rdfs:domain publish:Publication;
 	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom publish:AgentPublisher]];
-	rdfs:subPropertyOf human:hasCreator;
+	rdfs:subPropertyOf creating:hasCreator;
 	knora-base:subjectClassConstraint publish:Publication;
 	knora-base:objectClassConstraint human:Agent.
 
@@ -590,7 +591,7 @@ publish:hasPublisherValue
 	a owl:ObjectProperty;
 	rdfs:label "has publisher - statement"@en, "hat Herausgeber - Festlegung"@de;
 	rdfs:comment """Relating a publication to a reification statement of the relation between the publication and its publisher."""@en;
-	rdfs:subPropertyOf human:hasCreatorValue;
+	rdfs:subPropertyOf creating:hasCreatorValue;
 	knora-base:subjectClassConstraint publish:Publication;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
