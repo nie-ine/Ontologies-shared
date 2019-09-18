@@ -10,6 +10,7 @@
 @prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
 @prefix agent: <http://www.knora.org/ontology/shared/agent#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix knora-base: <http://www.knora.org/ontology/knora-base#>.
 
@@ -55,7 +56,7 @@ org:Creator
 	a owl:Class;
 	rdfs:label "organization creator"@en, "Organisation-Erschafferin"@de;
 	rdfs:comment """Publisher as role of an organization."""@en;
-	rdfs:subClassOf human:AgentCreator, org:Role.
+	rdfs:subClassOf creating:AgentCreator, org:Role.
 
 org:Administration
 	a owl:Class;
