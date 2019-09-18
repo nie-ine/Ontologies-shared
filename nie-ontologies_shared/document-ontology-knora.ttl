@@ -9,6 +9,7 @@
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix math: <http://www.knora.org/ontology/shared/mathematics#>.
 @prefix ling: <http://www.knora.org/ontology/shared/linguistics#>.
@@ -276,7 +277,7 @@ document:Draft
 	a owl:Class;
 	rdfs:label "document draft"@en, "Dokumententwurf"@de;
 	rdfs:comment """Developmental document expression, subject to future modification."""@en;
-	rdfs:subClassOf document:Expression, human:UnfinishedCreation. # Creation in a state of not having all envisioned features
+	rdfs:subClassOf document:Expression, creating:UnfinishedCreation. # Creation in a state of not having all envisioned features
 
 document:PolyAuthorExpression
 	a owl:Class;
@@ -314,7 +315,7 @@ document:Encoder
 	a owl:Class;
 	rdfs:label "encoder"@en, "KodiererIn"@de, "codeur"@fr, "codificatore"@it;
 	rdfs:comment """Role of a person converting a document into code, e.g. from text to XML."""@en;
-	rdfs:subClassOf human:PersonCreator.
+	rdfs:subClassOf creating:PersonCreator.
 
 document:Code
 	a owl:Class;
