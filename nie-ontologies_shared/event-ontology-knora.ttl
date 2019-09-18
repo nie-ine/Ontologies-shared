@@ -117,7 +117,7 @@ event:Intent
 event:Creating
 	a owl:Class;
 	rdfs:label "creating"@en, "Kreierung"@de;
-	rdfs:comment """Bringing into existence."""@en;
+	rdfs:comment """Changing matter and or energy."""@en; # Bringing into existence
 	rdfs:subClassOf event:Action.
 
 #
