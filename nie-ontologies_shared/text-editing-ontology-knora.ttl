@@ -8,6 +8,7 @@
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix org: <http://www.knora.org/ontology/shared/organization#>.
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
@@ -44,13 +45,13 @@ textedit:Editor
 	a owl:Class;
 	rdfs:label "text editor"@en, "Text-Editor"@de;
 	rdfs:comment """Role of a person changing a text."""@en;
-	rdfs:subClassOf human:PersonCreator.
+	rdfs:subClassOf creating:PersonCreator.
 
 textedit:Edition
 	a owl:Class;
 	rdfs:label "text edition"@en, "Text-Edition"@de;
 	rdfs:comment """Changed text as a result of editing."""@en;
-	rdfs:subClassOf text:Text , [ # human:CreationVersion
+	rdfs:subClassOf text:Text , [ # creating:CreationVersion
 		a owl:Restriction; owl:onProperty textedit:hasEditor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasEditorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -126,7 +127,7 @@ textedit:DerivedTextExpression
 	a owl:Class;
 	rdfs:label "derived text expression"@en, "abgeleitete Textexpression"@de;
 	rdfs:comment """Text expression derived from another text expression with content changed beyond a version."""@en;
-	rdfs:subClassOf text-expression:Expression, human:CreationDerivative, textedit:Edition.
+	rdfs:subClassOf text-expression:Expression, creating:CreationDerivative, textedit:Edition.
 
 #
 # PROPERTIES
