@@ -10,6 +10,7 @@
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix agent: <http://www.knora.org/ontology/shared/agent#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
 @prefix device: <http://www.knora.org/ontology/shared/device#>.
@@ -141,7 +142,7 @@ language:PersonTranslator
 	a owl:Class;
 	rdfs:label "person-translator"@en, "Person-Übersetzer"@de;
 	rdfs:comment """Translator as role of a person."""@en;
-	rdfs:subClassOf language:AgentTranslator, human:PersonCreator.
+	rdfs:subClassOf language:AgentTranslator, creating:PersonCreator.
 
 language:Translation
 	a owl:Class;
@@ -157,7 +158,7 @@ language:PersonTranslation
 	a owl:Class;
 	rdfs:label "person's translation"@en, "Übersetzung einer Person"@de;
 	rdfs:comment """Translation done by a person."""@en;
-	rdfs:subClassOf language:Translation, human:CreationDerivative, [
+	rdfs:subClassOf language:Translation, creating:CreationDerivative, [
 		a owl:Restriction; owl:onProperty language:translationHasPersonTranslator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty language:translationHasPersonTranslatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
