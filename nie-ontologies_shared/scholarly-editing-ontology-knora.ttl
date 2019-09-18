@@ -8,6 +8,7 @@
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix org: <http://www.knora.org/ontology/shared/organization#>.
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
@@ -123,7 +124,7 @@ scholarly-editing:CriticalEditor
 	a owl:Class;
 	rdfs:label "critical editor"@en, "kritische Editor"@de;
 	rdfs:comment """Role of being a scholar editing a text expression in a critical scientific way."""@en;
-	rdfs:subClassOf human:Scientist, human:PersonCreator.
+	rdfs:subClassOf human:Scientist, creating:PersonCreator.
 
 scholarly-editing:CriticalEdition
 	a owl:Class;
@@ -660,7 +661,7 @@ scholarly-editing:hasApparatusEnteringDate
 	rdfs:comment """Relating an entry to its date of entering in an apparatus."""@en;
 	rdfs:domain scholarly-editing:ApparatusEntry;
 	rdfs:range xsd:date; #°
-	rdfs:subPropertyOf human:creationHasDate;
+	rdfs:subPropertyOf creating:creationHasDate;
 	knora-base:subjectClassConstraint scholarly-editing:ApparatusEntry;
 	knora-base:objectClassConstraint knora-base:DateValue.
 
