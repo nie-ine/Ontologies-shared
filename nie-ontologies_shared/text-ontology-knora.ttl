@@ -8,6 +8,7 @@
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix org: <http://www.knora.org/ontology/shared/organization#>.
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
@@ -113,7 +114,7 @@ text:Developing
 	a owl:Class;
 	rdfs:label "text developing"@en, "Textentwicklung"@de;
 	rdfs:comment """Action wherein a person(s) creates text resulting in different manifestation, e.g. from notebook to manuscript to typescript to published print."""@en;
-	rdfs:subClassOf human:Creating, [
+	rdfs:subClassOf creating:Creating, [
 		a owl:Restriction; owl:onProperty event:hasStage; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty event:hasStageValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -136,7 +137,7 @@ text:Handwriter
 	a owl:Class;
 	rdfs:label "handwriter"@en, "Handschreiber"@de, "écrivain"@fr, "manoscrittore"@it;
 	rdfs:comment """Role of a person writing text symbols by hand."""@en;
-	rdfs:subClassOf human:PersonCreator.
+	rdfs:subClassOf creating:PersonCreator.
 
 text:HandwrittenText
 	a owl:Class;
@@ -176,7 +177,7 @@ text:Transcriber
 	a owl:Class;
 	rdfs:label "text transcriber"@en, "TexttranskribiererIn"@de, "scribe de texte"@fr, "scriba di testo"@it;
 	rdfs:comment """Role of a person copying a text by writing, creating a transcribed text in a transcript."""@en;
-	rdfs:subClassOf human:PersonCreator.
+	rdfs:subClassOf creating:PersonCreator.
 
 text:TranscribedText
 	a owl:Class;
@@ -257,13 +258,13 @@ text:NormalizedDerivative
 	a owl:Class;
 	rdfs:label "normalized text derivative"@en, "normalisiertes Textderivat"@de;
 	rdfs:comment """Derivative of a text of which it is a normalization along a certain procedure."""@en;
-	rdfs:subClassOf text:Text, human:CreationDerivative.
+	rdfs:subClassOf text:Text, creating:CreationDerivative.
 
 text:Compiler
 	a owl:Class;
 	rdfs:label "compiler"@en, "Kompilator"@de, "compilator"@la;
 	rdfs:comment """Role of a person assembling texts to a new whole."""@en;
-	rdfs:subClassOf human:PersonCreator.
+	rdfs:subClassOf creating:PersonCreator.
 
 text:CompiledText
 	a owl:Class;
