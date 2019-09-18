@@ -6,6 +6,7 @@
 @prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix language: <http://www.knora.org/ontology/shared/language#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
@@ -156,7 +157,7 @@ kuno-raeber:PoemNote
 	a owl:Class;
 	rdfs:label "Kuno Raeber poem note"@en, "Gedichtnotiz Kuno Raebers"@de;
 	rdfs:comment """Poem note authored by Kuno Raeber."""@en, """Gedichtnotiz Kuno Raebers."""@de;
-	rdfs:subClassOf kuno-raeber:HandwrittenPoem, human:FirstVersion, [
+	rdfs:subClassOf kuno-raeber:HandwrittenPoem, creating:FirstVersion, [
 		a owl:Restriction; owl:onProperty kuno-raeber:isInNotebook; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty kuno-raeber:isInNotebookValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
