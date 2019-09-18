@@ -6,6 +6,7 @@
 @prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix text-expression: <http://www.knora.org/ontology/shared/text-expression#>.
 @prefix text-structure: <http://www.knora.org/ontology/shared/text-structure#>.
 @prefix infocar: <http://www.knora.org/ontology/shared/information-carrier#>.
@@ -86,7 +87,7 @@ letter-corresponding:Envelope
 	a owl:Class;
 	rdfs:label "envelope"@en, "Umschlag"@de;
 	rdfs:comment """Flat paper container with a sealable flap for sending something, e.g. a letter, from (a) person(s) or (an) Organization(s) to another one, e.g. through a postal system."""@en;
-	rdfs:subClassOf human:PhysicalCreation.
+	rdfs:subClassOf creating:PhysicalCreation.
 
 letter-corresponding:EnclosureExpression
 	a owl:Class;
@@ -100,7 +101,7 @@ letter-corresponding:Enclosure
 	a owl:Class;
 	rdfs:label "letter enclosure"@en, "Briefbeilage"@de;
 	rdfs:comment """Something added to a letter being sent, e.g. another information carrier."""@en;
-	rdfs:subClassOf human:PhysicalCreation.
+	rdfs:subClassOf creating:PhysicalCreation.
 
 letter-corresponding:InformationEnclosure
 	a owl:Class;
