@@ -9,6 +9,7 @@
 @prefix physical: <http://www.knora.org/ontology/shared/physical-entity#>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix human: <http://www.knora.org/ontology/shared/human#>.
+@prefix creating: <http://www.knora.org/ontology/shared/creating#>.
 @prefix concept: <http://www.knora.org/ontology/shared/concept#>.
 @prefix document: <http://www.knora.org/ontology/shared/document#>.
 @prefix text: <http://www.knora.org/ontology/shared/text#>.
@@ -41,7 +42,7 @@ infocar:Carrier
  	rdfs:label "information carrier"@en,"Informationsträger"@de, "support d'information"@fr;
  	rdfs:comment """Carrier of information created by a person."""@en;
 	skos:note """Includes both F4_Manifestation_Singleton and F5_Item as declared in FRBROO."""@en;
-	rdfs:subClassOf human:PhysicalCreation, cidoc:E84_Information_Carrier, [
+	rdfs:subClassOf creating:PhysicalCreation, cidoc:E84_Information_Carrier, [
 		a owl:Restriction; owl:onProperty infocar:carrierHasDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isCarrierOfSet; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isCarrierOfSetValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -60,7 +61,7 @@ infocar:Fragment
  	rdfs:label "information carrier fragment"@en,"Informationsträgerfragment"@de; #, "support d'information"@fr;
  	rdfs:comment """Fragment of information on a carrier."""@en;
  	skos:note """Fragments can possibly be reassembled."""@en;
-	rdfs:subClassOf human:PhysicalCreation, [
+	rdfs:subClassOf creating:PhysicalCreation, [
 		a owl:Restriction; owl:onProperty infocar:isFragmentOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isFragmentOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -68,7 +69,7 @@ infocar:Remnant
 	a owl:Class;
  	rdfs:label "information carrier remnant"@en,"Informationsträgerüberrest"@de; #, "support d'information"@fr;
  	rdfs:comment """Remnant of information on a carrier."""@en;
-	rdfs:subClassOf human:PhysicalCreation, [
+	rdfs:subClassOf creating:PhysicalCreation, [
 		a owl:Restriction; owl:onProperty infocar:isRemnantOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isRemnantOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -76,27 +77,27 @@ infocar:Set
 	a owl:Class;
 	rdfs:label "information carrier set"@en, "Informationsträger-Reihe"@de, "ensemble des supports d'information"@fr;
 	rdfs:comment """Information carriers belonging together, e.g. a partitioned work, a nachlass."""@en;
-	rdfs:subClassOf human:CreationSet, physical:Matter. #, [
+	rdfs:subClassOf creating:CreationSet, physical:Matter. #, [
 #		a owl:Restriction; owl:onProperty infocar:hasCarrierDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Collection
 	a owl:Class;
 	rdfs:label "information carrier collection"@en, "Informationsträger-Kollektion"@de, "collection des supports d'information"@fr;
 	rdfs:comment """Collection of information carriers, e.g. an archive."""@en;
-	rdfs:subClassOf human:Collection, human:PhysicalCreation, [
+	rdfs:subClassOf creating:Collection, creating:PhysicalCreation, [
 		a owl:Restriction; owl:onProperty infocar:hasCarrierDescription; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 infocar:Draft
 	a owl:Class;
 	rdfs:label "information draft carrier"@en, "Informationsentwurfträger"@de;
 	rdfs:comment """Carrier with a draft of information."""@en;
-	rdfs:subClassOf infocar:Carrier, human:UnfinishedCreation.
+	rdfs:subClassOf infocar:Carrier, creating:UnfinishedCreation.
 
 infocar:Copy
 	a owl:Class;
 	rdfs:label "information copy carrier"@en, "Informationskopieträger"@de;
 	rdfs:comment """Carrier with a copy of information."""@en;
-	rdfs:subClassOf infocar:Carrier, human:Copy, [
+	rdfs:subClassOf infocar:Carrier, creating:Copy, [
 		a owl:Restriction; owl:onProperty infocar:isCopyOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty infocar:isCopyOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
@@ -353,7 +354,7 @@ infocar:PersonPrinter
 	a owl:Class;
 	rdfs:label "person printer"@en, "Person-Drucker"@de;
 	rdfs:comment """Role of a person printing an expression."""@en;
-	rdfs:subClassOf human:PersonCreator, infocar:AgentPrinter.
+	rdfs:subClassOf creating:PersonCreator, infocar:AgentPrinter.
 
 infocar:Print
 	a owl:Class;
@@ -1095,7 +1096,7 @@ infocar:hasTranscriber
 	rdfs:comment """Relating a transcript to a person who created it."""@en;
 	rdfs:domain infocar:Transcript;
 	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Transcriber]];
-	rdfs:subPropertyOf human:hasCreator;
+	rdfs:subPropertyOf creating:hasCreator;
 	knora-base:subjectClassConstraint infocar:Transcript;
 	knora-base:objectClassConstraint human:Person.
 
@@ -1103,7 +1104,7 @@ infocar:hasTranscriberValue
 	a owl:ObjectProperty;
 	rdfs:label "has transcriber - statement"@en, "hat TranskribiererIn - Festlegung"@de;
 	rdfs:comment """Relating a transcript to a reification statement of the relation between the transcript and a person who created it."""@en;
-	rdfs:subPropertyOf human:hasCreatorValue;
+	rdfs:subPropertyOf creating:hasCreatorValue;
 	knora-base:subjectClassConstraint infocar:Transcript;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -1167,7 +1168,7 @@ infocar:hasPrinter
 	rdfs:comment """Relating a print to its printer."""@en;
 	rdfs:domain infocar:Print;
 	rdfs:range human:Agent; #  [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom infocar:AgentPrinter]];
-	rdfs:subPropertyOf human:hasCreator;
+	rdfs:subPropertyOf creating:hasCreator;
 	knora-base:subjectClassConstraint infocar:Print;
 	knora-base:objectClassConstraint human:Agent.
 
@@ -1175,7 +1176,7 @@ infocar:hasPrinterValue
 	a owl:ObjectProperty;
 	rdfs:label "has printer - statement"@en, "hat Drucker - Festlegung"@de;
 	rdfs:comment """Relating a print to a reification statement of the relation between the print and its printer."""@en;
-	rdfs:subPropertyOf human:hasCreatorValue;
+	rdfs:subPropertyOf creating:hasCreatorValue;
 	knora-base:subjectClassConstraint infocar:Print;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -1349,7 +1350,7 @@ infocar:hasDiaryEnteringDate
 	a owl:ObjectProperty;
 	rdfs:label "has diary entering date"@en, "hat Tagebucheintragsdatum"@de;
 	rdfs:comment """Relating a diary entry to its date of entering in a diary."""@en;
-	rdfs:subPropertyOf human:creationHasDate;
+	rdfs:subPropertyOf creating:creationHasDate;
 	knora-base:subjectClassConstraint text-expression:DiaryEntry;
 	knora-base:objectClassConstraint knora-base:DateValue.
 
