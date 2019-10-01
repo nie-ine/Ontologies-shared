@@ -144,6 +144,12 @@ language:PersonTranslator
 	rdfs:comment """Translator as role of a person."""@en;
 	rdfs:subClassOf language:AgentTranslator, creating:PersonCreator.
 
+language:MachineTranslator
+	a owl:Class;
+	rdfs:label "machine-translator"@en, "Maschine-Übersetzer"@de;
+	rdfs:comment """Translator as role of a machine."""@en;
+	rdfs:subClassOf language:AgentTranslator.
+
 language:Translation
 	a owl:Class;
 	rdfs:label "translation"@en, "Übersetzung"@de, "traduction"@fr, "traduzione"@it;
