@@ -27,6 +27,7 @@
 	dct:description """Formal description of publishing, its general subclasses, related classes and properties."""@en;
 	dct:creator "Hans Cools, MD, knowledge engineer, ontologist and software developer, NIE-INE, Basel University, Switzerland"@en;
 	dct:publisher "Basel University, Switzerland"@en;
+	
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
 #
@@ -235,10 +236,22 @@ publish:NachlassPublication
 	rdfs:comment """Publication of a nachlass element."""@en;
 	rdfs:subClassOf publish:Publication, infocar:NachlassElement.
 
+publish:AuthorizedPublication
+	a rdfs:Class;
+	rdfs:label "authorized publication"@en, "autorisierte Ausgabe"@de;
+	rdfs:comment """Publication with the author's authorization."""@en;
+	rdfs:subClassOf publish:Publication.
+
 publish:UnauthorizedPublication
 	a owl:Class;
 	rdfs:label "unauthorized publication"@en, "nicht-autorisierte Ausgabe"@de;
 	rdfs:comment """Publication without the author's authorization."""@en;
+	rdfs:subClassOf publish:Publication.
+
+publish:RePublication
+	a rdfs:Class;
+	rdfs:label "re-publication"@en, "Herausgabe"@de;
+	rdfs:comment """Publication of a previously published expression."""@en;
 	rdfs:subClassOf publish:Publication.
 
 #
@@ -339,6 +352,8 @@ publish:hasPublicationNumber
 	a owl:ObjectProperty;
 	rdfs:label "has publication number"@en, "hat Publikationsnummer"@de;
 	rdfs:comment """Relating a publication expression to its number in a publication."""@en;
+	rdfs:domain publish:Expression;
+#	rdfs:range ;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint publish:Expression;
 	knora-base:objectClassConstraint knora-base:IntValue.
@@ -347,6 +362,8 @@ publish:hasFirstPublication
 	a owl:ObjectProperty;
 	rdfs:label "has first publication"@en, "hat erste Publikation"@de;
 	rdfs:comment """Relating an expression to its first publication."""@en;
+	rdfs:domain document:Expression;
+	rdfs:range publish:FirstPublication;
 	rdfs:subPropertyOf publish:hasPublication;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint publish:FirstPublication.
@@ -363,6 +380,8 @@ publish:hasLastPublication
 	a owl:ObjectProperty;
 	rdfs:label "has last publication"@en, "hat letzte Publikation"@de;
 	rdfs:comment """Relating an expression to its last publication."""@en;
+	rdfs:domain document:Expression;
+	rdfs:range publish:LastPublication;
 	rdfs:subPropertyOf publish:hasPublication;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint publish:LastPublication.
@@ -397,9 +416,11 @@ publish:hasUnauthorizedPublication
 	a owl:ObjectProperty;
 	rdfs:label "has unauthorized publication"@en, "hat nicht-autorisierte Publikation"@de;
 	rdfs:comment """Relating an expression to a publication thereof without the author's authorization."""@en;
+	rdfs:domain document:Expression;
+	rdfs:range publish:UnauthorizedPublication;
 	rdfs:subPropertyOf publish:hasPublication;
 	knora-base:subjectClassConstraint document:Expression;
-	knora-base:objectClassConstraint publish:Publication.
+	knora-base:objectClassConstraint publish:UnauthorizedPublication.
 
 publish:hasUnauthorizedPublicationValue
 	a owl:ObjectProperty;
@@ -413,6 +434,8 @@ publish:hasUnauthorizedRepublication
 	a owl:ObjectProperty;
 	rdfs:label "has unauthorized republication"@en, "hat nicht-autorisierte Wiederpublikation"@de;
 	rdfs:comment """Relating an expression to a republication thereof without the author's authorization."""@en;
+	rdfs:domain document:Expression;
+	rdfs:range publish:Publication;
 	rdfs:subPropertyOf publish:hasPublication;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint publish:Publication.
@@ -429,6 +452,8 @@ publish:hasPolyAuthorPublication
 	a owl:ObjectProperty;
 	rdfs:label "has poly-author publication"@en, "hat Publikation mehrerer Autoren"@de;
 	rdfs:comment """Relating an expression to a publication thereof containing also expressions of other authors."""@en;
+	rdfs:domain document:Expression;
+	rdfs:range publish:PolyAuthorPublication;
 	rdfs:subPropertyOf publish:hasPublication;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint publish:PolyAuthorPublication.
@@ -445,6 +470,8 @@ publish:hasNachlassPublication
 	a owl:ObjectProperty;
 	rdfs:label "has nachlass publication"@en, "hat Nachlassausgabe"@de;
 	rdfs:comment """Relating an expression to a nachlass publication."""@en;
+	rdfs:domain document:Expression;
+	rdfs:range publish:NachlassPublication;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint publish:NachlassPublication.
@@ -461,6 +488,8 @@ publish:hasNachlassPublicationDescription
 	a owl:ObjectProperty;
 	rdfs:label "has nachlass publication description"@en, "hat Nachlassausgabebeschreibung"@de;
 	rdfs:comment """Relating an expression to a description of its nachlass publication."""@en;
+	rdfs:domain document:Expression;
+	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
