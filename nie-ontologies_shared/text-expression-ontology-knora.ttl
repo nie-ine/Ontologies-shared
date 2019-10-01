@@ -84,7 +84,7 @@ text-expression:PolyAuthorExpression
 	a owl:Class;
 	rdfs:label "poly-author text expression"@en, "Mehrautorentextexpression"@de;
 	rdfs:comment """Text expression by different authors."""@en;
-	rdfs:subClassOf text-expression:Expression, [
+	rdfs:subClassOf text-expression:Expression, document:PolyAuthorExpression, [
 		a owl:Restriction; owl:onProperty text-expression:hasMainAuthor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-expression:hasMainAuthorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
