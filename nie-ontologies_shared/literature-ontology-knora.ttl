@@ -278,7 +278,7 @@ litera:Prologue
 #	ling:hasSynonym "Vorwort"@de;
 	rdfs:comment """Introduction of a literary expression providing context and background, e.g. an earlier story that ties into the main one."""@en;
 	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
-	rdfs:subClassOf text-expression:Introduction, text-expression:ExpressionPart.
+	rdfs:subClassOf text-expression:Introduction.
 
 litera:Epilogue
 	a owl:Class;
@@ -286,7 +286,7 @@ litera:Epilogue
 #	ling:hasSynonym "Nachwort"@de;
 	rdfs:comment """Conclusion of a literary expression or part of it."""@en;
 	rdfs:seeAlso <https://www.abc-clio.com/ODLIS/odlis_f.aspx>;
-	rdfs:subClassOf text-expression:Conclusion, text-expression:ExpressionPart.
+	rdfs:subClassOf text-expression:Conclusion.
 
 litera:Argument
 	a owl:Class;
