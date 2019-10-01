@@ -351,11 +351,9 @@ document:HypertextStructure
 
 document:hasEncoder
 	a owl:ObjectProperty;
-	rdfs:label "has encoder"@en, "hat Encoder"@de;
+	rdfs:label "document has encoder"@en, "Dokument hat Encoder"@de;
 	rdfs:comment "Relating a document to a person who encoded it."@en;
-	rdfs:domain document:Document;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom document:Encoder]];
-	rdfs:subPropertyOf knora-base:hasLinkTo;
+	rdfs:subPropertyOf concept:hasEncoder;
 	knora-base:subjectClassConstraint document:Document;
 	knora-base:objectClassConstraint human:Person.
 
@@ -363,7 +361,7 @@ document:hasEncoderValue
 	a owl:ObjectProperty;
 	rdfs:label "has encoder - statement"@en, "hat Encoder - Festlegung"@de;
 	rdfs:comment "Relating a document to a reification statement of the relation between the document and a person who encoded it."@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	rdfs:subPropertyOf concept:hasEncoderValue;
 	knora-base:subjectClassConstraint document:Document;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -371,8 +369,6 @@ document:isElementOfDocument
 	a owl:ObjectProperty;
 	rdfs:label "is element of document"@en, "ist Element eines Dokumentes"@de;
 	rdfs:comment """Relating a document element to a document it is part of."""@en;
-	rdfs:domain document:Element;
-	rdfs:range document:Document;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint document:Element;
 	knora-base:objectClassConstraint document:Document.
@@ -389,8 +385,6 @@ document:isStructureOfDocument
 	a owl:ObjectProperty;
 	rdfs:label "is structure of document"@en, "ist Struktur eines Dokumentes"@de;
 	rdfs:comment """Relating a document structure to a document it is part of."""@en;
-	rdfs:domain document:Structure;
-	rdfs:range document:Document;
 	rdfs:subPropertyOf document:isElementOfDocument;
 	knora-base:subjectClassConstraint document:Structure;
 	knora-base:objectClassConstraint document:Document.
@@ -407,8 +401,6 @@ document:isSpaceOfDocument
 	a owl:ObjectProperty;
 	rdfs:label "is space of document"@en, "ist Leerraum eines Dokumentes"@de;
 	rdfs:comment """Relating a space to the document it is part of."""@en;
-	rdfs:domain document:Space;
-	rdfs:range document:Document;
 	rdfs:subPropertyOf document:isStructureOfDocument;
 	knora-base:subjectClassConstraint document:Space;
 	knora-base:objectClassConstraint document:Document.
@@ -425,8 +417,6 @@ document:contentStructureHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "document content structure has identifier"@en, "Dokumentinhaltstruktur hat Identifikator"@de;
 	rdfs:comment """Relating a document content structure to its identifier."""@en;
-	rdfs:domain document:ContentStructure;
-	rdfs:range document:ContentStructureIdentifier;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint document:ContentStructure;
 	knora-base:objectClassConstraint document:ContentStructureIdentifier.
@@ -443,8 +433,6 @@ document:hasReference
 	a owl:ObjectProperty;
 	rdfs:label "document content structure has reference"@en, "Dokumentinhaltstruktur hat Referenz"@de;
 	rdfs:comment """Relating a document content structure to a reference it has."""@en;
-	rdfs:domain document:ContentStructure;
-	rdfs:range document:ContentStructureReference;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint document:ContentStructure;
 	knora-base:objectClassConstraint document:ContentStructureReference.
@@ -461,8 +449,6 @@ document:hasTextReference
 	a owl:ObjectProperty;
 	rdfs:label "has text reference"@en, "hat Textreferenz"@de;
 	rdfs:comment """Relating a document content structure to a text reference it has."""@en;
-	rdfs:domain document:ContentStructure;
-	rdfs:range document:TextStructureReference;
 	rdfs:subPropertyOf document:hasReference;
 	knora-base:subjectClassConstraint document:ContentStructure;
 	knora-base:objectClassConstraint document:TextStructureReference.
@@ -479,8 +465,6 @@ document:hasFootnoteReference
 	a owl:ObjectProperty;
 	rdfs:label "has footnote reference"@en, "hat Fussnotereferenz"@de;
 	rdfs:comment """Relating a document content structure to a footnote reference it has."""@en;
-	rdfs:domain document:ContentStructure;
-	rdfs:range document:FootnoteReference;
 	rdfs:subPropertyOf document:hasTextReference;
 	knora-base:subjectClassConstraint document:ContentStructure;
 	knora-base:objectClassConstraint document:FootnoteReference.
@@ -497,8 +481,6 @@ document:hasEndnoteReference
 	a owl:ObjectProperty;
 	rdfs:label "has endnote reference"@en, "hat Endnotereferenz"@de;
 	rdfs:comment """Relating a document content structure to an endnote reference it has."""@en;
-	rdfs:domain document:ContentStructure;
-	rdfs:range document:EndnoteReference;
 	rdfs:subPropertyOf document:hasTextReference;
 	knora-base:subjectClassConstraint document:ContentStructure;
 	knora-base:objectClassConstraint document:EndnoteReference.
@@ -515,8 +497,6 @@ document:hasExpressionReference
 	a owl:ObjectProperty;
 	rdfs:label "has expression reference"@en, "hat Expression-Referenz"@de;
 	rdfs:comment """Relating a document content structure to an expression reference it has."""@en;
-	rdfs:domain document:ContentStructure;
-	rdfs:range document:ExpressionReference;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint document:ContentStructure;
 	knora-base:objectClassConstraint document:ExpressionReference.
@@ -533,8 +513,6 @@ document:hasContentStructureIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "has document content structure identifier"@en, "hat Dokumentinhaltstrukturidentifikator"@de;
 	rdfs:comment """Relating a document content structure reference to the identifier of another document content structure."""@en;
-	rdfs:domain document:ContentStructureReference;
-	rdfs:range document:ContentStructureIdentifier;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint document:ContentStructureReference;
 	knora-base:objectClassConstraint document:ContentStructureIdentifier.
@@ -551,8 +529,6 @@ document:hasTextStructureIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "has text identifier"@en, "hat Textidentifikator"@de;
 	rdfs:comment """Relating a text reference to its text identifier."""@en;
-	rdfs:domain document:TextStructureReference;
-	rdfs:range text-structure:Identifier;
 	rdfs:subPropertyOf document:hasContentStructureIdentifier;
 	knora-base:subjectClassConstraint document:TextStructureReference;
 	knora-base:objectClassConstraint text-structure:Identifier.
@@ -569,8 +545,6 @@ document:hasFootnoteIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "has footnote identifier"@en, "hat Fussnoteidentifikator"@de;
 	rdfs:comment """Relating a footnote reference to its footnote identifier."""@en;
-	rdfs:domain document:FootnoteReference;
-	rdfs:range note-structure:FootnoteIdentifier;
 	rdfs:subPropertyOf document:hasTextStructureIdentifier;
 	knora-base:subjectClassConstraint document:FootnoteReference;
 	knora-base:objectClassConstraint note-structure:FootnoteIdentifier.
@@ -587,8 +561,6 @@ document:hasFootnoteNumber
 	a owl:ObjectProperty;
 	rdfs:label "has footnote number"@en, "hat Fussnotenummer"@de;
 	rdfs:comment """Relating a footnote reference to its footnote number."""@en;
-	rdfs:domain document:FootnoteReference;
-	rdfs:range note-structure:FootnoteNumber;
 	rdfs:subPropertyOf document:hasFootnoteIdentifier;
 	knora-base:subjectClassConstraint document:FootnoteReference;
 	knora-base:objectClassConstraint note-structure:FootnoteNumber.
@@ -605,8 +577,6 @@ document:hasEndnoteIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "has endnote identifier"@en, "hat Endnoteidentifikator"@de;
 	rdfs:comment """Relating an endnote reference to its endnote identifier."""@en;
-	rdfs:domain document:EndnoteReference;
-	rdfs:range note-structure:EndnoteIdentifier;
 	rdfs:subPropertyOf document:hasTextStructureIdentifier;
 	knora-base:subjectClassConstraint document:EndnoteReference;
 	knora-base:objectClassConstraint note-structure:EndnoteIdentifier.
@@ -623,8 +593,6 @@ document:hasEndnoteNumber
 	a owl:ObjectProperty;
 	rdfs:label "has endnote number"@en, "hat Endnotenummer"@de;
 	rdfs:comment """Relating an endnote reference to its endnote number."""@en;
-	rdfs:domain document:EndnoteReference;
-	rdfs:range note-structure:EndnoteNumber;
 	rdfs:subPropertyOf document:hasEndnoteIdentifier;
 	knora-base:subjectClassConstraint document:EndnoteReference;
 	knora-base:objectClassConstraint note-structure:EndnoteNumber.
@@ -641,8 +609,6 @@ document:isColumnOfPage
 	a owl:ObjectProperty;
 	rdfs:label "is column of document page"@en, "ist Spalte einer Dokumentseite"@de;
 	rdfs:comment """Relating a column to a document page it is part of."""@en;
-	rdfs:domain document:Column;
-	rdfs:range document:Page;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint document:Column;
 	knora-base:objectClassConstraint document:Page.
@@ -659,8 +625,6 @@ document:isPageOfExpression
 	a owl:ObjectProperty;
 	rdfs:label "is page of expression"@en, "ist Seite einer Expression"@de;
 	rdfs:comment """Relating a document page to a document expression it is part of."""@en;
-	rdfs:domain document:Page;
-	rdfs:range document:Expression;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint document:Page;
 	knora-base:objectClassConstraint document:Expression.
@@ -677,8 +641,6 @@ document:pageHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "page has identifier"@en, "Seite hat Identifikator"@de;
 	rdfs:comment """Relating a document page to its identifier."""@en;
-	rdfs:domain document:Page;
-	rdfs:range document:PageIdentifier;
 	rdfs:subPropertyOf document:contentStructureHasIdentifier;
 	knora-base:subjectClassConstraint document:Page;
 	knora-base:objectClassConstraint document:PageIdentifier.
@@ -695,8 +657,6 @@ document:pageHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "page has number"@en, "Seite hat Nummer"@de;
 	rdfs:comment """Relating a document page to its number."""@en;
-	rdfs:domain document:Page;
-	rdfs:range document:PageNumber;
 	rdfs:subPropertyOf document:pageHasIdentifier;
 	knora-base:subjectClassConstraint document:Page;
 	knora-base:objectClassConstraint document:PageNumber.
@@ -713,8 +673,6 @@ document:isTableOfColumn
 	a owl:ObjectProperty;
 	rdfs:label "is table of column"@en, "ist Tabelle einer Spalte"@de;
 	rdfs:comment """Relating a table to a column it is part of."""@en;
-	rdfs:domain document:Table;
-	rdfs:range document:Column;
 	rdfs:subPropertyOf concept:isPartOf; #°
 	knora-base:subjectClassConstraint document:Table;
 	knora-base:objectClassConstraint document:Column.
@@ -731,8 +689,6 @@ document:expressionHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "expression has identifier"@en, "Expression hat Identifikator"@de;
 	rdfs:comment """Relating a document expression to its identifier."""@en;
-	rdfs:domain document:Expression;
-	rdfs:range document:ExpressionIdentifier;
 	rdfs:subPropertyOf knora-base:hasLinkTo; #°
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint document:ExpressionIdentifier.
@@ -749,8 +705,6 @@ document:expressionHasTitle
 	a owl:ObjectProperty;
 	rdfs:label "expression has title"@en, "Expression hat Titel"@de;
 	rdfs:comment """Relating an expression to a title it has."""@en;
-	rdfs:domain document:Expression;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasTitle;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -759,8 +713,6 @@ document:expressionHasSubtitle
 	a owl:ObjectProperty;
 	rdfs:label "expression has subtitle"@en, "Expression hat Untertitel"@de;
 	rdfs:comment """Relating an expression to a subtitle it has."""@en;
-	rdfs:domain document:Expression;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasSubtitle;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -769,8 +721,6 @@ document:isExpressionOfCycle
 	a owl:ObjectProperty;
 	rdfs:label "is expression of cycle"@en, "ist Expression eines Zyklus"@de;
 	rdfs:comment """Relating an individual expression to a cycle it is part of."""@en;
-	rdfs:domain document:IndividualExpression;
-	rdfs:range document:Cycle;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint document:IndividualExpression;
 	knora-base:objectClassConstraint document:Cycle.
@@ -787,8 +737,6 @@ document:isPartOfIndividualExpression
 	a owl:ObjectProperty;
 	rdfs:label "is part of individual expression"@en, "ist Teil einer individuellen Expression"@de;
 	rdfs:comment """Relating an expression part to an individual expression it is part of."""@en;
-	rdfs:domain document:ExpressionPart;
-	rdfs:range document:IndividualExpression;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint document:ExpressionPart;
 	knora-base:objectClassConstraint document:IndividualExpression.
@@ -805,8 +753,6 @@ document:expressionReferenceHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "expression reference has identifier"@en, "Expression-Referenz hat Identifikator"@de;
 	rdfs:comment """Relating a document expression reference to its identifier."""@en;
-	rdfs:domain document:ExpressionReference;
-	rdfs:range document:ExpressionIdentifier;
 	rdfs:subPropertyOf knora-base:hasLinkTo; #°
 	knora-base:subjectClassConstraint document:ExpressionReference;
 	knora-base:objectClassConstraint document:ExpressionIdentifier.
@@ -823,8 +769,6 @@ document:isElementOfHypertextDocument
 	a owl:ObjectProperty;
 	rdfs:label "is element of hypertext  document"@en, "ist Element eines Hypertext-Dokumentes"@de;
 	rdfs:comment """Relating a hypertext document element to a hypertext document it is part of."""@en;
-	rdfs:domain document:HypertextElement;
-	rdfs:range document:HypertextDocument;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint document:HypertextElement;
 	knora-base:objectClassConstraint document:HypertextDocument.
