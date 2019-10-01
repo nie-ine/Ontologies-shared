@@ -174,8 +174,6 @@ creating:hasCreator
 	a owl:ObjectProperty;
 	rdfs:label "has creator"@en, "hat ErschafferIn"@de;
 	rdfs:comment """Relating a creation to a human agent - a person or a group - that created it."""@en;
-	rdfs:domain creating:Creation;
-	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom creating:AgentCreator]];
 	rdfs:subPropertyOf agent:hasCreator;
 	knora-base:subjectClassConstraint creating:Creation;
 	knora-base:objectClassConstraint human:Agent.
@@ -193,8 +191,6 @@ creating:hasAuthor
 	rdfs:label "has author"@en, "hat Autor"@de;
 	rdfs:comment """Relating a creation to a person who authored it."""@en;
 	skos:note """A creation can have more than one author."""@en;
-	rdfs:domain creating:Creation;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom human:Author]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint creating:Creation;
 	knora-base:objectClassConstraint human:Person.
@@ -227,8 +223,6 @@ creating:creationHasDate
 	a owl:ObjectProperty;
 	rdfs:label "creation has date"@en, "Kreation hat Datum"@de;
 	rdfs:comment """Relating a creation by a person to a date it was created on."""@en;
-	rdfs:domain creating:Creation;
-	rdfs:range xsd:date; #°
 #	owl:propertyChainAxiom (event:isOutputOf event:hasEndDate)
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint creating:Creation;
@@ -238,8 +232,6 @@ creating:hasModificationDate
 	a owl:ObjectProperty;
 	rdfs:label "has modification date"@en, "hat Änderungsdatum"@de;
 	rdfs:comment """Relating a human creation to its modification date."""@en;
-	rdfs:domain creating:Creation;
-	rdfs:range xsd:date;
 #	owl:propertyChainAxiom (event:isOutputOf event:hasEndDate)
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint creating:Creation;
@@ -249,8 +241,6 @@ creating:isCreationOfSet #°
 	a owl:ObjectProperty;
 	rdfs:label "is creation of set"@en, "ist Kreation einer Reihe"@de;
 	rdfs:comment """Relating a creation to a set it is part of."""@en;
-	rdfs:domain creating:Creation;
-	rdfs:range creating:CreationSet;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint creating:Creation;
 	knora-base:objectClassConstraint creating:CreationSet.

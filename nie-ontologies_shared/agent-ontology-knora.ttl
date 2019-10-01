@@ -113,8 +113,6 @@ agent:hasAgent
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/agent#>;
 	rdfs:label "has agent"@en, "hat Agent"@de;
 	rdfs:comment """Relating an action to an agent acting in it."""@en;
-	rdfs:domain event:Action;
-	rdfs:range agent:Agent;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint event:Action;
 	knora-base:objectClassConstraint agent:Agent.
@@ -133,9 +131,6 @@ agent:actsIn
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/agent#>;
 	rdfs:label "acts in"@en, "agiert in"@de;
 	rdfs:comment """Relating an agent to an action the agent is acting in."""@en;
-	rdfs:domain agent:Agent;
-	rdfs:range event:Action;
-#	owl:inverseOf agent:hasAgent;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint agent:Agent;
 	knora-base:objectClassConstraint event:Action.
@@ -154,8 +149,6 @@ agent:hasRole
 	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/agent#>;
 	rdfs:label "has role"@en, "hat Rolle"@de;
 	rdfs:comment """Relating an agent to a role it,s/he has."""@en;
-	rdfs:domain agent:Agent;
-	rdfs:range agent:Role;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint agent:Agent;
 	knora-base:objectClassConstraint agent:Role.
@@ -173,8 +166,6 @@ agent:isMemberOf
 	a owl:ObjectProperty;
 	rdfs:label "is member of"@en, "ist Mitglied"@de;
 	rdfs:comment """Relating an agent to a group the agent is a member of."""@en;
-	rdfs:domain agent:Agent;
-	rdfs:range agent:Group;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint agent:Agent;
 	knora-base:objectClassConstraint agent:Group.
@@ -191,8 +182,6 @@ agent:hasCreator
 	a owl:ObjectProperty;
 	rdfs:label "has creator"@en, "hat ErschafferIn"@de;
 	rdfs:comment """Relating something to an agent that created it."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range agent:Agent; # [rdfs:subClassOf agent:Agent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom agent:Creator]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint agent:Agent.
@@ -209,8 +198,6 @@ agent:hasUser
 	a owl:ObjectProperty;
 	rdfs:label "has user"@en, "hat Benutzer"@de;
 	rdfs:comment """Relating something to an agent using it."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range agent:Agent; # [rdfs:subClassOf agent:Agent, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom agent:User]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint agent:Agent.

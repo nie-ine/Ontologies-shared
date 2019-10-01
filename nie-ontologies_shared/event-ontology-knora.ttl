@@ -124,7 +124,7 @@ event:Creating
 # PROPERTIES
 #
 
-event:hasStartDate
+event:hasStartDate #°
 	a owl:ObjectProperty;
 	rdfs:label "has start date"@en, "hat Anfangsdatum"@de;
 	rdfs:comment """Relating an event to its start date."""@en;
@@ -132,7 +132,7 @@ event:hasStartDate
 	knora-base:subjectClassConstraint event:Event;
 	knora-base:objectClassConstraint knora-base:DateValue.
 
-event:hasEndDate
+event:hasEndDate #°
 	a owl:ObjectProperty;
 	rdfs:label "has end date"@en, "hat Enddatum"@de;
 	rdfs:comment """Relating an event to its end date."""@en;
@@ -144,8 +144,6 @@ event:hasName
 	a owl:ObjectProperty;
 	rdfs:label "has name"@en, "hat Name"@de;
 	rdfs:comment """Relating an event to its name."""@en;
-	rdfs:domain event:Event;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint event:Event;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -154,8 +152,6 @@ event:isSubEventOf
 	a owl:ObjectProperty;
 	rdfs:label "is sub-event of"@en, "ist Subereignis von"@de;
 	rdfs:comment "Relating an event to another one it is part of."@en;
-	rdfs:domain event:Event;
-	rdfs:range event:Event;	
 	rdfs:subPropertyOf physical:isPartOf, schema:subEvent;
 	knora-base:subjectClassConstraint event:Event;
 	knora-base:objectClassConstraint event:Event.
@@ -172,8 +168,6 @@ event:hasEvent
 	a owl:ObjectProperty;
 	rdfs:label "has event"@en, "hat Ereignis"@de;
 	rdfs:comment """Relating someone or something - eg. an organization, event, procedure - to an event."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range event:Event;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint event:Event.
@@ -190,8 +184,6 @@ event:hasExistence
 	a owl:ObjectProperty;
 	rdfs:label "has existence"@en, "hat Existenz"@de;
 	rdfs:comment """Relating someone or something to her/his/its existence."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range event:Existence;
 	rdfs:subPropertyOf event:hasEvent;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint event:Existence.
@@ -208,8 +200,6 @@ event:hasState
 	a owl:ObjectProperty;
 	rdfs:label "has state"@en, "hat Zustand"@de;
 	rdfs:comment """Relating a resource to a state."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range event:State;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint event:State.
@@ -226,8 +216,6 @@ event:isInputOf
 	a owl:ObjectProperty;
 	rdfs:label "is input of"@en, "ist Input von"@de;
 	rdfs:comment """Relating an input to a process."""@en;
-	rdfs:domain event:Input;
-	rdfs:range event:Process;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint event:Input;
 	knora-base:objectClassConstraint event:Process.
@@ -244,8 +232,6 @@ event:isOutputOf
 	a owl:ObjectProperty;
 	rdfs:label "is output of"@en, "ist Output von"@de;
 	rdfs:comment """Relating an output to a process."""@en;
-	rdfs:domain event:Output;
-	rdfs:range event:Process;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint event:Output;
 	knora-base:objectClassConstraint event:Process.
@@ -262,8 +248,6 @@ event:involvesRole
 	a owl:ObjectProperty;
 	rdfs:label "involves role"@en, "involviert Rolle"@de;
 	rdfs:comment """Relating an action to a role it involves."""@en;
-	rdfs:domain event:Action;
-	rdfs:range agent:Role;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint event:Action;
 	knora-base:objectClassConstraint agent:Role.
@@ -280,8 +264,6 @@ event:hasStage
 	a owl:ObjectProperty;
 	rdfs:label "has stage"@en, "hat Stufe"@de;
 	rdfs:comment """Relating a process to a stage thereof."""@en;
-	rdfs:domain event:Process;
-	rdfs:range event:Stage;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint event:Process;
 	knora-base:objectClassConstraint event:Stage.
@@ -298,8 +280,6 @@ event:isSubProcedureOf
 	a owl:ObjectProperty;
 	rdfs:label "is sub-procedure of"@en, "ist Subverfahren von"@de;
 	rdfs:comment """Relating a procedure to another one it is part of."""@en;
-	rdfs:domain event:Procedure;
-	rdfs:range event:Procedure;
 	rdfs:subPropertyOf event:isSubEventOf;
 	knora-base:subjectClassConstraint event:Procedure;
 	knora-base:objectClassConstraint event:Procedure.
@@ -316,8 +296,6 @@ event:hasGenesisDescription
 	a owl:ObjectProperty;
 	rdfs:label "has genesis description"@en, "hat Genesis-Beschreibung"@de;
 	rdfs:comment """Relating something to a description of the genesis thereof."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.

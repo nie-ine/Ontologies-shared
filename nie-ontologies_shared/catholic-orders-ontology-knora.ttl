@@ -121,8 +121,6 @@ cathord:isMemberOf
 	a owl:ObjectProperty;
 	rdfs:label "is member of catholic order"@en, "ist Mitglied einem katholischen Orden"@de;
 	rdfs:comment """Relating a catholic person to a catholic order the person is a member of."""@en;
-	rdfs:domain cathord:Person;
-	rdfs:range cathord:Order;
 	rdfs:subPropertyOf cathorg:isMemberOf;
 	knora-base:subjectClassConstraint cathord:Person;
 	knora-base:objectClassConstraint cathord:Order.

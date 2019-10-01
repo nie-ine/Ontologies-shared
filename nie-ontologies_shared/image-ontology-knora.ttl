@@ -67,8 +67,6 @@ image:isImageOf
 	a owl:ObjectProperty;
 	rdfs:label "is image of", "ist Bild von"@de;
 	rdfs:comment """Relating an image to what it depicts."""@en;
-	rdfs:domain image:Image;
-	rdfs:range rdfs:Resource;
 	rdfs:subPropertyOf concept:informationHasSubject;
 	knora-base:subjectClassConstraint image:Image;
 	knora-base:objectClassConstraint knora-base:Resource.
@@ -85,8 +83,6 @@ image:isOnCarrier
 	a owl:ObjectProperty;
 	rdfs:label "is image on carrier", "ist Bild auf Träger"@de;
 	rdfs:comment """Relating an image to a carrier it is on."""@en;
-	rdfs:domain image:Image;
-	rdfs:range image:ImageCarrier;
 	rdfs:subPropertyOf infocar:isOnCarrier;
 	knora-base:subjectClassConstraint image:Image;
 	knora-base:objectClassConstraint image:ImageCarrier.
@@ -103,8 +99,6 @@ image:isPhotographOf
 	a owl:ObjectProperty;
 	rdfs:label "is photograph of", "ist Foto von"@de;
 	rdfs:comment """Relating a photograph to what it depicts."""@en;
-	rdfs:domain image:Photograph;
-	rdfs:range rdfs:Resource;
 	rdfs:subPropertyOf image:isImageOf;
 	knora-base:subjectClassConstraint image:Photograph;
 	knora-base:objectClassConstraint knora-base:Resource.
@@ -141,19 +135,3 @@ image:hasPhotographSourceDescription
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.
-
-# image:hasPhotoRepresentation
-#	a owl:ObjectProperty;
-#	rdfs:label "has photo representation", "hat Foto-Repräsentation"@de;
-#	rdfs:comment """Relating something to a digital container of metadata of a digital photograph of that something."""@en;
-#	rdfs:subPropertyOf knora-base:hasRepresentation;
-#	knora-base:subjectClassConstraint knora-base:Resource;
-#	knora-base:objectClassConstraint knora-base:StillImageRepresentation.
-
-# image:hasPhotoRepresentationValue
-#	a owl:ObjectProperty;
-#	rdfs:label "has photo representation - statement", "hat Foto-Repräsentation - Festlegung"@de;
-#	rdfs:comment """Relating something to a reification statement of the relation between that something and a digital container of metadata of a digital photograph of that something."""@en;
-#	rdfs:subPropertyOf knora-base:hasRepresentationValue;
-#	knora-base:subjectClassConstraint knora-base:Resource;
-#	knora-base:objectClassConstraint knora-base:LinkValue.

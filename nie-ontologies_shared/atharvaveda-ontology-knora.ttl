@@ -105,8 +105,6 @@ athar:paippaladaHasGenre
 	a owl:ObjectProperty;
 	rdfs:label "Paippalada has genre"@en, "Paippalada hat Gattung"@de;
 	rdfs:comment """Relating a Paippalada to its genre."""@en;
-	rdfs:domain athar:Paippalada-Samhita;
-	rdfs:range indo:Samhita;
 	rdfs:subPropertyOf indo:vedaHasGenre;
 	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
 	knora-base:objectClassConstraint indo:Samhita.
@@ -123,8 +121,6 @@ athar:paippaladaHasRecitingStyle
 	a owl:ObjectProperty;
 	rdfs:label "Paippalada has reciting style"@en, "Paippalada hat Rezitationsstil"@de;
 	rdfs:comment """Relating a Paippalada to a reciting style it has."""@en;
-	rdfs:domain athar:Paippalada-Samhita;
-	rdfs:range indo:Samhitapatha;
 	rdfs:subPropertyOf indo:vedaHasRecitingStyle;
 	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
 	knora-base:objectClassConstraint indo:Samhitapatha.
@@ -141,8 +137,6 @@ athar:isKandaOfAtharvaveda
 	a owl:ObjectProperty;
 	rdfs:label "is kanda of Atharvaveda"@en, "ist Kanda einer Atharvaveda"@de;
 	rdfs:comment """Relating a kanda to its Atharvaveda."""@en;
-	rdfs:domain athar:Kanda;
-	rdfs:range athar:Atharvaveda;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint athar:Kanda;
 	knora-base:objectClassConstraint athar:Atharvaveda.
@@ -159,8 +153,6 @@ athar:isSuktaOfKanda
 	a owl:ObjectProperty;
 	rdfs:label "is sukta of kanda"@en, "ist Sukta einer Kanda"@de;
 	rdfs:comment """Relating an Atharvaveda sukta to its kanda."""@en;
-	rdfs:domain athar:Sukta;
-	rdfs:range athar:Kanda;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint athar:Sukta;
 	knora-base:objectClassConstraint athar:Kanda.
@@ -177,8 +169,6 @@ athar:isStropheOfSukta
 	a owl:ObjectProperty;
 	rdfs:label "is strophe of sukta"@en, "ist Strophe einer Sukta"@de;
 	rdfs:comment """Relating an Atharvaveda strophe to its sukta."""@en;
-	rdfs:domain athar:Strophe;
-	rdfs:range athar:Sukta;
 	rdfs:subPropertyOf prosodic-structure:isStropheOfPoem;
 	knora-base:subjectClassConstraint athar:Strophe;
 	knora-base:objectClassConstraint athar:Sukta.
@@ -195,8 +185,6 @@ athar:isVerseOfStrophe
 	a owl:ObjectProperty;
 	rdfs:label "is verse of strophe"@en, "ist Vers einer Strophe"@de;
 	rdfs:comment """Relating an Atharvaveda verse to a strophe it is part of."""@en;
-	rdfs:domain athar:Verse;
-	rdfs:range athar:Strophe;
 	rdfs:subPropertyOf prosodic-structure:isVerseOfStrophe;
 	knora-base:subjectClassConstraint athar:Verse;
 	knora-base:objectClassConstraint athar:Strophe.
@@ -213,8 +201,6 @@ athar:isVerseOfHalfStrophe
 	a owl:ObjectProperty;
 	rdfs:label "is verse of half-strophe"@en, "ist Vers einer Halbstrophe"@de;
 	rdfs:comment """Relating an Atharvaveda verse to a half-strophe it is part of."""@en;
-	rdfs:domain athar:Verse;
-	rdfs:range athar:HalfStrophe;
 	rdfs:subPropertyOf prosodic-structure:isVerseOfHalfStrophe;
 	knora-base:subjectClassConstraint athar:Verse;
 	knora-base:objectClassConstraint athar:HalfStrophe.

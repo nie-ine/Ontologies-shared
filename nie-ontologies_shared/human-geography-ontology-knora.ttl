@@ -151,8 +151,6 @@ humgeo:hasDomicile
 	a owl:ObjectProperty;
 	rdfs:label "has domicile"@en, "hat Sitz"@de;
 	rdfs:comment """Relating a human agent - person or group - to a place of registered staying and contactability."""@en;
-	rdfs:domain human:Agent;
-	rdfs:range physical:Place;
 	rdfs:subPropertyOf physical:hasLocation;
 	knora-base:subjectClassConstraint human:Agent;
 	knora-base:objectClassConstraint physical:Place.
@@ -169,8 +167,6 @@ humgeo:hasPostalAddress
 	a owl:ObjectProperty;
 	rdfs:label "has postal address"@en, "hat Postanschrift"@de;
 	rdfs:comment """Relating someone or something to her/his/its postal address."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range humgeo:PostalAddress;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint humgeo:PostalAddress.
@@ -187,8 +183,6 @@ humgeo:hasReceiverPostalAddress
 	a owl:ObjectProperty;
 	rdfs:label "has receiver postal address"@en, "hat Empfänger-Postanschrift"@de;
 	rdfs:comment """Relating something being sent to the postal address of the receiver."""@en;
-	rdfs:domain physical:Matter;
-	rdfs:range humgeo:PostalAddress;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint humgeo:PostalAddress.
@@ -205,8 +199,6 @@ humgeo:hasReturnPostalAddress
 	a owl:ObjectProperty;
 	rdfs:label "has return postal address"@en, "hat Rücksendung-Postanschrift"@de;
 	rdfs:comment """Relating something being sent to the postal address for return."""@en;
-	rdfs:domain physical:Matter;
-	rdfs:range humgeo:PostalAddress;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint humgeo:PostalAddress.
@@ -223,8 +215,6 @@ humgeo:hasAddressee
 	a owl:ObjectProperty;
 	rdfs:label "has addressee"@en, "hat AdressatIn"@de;
 	rdfs:comment """Relating a postal address to an addressee."""@en;
-	rdfs:domain humgeo:PostalAddress;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint humgeo:PostalAddress;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -233,8 +223,6 @@ humgeo:hasStreetName
 	a owl:ObjectProperty;
 	rdfs:label "has street name"@en, "hat Strassenname"@de;
 	rdfs:comment """Relating a postal address to the name of the street."""@en;
-	rdfs:domain humgeo:PostalAddress;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint humgeo:PostalAddress;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -243,8 +231,6 @@ humgeo:hasHouseNumber
 	a owl:ObjectProperty;
 	rdfs:label "has house number"@en, "hat Hausnummer"@de;
 	rdfs:comment """Relating a postal address to the nummer of the house."""@en;
-	rdfs:domain humgeo:PostalAddress;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint humgeo:PostalAddress;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -254,8 +240,6 @@ humgeo:hasPostcode
 	rdfs:label "has postcode"@en, "hat Postleitzahl"@de;
 #	ling:hasSynonym "has zip code"@en;
 	rdfs:comment """Relating a postal address to its postcode."""@en;
-	rdfs:domain humgeo:PostalAddress;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasText;
 	knora-base:subjectClassConstraint humgeo:PostalAddress;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -264,8 +248,6 @@ humgeo:hasTownName
 	a owl:ObjectProperty;
 	rdfs:label "has town name"@en, "hat Ortsname"@de;
 	rdfs:comment """Relating a postal address to its town name."""@en;
-	rdfs:domain humgeo:PostalAddress;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint humgeo:PostalAddress;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -274,8 +256,6 @@ humgeo:hasCountryName
 	a owl:ObjectProperty;
 	rdfs:label "has country name"@en, "hat Ländername"@de;
 	rdfs:comment """Relating a postal address to its country name."""@en;
-	rdfs:domain humgeo:PostalAddress;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint humgeo:PostalAddress;
 	knora-base:objectClassConstraint knora-base:TextValue.

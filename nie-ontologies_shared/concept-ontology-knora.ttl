@@ -149,8 +149,6 @@ concept:isPartOf
 	a owl:ObjectProperty; #, owl:TransitiveProperty;
 	rdfs:label "is part of conceptual entity"@en, "ist Teil einer symbolischen Entität"@de;
 	rdfs:comment "Relating a conceptual entity to another one it is part of."@en;
-	rdfs:domain concept:ConceptualEntity;
-	rdfs:range concept:ConceptualEntity;
 	rdfs:subPropertyOf cidoc:P106i_forms_part_of, knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint concept:ConceptualEntity;
 	knora-base:objectClassConstraint concept:ConceptualEntity.
@@ -167,8 +165,6 @@ concept:isExpressedIn
 	a owl:ObjectProperty;
 	rdfs:label "is expressed in"@en, "ist ausgedruckt in"@de;
 	rdfs:comment "Relating an individual work to an individual expression thereof."@en;
-	rdfs:domain concept:IndividualWork;
-	rdfs:range document:IndividualExpression;
 	rdfs:subPropertyOf frbroo:R9_is_realised_in, knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint concept:IndividualWork;
 	knora-base:objectClassConstraint document:IndividualExpression.
@@ -185,8 +181,6 @@ concept:informationHasSubject
 	a owl:ObjectProperty;
 	rdfs:label "information has subject"@en, "Information hat Thema"@de;
 	rdfs:comment """Relating information to a subject it is about."""@en;
-	rdfs:domain concept:Information;
-	rdfs:range rdfs:Resource;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint concept:Information;
 	knora-base:objectClassConstraint knora-base:Resource.
@@ -203,8 +197,6 @@ concept:informationHasSubjectDescription
 	a owl:ObjectProperty;
 	rdfs:label "information has subject description"@en, "Information hat Themabeschreibung"@de;
 	rdfs:comment """Relating information to a description of its subject."""@en;
-	rdfs:domain concept:Information;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasDescription;
 	knora-base:subjectClassConstraint concept:Information;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -215,8 +207,6 @@ concept:hasDedicatedTo #°
 	a owl:ObjectProperty;
 	rdfs:label "has dedicated to"@en, "hat gewidmet"@de;
 	rdfs:comment """Relating a person to another person to whom the former has dedicated something."""@en;
-	rdfs:domain human:Person;
-	rdfs:range human:Person;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint human:Person.
@@ -233,8 +223,6 @@ concept:hasLiteral
 	a owl:ObjectProperty;
 	rdfs:label "has literal"@en, "hat Literale"@de;
 	rdfs:comment """Relating a symbolic entity to a literal that expresses it."""@en;
-	rdfs:domain concept:SymbolicEntity;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint concept:SymbolicEntity;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -243,8 +231,6 @@ concept:hasEncoder
 	a owl:ObjectProperty;
 	rdfs:label "information has encoder"@en, "Information hat Encoder"@de;
 	rdfs:comment "Relating information to a person who encoded it."@en;
-	rdfs:domain concept:Information;
-	rdfs:range  human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom infocar:Encoder]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint concept:Information;
 	knora-base:objectClassConstraint human:Person.

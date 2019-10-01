@@ -87,8 +87,6 @@ indo:hasIndologicComment
 	a owl:ObjectProperty;
 	rdfs:label "has Indological comment"@en, "hat indologischer Kommentar"@de;
 	rdfs:comment """Relating something to an Indological comment as a textual statement about that something."""@en;
-	rdfs:domain knora-base:Resource;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasComment;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -97,8 +95,6 @@ indo:vedaHasGenre
 	a owl:ObjectProperty;
 	rdfs:label "Veda has literary genre"@en, "Veda hat literarische Gattung"@de;
 	rdfs:comment """Relating a Veda to a genre it has."""@en;
-	rdfs:domain indo:Veda;
-	rdfs:range indo:VedaLiterature;
 	rdfs:subPropertyOf litera:hasGenre;
 	knora-base:subjectClassConstraint indo:Veda;
 	knora-base:objectClassConstraint indo:VedaLiterature.
@@ -115,8 +111,6 @@ indo:vedaHasRecitingStyle
 	a owl:ObjectProperty;
 	rdfs:label "Veda has reciting style"@en, "Veda hat Rezitationsstil"@de;
 	rdfs:comment """Relating a Veda to a reciting style it has."""@en;
-	rdfs:domain indo:Veda;
-	rdfs:range indo:Patha;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint indo:Veda;
 	knora-base:objectClassConstraint indo:Patha.
