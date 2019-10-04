@@ -282,7 +282,7 @@ publish:hasPublishing
 	rdfs:comment """Relating an expression to its publishing."""@en;
 	rdfs:domain document:Expression;
 	rdfs:range publish:Publishing;
-	rdfs:subPropertyOf event:hasEvent; # event:isInputOf
+	rdfs:subPropertyOf event:isInputOf;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint publish:Publishing.
 
