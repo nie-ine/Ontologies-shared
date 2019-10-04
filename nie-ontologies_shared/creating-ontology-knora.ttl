@@ -56,13 +56,13 @@ creating:Author
 
 creating:Creating
 	a owl:Class;
-	rdfs:label "person's creating"@en, "Kreierung einer Person"@de;
-	rdfs:comment """Creating as a person's action."""@en;
+	rdfs:label "person creating"@en, "Person-Kreierung"@de;
+	rdfs:comment """Creating as a person action."""@en;
 	rdfs:subClassOf human:Action, event:Creating.
 
 creating:Creation
 	a owl:Class;
-	rdfs:label "person's creation"@en, "Kreation einer Person"@de;
+	rdfs:label "person creation"@en, "Person-Kreation"@de;
 	rdfs:comment """Something created by one or more persons."""@en;
 	rdfs:subClassOf event:Output, cidoc:E71_Man-Made_Thing, [
 		a owl:Restriction; owl:onProperty text:hasName; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -86,27 +86,27 @@ creating:Creation
 
 creating:CreationGroup
 	a owl:Class;
-	rdfs:label "human creations group"@en, "menschliche Kreationsgruppe"@de;
-	rdfs:comment """Group of human creations."""@en;
+	rdfs:label "person creation group"@en, "Person-Kreationsgruppe"@de;
+	rdfs:comment """Group of person creations."""@en;
 	rdfs:subClassOf knora-base:Resource.
 
 creating:CreationSet
 	a owl:Class;
-	rdfs:label "human creations set"@en, "menschliche Kreationsreihe"@de;
-	rdfs:comment """Group of human creations belonging together."""@en;
+	rdfs:label "person creation set"@en, "Person-Kreationsreihe"@de;
+	rdfs:comment """Group of person creations belonging together."""@en;
 	rdfs:subClassOf creating:CreationGroup.
 
 creating:Collection
 	a owl:Class;
 	rdfs:label "collection"@en, "Sammlung"@de;
-	rdfs:comment """Things brought together as a human creation."""@en;
+	rdfs:comment """Things brought together as a person creation."""@en;
 	rdfs:subClassOf creating:Creation.
 
 creating:PhysicalCreation
 	a owl:Class;
-	rdfs:label "person's physical creation"@en, "physische Kreation einer Person"@de;
-	rdfs:comment """Person's creation as physical resource."""@en;
-	rdfs:subClassOf creating:Creation, physical:Matter. # rdfs:subClassOf cidoc:E24_Physical_Man-Made_Thing rdfs:subClassOf cidoc:E72_Legal_Object: legal aspect TBD
+	rdfs:label "physical person creation"@en, "physische Person-Kreation"@de;
+	rdfs:comment """Person creation as a physical resource."""@en;
+	rdfs:subClassOf creating:Creation, physical:Matter, cidoc:E24_Physical_Man-Made_Thing. # rdfs:subClassOf cidoc:E72_Legal_Object
 
 creating:Copy
 	a owl:Class;
