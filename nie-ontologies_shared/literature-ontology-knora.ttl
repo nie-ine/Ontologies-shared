@@ -31,7 +31,7 @@
 litera:Literature
 	a owl:Class;
 	rdfs:label "literature"@en, "Literatur"@de;
-	rdfs:comment """Written text as art."""@en; # distinctively written with certain expressive quality
+	rdfs:comment """Text distinctively written with certain expressive quality, considered as art."""@en;
 	rdfs:subClassOf text:WrittenText, text:ContentNature.
 
 litera:Fiction
