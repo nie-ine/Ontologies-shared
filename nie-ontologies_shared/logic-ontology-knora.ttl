@@ -69,8 +69,7 @@ logic:isPremiseOfArgument
 	a owl:ObjectProperty;
 	rdfs:label "is premise of argument"@en, "ist Prämisse eines Argumentes"@de;
 	rdfs:comment """Relating a premise to an argument it is part of."""@en;
-	rdfs:domain logic:Premise;
-	rdfs:range logic:Argument;
+
 	rdfs:subPropertyOf text-structure:isSentenceOfParagraph;
 	knora-base:subjectClassConstraint logic:Premise;
 	knora-base:objectClassConstraint logic:Argument.
@@ -87,8 +86,6 @@ logic:isConclusionOfArgument
 	a owl:ObjectProperty;
 	rdfs:label "is conclusion of argument"@en, "ist Konklusion eines Argumentes"@de;
 	rdfs:comment """Relating a conclusion to an argument it is part of."""@en;
-	rdfs:domain logic:Conclusion;
-	rdfs:range logic:Argument;
 	rdfs:subPropertyOf text-structure:isSentenceOfParagraph;
 	knora-base:subjectClassConstraint logic:Conclusion;
 	knora-base:objectClassConstraint logic:Argument.

@@ -353,8 +353,6 @@ scholarly-editing:hasEdition
 	a owl:ObjectProperty;
 	rdfs:label "has scholarly edition"@en, "hat wissenschaftliche Textedition"@de;
 	rdfs:comment "Relating a text expression to a scholarly edition thereof."@en;
-	rdfs:domain text-expression:Expression;
-	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf textedit:hasDerivedTextExpression;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scholarly-editing:Edition.
@@ -371,8 +369,6 @@ scholarly-editing:hasEditionPage
 	a owl:ObjectProperty;
 	rdfs:label "has scholarly edition page"@en, "hat wissenschaftliche Texteditionseite"@de;
 	rdfs:comment "Relating a text expression to a scholarly edition page thereof."@en;
-	rdfs:domain text-expression:Expression;
-	rdfs:range scholarly-editing:Page;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scholarly-editing:Page.
@@ -389,8 +385,6 @@ scholarly-editing:hasEditor
 	a owl:ObjectProperty;
 	rdfs:label "scholarly edition has scholarly editor"@en, "wissenschaftliche Edition hat wissenschaftliche Editor"@de;
 	rdfs:comment "Relating a scholarly edition to a scholarly editor who created it."@en;
-	rdfs:domain scholarly-editing:Edition;
-	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom textedit:ScholarlyEditor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo; # textedit:hasEditor
 	knora-base:subjectClassConstraint scholarly-editing:Edition;
 	knora-base:objectClassConstraint human:Agent.
@@ -407,8 +401,6 @@ scholarly-editing:isPageOfEdition
 	a owl:ObjectProperty;
 	rdfs:label "is page of scholarly edition"@en, "ist Seite einer wissenschaftlichen Edition"@de;
 	rdfs:comment """Relating a page to its scholarly edition."""@en;
-	rdfs:domain scholarly-editing:Page;
-	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf text-structure:isPageOfExpression;
 	knora-base:subjectClassConstraint scholarly-editing:Page;
 	knora-base:objectClassConstraint scholarly-editing:Edition.
@@ -425,8 +417,6 @@ scholarly-editing:isEditorialSymbolOf
 	a owl:ObjectProperty;
 	rdfs:label "is editorial symbol of"@en, "ist editorisches Zeichen von"@de;
 	rdfs:comment """Relating an editorial symbol to its scholarly edition page."""@en;
-	rdfs:domain scholarly-editing:EditorialSymbol;
-	rdfs:range scholarly-editing:Page;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint scholarly-editing:EditorialSymbol;
 	knora-base:objectClassConstraint scholarly-editing:Page.
@@ -443,8 +433,6 @@ scholarly-editing:isPageIndicatorOf
 	a owl:ObjectProperty;
 	rdfs:label "is page indicator of"@en, "ist Seiteindikator von"@de;
 	rdfs:comment """Relating a page indicator to its scholarly edition page."""@en;
-	rdfs:domain scholarly-editing:PageIndicator;
-	rdfs:range scholarly-editing:Page;
 	rdfs:subPropertyOf scholarly-editing:isEditorialSymbolOf;
 	knora-base:subjectClassConstraint scholarly-editing:PageIndicator;
 	knora-base:objectClassConstraint scholarly-editing:Page.
@@ -461,8 +449,6 @@ scholarly-editing:isPageNumberIndicatorOf
 	a owl:ObjectProperty;
 	rdfs:label "is page number indicator of"@en, "ist Seitenummerindikator von"@de;
 	rdfs:comment """Relating a page indicator to its scholarly edition page."""@en;
-	rdfs:domain scholarly-editing:PageNumberIndicator;
-	rdfs:range scholarly-editing:Page;
 	rdfs:subPropertyOf scholarly-editing:isEditorialSymbolOf;
 	knora-base:subjectClassConstraint scholarly-editing:PageNumberIndicator;
 	knora-base:objectClassConstraint scholarly-editing:Page.
@@ -479,8 +465,6 @@ scholarly-editing:isColumnIndicatorOf
 	a owl:ObjectProperty;
 	rdfs:label "is column indicator of"@en, "ist Spalteindikator von"@de;
 	rdfs:comment """Relating a column indicator to its scholarly edition page."""@en;
-	rdfs:domain scholarly-editing:ColumnIndicator;
-	rdfs:range scholarly-editing:Page;
 	rdfs:subPropertyOf scholarly-editing:isEditorialSymbolOf;
 	knora-base:subjectClassConstraint scholarly-editing:ColumnIndicator;
 	knora-base:objectClassConstraint scholarly-editing:Page.
@@ -497,8 +481,6 @@ scholarly-editing:hasDiplomaticTranscription
 	a owl:ObjectProperty;
 	rdfs:label "has diplomatic transcription"@en, "hat diplomatische Umschrift"@de;
 	rdfs:comment "Relating a text to a diplomatic transcription thereof."@en;
-	rdfs:domain text-expression:Expression;
-	rdfs:range scholarly-editing:DiplomaticTranscription;
 	rdfs:subPropertyOf scholarly-editing:hasEdition;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scholarly-editing:DiplomaticTranscription.
@@ -515,8 +497,6 @@ scholarly-editing:isDiplomaticTranscriptionOfTextOnPage
 	a owl:ObjectProperty;
 	rdfs:label "is diplomatic transcription of text on page"@en, "ist diplomatische Umschrift des Textes auf Seite"@de;
 	rdfs:comment "Relating a diplomatic transcription to a page its source text is on."@en;
-	rdfs:domain scholarly-editing:DiplomaticTranscription;
-	rdfs:range infocar:Page;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint scholarly-editing:DiplomaticTranscription;
 	knora-base:objectClassConstraint infocar:Page.
@@ -533,8 +513,6 @@ scholarly-editing:hasCriticalEdition
 	a owl:ObjectProperty;
 	rdfs:label "has critical text edition"@en, "hat kritische Textedition"@de;
 	rdfs:comment "Relating a text expression to a critical edition thereof."@en;
-	rdfs:domain text-expression:Expression;
-	rdfs:range scholarly-editing:CriticalEdition;
 	rdfs:subPropertyOf scholarly-editing:hasEdition;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint scholarly-editing:CriticalEdition.
@@ -551,8 +529,6 @@ scholarly-editing:hasCriticalEditor
 	a owl:ObjectProperty;
 	rdfs:label "has critical editor"@en, "hat kritische Editor"@de;
 	rdfs:comment "Relating a critical edition to a critical editor who created it."@en;
-	rdfs:domain scholarly-editing:CriticalEdition;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom scholarly-editing:CriticalEditor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo; # scholarly-editing:hasScholarlyEditor
 	knora-base:subjectClassConstraint scholarly-editing:CriticalEdition;
 	knora-base:objectClassConstraint human:Person.
@@ -569,8 +545,6 @@ scholarly-editing:hasSiglumReference
 	a owl:ObjectProperty;
 	rdfs:label "has siglum reference"@en, "hat Siglum-Referenz"@de;
 	rdfs:comment """Relating an editiorial text structure to its siglum reference."""@en;
-	rdfs:domain scholarly-editing:EditorialStructure;
-	rdfs:range scholarly-editing:SiglumReference;
 	rdfs:subPropertyOf document:hasExpressionReference;
 	knora-base:subjectClassConstraint scholarly-editing:EditorialStructure;
 	knora-base:objectClassConstraint scholarly-editing:SiglumReference.
@@ -587,8 +561,6 @@ scholarly-editing:hasSiglum
 	a owl:ObjectProperty;
 	rdfs:label "has siglum"@en, "hat Siglum"@de;
 	rdfs:comment """Relating a siglum reference to its siglum."""@en;
-	rdfs:domain scholarly-editing:SiglumReference;
-	rdfs:range scholarly-editing:Siglum;
 	rdfs:subPropertyOf document:expressionReferenceHasIdentifier;
 	knora-base:subjectClassConstraint scholarly-editing:SiglumReference;
 	knora-base:objectClassConstraint scholarly-editing:Siglum.
@@ -605,8 +577,6 @@ scholarly-editing:isSiglumOfEdition
 	a owl:ObjectProperty;
 	rdfs:label "îs siglum of scholarly edition"@en, "ist Siglum einer wissenschaftliche Edition"@de;
 	rdfs:comment """Relating a siglum to its scholarly edition."""@en;
-	rdfs:domain scholarly-editing:Siglum;
-	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf document:isStructureOfDocument;
 	knora-base:subjectClassConstraint scholarly-editing:Siglum;
 	knora-base:objectClassConstraint scholarly-editing:Edition.
@@ -623,8 +593,6 @@ scholarly-editing:isApparatusOf
 	a owl:ObjectProperty;
 	rdfs:label "is apparatus of"@en, "ist Apparat von"@de;
 	rdfs:comment """Relating an editing apparatus to its scholarly edition."""@en;
-	rdfs:domain scholarly-editing:Apparatus;
-	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
 	knora-base:subjectClassConstraint scholarly-editing:Apparatus;
 	knora-base:objectClassConstraint scholarly-editing:Edition.
@@ -641,8 +609,6 @@ scholarly-editing:isEntryOfApparatus
 	a owl:ObjectProperty;
 	rdfs:label "is entry of apparatus"@en, "ist Eintrag eines Apparates"@de;
 	rdfs:comment """Relating an entry to its editing apparatus."""@en;
-	rdfs:domain scholarly-editing:ApparatusEntry;
-	rdfs:range scholarly-editing:Apparatus;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint scholarly-editing:ApparatusEntry;
 	knora-base:objectClassConstraint scholarly-editing:Apparatus.
@@ -659,8 +625,6 @@ scholarly-editing:hasApparatusEnteringDate
 	a owl:ObjectProperty;
 	rdfs:label "has apparatus entering date"@en, "hat Apparatuseintragsdatum"@de;
 	rdfs:comment """Relating an entry to its date of entering in an apparatus."""@en;
-	rdfs:domain scholarly-editing:ApparatusEntry;
-	rdfs:range xsd:date; #°
 	rdfs:subPropertyOf creating:creationHasDate;
 	knora-base:subjectClassConstraint scholarly-editing:ApparatusEntry;
 	knora-base:objectClassConstraint knora-base:DateValue.
@@ -669,8 +633,6 @@ scholarly-editing:isDoctrinalApparatusOf
 	a owl:ObjectProperty;
 	rdfs:label "is doctrinal apparatus of"@en, "ist doktrinaler Apparat von"@de;
 	rdfs:comment """Relating a doctrinal apparatus to its scholarly edition."""@en;
-	rdfs:domain scholarly-editing:DoctrinalApparatus;
-	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf scholarly-editing:isApparatusOf;
 	knora-base:subjectClassConstraint scholarly-editing:DoctrinalApparatus;
 	knora-base:objectClassConstraint scholarly-editing:Edition.
@@ -687,8 +649,6 @@ scholarly-editing:isEntryOfDoctrinalApparatus
 	a owl:ObjectProperty;
 	rdfs:label "is entry of doctrinal apparatus"@en, "ist Eintrag eines doktrinalen Apparates"@de;
 	rdfs:comment """Relating an entry to its doctrinal apparatus."""@en;
-	rdfs:domain scholarly-editing:DoctrinalApparatusEntry;
-	rdfs:range scholarly-editing:DoctrinalApparatus;
 	rdfs:subPropertyOf scholarly-editing:isEntryOfApparatus;
 	knora-base:subjectClassConstraint scholarly-editing:DoctrinalApparatusEntry;
 	knora-base:objectClassConstraint scholarly-editing:DoctrinalApparatus.
@@ -705,8 +665,6 @@ scholarly-editing:isApparatusFontiumOf
 	a owl:ObjectProperty;
 	rdfs:label "is apparatus fontium of"@en, "ist Apparatus Fontium von"@de;
 	rdfs:comment """Relating an apparatus fontium to its scholarly edition."""@en;
-	rdfs:domain scholarly-editing:ApparatusFontium;
-	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf scholarly-editing:isApparatusOf;
 	knora-base:subjectClassConstraint scholarly-editing:ApparatusFontium;
 	knora-base:objectClassConstraint scholarly-editing:Edition.
@@ -723,8 +681,6 @@ scholarly-editing:isEntryOfApparatusFontium
 	a owl:ObjectProperty;
 	rdfs:label "is entry of apparatus fontium"@en, "ist Eintrag eines Apparatus Fontium"@de;
 	rdfs:comment """Relating an entry to its apparatus fontium."""@en;
-	rdfs:domain scholarly-editing:ApparatusFontiumEntry;
-	rdfs:range scholarly-editing:ApparatusFontium;
 	rdfs:subPropertyOf scholarly-editing:isEntryOfApparatus;
 	knora-base:subjectClassConstraint scholarly-editing:ApparatusFontiumEntry;
 	knora-base:objectClassConstraint scholarly-editing:ApparatusFontium.
@@ -741,8 +697,6 @@ scholarly-editing:isCriticalApparatusOf
 	a owl:ObjectProperty;
 	rdfs:label "is critical apparatus of"@en, "ist textkritischer Apparat von"@de;
 	rdfs:comment """Relating a critical apparatus to its edition."""@en;
-	rdfs:domain scholarly-editing:CriticalApparatus;
-	rdfs:range scholarly-editing:CriticalEdition;
 	rdfs:subPropertyOf scholarly-editing:isApparatusOf;
 	knora-base:subjectClassConstraint scholarly-editing:CriticalApparatus;
 	knora-base:objectClassConstraint scholarly-editing:CriticalEdition.
@@ -759,8 +713,6 @@ scholarly-editing:isEntryOfCriticalApparatus
 	a owl:ObjectProperty;
 	rdfs:label "is entry of critical apparatus"@en, "ist Eintrag eines textkritischen Apparates"@de;
 	rdfs:comment """Relating an entry to its critical apparatus."""@en;
-	rdfs:domain scholarly-editing:CriticalApparatusEntry;
-	rdfs:range scholarly-editing:CriticalApparatus;
 	rdfs:subPropertyOf scholarly-editing:isEntryOfApparatus;
 	knora-base:subjectClassConstraint scholarly-editing:CriticalApparatusEntry;
 	knora-base:objectClassConstraint scholarly-editing:CriticalApparatus.
@@ -777,8 +729,6 @@ scholarly-editing:isStructureApparatusOf
 	a owl:ObjectProperty;
 	rdfs:label "is structure apparatus of"@en, "ist Strukturapparat von"@de;
 	rdfs:comment """Relating a structure apparatus to its scholarly edition."""@en;
-	rdfs:domain scholarly-editing:StructureApparatus;
-	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf scholarly-editing:isApparatusOf;
 	knora-base:subjectClassConstraint scholarly-editing:StructureApparatus;
 	knora-base:objectClassConstraint scholarly-editing:Edition.
@@ -795,8 +745,6 @@ scholarly-editing:isEntryOfStructureApparatus
 	a owl:ObjectProperty;
 	rdfs:label "is entry of text structure apparatus"@en, "ist Eintrag eines Textstruktur-Apparates"@de;
 	rdfs:comment """Relating an entry to its text structure apparatus."""@en;
-	rdfs:domain scholarly-editing:StructureApparatusEntry;
-	rdfs:range scholarly-editing:StructureApparatus;
 	rdfs:subPropertyOf scholarly-editing:isEntryOfApparatus;
 	knora-base:subjectClassConstraint scholarly-editing:StructureApparatusEntry;
 	knora-base:objectClassConstraint scholarly-editing:StructureApparatus.
@@ -813,8 +761,6 @@ scholarly-editing:isStructureDescriptionOfEntry
 	a owl:ObjectProperty;
 	rdfs:label "is structure description of apparatus entry"@en, "ist Strukturbeschreibung eines Apparateintrages"@de;
 	rdfs:comment """Relating a text structure description to a text structure apparatus entry."""@en;
-	rdfs:domain scholarly-editing:StructureDescription;
-	rdfs:range scholarly-editing:StructureApparatusEntry;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint scholarly-editing:StructureDescription;
 	knora-base:objectClassConstraint scholarly-editing:StructureApparatusEntry.
@@ -831,8 +777,6 @@ scholarly-editing:isReadingOf
 	a owl:ObjectProperty;
 	rdfs:label "is reading of"@en, "ist Textinterpretation von"@de;
 	rdfs:comment """Relating a reading to its witness."""@en;
-	rdfs:domain scholarly-editing:Reading;
-	rdfs:range scholarly-editing:Witness;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint scholarly-editing:Reading;
 	knora-base:objectClassConstraint scholarly-editing:Witness.
@@ -849,8 +793,6 @@ scholarly-editing:witnessHasSiglum
 	a owl:ObjectProperty;
 	rdfs:label "witness text has siglum"@en, "Textzeuge hat Siglum"@de;
 	rdfs:comment """Relating a witness text expression to its siglum."""@en;
-	rdfs:domain scholarly-editing:Witness;
-	rdfs:range scholarly-editing:Siglum;
 	rdfs:subPropertyOf document:expressionHasIdentifier;
 	knora-base:subjectClassConstraint scholarly-editing:Witness;
 	knora-base:objectClassConstraint scholarly-editing:Siglum.
@@ -867,8 +809,6 @@ scholarly-editing:isWitnessOf
 	a owl:ObjectProperty;
 	rdfs:label "is witness of"@en, "ist Textzeuge von"@de;
 	rdfs:comment """Relating a witness text expression to its original."""@en;
-	rdfs:domain scholarly-editing:Witness;
-	rdfs:range text-expression:Expression;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint scholarly-editing:Witness;
 	knora-base:objectClassConstraint text-expression:Expression.
@@ -885,8 +825,6 @@ scholarly-editing:isLemmaOfCriticalEntry
 	a owl:ObjectProperty;
 	rdfs:label "is lemma of critical apparatus entry"@en, "ist Lemma eines textkritischen Apparateintrages"@de;
 	rdfs:comment """Relating a lemma to its critical apparatus entry."""@en;
-	rdfs:domain scholarly-editing:Lemma;
-	rdfs:range scholarly-editing:CriticalApparatusEntry;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint scholarly-editing:Lemma;
 	knora-base:objectClassConstraint scholarly-editing:CriticalApparatusEntry.
@@ -903,8 +841,6 @@ scholarly-editing:isLemmaOfDoctrinalEntry
 	a owl:ObjectProperty;
 	rdfs:label "is lemma of doctrinal apparatus entry"@en, "ist Lemma eines doktrinalen Apparateintrages"@de;
 	rdfs:comment """Relating a lemma to its doctrinal apparatus entry."""@en;
-	rdfs:domain scholarly-editing:Lemma;
-	rdfs:range scholarly-editing:DoctrinalApparatusEntry;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint scholarly-editing:Lemma;
 	knora-base:objectClassConstraint scholarly-editing:DoctrinalApparatusEntry.
@@ -921,8 +857,6 @@ scholarly-editing:lemmaHasReference
 	a owl:ObjectProperty;
 	rdfs:label "lemma has reference"@en, "Lemma hat Referenz"@de;
 	rdfs:comment """Relating a lemma to its reference."""@en;
-	rdfs:domain scholarly-editing:Lemma;
-	rdfs:range document:TextStructureReference;
 	rdfs:subPropertyOf document:hasTextReference;
 	knora-base:subjectClassConstraint scholarly-editing:Lemma;
 	knora-base:objectClassConstraint document:TextStructureReference.
@@ -939,8 +873,6 @@ scholarly-editing:lemmaHasVariant
 	a owl:ObjectProperty;
 	rdfs:label "lemma has variant"@en, "Lemma hat Variant"@de;
 	rdfs:comment """Relating a lemma to a variant it has."""@en;
-	rdfs:domain scholarly-editing:Lemma;
-	rdfs:range scholarly-editing:Variant;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint scholarly-editing:Lemma;
 	knora-base:objectClassConstraint scholarly-editing:Variant.
@@ -957,8 +889,6 @@ scholarly-editing:lemmaHasComment
 	a owl:ObjectProperty;
 	rdfs:label "lemma has comment"@en, "Lemma hat Kommentar"@de;
 	rdfs:comment """Relating a lemma to a comment it has."""@en;
-	rdfs:domain scholarly-editing:Lemma;
-	rdfs:range scholarly-editing:EditorialComment;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint scholarly-editing:Lemma;
 	knora-base:objectClassConstraint scholarly-editing:EditorialComment.
@@ -975,8 +905,6 @@ scholarly-editing:isVariantOfEntry
 	a owl:ObjectProperty;
 	rdfs:label "is variant of apparatus entry"@en, "ist Variant eines Apparateintrages"@de;
 	rdfs:comment """Relating a variant to its critical apparatus entry."""@en;
-	rdfs:domain scholarly-editing:Variant;
-	rdfs:range scholarly-editing:CriticalApparatusEntry;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint scholarly-editing:Variant;
 	knora-base:objectClassConstraint scholarly-editing:CriticalApparatusEntry.
@@ -993,8 +921,6 @@ scholarly-editing:variantHasReference
 	a owl:ObjectProperty;
 	rdfs:label "variant has text reference"@en, "Variant hat Textreferenz"@de;
 	rdfs:comment """Relating a variant to its text reference."""@en;
-	rdfs:domain scholarly-editing:Variant;
-	rdfs:range document:TextStructureReference;
 	rdfs:subPropertyOf document:hasTextReference;
 	knora-base:subjectClassConstraint scholarly-editing:Variant;
 	knora-base:objectClassConstraint document:TextStructureReference.
@@ -1011,8 +937,6 @@ scholarly-editing:variantHasComment
 	a owl:ObjectProperty;
 	rdfs:label "variant has comment"@en, "Variant hat Kommentar"@de;
 	rdfs:comment """Relating a variant to an editorial comment."""@en;
-	rdfs:domain scholarly-editing:Variant;
-	rdfs:range scholarly-editing:EditorialComment;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint scholarly-editing:Variant;
 	knora-base:objectClassConstraint scholarly-editing:EditorialComment.
@@ -1029,8 +953,6 @@ scholarly-editing:isCommentOn
 	a owl:ObjectProperty;
 	rdfs:label "is comment on"@en, "ist Kommentar zu"@de;
 	rdfs:comment """Relating an editorial comment to a text expression it is a comment on."""@en;
-	rdfs:domain scholarly-editing:EditorialComment;
-	rdfs:range text-expression:Expression;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint scholarly-editing:EditorialComment;
 	knora-base:objectClassConstraint text-expression:Expression.
@@ -1047,8 +969,6 @@ scholarly-editing:isCommentOfEdition
 	a owl:ObjectProperty;
 	rdfs:label "is comment of scholarly edition"@en, "ist Kommentar der wissenschaftlichen Edition"@de;
 	rdfs:comment """Relating an editorial comment to its scholarly edition."""@en;
-	rdfs:domain scholarly-editing:EditorialComment;
-	rdfs:range scholarly-editing:Edition;
 	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
 	knora-base:subjectClassConstraint scholarly-editing:EditorialComment;
 	knora-base:objectClassConstraint scholarly-editing:Edition.
@@ -1065,8 +985,6 @@ scholarly-editing:isCommentOfEntry
 	a owl:ObjectProperty;
 	rdfs:label "is comment of entry"@en, "ist Kommentar eines Eintrages"@de;
 	rdfs:comment """Relating an editorial comment to its apparatus entry."""@en;
-	rdfs:domain scholarly-editing:EditorialComment;
-	rdfs:range scholarly-editing:ApparatusEntry;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint scholarly-editing:EditorialComment;
 	knora-base:objectClassConstraint scholarly-editing:ApparatusEntry.
@@ -1083,8 +1001,6 @@ scholarly-editing:commentHasReference
 	a owl:ObjectProperty;
 	rdfs:label "comment has text reference"@en, "Kommentar hat Textreferenz"@de;
 	rdfs:comment """Relating an editorial comment to its text reference."""@en;
-	rdfs:domain scholarly-editing:EditorialComment;
-	rdfs:range document:TextStructureReference;
 	rdfs:subPropertyOf document:hasTextReference;
 	knora-base:subjectClassConstraint scholarly-editing:EditorialComment;
 	knora-base:objectClassConstraint document:TextStructureReference.
@@ -1101,8 +1017,6 @@ scholarly-editing:commentHasContent
 	a owl:ObjectProperty;
 	rdfs:label "editorial comment has content"@en, "editorischer Kommentar hat Inhalt"@de;
 	rdfs:comment """Relating an editorial comment to its content."""@en;
-	rdfs:domain scholarly-editing:EditorialComment;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf language:hasContent;
 	knora-base:subjectClassConstraint scholarly-editing:EditorialComment;
 	knora-base:objectClassConstraint knora-base:TextValue.

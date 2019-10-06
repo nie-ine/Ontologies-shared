@@ -189,8 +189,6 @@ parzival:isVerseOfDreissiger
 	a owl:ObjectProperty;
 	rdfs:label "is verse of dreissiger"@en, "ist Vers eines Dreissigers"@de;
 	rdfs:comment """Relating a verse to its dreissiger."""@en;
-	rdfs:domain parzival:Verse;
-	rdfs:range parzival:Dreissiger;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint parzival:Verse;
 	knora-base:objectClassConstraint parzival:Dreissiger.
@@ -207,8 +205,6 @@ parzival:isAddedToDreissiger
 	a owl:ObjectProperty;
 	rdfs:label "is added to dreissiger"@en, "zum Dreissiger hinzugefügt"@de;
 	rdfs:comment """Relating an edition verse to the dreissiger it is added to."""@en;
-	rdfs:domain parzival:AddedVerse;
-	rdfs:range parzival:Dreissiger;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint parzival:AddedVerse;
 	knora-base:objectClassConstraint parzival:Dreissiger.
@@ -225,8 +221,6 @@ parzival:isDreissigerOfPage
 	a owl:ObjectProperty;
 	rdfs:label "is dreissiger of edition page"@en, "ist Dreissiger einer Editionseite"@de;
 	rdfs:comment """Relating a dreissiger to a scientific edition page it is part of."""@en;
-	rdfs:domain parzival:Dreissiger;
-	rdfs:range parzival:EditionPage;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint parzival:Dreissiger;
 	knora-base:objectClassConstraint parzival:EditionPage.
@@ -243,8 +237,6 @@ parzival:isDreissigerOfSection
 	a owl:ObjectProperty;
 	rdfs:label "is dreissiger of section"@en, "ist Dreissiger eines Abschnitts"@de;
 	rdfs:comment """Relating a dreissiger to the verse section it is part of."""@en;
-	rdfs:domain parzival:Dreissiger;
-	rdfs:range parzival:VerseSection;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint parzival:Dreissiger;
 	knora-base:objectClassConstraint parzival:VerseSection.
@@ -261,8 +253,6 @@ parzival:dreissigerHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "dreissiger has number"@en, "Dreissiger hat Nummer"@de;
 	rdfs:comment """Relating a dreissiger to its number."""@en;
-	rdfs:domain parzival:Dreissiger;
-	rdfs:range parzival:DreissigerNumber;
 	rdfs:subPropertyOf text-structure:hasIdentifier;
 	knora-base:subjectClassConstraint parzival:Dreissiger;
 	knora-base:objectClassConstraint parzival:DreissigerNumber.
@@ -279,8 +269,6 @@ parzival:isSectionOfNovel
 	a owl:ObjectProperty;
 	rdfs:label """is verse section of verse novel 'Parzival'"""@en, """ist Versabschnitt des Versromans 'Parzival'"""@de;
 	rdfs:comment """Relating a verse section to a version of Wolfram Von Eschenbach's verse novel 'Parzival'."""@en;
-	rdfs:domain parzival:VerseSection;
-	rdfs:range parzival:VerseNovel;
 	rdfs:subPropertyOf prosodic-structure:isVerseSectionOfVerseNovel;
 	knora-base:subjectClassConstraint parzival:VerseSection;
 	knora-base:objectClassConstraint parzival:VerseNovel.

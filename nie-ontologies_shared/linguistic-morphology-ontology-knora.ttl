@@ -584,8 +584,6 @@ lingmor:hasLexeme
 	a owl:ObjectProperty;
 	rdfs:label "has lexeme"@en, "hat Lexem"@de;
 	rdfs:comment """Relating a syntactic word form to its lexeme."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range ling:Lexeme;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint ling:Lexeme.
@@ -602,8 +600,6 @@ lingmor:hasPartOfSpeech
 	a owl:ObjectProperty;
 	rdfs:label "has part of speech"@en, "hat Wortart"@de;
 	rdfs:comment """Relating a syntactic word form to its part of speech."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range lingmor:PartOfSpeech;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:PartOfSpeech.
@@ -620,8 +616,6 @@ lingmor:hasGrammaticalGender
 	a owl:ObjectProperty;
 	rdfs:label "has grammatical gender"@en, "hat grammatisches Genus"@de;
 	rdfs:comment """Relating a syntactic word form to its grammatical gender."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range lingmor:GrammaticalGender;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:GrammaticalGender.
@@ -638,8 +632,6 @@ lingmor:hasNumber
 	a owl:ObjectProperty;
 	rdfs:label "syntactic word form has number"@en, "syntactische Wortform hat Numerus"@de;
 	rdfs:comment """Relating a syntactic word to its number."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range lingmor:Number;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:Number.
@@ -656,8 +648,6 @@ lingmor:hasCase
 	a owl:ObjectProperty;
 	rdfs:label "has grammatical case"@en, "hat Kasus"@de;
 	rdfs:comment """Relating a syntactic word form to its grammatical case."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range lingmor:Case;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:Case.
@@ -674,8 +664,6 @@ lingmor:hasComparisonDegree
 	a owl:ObjectProperty;
 	rdfs:label "has comparison degree"@en, "hat Komparationsstufe"@de;
 	rdfs:comment """Relating a wordform to a comparison degree."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range lingmor:ComparisonDegree;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:ComparisonDegree.
@@ -692,8 +680,6 @@ lingmor:hasTense
 	a owl:ObjectProperty;
 	rdfs:label "has tense"@en, "hat Tempus"@de;
 	rdfs:comment """Relating a verbform to tense."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range lingmor:Tense;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:Tense.
@@ -710,8 +696,6 @@ lingmor:hasPerson
 	a owl:ObjectProperty;
 	rdfs:label "has person"@en, "hat Person"@de;
 	rdfs:comment """Relating a wordform to a person property."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range lingmor:Person;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:Person.
@@ -728,8 +712,6 @@ lingmor:hasVerbalVoice
 	a owl:ObjectProperty;
 	rdfs:label "has verbal voice"@en, "hat Diathese"@de;
 	rdfs:comment """Relating a verbform to a voice."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range lingmor:VerbalVoice;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:VerbalVoice.
@@ -746,8 +728,6 @@ lingmor:hasVerbalMood
 	a owl:ObjectProperty;
 	rdfs:label "has verbal mode"@en, "hat Modus"@de;
 	rdfs:comment """Relating a verbform to mood."""@en;
-	rdfs:domain lingmor:SyntacticWordForm;
-	rdfs:range lingmor:VerbalMood;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint lingmor:SyntacticWordForm;
 	knora-base:objectClassConstraint lingmor:VerbalMood.
@@ -764,8 +744,6 @@ lingmor:hasTag
 	a owl:ObjectProperty;
 	rdfs:label "has tag"@en, "hat Tag"@de;
 	rdfs:comment """Relating a human natural language expression to a linguistic comment as a textual statement about the expression."""@en;
-	rdfs:domain lingmor:PartOfSpeech;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint lingmor:PartOfSpeech;
 	knora-base:objectClassConstraint knora-base:TextValue.

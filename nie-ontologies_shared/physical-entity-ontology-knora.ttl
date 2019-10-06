@@ -174,8 +174,6 @@ physical:isPartOf
 	a owl:ObjectProperty; #, owl:TransitiveProperty;
 	rdfs:label "is part of"@en, "ist Teil von"@de;
 	rdfs:comment "Relating a space to another one it is part of."@en;
-	rdfs:domain physical:Space;
-	rdfs:range physical:Space;	
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint physical:Space;
 	knora-base:objectClassConstraint physical:Space.
@@ -192,8 +190,6 @@ physical:hasSize
 	a owl:ObjectProperty;
 	rdfs:label "has size"@en, "hat Grösse"@de;
 	rdfs:comment "Relating a space to its size."@en;
-	rdfs:domain physical:Space;
-	rdfs:range physical:Size;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint physical:Space;
 	knora-base:objectClassConstraint physical:Size.
@@ -226,8 +222,6 @@ physical:hasSizeDescription
 	a owl:ObjectProperty;
 	rdfs:label "has size description"@en, "hat Grössebeschreibung"@de;
 	rdfs:comment "Relating a space to a size description it has."@en;
-	rdfs:domain physical:Space;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint physical:Space;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -236,8 +230,6 @@ physical:hasLocation
 	a owl:ObjectProperty;
 	rdfs:label "has location"@en, "hat Ort"@de;
 	rdfs:comment """Relating something to its location."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range physical:Place;
 	rdfs:subPropertyOf geo:location, knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint physical:Place.
@@ -254,8 +246,6 @@ physical:hasExistingState
 	a owl:ObjectProperty;
 	rdfs:label "has existing state"@en, "hat Existenzzustand"@de;
 	rdfs:comment """Relating something to its existing state."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range physical:ExistingState;
 	rdfs:subPropertyOf geo:location, knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint physical:ExistingState.
@@ -272,8 +262,6 @@ physical:placeHasName
 	a owl:ObjectProperty;
 	rdfs:label "place has name"@en, "Platz hat Name"@de;
 	rdfs:comment """Relating a place to its name."""@en;
-	rdfs:domain physical:Place;
-	rdfs:range rdfs:Literal; #° physical:PlaceName
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint physical:Place;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -282,8 +270,6 @@ physical:hasSender
 	a owl:ObjectProperty;
 	rdfs:label "has sender"@en, "hat Absender"@de;
 	rdfs:comment """Relating something material to a human agent - a person or a group - that sent it."""@en;
-	rdfs:domain physical:Matter;
-	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:Sender]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint human:Agent.
@@ -300,8 +286,6 @@ physical:hasReceiver
 	a owl:ObjectProperty;
 	rdfs:label "has receiver"@en, "hat Empfänger"@de;
 	rdfs:comment """Relating something material to a human agent - a person or a group - that received it."""@en;
-	rdfs:domain physical:Matter;
-	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom human:Receiver]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint human:Agent.
@@ -318,8 +302,6 @@ physical:hasSendingDate
 	a owl:ObjectProperty;
 	rdfs:label "has sending date"@en, "hat Absendedatum"@de;
 	rdfs:comment """Relating something material to a date it was sent on."""@en;
-	rdfs:domain physical:Matter;
-	rdfs:range xsd:date;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint knora-base:DateValue.
@@ -328,8 +310,6 @@ physical:hasReceivingDate
 	a owl:ObjectProperty;
 	rdfs:label "has receiving date"@en, "hat Empfangsdatum"@de;
 	rdfs:comment """Relating something material to a date it was received on."""@en;
-	rdfs:domain physical:Matter;
-	rdfs:range xsd:date;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint knora-base:DateValue.
@@ -338,8 +318,6 @@ physical:hasSendingLocation
 	a owl:ObjectProperty;
 	rdfs:label "has sending location"@en, "hat Absendeort"@de;
 	rdfs:comment """Relating something material to a location it was sent from."""@en;
-	rdfs:domain physical:Matter;
-	rdfs:range physical:Place;
 	rdfs:subPropertyOf physical:hasLocation;
 	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint physical:Place.
@@ -356,8 +334,6 @@ physical:hasReceivingLocation
 	a owl:ObjectProperty;
 	rdfs:label "has receiving location"@en, "hat Empfangort"@de;
 	rdfs:comment """Relating something material to a location it was sent to."""@en;
-	rdfs:domain physical:Matter;
-	rdfs:range physical:Place;
 	rdfs:subPropertyOf physical:hasLocation;
 	knora-base:subjectClassConstraint physical:Matter;
 	knora-base:objectClassConstraint physical:Place.

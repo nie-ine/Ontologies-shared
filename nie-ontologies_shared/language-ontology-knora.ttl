@@ -182,8 +182,6 @@ language:hasCode
 	a owl:ObjectProperty;
 	rdfs:label "language has code"@en, "Sprache hat Kode"@de;
 	rdfs:comment """Relating a language to a code (object) representing that language."""@en;
-	rdfs:domain language:HumanNaturalLanguage;
-	rdfs:range skos:Concept;
 	rdfs:subPropertyOf knora-base:hasValue; # skos:exactMatch
 	knora-base:subjectClassConstraint language:HumanNaturalLanguage;
 	knora-base:objectClassConstraint knora-base:TextValue. 
@@ -192,8 +190,6 @@ language:hasContent
 	a owl:ObjectProperty;
 	rdfs:label "has content"@en, "hat Inhalt"@de;
 	rdfs:comment """Relating a human natural language expression to its content."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf concept:hasLiteral;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -202,8 +198,6 @@ language:hasDialect
 	a owl:ObjectProperty;
 	rdfs:label "has dialect"@en, "hat Dialekt"@de;
 	rdfs:comment """Relating a human natural language to a dialect it has."""@en;
-	rdfs:domain language:HumanNaturalLanguage;
-	rdfs:range language:Dialect;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguage;
 	knora-base:objectClassConstraint language:Dialect.
@@ -220,8 +214,6 @@ language:swissGermanHasDialect
 	a owl:ObjectProperty;
 	rdfs:label "Swiss German has dialect"@en, "Schweizerdeutsch hat Dialekt"@de;
 	rdfs:comment """Relating Swiss German to a dialect it has."""@en;
-	rdfs:domain language:SwissGerman;
-	rdfs:range language:Dialect;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint language:SwissGerman;
 	knora-base:objectClassConstraint language:Dialect.
@@ -238,8 +230,6 @@ language:expressedInNaturalLanguage
 	a owl:ObjectProperty;
 	rdfs:label "expressed in natural language"@en, "geäußert in naturlichen Sprache"@de;
 	rdfs:comment """Relating a human expression to a natural language wherein it is expressed."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range language:HumanNaturalLanguage;
 	rdfs:subPropertyOf cidoc:P72_has_language, knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint language:HumanNaturalLanguage.
@@ -256,8 +246,6 @@ language:expressedInDialect
 	a owl:ObjectProperty;
 	rdfs:label "expressed in dialect"@en, "geäußert in Mundart"@de;
 	rdfs:comment """Relating a human expression to a dialect it is expressed in."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range language:Dialect;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint language:Dialect.
@@ -274,8 +262,6 @@ language:hasTranslator
 	a owl:ObjectProperty;
 	rdfs:label "has translator"@en, "hat Übersetzer"@de;
 	rdfs:comment """Relating a natural language expression to an agent that translated it."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range agent:Agent; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom language:Translator]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint agent:Agent.
@@ -292,8 +278,6 @@ language:hasPersonTranslator
 	a owl:ObjectProperty;
 	rdfs:label "has person-translator"@en, "hat Person-Übersetzer"@de;
 	rdfs:comment """Relating a natural language expression to a person who translated it."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom language:PersonTranslator]];
 	rdfs:subPropertyOf language:hasTranslator;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint human:Person.
@@ -310,8 +294,6 @@ language:translationHasTranslator
 	a owl:ObjectProperty;
 	rdfs:label "translation has translator"@en, "Übersetzung hat Übersetzer"@de;
 	rdfs:comment """Relating a translation to an agent that created it."""@en;
-	rdfs:domain language:Translation;
-	rdfs:range agent:Agent; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty agent:hasRole; owl:someValuesFrom language:Translator]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint language:Translation;
 	knora-base:objectClassConstraint agent:Agent.
@@ -328,8 +310,6 @@ language:translationHasPersonTranslator
 	a owl:ObjectProperty;
 	rdfs:label "translation has person-translator"@en, "Übersetzung hat Person-Übersetzer"@de;
 	rdfs:comment """Relating a translation to a person who created it."""@en;
-	rdfs:domain language:PersonTranslation;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom language:PersonTranslator]];
 	rdfs:subPropertyOf language:translationHasTranslator;
 	knora-base:subjectClassConstraint language:PersonTranslation;
 	knora-base:objectClassConstraint human:Person.
@@ -346,8 +326,6 @@ language:hasMachineTranslator
 	a owl:ObjectProperty;
 	rdfs:label "has machine-translator"@en, "hat Maschine-Übersetzer"@de;
 	rdfs:comment """Relating a natural language expression to a machine that translated it."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range device:DigitalElectronicComputer; # [rdfs:subClassOf device:DigitalElectronicComputer, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom language:Translator]];
 	rdfs:subPropertyOf language:hasTranslator;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint device:DigitalElectronicComputer.
@@ -364,8 +342,6 @@ language:hasTranslation
 	a owl:ObjectProperty;
 	rdfs:label "has translation"@en, "hat Übersetzung"@de;
 	rdfs:comment """Relating a human natural language expression to another one in another natural language into which it is translated."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range language:Translation;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint language:Translation.
@@ -382,8 +358,6 @@ language:isTranslatedInto
 	a owl:ObjectProperty;
 	rdfs:label "is translated in"@en, "ist übersetzt in"@de;
 	rdfs:comment """Relating a human natural language expression to the language it is translated in."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range language:HumanNaturalLanguage;
 	rdfs:subPropertyOf language:expressedInNaturalLanguage;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint language:HumanNaturalLanguage.

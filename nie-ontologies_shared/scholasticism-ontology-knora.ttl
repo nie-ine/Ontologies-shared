@@ -180,8 +180,6 @@ schola:hasRole
 	a owl:ObjectProperty;
 	rdfs:label "has role"@en, "hat Rolle"@de;
 	rdfs:comment """Relating a scholastic to a role he has."""@en;
-	rdfs:domain schola:Scholastic;
-	rdfs:range schola:Role;
 	rdfs:subPropertyOf human:personHasRole;
 	knora-base:subjectClassConstraint schola:Scholastic;
 	knora-base:objectClassConstraint schola:Role.
@@ -198,8 +196,6 @@ schola:commentaryHasProcedure
 	a owl:ObjectProperty;
 	rdfs:label "commentary has procedure"@en, "Kommentar hat Prozedur"@de;
 	rdfs:comment """Relating a scholastic commentary to a procedure it is created in."""@en;
-	rdfs:domain schola:Commentary;
-	rdfs:range schola:CommentingProcedure;
 	rdfs:subPropertyOf event:isOutputOf;
 	knora-base:subjectClassConstraint schola:Commentary;
 	knora-base:objectClassConstraint schola:CommentingProcedure.
@@ -216,8 +212,6 @@ schola:commentaryHasProcedureValue
 	a owl:ObjectProperty;
 	rdfs:label "commentary has reportator"@en, "Kommentar hat Reportator"@de;
 	rdfs:comment """Relating a reportatio commentary of a lecture to a scholastic who reported it."""@en;
-	rdfs:domain schola:ReportatioCommentary;
-	rdfs:range schola:Scholastic; # [rdfs:subClassOf schola:Scholastic, [a owl:Restriction; owl:onProperty schola:hasRole; owl:someValuesFrom schola:Reportator];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint schola:ReportatioCommentary;
 	knora-base:objectClassConstraint schola:Scholastic.

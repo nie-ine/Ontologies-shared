@@ -213,8 +213,6 @@ prosodic-structure:isWordOfVerse
 	a owl:ObjectProperty;
 	rdfs:label "is word of verse"@en, "ist Wort eines Verses"@de;
 	rdfs:comment """Relating a syntactic word to a verse it is part of."""@en;
-	rdfs:domain text-structure:SyntacticWord;
-	rdfs:range prosodic-structure:Verse;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint text-structure:SyntacticWord;
 	knora-base:objectClassConstraint prosodic-structure:Verse.
@@ -231,8 +229,6 @@ prosodic-structure:isVerseOfStrophe
 	a owl:ObjectProperty;
 	rdfs:label "is verse of strophe"@en, "ist Vers einer Strophe"@de;
 	rdfs:comment """Relating a verse to a strophe it is part of."""@en;
-	rdfs:domain prosodic-structure:Verse;
-	rdfs:range prosodic-structure:Strophe;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint prosodic-structure:Verse;
 	knora-base:objectClassConstraint prosodic-structure:Strophe.
@@ -249,8 +245,6 @@ prosodic-structure:isVerseOfHalfStrophe
 	a owl:ObjectProperty;
 	rdfs:label "is verse of half-strophe"@en, "ist Vers einer Halbstrophe"@de;
 	rdfs:comment """Relating a verse to a half-strophe it is part of."""@en;
-	rdfs:domain prosodic-structure:Verse;
-	rdfs:range prosodic-structure:HalfStrophe;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint prosodic-structure:Verse;
 	knora-base:objectClassConstraint prosodic-structure:HalfStrophe.
@@ -267,8 +261,6 @@ prosodic-structure:verseHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "verse has identifier"@en, "Vers hat Identifikator"@de;
 	rdfs:comment """Relating a verse to its identifier."""@en;
-	rdfs:domain prosodic-structure:Verse;
-	rdfs:range prosodic-structure:VerseIdentifier;
 	rdfs:subPropertyOf text-structure:hasIdentifier;
 	knora-base:subjectClassConstraint prosodic-structure:Verse;
 	knora-base:objectClassConstraint prosodic-structure:VerseIdentifier.
@@ -285,8 +277,6 @@ prosodic-structure:verseHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "verse has number"@en, "Vers hat Nummer"@de;
 	rdfs:comment """Relating a verse to its number."""@en;
-	rdfs:domain prosodic-structure:Verse;
-	rdfs:range prosodic-structure:VerseNumber;
 	rdfs:subPropertyOf prosodic-structure:verseHasIdentifier;
 	knora-base:subjectClassConstraint prosodic-structure:Verse;
 	knora-base:objectClassConstraint prosodic-structure:VerseNumber.
@@ -303,8 +293,6 @@ prosodic-structure:isHalfOfVerse
 	a owl:ObjectProperty;
 	rdfs:label "is half of verse"@en, "ist Hälfte eines Verses"@de;
 	rdfs:comment """Relating a half-verse to its verse."""@en;
-	rdfs:domain prosodic-structure:HalfVerse;
-	rdfs:range prosodic-structure:Verse;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint prosodic-structure:HalfVerse;
 	knora-base:objectClassConstraint prosodic-structure:Verse.
@@ -321,8 +309,6 @@ prosodic-structure:isStropheOfSection
 	a owl:ObjectProperty;
 	rdfs:label "is strophe of section"@en, "ist Strophe eines Versabschnittes"@de;
 	rdfs:comment """Relating a strophe to a section it is part of."""@en;
-	rdfs:domain prosodic-structure:Strophe;
-	rdfs:range prosodic-structure:VerseSection;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint prosodic-structure:Strophe;
 	knora-base:objectClassConstraint prosodic-structure:VerseSection.
@@ -339,8 +325,6 @@ prosodic-structure:isStropheOfPoem
 	a owl:ObjectProperty;
 	rdfs:label "is strophe of poem"@en, "ist Strophe eines Gedichtes"@de;
 	rdfs:comment """Relating a strophe to a poem it is part of."""@en;
-	rdfs:domain prosodic-structure:Strophe;
-	rdfs:range litera:VersePoem;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint prosodic-structure:Strophe;
 	knora-base:objectClassConstraint litera:VersePoem.
@@ -357,8 +341,6 @@ prosodic-structure:isStropheOfNovel
 	a owl:ObjectProperty;
 	rdfs:label "is strophe of verse novel"@en, "ist Strophe eines Versromans"@de;
 	rdfs:comment """Relating a strophe to a verse novel it is part of."""@en;
-	rdfs:domain prosodic-structure:Strophe;
-	rdfs:range litera:VerseNovel;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint prosodic-structure:Strophe;
 	knora-base:objectClassConstraint litera:VerseNovel.
@@ -375,8 +357,6 @@ prosodic-structure:stropheHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "strophe has identifier"@en, "Strophe hat Identifikator"@de;
 	rdfs:comment """Relating a strophe to its identifier."""@en;
-	rdfs:domain prosodic-structure:Strophe;
-	rdfs:range prosodic-structure:StropheIdentifier;
 	rdfs:subPropertyOf text-structure:hasIdentifier;
 	knora-base:subjectClassConstraint prosodic-structure:Strophe;
 	knora-base:objectClassConstraint prosodic-structure:StropheIdentifier.
@@ -393,8 +373,6 @@ prosodic-structure:stropheHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "strophe has number"@en, "Strophe hat Nummer"@de;
 	rdfs:comment """Relating a strophe to its number."""@en;
-	rdfs:domain prosodic-structure:Strophe;
-	rdfs:range prosodic-structure:StropheNumber;
 	rdfs:subPropertyOf prosodic-structure:stropheHasIdentifier;
 	knora-base:subjectClassConstraint prosodic-structure:Strophe;
 	knora-base:objectClassConstraint prosodic-structure:StropheNumber.
@@ -411,8 +389,6 @@ prosodic-structure:isHalfOfStrophe
 	a owl:ObjectProperty;
 	rdfs:label "is half of strophe"@en, "ist Hälfte einer Strophe"@de;
 	rdfs:comment """Relating a half-strophe to its strophe."""@en;
-	rdfs:domain prosodic-structure:HalfStrophe;
-	rdfs:range prosodic-structure:Strophe;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint prosodic-structure:HalfStrophe;
 	knora-base:objectClassConstraint prosodic-structure:Strophe.
@@ -429,8 +405,6 @@ prosodic-structure:isVerseSectionOfPoem
 	a owl:ObjectProperty;
 	rdfs:label "is verse section of poem"@en, "ist Versabschnitt eines Gedichtes"@de;
 	rdfs:comment """Relating a verse section to a poem it is part of."""@en;
-	rdfs:domain prosodic-structure:VerseSection;
-	rdfs:range litera:VersePoem;
 	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
 	knora-base:subjectClassConstraint prosodic-structure:VerseSection;
 	knora-base:objectClassConstraint litera:VersePoem.
@@ -447,8 +421,6 @@ prosodic-structure:isVerseSectionOfVerseNovel
 	a owl:ObjectProperty;
 	rdfs:label "is verse section of verse novel"@en, "ist Versabschnitt eines Versromans"@de;
 	rdfs:comment """Relating a verse section to a verse novel it is part of."""@en;
-	rdfs:domain prosodic-structure:VerseSection;
-	rdfs:range litera:VerseNovel;
 	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
 	knora-base:subjectClassConstraint prosodic-structure:VerseSection;
 	knora-base:objectClassConstraint litera:VerseNovel.
@@ -465,8 +437,6 @@ prosodic-structure:verseSectionHasTitle
 	a owl:ObjectProperty;
 	rdfs:label "verse section has title"@en, "Versabschnitt hat Titel"@de;
 	rdfs:comment """Relating a verse section to its title."""@en;
-	rdfs:domain prosodic-structure:VerseSection;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasTitle;
 	knora-base:subjectClassConstraint prosodic-structure:VerseSection;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -475,8 +445,6 @@ prosodic-structure:verseSectionHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "verse section has identifier"@en, "Versabschnitt hat Identifikator"@de;
 	rdfs:comment """Relating a verse section to its identifier."""@en;
-	rdfs:domain prosodic-structure:VerseSection;
-	rdfs:range prosodic-structure:VerseSectionIdentifier;
 	rdfs:subPropertyOf text-structure:hasIdentifier;
 	knora-base:subjectClassConstraint prosodic-structure:VerseSection;
 	knora-base:objectClassConstraint prosodic-structure:VerseSectionIdentifier.
@@ -493,8 +461,6 @@ prosodic-structure:verseSectionHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "verse section has number"@en, "Versabschnitt hat Nummer"@de;
 	rdfs:comment """Relating a verse section to its number."""@en;
-	rdfs:domain prosodic-structure:VerseSection;
-	rdfs:range prosodic-structure:VerseSectionNumber;
 	rdfs:subPropertyOf prosodic-structure:verseSectionHasIdentifier;
 	knora-base:subjectClassConstraint prosodic-structure:VerseSection;
 	knora-base:objectClassConstraint prosodic-structure:VerseSectionNumber.

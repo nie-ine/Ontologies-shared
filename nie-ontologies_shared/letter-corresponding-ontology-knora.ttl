@@ -117,8 +117,6 @@ letter-corresponding:isExchangingOf
 	a owl:ObjectProperty;
 	rdfs:label "is exchanging of"@en, "ist Auswechselen von"@de;
 	rdfs:comment """Relating an exchanging to its corresponding it is a suprocedure of."""@en;
-	rdfs:domain letter-corresponding:Exchanging;
-	rdfs:range letter-corresponding:Corresponding;
 	rdfs:subPropertyOf event:isSubProcedureOf;
 	knora-base:subjectClassConstraint letter-corresponding:Exchanging;
 	knora-base:objectClassConstraint letter-corresponding:Corresponding.
@@ -135,8 +133,6 @@ letter-corresponding:isCompilingOf
 	a owl:ObjectProperty;
 	rdfs:label "is compiling of"@en, "ist Zusammenstellen von"@de;
 	rdfs:comment """Relating a compiling to its exchanging it is a suprocedure of."""@en;
-	rdfs:domain letter-corresponding:Compiling;
-	rdfs:range letter-corresponding:Exchanging;
 	rdfs:subPropertyOf event:isSubProcedureOf;
 	knora-base:subjectClassConstraint letter-corresponding:Compiling;
 	knora-base:objectClassConstraint letter-corresponding:Exchanging.
@@ -153,8 +149,6 @@ letter-corresponding:isInLetter
 	a owl:ObjectProperty;
 	rdfs:label "is in letter"@en, "ist in Brief"@de;
 	rdfs:comment """Relating a letter expression to a letter it is in."""@en;
-	rdfs:domain letter-corresponding:Expression;
-	rdfs:range letter-corresponding:Letter;
 	rdfs:subPropertyOf infocar:isOnCarrier;
 	knora-base:subjectClassConstraint letter-corresponding:Expression;
 	knora-base:objectClassConstraint letter-corresponding:Letter.
@@ -171,8 +165,6 @@ letter-corresponding:isStructureOfExpression
 	a owl:ObjectProperty;
 	rdfs:label "is letter structure of expression"@en, "ist Briefstruktur einer Expression"@de;
 	rdfs:comment """Relating a letter structure to a text expression it is part of."""@en;
-	rdfs:domain letter-corresponding:Structure;
-	rdfs:range letter-corresponding:Expression;
 	rdfs:subPropertyOf text-structure:isPartOfTextExpression;
 	knora-base:subjectClassConstraint letter-corresponding:Structure;
 	knora-base:objectClassConstraint letter-corresponding:Expression.
@@ -189,8 +181,6 @@ letter-corresponding:follows
 	a owl:ObjectProperty;
 	rdfs:label "letter follows"@en, "Brief folgt"@de;
 	rdfs:comment """Relating a letter to a preceding letter."""@en;
-	rdfs:domain letter-corresponding:Letter;
-	rdfs:range letter-corresponding:Letter;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint letter-corresponding:Letter;
 	knora-base:objectClassConstraint letter-corresponding:Letter.
@@ -207,8 +197,6 @@ letter-corresponding:hasEnvelope
 	a owl:ObjectProperty;
 	rdfs:label "letter has envelope"@en, "Brief hat Umschlag"@de;
 	rdfs:comment """Relating a letter to an envelope it has."""@en;
-	rdfs:domain letter-corresponding:Letter;
-	rdfs:range letter-corresponding:Envelope;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint letter-corresponding:Letter;
 	knora-base:objectClassConstraint letter-corresponding:Envelope.
@@ -225,8 +213,6 @@ letter-corresponding:hasEnvelopeDescription
 	a owl:ObjectProperty;
 	rdfs:label "letter has envelope description"@en, "Brief hat Umschlagbeschreibung"@de;
 	rdfs:comment """Relating a letter to a description of its envelope."""@en;
-	rdfs:domain letter-corresponding:Letter;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint letter-corresponding:Letter;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -235,8 +221,6 @@ letter-corresponding:hasEnclosure
 	a owl:ObjectProperty;
 	rdfs:label "letter has enclosure"@en, "Brief hat Beilage"@de;
 	rdfs:comment """Relating a letter to an enclosure it has."""@en;
-	rdfs:domain letter-corresponding:Letter;
-	rdfs:range letter-corresponding:Enclosure;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint letter-corresponding:Letter;
 	knora-base:objectClassConstraint letter-corresponding:Enclosure.
@@ -253,8 +237,6 @@ letter-corresponding:isPageOfLetter
 	a owl:ObjectProperty;
 	rdfs:label "is page of letter"@en, "ist Seite eines Briefes"@de;
 	rdfs:comment """Relating a page to the letter it is part of."""@en;
-	rdfs:domain infocar:Page;
-	rdfs:range letter-corresponding:Letter;
 	rdfs:subPropertyOf physical:isPartOf;
 	knora-base:subjectClassConstraint infocar:Page;
 	knora-base:objectClassConstraint letter-corresponding:Letter.
@@ -271,8 +253,6 @@ letter-corresponding:isTextInEnclosure
 	a owl:ObjectProperty;
 	rdfs:label "is text expression in letter enclosure"@en, "ist Textexpression in Briefbeilage"@de;
 	rdfs:comment """Relating a text expression to a letter information enclosure it is in."""@en;
-	rdfs:domain letter-corresponding:EnclosureExpression;
-	rdfs:range letter-corresponding:InformationEnclosure;
 	rdfs:subPropertyOf infocar:isOnCarrier;
 	knora-base:subjectClassConstraint letter-corresponding:EnclosureExpression;
 	knora-base:objectClassConstraint letter-corresponding:InformationEnclosure.

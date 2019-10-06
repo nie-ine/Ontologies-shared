@@ -123,8 +123,6 @@ ling:hasSynonym
 	a owl:ObjectProperty;
 	rdfs:label "has synonym"@en, "hat Synonym"@de;
 	rdfs:comment """Relating a resource to a synonym of the name of the resource."""@en;
-	rdfs:domain rdfs:Resource; #°
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasName;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -133,8 +131,6 @@ ling:hasComment
 	a owl:ObjectProperty;
 	rdfs:label "has linguistic comment"@en, "hat linguistischer Kommentar"@de;
 	rdfs:comment """Relating a human natural language expression to a linguistic comment as a textual statement about the expression."""@en;
-	rdfs:domain language:HumanNaturalLanguageExpression;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasComment;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -143,8 +139,6 @@ ling:hasLanguage
 	a owl:ObjectProperty;
 	rdfs:label "has language"@en, "hat Sprache"@de;
 	rdfs:comment "Relating a linguistic concept to its human natural language."@en;
-	rdfs:domain ling:Concept;
-	rdfs:range language:HumanNaturalLanguage;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint ling:Concept;
 	knora-base:objectClassConstraint language:HumanNaturalLanguage.
@@ -161,8 +155,6 @@ ling:hasLemma
 	a owl:ObjectProperty;
 	rdfs:label "has lemma"@en, "hat Lemma"@de;
 	rdfs:comment """Relating a lexeme to a lemma."""@en;
-	rdfs:domain ling:Lexeme;
-	rdfs:range ling:Lemma;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint ling:Lexeme;
 	knora-base:objectClassConstraint ling:Lemma.

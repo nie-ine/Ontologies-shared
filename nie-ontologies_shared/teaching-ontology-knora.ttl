@@ -34,7 +34,6 @@
 
 teach:Teaching
 	a owl:Class;
-	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/teaching#>;
 	rdfs:label "teaching"@en, "Unterricht"@de;
 	rdfs:comment """Person's action of communicating information in order to help another person to acquire knowledge, competence or value."""@en;
 	rdfs:subClassOf human:Procedure, [
@@ -43,14 +42,12 @@ teach:Teaching
 
 teach:Teacher
 	a owl:Class;
-	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/teaching#>;
 	rdfs:label "teacher"@en, "LehrerIn"@de;
 	rdfs:comment """Role of a person who teaches."""@en;
 	rdfs:subClassOf human:PersonRole.
 
 teach:Lecture
 	a owl:Class;
-	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/teaching#>;
 	rdfs:label "lecture"@en, "Vorlesung"@de;
 	rdfs:comment """Teaching by oral presentation about a particular subject."""@en;
 	rdfs:subClassOf teach:Teaching, [
@@ -59,7 +56,6 @@ teach:Lecture
 
 teach:Lecturer
 	a owl:Class;
-	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/teaching#>;
 	rdfs:label "lecturer"@en, "VorleserIn"@de;
 	rdfs:comment """Role of a person who lectures."""@en;
 	rdfs:subClassOf teach:Teacher.
@@ -76,18 +72,14 @@ teach:Manual
 
 teach:teachingBy
 	a owl:ObjectProperty;
-	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/teaching#>;
 	rdfs:label "teaching by"@en, "Unterricht von"@de;
 	rdfs:comment """Relating a teaching to a person having the teacher role."""@en;
-	rdfs:domain teach:Teaching;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom teach:Teacher]];
 	rdfs:subPropertyOf agent:hasAgent;
 	knora-base:subjectClassConstraint teach:Teaching;
 	knora-base:objectClassConstraint human:Person.
 
 teach:teachingByValue
 	a owl:ObjectProperty;
-	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/teaching#>;
 	rdfs:label "teaching by - statement"@en, "Unterricht von - Festlegung"@de;
 	rdfs:comment """Relating a teaching to a reification statement of the relation between the teaching and a person having the teacher role."""@en;
 	rdfs:subPropertyOf agent:hasAgentValue;
@@ -96,18 +88,14 @@ teach:teachingByValue
 
 teach:lectureBy
 	a owl:ObjectProperty;
-	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/teaching#>;
 	rdfs:label "lecture by"@en, "Vorlesung von"@de;
 	rdfs:comment """Relating a lecture to a person having the lecturer role."""@en;
-	rdfs:domain teach:Lecture;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom teach:Lecturer]];
 	rdfs:subPropertyOf teach:teachingBy;
 	knora-base:subjectClassConstraint teach:Lecture;
 	knora-base:objectClassConstraint human:Person.
 
 teach:lectureByValue
 	a owl:ObjectProperty;
-	#rdfs:isDefinedBy <http://www.knora.org/ontology/shared/teaching#>;
 	rdfs:label "lecture by - statement"@en, "Vorlesung von - Festlegung"@de;
 	rdfs:comment """Relating a lecture to a reification statement of the relation between the lecture and a person having the lecturer role."""@en;
 	rdfs:subPropertyOf teach:teachingByValue;

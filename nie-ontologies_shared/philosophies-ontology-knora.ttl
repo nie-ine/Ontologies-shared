@@ -69,8 +69,6 @@ philos:adheringToThought
 	a owl:ObjectProperty;
 	rdfs:label "adhering to philosophy"@en, "ist Anhänger von Philosophie"@de;
 	rdfs:comment """Relating a person to a philosophy the person adheres to."""@en;
-	rdfs:domain human:Person;
-	rdfs:range philo:Philosophy;
 	rdfs:subPropertyOf human:adheringToThought;
 	knora-base:subjectClassConstraint human:Person;
 	knora-base:objectClassConstraint philo:Philosophy.

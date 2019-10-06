@@ -288,8 +288,6 @@ text:hasText
 	a owl:ObjectProperty;
 	rdfs:label "has text"@en, "hat Text"@de;
 	rdfs:comment """Relating a resource to a text as a writable coherent set of signs representing semantics in a language."""@en;
-	rdfs:domain rdfs:Resource;
-	rdfs:range rdfs:Literal; # text:Text
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -386,8 +384,6 @@ text:isTextOfDocument
 	a owl:ObjectProperty;
 	rdfs:label "is text of document"@en, "ist Text eines Dokumentes"@de;
 	rdfs:comment "Relating a text to the document it is part of."@en;
-	rdfs:domain text:Text;
-	rdfs:range document:Document;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint document:Document.
@@ -404,8 +400,6 @@ text:hasContentNature
 	a owl:ObjectProperty;
 	rdfs:label "has content nature"@en, "hat textinhaltliche Art"@de;
 	rdfs:comment """Relating a text to a content nature it has."""@en;
-	rdfs:domain text:Text;
-	rdfs:range text:ContentNature;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint text:ContentNature.
@@ -422,8 +416,6 @@ text:hasLineNumber
 	a owl:ObjectProperty;
 	rdfs:label "has line number"@en, "hat Liniennummer"@de;
 	rdfs:comment """Relating a text to the number of a line of the text expression."""@en;
-	rdfs:domain text:Text;
-	rdfs:range rdfs:Literal;	
 	rdfs:subPropertyOf text:hasText;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -432,8 +424,6 @@ text:hasVersionIndicator
 	a owl:ObjectProperty;
 	rdfs:label "has version indicator"@en, "hat Version-Indikator"@de;
 	rdfs:comment """Relating a text to a textual element that indicates its version."""@en;
-	rdfs:domain text:Text;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf text:hasText;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -442,8 +432,6 @@ text:hasPageNumberDescription
 	a owl:ObjectProperty;
 	rdfs:label "text has page number description"@en, "Text hat Seitennummerbeschreibung"@de;
 	rdfs:comment """Relating a text to a description of the number(s) of and possibly a location on (a) pages it is on; examples of the string of its value: "001-002", "01 recto", "O2 (bottom)"."""@en;
-	rdfs:domain text:Text;
-	rdfs:range rdfs:Literal;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -452,8 +440,6 @@ text:hasNumberOfPages
 	a owl:ObjectProperty;
 	rdfs:label "has number of pages"@en, "hat Seitenanzahl"@de;
 	rdfs:comment """Relating a text to the number of pages it has."""@en;
-	rdfs:domain text:Text;
-	rdfs:range xsd:integer;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -462,8 +448,6 @@ text:hasReferenceText
 	a owl:ObjectProperty;
 	rdfs:label "has reference text"@en, "hat Bezugstext"@de;
 	rdfs:comment "Relating a text to another one as its reference."@en;
-	rdfs:domain text:Text;
-	rdfs:range text:Text;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint text:Text.
@@ -480,8 +464,6 @@ text:hasTranscriber
 	a owl:ObjectProperty;
 	rdfs:label "has transcriber"@en, "hat TranskribiererIn"@de;
 	rdfs:comment """Relating a text to a person who transcribed it; text abstracted from its carrier."""@en;
-	rdfs:domain text:Text;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Transcriber]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint human:Person.
@@ -498,8 +480,6 @@ text:hasVulgarizer
 	a owl:ObjectProperty;
 	rdfs:label "text has vulgarizer"@en, "Text hat VulgarisatorIn"@de;
 	rdfs:comment """Relating a text to a person who vulgarized it."""@en;
-	rdfs:domain text:Text;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Vulgarizer]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint human:Person.
@@ -516,8 +496,6 @@ text:hasCiter
 	a owl:ObjectProperty;
 	rdfs:label "has citer"@en, "hat ZitiererIn"@de;
 	rdfs:comment """Relating a text to a human agent - person or group - citing it."""@en;
-	rdfs:domain text:Text;
-	rdfs:range human:Agent; # [rdfs:subClassOf human:Agent, [a owl:Restriction; owl:onProperty human:agentHasRole; owl:someValuesFrom text:AgentCiter]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint human:Agent.
@@ -534,8 +512,6 @@ text:hasCitation
 	a owl:ObjectProperty;
 	rdfs:label "has citation"@en, "hat Zitat"@de;
 	rdfs:comment "Relating a text to a citation thereof."@en;
-	rdfs:domain text:Text;
-	rdfs:range text:Citation;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint text:Citation.
@@ -552,8 +528,6 @@ text:hasCitationReference
 	a owl:ObjectProperty;
 	rdfs:label "has citation reference"@en, "hat Zitatreferenz"@de;
 	rdfs:comment "Relating a text to a citation reference thereof."@en;
-	rdfs:domain text:Text;
-	rdfs:range text:CitationReference;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint text:CitationReference.
@@ -570,8 +544,6 @@ text:isCitedIn
 	a owl:ObjectProperty;
 	rdfs:label "is cited in"@en, "ist zitiert in"@de;
 	rdfs:comment "Relating a text to an expression wherein it is cited."@en;
-	rdfs:domain text:Text;
-	rdfs:range document:Expression;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint document:Expression.
@@ -588,8 +560,6 @@ text:hasEditor
 	a owl:ObjectProperty;
 	rdfs:label "text has editor"@en, "Text hat EditorIn"@de;
 	rdfs:comment """Relating a text to a person who edited it."""@en;
-	rdfs:domain text:Text;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Editor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint human:Person.
@@ -606,8 +576,6 @@ text:hasHandwriter
 	a owl:ObjectProperty;
 	rdfs:label "has handwriter"@en, "hat Handschreiber"@de;
 	rdfs:comment """Relating a handwritten text to the person who wrote it."""@en;
-	rdfs:domain text:HandwrittenText;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Handwriter]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:HandwrittenText;
 	knora-base:objectClassConstraint human:Person.
@@ -624,8 +592,6 @@ text:citationHasReference
 	a owl:ObjectProperty;
 	rdfs:label "citation has reference"@en, "Zitat hat Referenz"@de;
 	rdfs:comment """Relating a citation to its reference."""@en;
-	rdfs:domain text:Citation;
-	rdfs:range document:TextStructureReference;
 	rdfs:subPropertyOf document:hasTextReference;
 	knora-base:subjectClassConstraint text:Citation;
 	knora-base:objectClassConstraint document:TextStructureReference.
@@ -642,8 +608,6 @@ text:citationHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "citation has identifier"@en, "Zitat hat Identifikator"@de;
 	rdfs:comment """Relating a citation to its identifier."""@en;
-	rdfs:domain text:Citation;
-	rdfs:range text:CitationIdentifier;
 	rdfs:subPropertyOf knora-base:hasLinkTo; # text-structure:hasIdentifier
 	knora-base:subjectClassConstraint text:Citation;
 	knora-base:objectClassConstraint text:CitationIdentifier.
@@ -660,8 +624,6 @@ text:citationHasNumber
 	a owl:ObjectProperty;
 	rdfs:label "citation has number"@en, "Zitat hat Nummer"@de;
 	rdfs:comment """Relating a citation to its number."""@en;
-	rdfs:domain text:Citation;
-	rdfs:range text:CitationNumber;
 	rdfs:subPropertyOf text:citationHasIdentifier;
 	knora-base:subjectClassConstraint text:Citation;
 	knora-base:objectClassConstraint text:CitationNumber.
@@ -678,8 +640,6 @@ text:citationIsPartOf
 	a owl:ObjectProperty;
 	rdfs:label "citation is part of text expression"@en, "Zitat ist Teil einer Textexpression"@de;
 	rdfs:comment """Relating a citation to a text expression it is part of."""@en;
-	rdfs:domain text:Citation;
-	rdfs:range text-expression:Expression;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint text:Citation;
 	knora-base:objectClassConstraint text-expression:Expression.
@@ -696,8 +656,6 @@ text:hasCitationIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "has citation identifier"@en, "hat Zitatidentifikator"@de;
 	rdfs:comment """Relating a citation reference to its citation identifier."""@en;
-	rdfs:domain text:CitationReference;
-	rdfs:range text:CitationIdentifier;
 	rdfs:subPropertyOf knora-base:hasLinkTo; #°
 	knora-base:subjectClassConstraint text:CitationReference;
 	knora-base:objectClassConstraint text:CitationIdentifier.
@@ -714,8 +672,6 @@ text:hasRevisor
 	a owl:ObjectProperty;
 	rdfs:label "text has revisor"@en, "Text hat Revisor"@de;
 	rdfs:comment """Relating a text to a person who revised it."""@en;
-	rdfs:domain text:Text;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Revisor]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint human:Person.
@@ -732,8 +688,6 @@ text:hasAnnotator
 	a owl:ObjectProperty;
 	rdfs:label "text has annotator"@en, "Text hat AnnotatorIn"@de;
 	rdfs:comment """Relating a text to a person who annotated it."""@en;
-	rdfs:domain text:Text;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Annotator]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint human:Person.
@@ -750,8 +704,6 @@ text:hasGlossator
 	a owl:ObjectProperty;
 	rdfs:label "has glossator"@en, "hat Glossator"@de;
 	rdfs:comment """Relating a text to a person who glossed it."""@en;
-	rdfs:domain text:Text;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Glossator]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint human:Person.
@@ -768,8 +720,6 @@ text:hasAbbreviator
 	a owl:ObjectProperty;
 	rdfs:label "has abbreviator"@en, "hat Abkurzer"@de;
 	rdfs:comment """Relating a text to a person who abbreviated it."""@en;
-	rdfs:domain text:Text;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom textedit:Abbreviator]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint human:Person.
@@ -786,8 +736,6 @@ text:isNormalizedAs
 	a owl:ObjectProperty;
 	rdfs:label "is normalized as"@en, "ist normalisiert als"@de;
 	rdfs:comment """Relating a text to a normalized derivative."""@en;
-	rdfs:domain text:Text;
-	rdfs:range text:NormalizedDerivative;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint text:NormalizedDerivative.
@@ -804,8 +752,6 @@ text:hasCompiler
 	a owl:ObjectProperty;
 	rdfs:label "text has compiler"@en, "Text hat KompilatorIn"@de;
 	rdfs:comment """Relating a text to a person who compiled it."""@en;
-	rdfs:domain text:Text;
-	rdfs:range human:Person; # [rdfs:subClassOf human:Person, [a owl:Restriction; owl:onProperty human:personHasRole; owl:someValuesFrom text:Compiler]];
 	rdfs:subPropertyOf knora-base:hasLinkTo;
 	knora-base:subjectClassConstraint text:Text;
 	knora-base:objectClassConstraint human:Person.
