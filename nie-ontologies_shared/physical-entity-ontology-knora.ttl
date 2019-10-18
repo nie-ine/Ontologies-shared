@@ -5,9 +5,9 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix dct: <http://purl.org/dc/terms/>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
-@prefix narespa: <http://sweet.jpl.nasa.gov/2.3/reprSpace.owl#>.
-@prefix naproti: <http://sweet.jpl.nasa.gov/2.3/propTime.owl#>.
-@prefix naprospadi: <http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl#>.
+@prefix soreps: <http://sweetontology.net/reprSpace/>.
+@prefix sopropti: <http://sweetontology.net/propTime/>.
+@prefix sopropsdis: <http://sweetontology.net/propSpaceDistance/>.
 @prefix cidoc: <http://www.cidoc-crm.org/cidoc-crm/>.
 @prefix event: <http://www.knora.org/ontology/shared/event#>.
 @prefix phygeo: <http://www.knora.org/ontology/shared/physical-geography#>.
@@ -70,7 +70,7 @@ physical:Space
 	a owl:Class;
 	rdfs:label "space"@en, "Raum"@de;
 	rdfs:comment """."""@en; #°
-	rdfs:subClassOf physical:Entity, geo:SpatialThing, narespa:Space, [
+	rdfs:subClassOf physical:Entity, geo:SpatialThing, soreps:Space, [
 		a owl:Restriction; owl:onProperty physical:isPartOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty physical:isPartOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty physical:hasSize; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -83,7 +83,7 @@ physical:Time
 	a owl:Class;
 	rdfs:label "time"@en, "Zeit"@de;
 	rdfs:comment """."""@en; #°
-	rdfs:subClassOf physical:Entity, naproti:Time. # quantity
+	rdfs:subClassOf physical:Entity, sopropti:Time. # quantity
 
 physical:Place
 	a owl:Class;
@@ -114,21 +114,21 @@ physical:Size
 	a owl:Class;
 	rdfs:label "size"@en, "Grösse"@de;
 	rdfs:comment """Spatial extent having 1 to 3 dimensions."""@en;
-	rdfs:subClassOf naprospadi:Size, knora-base:Resource, [
+	rdfs:subClassOf sopropsdis:Size, knora-base:Resource, [
 		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 physical:Length
 	a owl:Class;
 	rdfs:label "length"@en, "Länge"@de;
 	rdfs:comment """Spatial quantity representing 1 dimension."""@en;
-	rdfs:subClassOf naprospadi:Length, knora-base:Resource, [
+	rdfs:subClassOf sopropsdis:Length, knora-base:Resource, [
 		a owl:Restriction; owl:onProperty knora-base:seqnum; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 physical:Distance
 	a owl:Class;
 	rdfs:label "distance"@en, "Abstand"@de;
 	rdfs:comment """Length of the space between two points."""@en;
-	rdfs:subClassOf physical:Length, naprospadi:Distance.
+	rdfs:subClassOf physical:Length, sopropsdis:Distance.
 
 physical:Matter 
 	a owl:Class;
