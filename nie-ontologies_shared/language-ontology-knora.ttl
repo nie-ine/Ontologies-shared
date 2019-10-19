@@ -182,9 +182,9 @@ language:hasCode
 	a owl:ObjectProperty;
 	rdfs:label "language has code"@en, "Sprache hat Kode"@de;
 	rdfs:comment """Relating a language to a code (object) representing that language."""@en;
-	rdfs:subPropertyOf knora-base:hasValue; # skos:exactMatch
+	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguage;
-	knora-base:objectClassConstraint knora-base:TextValue. 
+	knora-base:objectClassConstraint knora-base:TextValue.
 
 language:hasContent
 	a owl:ObjectProperty;

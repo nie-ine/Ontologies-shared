@@ -214,6 +214,8 @@ kuno-raeber:StillImageRepresentation
 	skos:note """DHL knora application-specific entity."""@en;
 	rdfs:subClassOf knora-base:StillImageRepresentation.
 
+# Restriction on knora-base:hasStillImageFileValue changed from owl:minCardinality to owl:cardinality "1"^^xsd:nonNegativeInteger !
+
 kuno-raeber:Page
 	a owl:Class;
 	rdfs:label "Kuno Raeber page"@en, "Seite Kuno Raebers"@de;
