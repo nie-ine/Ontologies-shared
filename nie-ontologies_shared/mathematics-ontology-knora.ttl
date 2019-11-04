@@ -62,7 +62,7 @@ math:Set
 #
 
 math:hasNumeral
-	a owl:ObjectProperty; # -> a owl:DatatypeProperty;
+	a owl:ObjectProperty;
 	rdfs:label "has numeral"@en, "hat Numerale"@de;
 	rdfs:comment """Relating a number to a numeral."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
