@@ -47,11 +47,12 @@ athar:Paippalada-Samhita
 	a owl:Class;
 	rdfs:label "Paippalāda-Samhitā"@sa, "Paippalada-Samhita"@en, "Paippalada-Samhita"@de;
 	rdfs:comment """One of the nine recensions of the Atharvaveda, along the different shakhas or Hindu theological schools, specialized in learning Vedic texts. Only this one and the Shaunakiya recension are extent."""@en;
-	rdfs:subClassOf athar:Atharvaveda, textedit:Edition, [
+	rdfs:subClassOf athar:Atharvaveda, textedit:Recension, [
 		a owl:Restriction; owl:onProperty athar:paippaladaHasGenre; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:paippaladaHasGenreValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty athar:paippaladaHasRecitingStyle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty athar:paippaladaHasRecitingStyleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+#		a owl:Restriction; owl:onProperty athar:paippaladaHasRecitingStyle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+#		a owl:Restriction; owl:onProperty athar:paippaladaHasRecitingStyleValue; owl:minCardinality "0"^^xsd:nonNegativeInteger]
+		.
 
 athar:Kanda
 	a owl:Class;
@@ -97,6 +98,14 @@ athar:Verse
 		a owl:Restriction; owl:onProperty athar:isVerseOfHalfStrophe; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty athar:isVerseOfHalfStropheValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
+athar:Padapatha
+	a owl:Class;
+	rdfs:label "Normalized Padapatha"@en, "Normalisierte Padapatha"@de;
+	rdfs:comment """Padapatha normalized from a Samhitapatha."""@en;
+ 	rdfs:subClassOf indo:Padapatha, text:NormalizedDerivative, [
+		a owl:Restriction; owl:onProperty athar:isNormalizationOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty athar:isNormalizationOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
 #
 # PROPERTIES
 #
@@ -114,22 +123,6 @@ athar:paippaladaHasGenreValue
 	rdfs:label "Paippalada has genre - statement"@en, "Paippalada hat Gattung - Festlegung"@de;
 	rdfs:comment """Relating a Paippalada to a reification statement of the relation between the Paippalada and its genre."""@en;
 	rdfs:subPropertyOf indo:vedaHasGenreValue;
-	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-athar:paippaladaHasRecitingStyle
-	a owl:ObjectProperty;
-	rdfs:label "Paippalada has reciting style"@en, "Paippalada hat Rezitationsstil"@de;
-	rdfs:comment """Relating a Paippalada to a reciting style it has."""@en;
-	rdfs:subPropertyOf indo:vedaHasRecitingStyle;
-	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
-	knora-base:objectClassConstraint indo:Samhitapatha.
-
-athar:paippaladaHasRecitingStyleValue
-	a owl:ObjectProperty;
-	rdfs:label "Veda has reciting style - statement"@en, "Veda hat Rezitationsstil - Festlegung"@de;
-	rdfs:comment """Relating a Veda to a reification statement of the relation between the Veda and a reciting style it has."""@en;
-	rdfs:subPropertyOf indo:vedaHasRecitingStyleValue;
 	knora-base:subjectClassConstraint athar:Paippalada-Samhita;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -211,4 +204,20 @@ athar:isVerseOfHalfStropheValue
 	rdfs:comment """Relating an Atharvaveda verse to a reification statement of the relation between the verse and a half-strophe it is part of."""@en;
 	rdfs:subPropertyOf prosodic-structure:isVerseOfHalfStropheValue;
 	knora-base:subjectClassConstraint athar:Verse;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+athar:isNormalizationOf
+	a owl:ObjectProperty;
+	rdfs:label "is normalization of"@en, "ist Normalisierung von"@de;
+	rdfs:comment """Relating a normalized Padapatha to its Samhitapatha."""@en;
+	rdfs:subPropertyOf text:isNormalizationOf;
+	knora-base:subjectClassConstraint athar:Padapatha;
+	knora-base:objectClassConstraint indo:Samhitapatha.
+
+athar:isNormalizationOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is normalization of - statement"@en, "ist Normalisierung von - Festlegung"@de;
+	rdfs:comment """Relating a normalized Padapatha to a reification statement of the relation between the Padapatha and its Samhitapatha."""@en;
+	rdfs:subPropertyOf text:isNormalizationOfValue;
+	knora-base:subjectClassConstraint athar:Padapatha;
 	knora-base:objectClassConstraint knora-base:LinkValue.
