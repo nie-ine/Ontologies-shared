@@ -52,6 +52,8 @@ text-expression:Expression
 		a owl:Restriction; owl:onProperty text-expression:hasSubtitle; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-expression:hasIncipit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-expression:hasExplicit; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-expression:hasIdentifier; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text-expression:hasIdentifierValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-expression:hasAuthor; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-expression:hasAuthorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text-expression:hasIdeationalExtent; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -71,6 +73,12 @@ text-expression:Expression
 		a owl:Restriction; owl:onProperty scholarly-editing:hasDiplomaticTranscriptionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:hasCriticalEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty scholarly-editing:hasCriticalEditionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+
+text-expression:Identifier
+	a owl:Class;
+	rdfs:label "text expression identifier"@en, "Textexpressionsidentifikator"@de;
+	rdfs:comment """Identifier of a text expression."""@en;
+	rdfs:subClassOf document:ExpressionIdentifier.
 
 text-expression:Draft
 	a owl:Class;
@@ -272,6 +280,22 @@ text-expression:hasExplicit
 	rdfs:subPropertyOf text:hasText;
 	knora-base:subjectClassConstraint text-expression:Expression;
 	knora-base:objectClassConstraint knora-base:TextValue.
+
+text-expression:hasIdentifier
+	a owl:ObjectProperty;
+	rdfs:label "text expression has identifier"@en, "Textexpression hat Identifikator"@de;
+	rdfs:comment """Relating a text expression to its identifier."""@en;
+	rdfs:subPropertyOf document:expressionHasIdentifier;
+	knora-base:subjectClassConstraint text-expression:Expression;
+	knora-base:objectClassConstraint text-expression:Identifier.
+
+text-expression:hasIdentifierValue
+	a owl:ObjectProperty;
+	rdfs:label "text expression has identifier - statement"@en, "Textexpression hat Identifikator - Festlegung"@de;
+	rdfs:comment """Relating a text expression to a reification statement of the relation between the expression and its identifier."""@en;
+	rdfs:subPropertyOf document:expressionHasIdentifierValue;
+	knora-base:subjectClassConstraint text-expression:Expression;
+	knora-base:objectClassConstraint knora-base:LinkValue.
 
 text-expression:hasAuthor
 	a owl:ObjectProperty;
