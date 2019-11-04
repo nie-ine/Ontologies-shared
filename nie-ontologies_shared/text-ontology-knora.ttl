@@ -79,8 +79,6 @@ text:Text
 		a owl:Restriction; owl:onProperty text:hasGlossatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAbbreviator; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasAbbreviatorValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:isNormalizedAs; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty text:isNormalizedAsValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasCompiler; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty text:hasCompilerValue; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
 		a owl:Restriction; owl:onProperty textedit:hasEdition; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
@@ -254,11 +252,13 @@ text:CitationNumber
 	rdfs:comment """Number of a citation."""@en;
 	rdfs:subClassOf text:CitationIdentifier, math:Number.
 
-text:NormalizedDerivative
+text:Normalization
 	a owl:Class;
-	rdfs:label "normalized text derivative"@en, "normalisiertes Textderivat"@de;
+	rdfs:label "text normalization"@en, "Textnormalisation"@de;
 	rdfs:comment """Derivative of a text of which it is a normalization along a certain procedure."""@en;
-	rdfs:subClassOf text:Text, creating:CreationDerivative.
+	rdfs:subClassOf text:Text, creating:CreationDerivative,
+		a owl:Restriction; owl:onProperty text:isNormalizationOf; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty text:isNormalizationOfValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 text:Compiler
 	a owl:Class;
@@ -762,4 +762,20 @@ text:hasCompilerValue
 	rdfs:comment """Relating a text to a reification statement of the relation between the text and a person who compiled it."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint text:Text;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+text:isNormalizationOf
+	a owl:ObjectProperty;
+	rdfs:label "is normalization of"@en, "ist Normalisierung von"@de;
+	rdfs:comment """Relating a text normalization to its source text."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint text:Normalization;
+	knora-base:objectClassConstraint text:Text.
+
+text:isNormalizationOfValue
+	a owl:ObjectProperty;
+	rdfs:label "is normalization of - statement"@en, "ist Normalisierung von - Festlegung"@de;
+	rdfs:comment """Relating a text normalization to a reification statement of the relation between the text and its source text."""@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint text:Normalization;
 	knora-base:objectClassConstraint knora-base:LinkValue.
