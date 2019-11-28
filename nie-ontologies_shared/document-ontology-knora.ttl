@@ -417,7 +417,7 @@ document:contentStructureHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "document content structure has identifier"@en, "Dokumentinhaltstruktur hat Identifikator"@de;
 	rdfs:comment """Relating a document content structure to its identifier."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
+	rdfs:subPropertyOf concept:hasIdentifier;
 	knora-base:subjectClassConstraint document:ContentStructure;
 	knora-base:objectClassConstraint document:ContentStructureIdentifier.
 
@@ -425,7 +425,7 @@ document:contentStructureHasIdentifierValue
 	a owl:ObjectProperty;
 	rdfs:label "document content structure has identifier - statement"@en, "Dokumentinhaltstruktur hat Identifikator - Festlegung"@de;
 	rdfs:comment """Relating a document content structure to a reification statement of the relation between the content structure and its identifier."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	rdfs:subPropertyOf concept:hasIdentifierValue;
 	knora-base:subjectClassConstraint document:ContentStructure;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -689,7 +689,7 @@ document:expressionHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "expression has identifier"@en, "Expression hat Identifikator"@de;
 	rdfs:comment """Relating a document expression to its identifier."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo; #°
+	rdfs:subPropertyOf concept:hasIdentifier;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint document:ExpressionIdentifier.
 
@@ -697,7 +697,7 @@ document:expressionHasIdentifierValue
 	a owl:ObjectProperty;
 	rdfs:label "expression has identifier - statement"@en, "Expression hat Identifikator - Festlegung"@de;
 	rdfs:comment """Relating a document expression to a reification statement of the relation between the expression and its identifier."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue; #°
+	rdfs:subPropertyOf concept:hasIdentifierValue;
 	knora-base:subjectClassConstraint document:Expression;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
@@ -753,7 +753,7 @@ document:expressionReferenceHasIdentifier
 	a owl:ObjectProperty;
 	rdfs:label "expression reference has identifier"@en, "Expression-Referenz hat Identifikator"@de;
 	rdfs:comment """Relating a document expression reference to its identifier."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo; #°
+	rdfs:subPropertyOf concept:hasIdentifier;
 	knora-base:subjectClassConstraint document:ExpressionReference;
 	knora-base:objectClassConstraint document:ExpressionIdentifier.
 
@@ -761,7 +761,7 @@ document:expressionReferenceHasIdentifierValue
 	a owl:ObjectProperty;
 	rdfs:label "expression reference has identifier - statement"@en, "Expression-Referenz hat Identifikator - Festlegung"@de;
 	rdfs:comment """Relating a document expression reference to a reification statement of the relation between that reference and its identifier."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue; #°
+	rdfs:subPropertyOf concept:hasIdentifierValue;
 	knora-base:subjectClassConstraint document:ExpressionReference;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
