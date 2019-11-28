@@ -85,6 +85,12 @@ concept:Identifier
 	rdfs:comment """Unique and permanent reference to a resource within a given context, and conforming to a formal identification system."""@en;
 	rdfs:subClassOf concept:SymbolicEntity, cidoc:E42_Identifier. # rdfs:subClassOf cidoc:E41_Appellation
 
+concept:Code
+	a owl:Class;
+	rdfs:label "code"@en, "Kode"@de;
+	rdfs:comment """Identifier belonging to a specific coding system, formed by any kind of symbols, e.g. alphanumeric."""@en;
+	rdfs:subClassOf concept:Identifier.
+
 concept:PropositionalEntity
 	a owl:Class;
 	rdfs:label "propositional entity"@en, "propositionale Entität"@de;
@@ -159,6 +165,38 @@ concept:isPartOfValue
 	rdfs:comment "Relating a conceptual entity to a reification statement of the relation between the conceptual entity and another one it is part of."@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
 	knora-base:subjectClassConstraint concept:ConceptualEntity;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+concept:hasIdentifier
+	a owl:ObjectProperty;
+	rdfs:label "has identifier"@en, "hat Identifikator"@de;
+	rdfs:comment "Relating a resource to its identifier."@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint concept:Identifier.
+
+concept:hasIdentifierValue
+	a owl:ObjectProperty;
+	rdfs:label "has identifier - statement"@en, "hat Identifikator - Festlegung"@de;
+	rdfs:comment "Relating a resource to a reification statement of the relation between the resource and its identifier."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+concept:hasCode
+	a owl:ObjectProperty;
+	rdfs:label "has code"@en, "hat Kode"@de;
+	rdfs:comment "Relating a resource to its code."@en;
+	rdfs:subPropertyOf knora-base:hasLinkTo;
+	knora-base:subjectClassConstraint knora-base:Resource;
+	knora-base:objectClassConstraint concept:Code.
+
+concept:hasCodeValue
+	a owl:ObjectProperty;
+	rdfs:label "has code - statement"@en, "hat Kode - Festlegung"@de;
+	rdfs:comment "Relating a resource to a reification statement of the relation between the resource and its code."@en;
+	rdfs:subPropertyOf knora-base:hasLinkToValue;
+	knora-base:subjectClassConstraint knora-base:Resource;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 concept:isExpressedIn
