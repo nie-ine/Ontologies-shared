@@ -93,9 +93,7 @@ language:SwissGerman
 	a owl:Class;
 	rdfs:label "Swiss German"@en, "Schweizerdeutsch"@de;
 	rdfs:comment """Any of the Alemannic dialects spoken in the German-speaking part of Switzerland and in some Alpine communities in Northern Italy bordering Switzerland."""@en;
-	rdfs:subClassOf language:GeneralHumanNaturalLanguage, [
-		a owl:Restriction; owl:onProperty language:swissGermanHasDialect; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty language:swissGermanHasDialectValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+	rdfs:subClassOf language:GeneralHumanNaturalLanguage.
 
 language:HumanNaturalLanguageExpression
 	a owl:Class;
@@ -181,7 +179,7 @@ language:MachineTranslation
 language:hasCode
 	a owl:ObjectProperty;
 	rdfs:label "language has code"@en, "Sprache hat Kode"@de;
-	rdfs:comment """Relating a language to a code (object) representing that language."""@en;
+	rdfs:comment """Relating a language to a code representing that language."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint language:HumanNaturalLanguage;
 	knora-base:objectClassConstraint knora-base:TextValue.
@@ -194,36 +192,20 @@ language:hasContent
 	knora-base:subjectClassConstraint language:HumanNaturalLanguageExpression;
 	knora-base:objectClassConstraint knora-base:TextValue.
 
-language:hasDialect
+language:isDialectOf
 	a owl:ObjectProperty;
-	rdfs:label "has dialect"@en, "hat Dialekt"@de;
-	rdfs:comment """Relating a human natural language to a dialect it has."""@en;
+	rdfs:label "is dialect of"@en, "ist Dialekt von"@de;
+	rdfs:comment """Relating a dialect to its human natural language."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint language:HumanNaturalLanguage;
-	knora-base:objectClassConstraint language:Dialect.
+	knora-base:subjectClassConstraint language:Dialect;
+	knora-base:objectClassConstraint language:HumanNaturalLanguage.
 
-language:hasDialectValue
+language:isDialectOfValue
 	a owl:ObjectProperty;
-	rdfs:label "has dialect - statement"@en, "hat Dialekt - Festlegung"@de;
-	rdfs:comment """Relating a human natural language to a reification statement of the relation between the natural language and a dialect it has."""@en;
+	rdfs:label "is dialect of - statement"@en, "ist Dialekt von - Festlegung"@de;
+	rdfs:comment """Relating a dialect to a reification statement of the relation between the dialect and its human natural language."""@en;
 	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint language:HumanNaturalLanguage;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-language:swissGermanHasDialect
-	a owl:ObjectProperty;
-	rdfs:label "Swiss German has dialect"@en, "Schweizerdeutsch hat Dialekt"@de;
-	rdfs:comment """Relating Swiss German to a dialect it has."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkTo;
-	knora-base:subjectClassConstraint language:SwissGerman;
-	knora-base:objectClassConstraint language:Dialect.
-
-language:swissGermanHasDialectValue
-	a owl:ObjectProperty;
-	rdfs:label "Swiss German has dialect - statement"@en, "Schweizerdeutsch hat Dialekt - Festlegung"@de;
-	rdfs:comment """Relating Swiss German to a reification statement of the relation between Swiss German and a dialect it has."""@en;
-	rdfs:subPropertyOf knora-base:hasLinkToValue;
-	knora-base:subjectClassConstraint language:SwissGerman;
+	knora-base:subjectClassConstraint language:Dialect;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 language:expressedInNaturalLanguage
