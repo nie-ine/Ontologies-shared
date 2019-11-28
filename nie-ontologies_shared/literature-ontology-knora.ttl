@@ -156,28 +156,28 @@ litera:VerseSong
 	rdfs:label "verse song"@en, "Verslied"@de;
 	rdfs:comment """Verse poem as lyrics of a song."""@en, """Versgedicht als Liedtext."""@de;
 	rdfs:subClassOf litera:VersePoem, [
-		a owl:Restriction; owl:onProperty litera:isPartOfVerseSongbook; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty litera:isPartOfVerseSongbookValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
+		a owl:Restriction; owl:onProperty litera:isVerseSongofCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty litera:isVerseSongofCollectionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
-litera:VerseSongbook
+litera:VerseSongCollection
 	a owl:Class;
-	rdfs:label "verse songbook"@en, "Versgesangbuch"@de;
+	rdfs:label "verse song collection"@en, "Versgesangsammlung"@de;
 	rdfs:comment """Collection of verse songs."""@en;
-	rdfs:subClassOf litera:Expression.
+	rdfs:subClassOf litera:Expression, creating:Collection.
 
 litera:Hymn
 	a owl:Class;
 	rdfs:label "hymn"@en, "Hymne"@de, "hymnus"@la;
 	rdfs:comment """Verse song of adoration for a deity or prominent person."""@en;
 	rdfs:subClassOf litera:VerseSong, [
-		a owl:Restriction; owl:onProperty litera:isPartOfHymnal; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
-		a owl:Restriction; owl:onProperty litera:isPartOfHymnalValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].	
+		a owl:Restriction; owl:onProperty litera:isHymnOfCollection; owl:minCardinality "0"^^xsd:nonNegativeInteger], [
+		a owl:Restriction; owl:onProperty litera:isHymnOfCollectionValue; owl:minCardinality "0"^^xsd:nonNegativeInteger].	
 
-litera:Hymnal
+litera:HymnCollection
 	a owl:Class;
-	rdfs:label "hymnal"@en, "Gesangbuch"@de;
+	rdfs:label "hymn collection"@en, "Hymnesammlung"@de;
 	rdfs:comment """Collection of hymns."""@en;
-	rdfs:subClassOf litera:Expression.
+	rdfs:subClassOf litera:Expression, creating:Collection.
 
 litera:ProsePoem
 	a owl:Class;
@@ -397,20 +397,36 @@ litera:hasPoetryValue
 	knora-base:subjectClassConstraint litera:Poem;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
-litera:isPartOfVerseSongbook
+litera:isVerseSongofCollection
 	a owl:ObjectProperty;
-	rdfs:label "is part of VerseSongbook"@en, "ist teil eines Versgesangbuches"@de;
-	rdfs:comment """Relating a verse song to a book it is part of."""@en;
+	rdfs:label "is part of verse song collection"@en, "ist teil einer Versgesangsammlung"@de;
+	rdfs:comment """Relating a verse song to a collection it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOf;
 	knora-base:subjectClassConstraint litera:VerseSong;
-	knora-base:objectClassConstraint litera:VerseSongbook.
+	knora-base:objectClassConstraint litera:VerseSongCollection.
 
-litera:isPartOfVerseSongbookValue
+litera:isVerseSongofCollectionValue
 	a owl:ObjectProperty;
-	rdfs:label "is part of VerseSongbook - statement"@en, "ist teil eines Versgesangbuches - Festlegung"@de;
-	rdfs:comment """Relating a verse song to a reification statement of the relation between the verse song and a book it is part of."""@en;
+	rdfs:label "is part of verse song collection - statement"@en, "ist teil einer Versgesangsammlung - Festlegung"@de;
+	rdfs:comment """Relating a verse song to a reification statement of the relation between the verse song and a collection it is part of."""@en;
 	rdfs:subPropertyOf concept:isPartOfValue;
 	knora-base:subjectClassConstraint litera:VerseSong;
+	knora-base:objectClassConstraint knora-base:LinkValue.
+
+litera:isHymnOfCollection
+	a owl:ObjectProperty;
+	rdfs:label "is hymn of collection"@en, "ist Hymne einer Sammlung"@de;
+	rdfs:comment """Relating a hymn to a collection it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOf;
+	knora-base:subjectClassConstraint litera:Hymn;
+	knora-base:objectClassConstraint litera:HymnCollection.
+
+litera:isHymnOfCollectionValue
+	a owl:ObjectProperty;
+	rdfs:label "is hymn of collection - statement"@en, "ist Hymne einer Sammlung - Festlegung"@de;
+	rdfs:comment """Relating a hymn to a reification statement of the relation between the hymn and a collection it is part of."""@en;
+	rdfs:subPropertyOf concept:isPartOfValue;
+	knora-base:subjectClassConstraint litera:Hymn;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 litera:hasPoet
@@ -443,22 +459,6 @@ litera:hasNovelistValue
 	rdfs:comment """Relating a novel to a reification statement of the relation between the novel and a person who authored it."""@en;
 	rdfs:subPropertyOf text-expression:hasAuthorValue;
 	knora-base:subjectClassConstraint litera:Novel;
-	knora-base:objectClassConstraint knora-base:LinkValue.
-
-litera:isPartOfHymnal
-	a owl:ObjectProperty;
-	rdfs:label "is part of hymnal"@en, "ist teil eines Gesangbuches"@de;
-	rdfs:comment """Relating a hymn to a hymnal it is part of."""@en;
-	rdfs:subPropertyOf concept:isPartOf;
-	knora-base:subjectClassConstraint litera:Hymn;
-	knora-base:objectClassConstraint litera:Hymnal.
-
-litera:isPartOfHymnalValue
-	a owl:ObjectProperty;
-	rdfs:label "is part of hymnal - statement"@en, "ist teil eines Gesangbuches - Festlegung"@de;
-	rdfs:comment """Relating a hymn to a reification statement of the relation between the hymn and a hymnal it is part of."""@en;
-	rdfs:subPropertyOf concept:isPartOfValue;
-	knora-base:subjectClassConstraint litera:Hymn;
 	knora-base:objectClassConstraint knora-base:LinkValue.
 
 litera:isArgumentOf
