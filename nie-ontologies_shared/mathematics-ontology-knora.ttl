@@ -23,10 +23,6 @@
 
 	knora-base:attachedToProject <http://www.knora.org/ontology/knora-base#DefaultSharedOntologiesProject>.
 
-
-# Declared 'middle-out', on the go as elements are needed, in a way more general or more specific elements can be added easily, not intended to contain upfront all elements
-
-
 #
 # CLASSES
 #
@@ -34,14 +30,14 @@
 math:MathematicalObject
 	a owl:Class;
 	rdfs:label "mathematical object"@en, "mathematisches Objekt"@de;
-	rdfs:comment """Symbolic entity in mathematics."""@en;
-	rdfs:subClassOf concept:SymbolicEntity.
+	rdfs:comment """Conceptual entity in mathematics."""@en;
+	rdfs:subClassOf concept:ConceptualEntity.
 
 math:Number
 	a owl:Class;
 	rdfs:label "number"@en, "Zahl"@de;
-	rdfs:comment """Mathematical object for counting, measuring and labeling."""@en; #* and ordering
-	rdfs:subClassOf math:MathematicalObject, concept:Identifier, [
+	rdfs:comment """Mathematical object for counting, measuring, ordering and labeling."""@en;
+	rdfs:subClassOf math:MathematicalObject, concept:SymbolicEntity, [
 		a owl:Restriction; owl:onProperty math:hasNumeral; owl:minCardinality "0"^^xsd:nonNegativeInteger].
 
 math:NaturalNumber
@@ -50,6 +46,12 @@ math:NaturalNumber
 	rdfs:comment """Non-negative whole number."""@en;
 	skos:note """Conform ISO 80000-2:2009."""@en;
 	rdfs:subClassOf math:Number.
+
+ math:Ordinal
+	a owl:Class;
+	rdfs:label "ordinal"@en, "Ordinalzahl"@de;
+	rdfs:comment """Natural number denoting the position of something in a sequence."""@en;
+	rdfs:subClassOf math:NaturalNumber, concept:Identifier.
 
 math:Set
 	a owl:Class;
@@ -64,7 +66,7 @@ math:Set
 math:hasNumeral
 	a owl:ObjectProperty;
 	rdfs:label "has numeral"@en, "hat Numerale"@de;
-	rdfs:comment """Relating a number to a numeral."""@en;
+	rdfs:comment """Relating a number to its numeral."""@en;
 	rdfs:subPropertyOf knora-base:hasValue;
 	knora-base:subjectClassConstraint math:Number;
 	knora-base:objectClassConstraint knora-base:IntValue.
