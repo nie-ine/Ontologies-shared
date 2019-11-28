@@ -281,7 +281,7 @@ lingmor:Case
 	rdfs:comment """Grammatical declension of a noun, pronoun, adjective, participle, article, or numeral, expressing its grammatical function, hence its semantic relation to other words in a sentence, clause or phrase."""@en;
 	rdfs:subClassOf ling:Concept. #° lingmor:MorphologicalConcept
 
-lingmor:NomintativeCase
+lingmor:NominativeCase
 	a owl:Class;
 	rdfs:label "nominative case"@en, "Nominative"@de;
 	rdfs:comment """Grammatical case indicating the agent in an accusative language."""@en; #° subject
